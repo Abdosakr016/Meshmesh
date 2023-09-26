@@ -11,16 +11,20 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CartComponent } from './cart/cart.component';
+import { RouterModule } from '@angular/router';
+
+
+
+
 @NgModule({
   declarations: [
-<<<<<<< HEAD
-  AppComponent
-=======
-    AppComponent,
-    ProductListComponent,
-    CardComponent
->>>>>>> origin/Abdo
+  AppComponent,
+  ProductListComponent,
+  CardComponent,
+  CartComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +33,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

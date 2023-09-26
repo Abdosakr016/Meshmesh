@@ -13,4 +13,5 @@ export class ProductListComponent {
     this.ApiServiceService.getProductList().subscribe(((data)=>this.seller=data)
     );
   }
+  
 }

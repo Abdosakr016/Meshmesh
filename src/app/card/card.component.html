@@ -92,12 +92,14 @@
           <div class="mb-3">
             <label for="petPic" class="form-label">Pet Picture URL</label>
             <input type="file" class="form-control" id="petPic" formControlName="petPic">
+            <img src="" alt=""formControlName="imge">
+
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!editSellerForm.valid">Save changes</button>
 
       </div>
     </div>

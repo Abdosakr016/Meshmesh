@@ -91,8 +91,12 @@
           </div>
           <div class="mb-3">
             <label for="petPic" class="form-label">Pet Picture URL</label>
-            <input type="file" class="form-control" id="petPic" formControlName="petPic">
-            <img src="" alt=""formControlName="imge">
+            <input type="file" (change)="get_imagepath($event)"
+            
+            class="form-control" id="petPic" 
+            
+            formControlName="petPic">
+            <img src="{{base64}}" alt=""formControlName="imge">
 
           </div>
         </form>

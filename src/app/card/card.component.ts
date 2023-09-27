@@ -16,6 +16,7 @@ export class CardComponent {
   @ViewChild('editSellerModal')
   editSellerModal!: ElementRef;
   @Input() seller !: Seller;
+  base64: any
   constructor(private router : Router,private formBuilder: FormBuilder){}
   ngOnInit() {
     this.editSellerForm = this.formBuilder.group({
@@ -56,4 +57,12 @@ export class CardComponent {
     this.editSellerModal.nativeElement.style.display = 'none';
   }
   
+  get_imagepath(event: any){
+    const file=event.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload=()=>{
+  this.base64=reader.result
+  }
+  }
 }

@@ -21,5 +21,7 @@ export class ApiServiceService {
     return this.http.put(`${this.url}/${id}`, newData);
   }
   
-  
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
 }

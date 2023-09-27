@@ -45,13 +45,13 @@ export class CardComponent {
     // this.editSellerForm.get('sellerName')?.setValue(seller.Seller);
     // this.editSellerForm.get('petType')?.setValue(seller.pet_type);
     // this.editSellerForm.get('petGender')?.setValue(seller.pet_gender);
-    // this.editSellerForm.get('image')?.setValue(seller.pet_pic)
+    // this.editSellerForm.get('imge')?.setValue(seller.pet_pic)
     // this.editSellerForm.get('petPic')?.setValue(seller.pet_pic);
     this.editSellerForm.patchValue({
       sellerName: seller.Seller,
       petType: seller.pet_type,
       petGender: seller.pet_gender,
-      image: seller.pet_pic,
+      // imge: seller.pet_pic,
      
     });
   }
@@ -80,5 +80,20 @@ export class CardComponent {
       );
     }
   }
-
+  deleteProduct(product_id: number) {
+   
+    const product_id_str = product_id.toString();
+  
+   
+    this.apiService.deleteProduct(product_id_str).subscribe(
+      (response) => {
+        console.log('Product deleted successfully:', response);
+  
+ 
+      },
+      (error) => {
+        console.error('Error deleting product:', error);
+      }
+    );
+  }
 }

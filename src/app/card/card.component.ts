@@ -35,10 +35,16 @@ export class CardComponent {
       this.closeEditSellerModal();
     }
   }
-  
   openEditSellerModal(seller: any) {
     this.editSellerModal.nativeElement.style.display = 'block';
+  
+   
+    this.editSellerForm.get('sellerName')?.setValue(seller.Seller);
+    this.editSellerForm.get('petType')?.setValue(seller.pet_type);
+    this.editSellerForm.get('petGender')?.setValue(seller.pet_gender);
+    this.editSellerForm.get('petPic')?.setValue(seller.pet_pic);
   }
+  
   closeEditSellerModal(){
     this.editSellerModal.nativeElement.style.display = 'none';
   }

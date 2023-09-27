@@ -12,11 +12,12 @@ import { CartService } from '../service/cart.service';
 })
 export class CardComponent {
   @Input() seller !: Seller;
+  Items !: Array<any>;
   constructor(private router : Router, private CartService : CartService){}
 
   AddToCart(item : any){
-
+    item.quantity = 1;
     this.CartService.addItem(item);
-    this.router.navigate(['cart' , item.id])
+    this.router.navigate(['cart' , item.id]);
   }
 }

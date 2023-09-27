@@ -46,13 +46,29 @@ export class CartComponent {
   }
   removeItem(item: any){
     if(confirm("do you sure  for remove this item") == true) {
-      this.selectedItems = this.selectedItems.filter( val => val != item);
-      this.cartService.updatedSelectedItems(this.selectedItems );
+      // this.selectedItems = this.selectedItems.filter( val => val != item);
+      // this.cartService.updatedSelectedItems(this.selectedItems );
+      this.cartService.removeItem(item);
     }
-
-    
    }
 
+   clearAllItems(){
+
+    if(confirm("Do You Sure  For Remove Your Cart") == true) {
+      // this.selectedItems = this.selectedItems.filter( val => val != item);
+      // this.cartService.updatedSelectedItems(this.selectedItems );
+    this.cartService.clearItems();
+      
+    }
+   }
+
+   totalPice(){
+    this.total = 0;
+    for(let ind in this.selectedItems){
+      this.total += this.selectedItems[ind].quantity * this.selectedItems[ind].price;
+      // console.log(this.total)
+    }
+  }
 
 
 }

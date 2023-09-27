@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Seller } from '../interface/seller';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApiServiceService } from '../service/api-service.service';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class CardComponent {
   editSellerModal!: ElementRef;
   @Input() seller !: Seller;
   base64: any
-  constructor(private router : Router,private formBuilder: FormBuilder){}
+  constructor(private router : Router,
+    private formBuilder: FormBuilder,
+    private apiService: ApiServiceService ){}
   ngOnInit() {
     this.editSellerForm = this.formBuilder.group({
       sellerName: ['',Validators.required],
@@ -26,16 +29,7 @@ export class CardComponent {
       petPic: ['',Validators.required],
     });
   }
-  onSubmit() {
-    if (this.editSellerForm.valid) {
-      // Form is valid, perform the submission logic here
-      const formData = this.editSellerForm.value;
-      console.log(formData);
   
-      // Close the modal
-      this.closeEditSellerModal();
-    }
-  }
   get_imagepath(event: any){
     const file=event.target.files[0]
     const reader = new FileReader();
@@ -65,6 +59,26 @@ export class CardComponent {
   closeEditSellerModal(){
     this.editSellerModal.nativeElement.style.display = 'none';
   }
+  onSubmit() {
+    if (this.editSellerForm.valid) {
+      const formData = this.editSellerForm.value;
+      console.log(formData);
   
+      // Update the data using the API service
+      this.apiService.updateProduct(this.seller.id.toString(), formData).subscribe(
+        (response) => {
+         
+          console.log('Data updated successfully:', response);
+  
+         
+          this.closeEditSellerModal();
+        },
+        (error) => {
+         
+          console.error('Error updating data:', error);
+        }
+      );
+    }
+  }
 
 }

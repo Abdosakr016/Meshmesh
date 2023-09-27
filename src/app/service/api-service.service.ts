@@ -17,4 +17,9 @@ export class ApiServiceService {
   getProductDetails(id : string) {
     return this.http.get(`${this.url}/${id}`);
   }
+  updateProduct(id: string, newData: any) {
+    return this.http.put(`${this.url}/${id}`, newData);
+  }
+  
+  
 }

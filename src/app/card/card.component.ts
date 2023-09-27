@@ -36,10 +36,18 @@ export class CardComponent {
       this.closeEditSellerModal();
     }
   }
+  get_imagepath(event: any){
+    const file=event.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload=()=>{
+  this.base64=reader.result
+  }
+  }
   openEditSellerModal(seller: any) {
     this.editSellerModal.nativeElement.style.display = 'block';
   
-   
+    this.base64=seller.pet_pic
     // this.editSellerForm.get('sellerName')?.setValue(seller.Seller);
     // this.editSellerForm.get('petType')?.setValue(seller.pet_type);
     // this.editSellerForm.get('petGender')?.setValue(seller.pet_gender);
@@ -49,7 +57,8 @@ export class CardComponent {
       sellerName: seller.Seller,
       petType: seller.pet_type,
       petGender: seller.pet_gender,
-      image: seller.pet_pic
+      image: seller.pet_pic,
+     
     });
   }
   
@@ -57,12 +66,5 @@ export class CardComponent {
     this.editSellerModal.nativeElement.style.display = 'none';
   }
   
-  get_imagepath(event: any){
-    const file=event.target.files[0]
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload=()=>{
-  this.base64=reader.result
-  }
-  }
+
 }

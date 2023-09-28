@@ -1,0 +1,165 @@
+
+
+<h3 style="text-align: center;">Registeration  clinic Form</h3>
+<hr />
+
+<form [formGroup]="registerclinc" (ngSubmit)="submitForm()" action="../login/login.component.html">
+  <div class="mb-3">
+    <label for="name_control" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name_control"
+      aria-describedby="name_help"
+      formControlName="Name"
+    />
+    <div
+      *ngIf="
+      registerclinc.controls['Name'].touched &&
+      registerclinc.controls['Name'].invalid
+      "
+      id="name_help"
+      class="text-danger form-text"
+    >
+      <small *ngIf="registerclinc.controls['Name'].errors?.['required']">
+        this field is required
+      </small>
+      <small *ngIf="registerclinc.controls['Name'].errors?.['minlength']">
+        Min. length is 2
+      </small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label"
+      >email</label
+    >
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      aria-describedby="description_help"
+      rows="5"
+      formControlName="email"
+    >
+    <div
+      *ngIf="
+      registerclinc.controls['email'].touched &&
+      registerclinc.controls['email'].invalid
+      "
+      id="email"
+      class="text-danger form-text"
+    >
+      <small *ngIf="registerclinc.controls['email'].errors?.['required']">
+        this field is required
+      </small>
+      <small *ngIf="registerclinc.controls['email'].errors?.['email']">
+        Please enter a valid email format.
+      </small>
+      
+    </div>
+  </div>
+  <div class="mb-3">
+    
+
+  <div class="mb-3">
+    <label for="password" class="form-label">password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      aria-describedby="password"
+      formControlName="password"
+    />
+    <div
+      *ngIf="
+      registerclinc.controls['password'].touched &&
+      registerclinc.controls['password'].invalid
+      "
+      id="password"
+      class="text-danger form-text"
+    >
+      <small *ngIf="registerclinc.controls['password'].errors?.['required']">
+        this field is required
+      </small>
+  
+      <small *ngIf="registerclinc.controls['password'].errors?.['minlength']">
+        password must be more than 8 character
+
+      </small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input
+      type="text"
+      class="form-control"
+      id="phone"
+      aria-describedby="phone"
+      formControlName="phone"
+    />
+    <div
+      *ngIf="
+        registerclinc.controls['phone'].touched &&
+        registerclinc.controls['phone'].invalid
+      "
+      id="phone"
+      class="text-danger form-text"
+    >
+      <small *ngIf="registerclinc.controls['phone'].errors?.['required']">
+        Phone number is required
+      </small>
+      <small *ngIf="registerclinc.controls['phone'].errors?.['minlength']">
+        Phone number should be at least 11 digits long
+      </small>
+      <small *ngIf="registerclinc.controls['phone'].errors?.['pattern']">
+        Phone number should start with '0' and be 11 digits long
+      </small>
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="location" class="form-label location">Location</label>
+    <select class="form-select" id="location" formControlName="location">
+      <option value="" disabled selected>Select a city</option>
+      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
+    <!-- <div *ngIf="registerclinc.controls['location'].touched " class="text-danger form-text">
+      <small *ngIf="registerclinc.controls['location'].errors?.['required']">
+        Location is required
+      </small>
+    </div> -->
+  </div>
+  <div class="mb-3">
+    <label for="upload" class="form-label">upload license</label>
+    <input
+      type="file"
+      class="form-control"
+      id="upload"
+      aria-describedby="name_help"
+      formControlName="Name"
+    />
+    <div
+      *ngIf="
+      registerclinc.controls['upload'].touched &&
+      registerclinc.controls['upload'].invalid
+      "
+      id="name_help"
+      class="text-danger form-text"
+    >
+      <small *ngIf="registerclinc.controls['upload'].errors?.['required']">
+        this field is required
+      </small>
+      
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-success"  [disabled]="registerclinc.invalid">
+    Register
+  </button>
+  <p>Already have an account!<a href="login">login</a></p>
+</div>
+</form>
+
+
+
+

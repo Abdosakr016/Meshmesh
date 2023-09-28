@@ -1,0 +1,40 @@
+
+<div class="container">
+    <h2  style="text-align: center; margin-bottom: 40px;">Join as a clinic or user </h2>
+  <div class="row g-4 ps-md-4 pe-md-4">
+    <div class="col-md-6 col-sm-12  ">
+      <label
+        for="user"
+        class="createLabel border rounded p-3 position-relative w-100"
+      >
+        <h4 class="text-left pe-xl-5">Register as  user</h4>
+        <input
+          style="top: 15px; right: 15px"
+          class="position-absolute"
+          type="radio"
+          name="accountType"
+          id="user"
+          value="user"
+          [(ngModel)]="accountType"
+      /></label>
+    </div>
+    <div class="col-md-6 col-sm-12 ">
+      <label
+        for="clinc"
+        class="createLabel border rounded p-3 position-relative w-100"
+      >
+        <h4 class="text-left pe-xl-5">Register as a clinic</h4>
+        <input
+          style="top: 15px; right: 15px"
+          class="position-absolute"
+          type="radio"
+          name="accountType"
+          id="clinc"
+          value="clinc"
+          [(ngModel)]="accountType"
+      /></label>
+    </div>
+  </div>
+  <app-register-clinic *ngIf="accountType == 'clinc'"></app-register-clinic>
+  <app-register *ngIf="accountType == 'user'"></app-register>
+  </div>

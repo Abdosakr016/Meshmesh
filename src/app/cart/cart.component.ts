@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiServiceService } from '../service/api-service.service';
 import { CartService } from '../service/cart.service';
+import { CounterService } from '../service/count.service';
 
 @Component({
   selector: 'app-cart',
@@ -29,18 +30,17 @@ export class CartComponent {
   // }
   productOfCart: any;
   selectedItems !: any [];
-  count!: number;
+  count: number = 0;
   total: number = 0;
 
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService , private counter : CounterService) { }
 
   ngOnInit() {
 
     
     this.selectedItems = this.cartService.getSelectedItems();
-    // this.selectedItems = this.cartService.getSelectedItems();
-    // this.counter.getCounterVal().subscribe(val => this.count = val)
+    this.counter.getCounterVal().subscribe(val => this.count = val)
     // this.totalPice()
     // console.log(this.selectedItems)
   }
@@ -48,11 +48,8 @@ export class CartComponent {
     if(confirm("do you sure  for remove this item") == true) {
       this.selectedItems = this.selectedItems.filter( val => val != item);
       this.cartService.updatedSelectedItems(this.selectedItems );
+      this.counter.setCartValue(--this.count)
     }
 
     
-   }
-
-
-
-}
+   }}

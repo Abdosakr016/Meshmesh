@@ -1,146 +1,111 @@
-<!-- <div class="container mb-4 pt-5">
-    <div class="card">
-        <div class="container-fliud">
-            <div class="wrapper row">
-                <div class="preview col-md-6">
-
-                    <div class="preview-pic tab-content">
-                        <div class="tab-pane active w-100" id="pic-1"><img [src]="item.pet_pic" /></div>
-
-                    </div>
-
-                </div>
-                <div class="details col-md-6">
-                    <h3 class="product-title">{{item.Seller}}</h3>
-                    <div class="rating stock">
-                        <span [ngClass]="{ 'text-success' : item.stock ,'text-danger' : !item.stock}"></span>
-
-                    </div>
-                    <p class="product-description">{{item.description}}</p>
-                    <h4 class="price">current price: <span class="text-primary">{{item.price }} EGP </span> <span
-                            class="text-danger"><s> {{item.discountPercentage}}</s></span></h4>
-                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong class="text-secondary">
-                            ({{item.rating}} votes)</strong></p>
-                    <div class="mb-1 text-muted small">
-                        <span>brand :</span>
-                        <span class="text-primary"> {{item.pet_type}} </span>
-                        <span>category :</span>
-                        <span class="text-primary"> {{item.pet_gender}} </span>
-
-                    </div>
-                    <div class="action">
-                        <button class=" btn btn-danger" type="button" >Remove <span> <i class="fa fa-cart-arrow-down"></i></span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<div class="container pt-4">
-    <div class="row">
-        <div class="col-xl-8">
-            <div class="card border shadow-none">
-                <div class="card-body" >
-
-                    <div class="d-flex align-items-start border-bottom pb-3 pt-3" *ngFor="let item of selectedItems">
-                        <div class="me-4">
-                            <img [src]="item.pet_pic" alt="" class="avatar-lg rounded">
-                        </div>
-                        <div class="flex-grow-1 align-self-center overflow-hidden">
-                            <div>
-                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">{{item.Seller}}</a></h5>
-                               
-                                <p class="mb-0 mt-1">Color : <span class="fw-medium">{{item.pet_type}}</span></p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 ms-2">
-                          
-                            <input type="button" value="Remove" (click)="removeItem(item)" class="btn btn-outline-danger">
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mt-3">
-                                    <p class="text-muted mb-2">Price</p>
-                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span>$450</h5>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <div class="mt-3">
-                                    <p class="text-muted mb-2">Total</p>
-                                    <h5>$900</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-         
-            <!-- end card -->
-
-            <div class="row my-4">
-                <div class="col-sm-6">
-                    <a href="" class="btn btn-link text-muted">
-                        <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-                </div> <!-- end col -->
-                <div class="col-sm-6">
-                    
-                </div> <!-- end col -->
-            </div> <!-- end row-->
-        </div>
-
-    </div>
-    <!-- end row -->
-    <div class="col-md-4">
-        <div class="mt-5 mt-lg-0">
-            <div class="card border shadow-none">
-                <div class="card-header bg-transparent border-bottom py-3 px-4">
-                    <h5 class="font-size-16 mb-0">Order Summary <span class="float-end">#MN0124</span></h5>
-                </div>
-                <div class="card-body p-4 pt-2">
-
-                    <div class="table-responsive">
-                        <table class="table mb-0">
-                            <tbody>
-                                <tr>
-                                    <td>Sub Total :</td>
-                                    <td class="text-end">$ 780</td>
-                                </tr>
-                                <tr>
-                                    <td>Discount : </td>
-                                    <td class="text-end">- $ 78</td>
-                                </tr>
-                                <tr>
-                                    <td>Shipping Charge :</td>
-                                    <td class="text-end">$ 25</td>
-                                </tr>
-                                <tr>
-                                    <td>Estimated Tax : </td>
-                                    <td class="text-end">$ 18.20</td>
-                                </tr>
-                                <tr class="bg-light">
-                                    <th>Total :</th>
-                                    <td class="text-end">
-                                        <span class="fw-bold">
-                                            $ 745.2
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="text-sm-end mt-2 mt-sm-0 p-2">
-                            <a class="btn btn-success">
-                                <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
-                        </div>
-                    </div>
-                    <!-- end table-responsive -->
-                </div>
-            </div>
-        </div>
-    </div>
+<section>
     
-</div>
+    
+    <section class="container pt-4">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card border shadow-none">
+                    <div class="card-body" >
+    
+                        <div class="d-flex align-items-start border-bottom pb-3 pt-3" *ngFor="let item of selectedItems">
+                            <div class="me-4">
+                                <img [src]="item.pet_pic" alt="" class="avatar-lg rounded">
+                            </div>
+                            <div class="flex-grow-1 align-self-center overflow-hidden">
+                                <div>
+                                    <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">{{item.Seller}}</a></h5>
+                                   
+                                    <p class="mb-0 mt-1">Color : <span class="fw-medium">{{item.pet_type}}</span></p>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 ms-2">
+                              
+                                <input type="button" value="Remove" (click)="removeItem(item)" class="btn btn-outline-danger">
+                            </div>
+                        </div>
+    
+                        <div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mt-3">
+                                        <p class="text-muted mb-2">Price</p>
+                                        <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span>$450</h5>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="mt-3">
+                                        <p class="text-muted mb-2">Total</p>
+                                        <h5>$900</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+             
+                <!-- end card -->
+    
+                <div class="row my-4">
+                    <div class="col-sm-6">
+                        <a href="" class="btn btn-link text-muted">
+                            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+                    </div> <!-- end col -->
+                    <div class="col-sm-6">
+                        
+                    </div> <!-- end col -->
+                </div> <!-- end row-->
+            </div>
+    
+        </div>
+        <!-- end row -->
+        <div class="col-md-4">
+            <div class="mt-5 mt-lg-0">
+                <div class="card border shadow-none">
+                    <div class="card-header bg-transparent border-bottom py-3 px-4">
+                        <h5 class="font-size-16 mb-0">Order Summary <span class="float-end">#MN0124</span></h5>
+                    </div>
+                    <div class="card-body p-4 pt-2">
+    
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td>Sub Total :</td>
+                                        <td class="text-end">$ 780</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount : </td>
+                                        <td class="text-end">- $ 78</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping Charge :</td>
+                                        <td class="text-end">$ 25</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estimated Tax : </td>
+                                        <td class="text-end">$ 18.20</td>
+                                    </tr>
+                                    <tr class="bg-light">
+                                        <th>Total :</th>
+                                        <td class="text-end">
+                                            <span class="fw-bold">
+                                                $ 745.2
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-sm-end mt-2 mt-sm-0 p-2">
+                                <a class="btn btn-success">
+                                    <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
+                            </div>
+                        </div>
+                        <!-- end table-responsive -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

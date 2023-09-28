@@ -6,11 +6,20 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ChooseFormComponent } from './choose-form/choose-form.component';
 import { RegisterClinicComponent } from './register-clinic/register-clinic.component';
+import { ContainerComponent } from './container/container.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: ContainerComponent
+  },
+  {
+    path: 'products',
     component: ProductListComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
   },
   {
     path: 'cart/:id',
@@ -26,7 +35,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'choose-form',
+    path: 'choose_form',
     component: ChooseFormComponent,
   },
   {

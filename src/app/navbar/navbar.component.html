@@ -7,11 +7,16 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-dark">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">pets</a></li>
+          <li><a href="#" class="nav-link px-2 text-white"  routerLinkActive="bg-dark">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white" routerLinkActive="text-dark"routerLink="/products">products </a></li>
           <li><a href="#" class="nav-link px-2 text-white">suplies</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">vetirnary clinck</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">vetirnary center</a></li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/cart">
+              <i class="fa fa-shopping-cart text-white fs-2" routerLink="/cart"></i>
+              <span class="badge badge-danger">{{count}}</span>
+            </a>
+          </li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -19,8 +24,8 @@
         </form>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          <button type="button" class="btn btn-outline-light me-2"routerLinkActive="bg-primary" routerLink="login">Login</button>
+          <button type="button" class="btn btn-warning"routerLink="choose_form" routerLinkActive="bg-primary">Sign-up</button>
         </div>
       </div>
     </div>

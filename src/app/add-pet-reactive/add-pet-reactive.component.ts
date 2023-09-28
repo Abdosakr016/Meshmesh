@@ -13,5 +13,11 @@ export class AddPetReactiveComponent {
       petname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
       
     })
+
+  }
+  supmit(){
+
+
+    
   }
 }

@@ -15,6 +15,18 @@ import { CartComponent } from './cart/cart.component';
 import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
+import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ContainerComponent } from './container/container.component';
+import { FooterComponent } from './footer/footer.component';
+import { Section1Component } from './section1/section1.component';
+import { Section2Component } from './section2/section2.component';
+import { Section3Component } from './section3/section3.component';
+import { Section4Component } from './section4/section4.component';
 
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -32,14 +44,25 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     LoginComponent,
     ChooseFormComponent,
-    RegisterClinicComponent
+    RegisterClinicComponent,
+  AddPetReactiveComponent,
+  NavbarComponent,
+  ContainerComponent,
+  FooterComponent,
+  Section1Component,
+  Section2Component,
+  Section3Component,
+  Section4Component
+
+
+
+
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     CardModule,
-    ButtonModule,
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
@@ -47,7 +70,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     NgbModule,
    ReactiveFormsModule,
-   FormsModule
+   FormsModule,
+    FileUploadModule,
+    DropdownModule,
+    DialogModule,
+    ReactiveFormsModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

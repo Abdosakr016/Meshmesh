@@ -14,7 +14,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartComponent } from './cart/cart.component';
 import { RouterModule } from '@angular/router';
 
+import { FormsModule } from '@angular/forms';
 
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { ChooseFormComponent } from './choose-form/choose-form.component';
+import { RegisterClinicComponent } from './register-clinic/register-clinic.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +28,11 @@ import { RouterModule } from '@angular/router';
   AppComponent,
   ProductListComponent,
   CardComponent,
-  CartComponent
+  CartComponent,
+    RegisterComponent,
+    LoginComponent,
+    ChooseFormComponent,
+    RegisterClinicComponent
   ],
 
   imports: [
@@ -34,8 +44,10 @@ import { RouterModule } from '@angular/router';
     NgbModule,
     HttpClientModule,
     FontAwesomeModule,
-    RouterModule
-    
+    RouterModule,
+    NgbModule,
+   ReactiveFormsModule,
+   FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

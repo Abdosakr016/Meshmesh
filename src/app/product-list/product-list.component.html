@@ -1,6 +1,25 @@
 <h2>Games List</h2>
 <hr />
-
+<div>
+  <div class="flex justify-content-center">
+    <div class="text-end">
+      <p-button
+        (click)="showDialog()"
+        icon="pi pi-external-link"
+        label="Show"
+      ></p-button>
+    </div>
+    <p-dialog
+      header="Header"
+      [modal]="true"
+      [(visible)]="visible"
+      [style]="{ width: '50vw' }"
+      [maximizable]="true"
+    >
+      <app-add-pet-reactive></app-add-pet-reactive>
+    </p-dialog>
+  </div>
+</div>
 <div class="row row-cols-1">
   <div class="col" *ngFor="let seller of seller">
     <app-card [seller]="seller"></app-card>

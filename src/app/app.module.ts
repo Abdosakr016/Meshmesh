@@ -11,11 +11,17 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    CardComponent
+    CardComponent,
+    AddPetReactiveComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FileUploadModule,
+    DropdownModule,
+    DialogModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

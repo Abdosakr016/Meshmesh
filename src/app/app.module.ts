@@ -13,7 +13,11 @@ import { CardComponent } from './card/card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartComponent } from './cart/cart.component';
 import { RouterModule } from '@angular/router';
-
+import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,7 +26,9 @@ import { RouterModule } from '@angular/router';
   AppComponent,
   ProductListComponent,
   CardComponent,
-  CartComponent
+  CartComponent,
+  AddPetReactiveComponent
+
   ],
 
   imports: [
@@ -34,8 +40,11 @@ import { RouterModule } from '@angular/router';
     NgbModule,
     HttpClientModule,
     FontAwesomeModule,
-    RouterModule
-    
+    RouterModule,
+    FileUploadModule,
+    DropdownModule,
+    DialogModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

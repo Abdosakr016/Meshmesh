@@ -18,6 +18,13 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ContainerComponent } from './container/container.component';
+import { FooterComponent } from './footer/footer.component';
+import { Section1Component } from './section1/section1.component';
+import { Section2Component } from './section2/section2.component';
+import { Section3Component } from './section3/section3.component';
+import { Section4Component } from './section4/section4.component';
 
 
 
@@ -27,7 +34,17 @@ import { ReactiveFormsModule } from '@angular/forms';
   ProductListComponent,
   CardComponent,
   CartComponent,
-  AddPetReactiveComponent
+  AddPetReactiveComponent,
+  NavbarComponent,
+  ContainerComponent,
+  FooterComponent,
+  Section1Component,
+  Section2Component,
+  Section3Component,
+  Section4Component
+
+
+
 
   ],
 
@@ -35,7 +52,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     CardModule,
-    ButtonModule,
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
@@ -44,7 +60,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FileUploadModule,
     DropdownModule,
     DialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

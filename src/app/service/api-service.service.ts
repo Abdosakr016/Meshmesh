@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { Seller } from '../interface/seller';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,9 +19,10 @@ export class ApiServiceService {
   getProductDetails(id : string) {
     return this.http.get(`${this.url}/${id}`);
   }
-  addPet(petData : Seller){
-    return this.http.post(this.url, {
+  addPet(data : any){
+    return this.http.post(`${environment.baseURL}` , data , {
+      params : {},
       headers: {}
-      })
+    })
   }
-}
+  }

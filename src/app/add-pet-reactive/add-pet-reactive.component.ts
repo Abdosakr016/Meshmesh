@@ -1,5 +1,6 @@
 import { Component ,Input} from '@angular/core';
 import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
+import { ApiServiceService } from '../service/api-service.service';
 @Component({
   selector: 'app-add-pet-reactive',
   templateUrl: './add-pet-reactive.component.html',
@@ -13,5 +14,9 @@ export class AddPetReactiveComponent {
       petname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
       
     })
+  }
+  submitAddPetForm() {
+  
+    
   }
 }

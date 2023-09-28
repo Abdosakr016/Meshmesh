@@ -1,0 +1,8 @@
+<h2>Games List</h2>
+<hr />
+
+<div class="row row-cols-1">
+  <div class="col" *ngFor="let seller of seller">
+    <app-card [seller]="seller"></app-card>
+  </div>
+</div>

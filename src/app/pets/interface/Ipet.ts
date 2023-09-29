@@ -1,4 +1,4 @@
-export interface Iproduct {
+export interface Ipet {
         id: number;
         Seller:string;
         pet_type: string;

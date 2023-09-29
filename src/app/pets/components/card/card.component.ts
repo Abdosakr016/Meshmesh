@@ -1,15 +1,20 @@
 import { Component,ViewChild, ElementRef,Input } from '@angular/core';
 import {  Router } from '@angular/router';
-import { Iproduct } from '../interface/Iproduct';
 
-import { CartService } from '../service/cart.service';
+
+
 
 
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApiServiceService } from '../service/api-service.service';
-import { CounterService } from '../service/count.service';
+import { CounterService } from 'src/app/cart/service/counter/count.service';
+
+import { ApiServiceService } from '../../services/api-service.service';
+import { CartService } from 'src/app/cart/service/cart/cart.service';
+import { Ipet } from '../../interface/Ipet';
+
+
 
 
 @Component({
@@ -21,7 +26,7 @@ import { CounterService } from '../service/count.service';
 export class CardComponent {
   editSellerForm!: FormGroup;
   @ViewChild('editSellerModal')editSellerModal!: ElementRef;
-  @Input() seller !: Iproduct;
+  @Input() pet !: Ipet;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
@@ -51,19 +56,19 @@ export class CardComponent {
   this.base64=reader.result
   }
   }
-  openEditSellerModal(seller: any) {
+  openEditSellerModal(pet: any) {
     this.editSellerModal.nativeElement.style.display = 'block';
   
-    this.base64=seller.pet_pic
+    this.base64=pet.pet_pic
     // this.editSellerForm.get('sellerName')?.setValue(seller.Seller);
     // this.editSellerForm.get('petType')?.setValue(seller.pet_type);
     // this.editSellerForm.get('petGender')?.setValue(seller.pet_gender);
     // this.editSellerForm.get('imge')?.setValue(seller.pet_pic)
     // this.editSellerForm.get('petPic')?.setValue(seller.pet_pic);
     this.editSellerForm.patchValue({
-      sellerName: seller.Seller,
-      petType: seller.pet_type,
-      petGender: seller.pet_gender,
+      sellerName: pet.Seller,
+      petType: pet.pet_type,
+      petGender: pet.pet_gender,
       // imge: seller.pet_pic,
      
     });
@@ -78,7 +83,7 @@ export class CardComponent {
       console.log(formData);
   
       // Update the data using the API service
-      this.apiService.updateProduct(this.seller.id.toString(), formData).subscribe(
+      this.apiService.updateProduct(this.pet.id.toString(), formData).subscribe(
         (response) => {
          
           console.log('Data updated successfully:', response);
@@ -93,12 +98,12 @@ export class CardComponent {
       );
     }
   }
-  deleteProduct(product_id: number) {
+  deleteProduct(pet_id: number) {
    
-    const product_id_str = product_id.toString();
+    const pet_id_str = pet_id.toString();
   
    
-    this.apiService.deleteProduct(product_id_str).subscribe(
+    this.apiService.deleteProduct(pet_id_str).subscribe(
       (response) => {
         console.log('Product deleted successfully:', response);
   

@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { ApiServiceService } from '../service/api-service.service';
+import { ApiServiceService } from '../../services/api-service.service';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  seller :any;
-  constructor(private  ApiServiceService:ApiServiceService ) { }
+  pets :any;
+  constructor(private  ApiServiceService: ApiServiceService) { }
 
   ngOnInit() {
-    this.ApiServiceService.getProductList().subscribe(((data)=>this.seller=data)
+    this.ApiServiceService.getProductList().subscribe(((data)=>this.pets=data)
     );
   }
   visible: boolean = false;

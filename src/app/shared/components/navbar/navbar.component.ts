@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CartService } from '../service/cart.service';
-import { CounterService } from '../service/count.service';
-CartService
+import { CounterService } from 'src/app/cart/service/counter/count.service';
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +10,7 @@ CartService
 export class NavbarComponent {
 count : number = 0;
 
-constructor(private CartService :CartService , private counter :CounterService){}
+constructor( private counter :CounterService){}
 ngOnInit(){
   this.counter.getCounterVal().subscribe(val => this.count = val);
 }

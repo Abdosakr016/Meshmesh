@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ApiServiceService } from '../service/api-service.service';
-import { CartService } from '../service/cart.service';
-import { CounterService } from '../service/count.service';
+
+import { CartService } from '../../service/cart/cart.service';
+import { CounterService } from '../../service/counter/count.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,21 +12,7 @@ import { CounterService } from '../service/count.service';
 
 export class CartComponent {
 
-// item !: any ;
 
-//   constructor(private ActivatedRoute : ActivatedRoute , private ApiServiceService :ApiServiceService){
-//   }
-
-
-  // ngOnInit(){
-  //   const paramsID = this.ActivatedRoute.snapshot.params['id'];
-  //   // console.log(paramsID);
-  //   this.ApiServiceService
-  //     .getProductDetails(paramsID)
-  //     .subscribe((data: any) => {
-  //       this.item = data
-  //     } );
-  // }
   productOfCart: any;
   selectedItems !: any [];
   count: number = 0;

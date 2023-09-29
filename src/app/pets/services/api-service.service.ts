@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
-import { Iproduct } from '../interface/Iproduct';
+import { Ipet } from '../interface/Ipet';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,7 @@ export class ApiServiceService {
   getProductDetails(id : Number) {
     return this.http.get(`${this.url}/${id}`);
   }
-  addPet(petData : Iproduct){
+  addPet(petData : Ipet){
     return this.http.post(this.url, {
       headers: {}
       })}

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AddPetReactiveComponent } from './components/add-pet-reactive/add-pet-reactive.component';
 import { CardComponent } from './components/card/card.component';
-import { CartModule } from '../cart/cart.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';

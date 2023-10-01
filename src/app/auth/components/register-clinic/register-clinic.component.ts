@@ -97,7 +97,7 @@ export class RegisterClinicComponent {
    
      if (arr) {
        const userArr = JSON.parse(arr);
-       userArr.push(this.registerclinc.value);
+       userArr.push(this.registerclinc.value); 
        localStorage.setItem('userArr', JSON.stringify(userArr));
      } else {
        const userArr = [this.registerclinc.value];
@@ -106,7 +106,7 @@ export class RegisterClinicComponent {
    }
    
   
-    this.router.navigate(['/login']);
+    this.router.navigate(['/create_veterinary']);
   }
   
 }

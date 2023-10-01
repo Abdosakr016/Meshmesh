@@ -15,11 +15,13 @@ import { SharedModule } from './shared/shared.module';
 import { PetsModule } from './pets/pets.module';
 
 import { HomeModule } from './home/home.module';
+import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.module';
 
 
 @NgModule({
   declarations: [
   AppComponent,
+  
  
 
   ],
@@ -37,7 +39,7 @@ import { HomeModule } from './home/home.module';
    AuthModule,
     
     SharedModule,
-  
+    PortoVeterinaryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

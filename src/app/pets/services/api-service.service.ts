@@ -19,15 +19,15 @@ export class ApiServiceService {
   getProductDetails(id : Number) {
     return this.http.get(`${this.url}/${id}`);
   }
-  addPet(petData : Ipet){
-    return this.http.post(this.url, {
-      headers: {}
-      })}
-  updateProduct(id: string, newData: any) {
+  addNewPet( petData:Ipet){
+    return   this.http.post(`${this.url}`,petData);
+  }
+  updateProduct(id: any, newData: any) {
     return this.http.put(`${this.url}/${id}`, newData);
   }
   
   deleteProduct(id: string) {
     return this.http.delete(`${this.url}/${id}`);
   }
+  
 }

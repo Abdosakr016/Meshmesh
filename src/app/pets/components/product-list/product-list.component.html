@@ -1,10 +1,61 @@
 
 <section>
   
+  <button type="button" class="btn btn-success mt-2" (click)="openPetModal()" data-bs-toggle="modal"
+                data-bs-target="#editSellerModal">
+               ADD New Pet 
+              </button>
 
 <div class="row row-cols-1">
   <div class="col" *ngFor="let pet of pets">
     <app-card [pet]="pets"></app-card>
   </div>
 </div>
+
 </section>
+
+<div class="container-fluid">
+  <div class="modal "#addPetModal tabindex="-1" aria-labelledby="editSellerModalLabel" aria-hidden="true"
+    >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editSellerModalLabel">add pet Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+        (click)="closePetModal()"
+        aria-label="Close"></button>
+       
+      </div>
+      <div class="modal-body">
+        <!-- Form to add pet data -->
+        <form [formGroup]="addPetForm" >
+          <div class="mb-3">
+            <label for="sellerName" class="form-label">Seller Name</label>
+            <input type="text" class="form-control" id="sellerName" formControlName="sellerName">
+          </div>
+          <div class="mb-3">
+            <label for="petType" class="form-label">Pet Type</label>
+            <input type="text" class="form-control" id="petType" formControlName="petType">
+          </div>
+          <div class="mb-3">
+            <label for="petGender" class="form-label">Pet Gender</label>
+            <input type="text" class="form-control" id="petGender" formControlName="petGender">
+          </div>
+          <div class="mb-3">
+            <label for="petPic" class="form-label">Pet Picture URL</label>
+            <input type="file" (change)="get_imagPet($event)"
+                        class="form-control" id="petPic" formControlName="petPic">
+
+            <img src="{{petAddBase64}}" width="200px" height="200px" alt="">
+
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closePetModal()" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onAddPet()" [disabled]="!addPetForm">ADD Pet</button>
+
+      </div>
+    </div>
+  </div>
+</div >

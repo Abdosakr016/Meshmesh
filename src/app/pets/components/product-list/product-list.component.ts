@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApiServiceService } from '../../services/api-service.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -7,16 +8,62 @@ import { ApiServiceService } from '../../services/api-service.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+  addPetForm!: FormGroup;
+  petAddBase64:any;
   pets :any;
-  constructor(private  ApiServiceService: ApiServiceService) { }
+  @ViewChild('addPetModal')addPetModal!: ElementRef;
+    constructor(private FormBuild:FormBuilder, private apiService:ApiServiceService){
+   
+    }
+    ngOnInit(){
+      this.apiService.getProductList().subscribe(((data)=>this.pets=data))
+      this.addPetForm = this.FormBuild.group({
+        sellerName: ['',Validators.required],
+        petType: ['',Validators.required],
+        petGender: ['',Validators.required],
+        petPic: ['',Validators.required],
+      });
+    }
 
-  ngOnInit() {
-    this.ApiServiceService.getProductList().subscribe(((data)=>this.pets=data)
-    );
-  }
-  visible: boolean = false;
+    get_imagPet(event: any){
+      const file=event.target.files[0]
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload=()=>{
+    this.petAddBase64=reader.result
+    }
+    }
+  
 
-  showDialog() {
-      this.visible = true;
-  }
+      onAddPet(){
+        if (this.addPetForm.valid) {
+          const petData = this.addPetForm.value;
+          console.log(petData);
+      
+          // Update the data using the API service
+          this.apiService.addNewPet( petData).subscribe(
+            (response) => {
+             
+              console.log('Data updated successfully:', response);
+      
+             
+              this.closePetModal();
+            },
+            (error: any) => {
+             
+              console.error('Error updating data:', error);
+            }
+          );
+        }
+    
+      }
+      closePetModal() {
+        this.addPetModal.nativeElement.style.display = 'none';
+      }
+ 
+  openPetModal() {
+
+    this.addPetModal.nativeElement.style.display = 'block';}
+    
 }
+

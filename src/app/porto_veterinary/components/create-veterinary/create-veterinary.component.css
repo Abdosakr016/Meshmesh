@@ -1,0 +1,52 @@
+/* /* Custom CSS for Professional Form */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .professional-form {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .professional-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .professional-form label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .professional-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .professional-form .form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .professional-form .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .professional-form .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .professional-form .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .professional-form .btn-success:hover {
+    background-color: #1e8c3b;
+  }
+   

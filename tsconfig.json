@@ -16,7 +16,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2020",  // Change this line to a valid module option
+    "module": "ESNext",  // Change this line to a valid module option
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",

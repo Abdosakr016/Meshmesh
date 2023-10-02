@@ -8,6 +8,8 @@ import { ChooseFormComponent } from './auth/components/choose-form/choose-form.c
 import { RegisterClinicComponent } from './auth/components/register-clinic/register-clinic.component';
 import { ContainerComponent } from './home/components/container/container.component';
 import { ProductListComponent } from './pets/components/product-list/product-list.component';
+import { CreateVeterinaryComponent } from './porto_veterinary/components/create-veterinary/create-veterinary.component';
+import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-list-doctors/creat-list-doctors.component';
 
 const routes: Routes = [
   {
@@ -44,7 +46,15 @@ const routes: Routes = [
     path: 'register-clinic',
     component: RegisterClinicComponent,
   },
+  {
+    path: 'create_veterinary',
+    component:CreateVeterinaryComponent ,
+  },
   
+  {
+    path: 'Add_Doctors',
+    component: CreatListDoctorsComponent,
+  },
   
 ];
 

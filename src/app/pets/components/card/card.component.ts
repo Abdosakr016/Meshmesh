@@ -7,7 +7,6 @@ import {  Router } from '@angular/router';
 
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
 
 import { ApiServiceService } from '../../services/api-service.service';

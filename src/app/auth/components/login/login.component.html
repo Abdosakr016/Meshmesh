@@ -1,0 +1,80 @@
+
+
+<h3 style="text-align: center;padding: 30px;">login Form</h3>
+<hr />
+
+ 
+
+<form [formGroup]="loginform" (ngSubmit)="submitForm()"
+style="border: 2px solid; text-align: center;padding: 30px;" action="../register-clinc/register-clinc.component.html">
+  
+
+  
+      
+  <div class="mb-3">
+    <label for="email" class="form-label"
+      >email</label
+    >
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      aria-describedby="description_help"
+      rows="5"
+      formControlName="email"
+    >
+    <div
+      *ngIf="
+     loginform.controls['email'].touched &&
+      loginform.controls['email'].invalid
+      "
+      id="email"
+      class="text-danger form-text"
+    >
+      <small *ngIf="loginform.controls['email'].errors?.['required']">
+        this field is required
+      </small>
+      <small *ngIf="loginform.controls['email'].errors?.['email']">
+        Please enter a valid email format.
+      </small>
+      
+    </div>
+  </div>
+  
+  
+  <div class="mb-3">
+    <label for="password" class="form-label">password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      aria-describedby="password"
+      formControlName="password"
+    />
+    <div
+      *ngIf="
+      loginform.controls['password'].touched &&
+      loginform.controls['password'].invalid
+      "
+      id="password"
+      class="text-danger form-text"
+    >
+      <small *ngIf="loginform.controls['password'].errors?.['required']">
+        this field is required
+      </small>
+      
+    </div>
+  </div>
+  
+  <div *ngIf="invalidLogin" class="text-danger">Invalid email or password. Please try again.</div>
+
+  
+  <hr><p>Don't have an  account? !<a href="choose-form">Sign Up</a></p>
+
+  <button type="submit" class="btn btn-success" [disabled]="loginform.invalid">
+    Login
+  </button>
+</form>
+
+
+

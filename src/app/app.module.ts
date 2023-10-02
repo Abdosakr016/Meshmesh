@@ -1,33 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonModule } from 'primeng/button';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ContainerComponent } from './container/container.component';
-import { FooterComponent } from './footer/footer.component';
-import { Section1Component } from './section1/section1.component';
-import { Section2Component } from './section2/section2.component';
-import { Section3Component } from './section3/section3.component';
-import { Section4Component } from './section4/section4.component';
+
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { RouterModule } from '@angular/router';
+
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
+import { PetsModule } from './pets/pets.module';
+
+import { HomeModule } from './home/home.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    ContainerComponent,
-    FooterComponent,
-    Section1Component,
-    Section2Component,
-    Section3Component,
-    Section4Component
+  AppComponent,
+ 
+
   ],
+
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
-    ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule,
+    RouterModule,
+    NgbModule,
+   HomeModule,
+   PetsModule,
+   AuthModule,
+    
+    SharedModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

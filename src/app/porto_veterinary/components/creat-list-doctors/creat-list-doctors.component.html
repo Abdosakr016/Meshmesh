@@ -1,6 +1,24 @@
 <div class="container">
-    <h2>Add Doctor</h2>
-    <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()">
+  <h2>list Doctor</h2>
+
+  <button class="btn btn-success" (click)="addDoctorForm()">Add New Doctor </button>
+
+  <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name">Doctor Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name" required>
+    </div>
+    <div class="mb-3">
+      <label for="photo">Doctor Photo</label>
+      <input type="file" class="form-control" id="photo" formControlName="photo">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <button type="submit" class="btn btn-primary">Delete</button>
+  </form>
+
+  <div *ngFor="let form of doctorForms">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="name">Doctor Name</label>
         <input type="text" class="form-control" id="name" formControlName="name" required>
@@ -10,6 +28,8 @@
         <input type="file" class="form-control" id="photo" formControlName="photo">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Edit</button>
+      <button type="submit" class="btn btn-primary">Delete</button>
     </form>
   </div>
-  
+</div>

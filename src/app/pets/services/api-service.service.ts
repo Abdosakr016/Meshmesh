@@ -6,15 +6,12 @@ import { Ipet } from '../interface/Ipet';
   providedIn: 'root'
 })
 export class ApiServiceService {
-  private url = 'https://retoolapi.dev/uRwiMx/data';
+  private url = 'https://retoolapi.dev/ynC84L/data';
   constructor(private http: HttpClient) { }
 
   getProductList() {
-    return this.http.get(this.url, {
-      headers: {
-        'Accept-language': 'en',
-      }
-      })
+  
+    return  this.http.get(this.url);
   }
   getProductDetails(id : Number) {
     return this.http.get(`${this.url}/${id}`);

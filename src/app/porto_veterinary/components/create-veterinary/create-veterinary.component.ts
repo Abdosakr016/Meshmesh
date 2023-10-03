@@ -12,8 +12,17 @@ export class CreateVeterinaryComponent implements OnInit  {
   logoBase64: any;
   taxBase64:any;
   commercialBasde64:any;
+
+  cities: string[] = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Hurghada'];
+
+  
   constructor(private formBuilder: FormBuilder,private VetService:VeterinaryService){}
   ngOnInit() {
+    this.validatVetCenterForm()
+  }
+
+  
+  validatVetCenterForm(){
     this.vetCenterForm = this.formBuilder.group({
       vetCenterName: ['',Validators.required],
       streetAddress: ['',Validators.required],
@@ -26,9 +35,14 @@ export class CreateVeterinaryComponent implements OnInit  {
       servicesProvided: ['',Validators.required],
       taxRecord: ['',Validators.required],
       commercialRecord: ['',Validators.required],
-     
+      location: [ '' , Validators.required  ] ,
     });
   }
+
+ 
+ 
+  
+  
   onlogo(event: any){
     const file=event.target.files[0]
     const reader = new FileReader();
@@ -80,4 +94,5 @@ export class CreateVeterinaryComponent implements OnInit  {
   addDoctor(){
 
   }
+  
 }

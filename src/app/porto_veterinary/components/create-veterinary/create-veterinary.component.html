@@ -15,10 +15,15 @@
           <label for="streetAddress">Street Address</label>
           <input type="text" class="form-control" id="streetAddress" formControlName="streetAddress">
         </div>
-        <div class="form-group col-md-3">
-          <label for="city">City</label>
-          <input type="text" class="form-control" id="city" formControlName="city">
+        <div class="mb-3">
+          <label for="city" class="form-label city">City</label>
+          <select class="form-select" id="location" formControlName="location">
+            <option value="" disabled selected>Select a city</option>
+            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+          </select>
+      
         </div>
+        
         <div class="form-group col-md-3">
           <label for="state">State</label>
           <input type="text" class="form-control" id="state" formControlName="state">
@@ -30,7 +35,7 @@
       <!-- Upload Logo/Photos -->
       <div class="form-group">
         <label for="logoPhotos">Upload Logo/Photos</label>
-        <img src="{{logoBase64}}" alt="">
+        <img src="{{logoBase64}}"width="200px" height="200px"alt="">
 
         <input type="file" class="form-control-file" id="logoPhotos" formControlName="logoPhotos" (change)="onlogo($event)">
       </div>
@@ -78,7 +83,8 @@
       <!-- Tax Record -->
       <div class="form-group">
         <label for="taxRecord">Tax Record</label>
-        <img src="{{taxBase64}}" alt="">
+       
+        <img src="{{taxBase64}}" width="200px" height="200px"width="200px" height="200px" alt="">
 
         <input type="file" class="form-control-file" id="taxRecord" formControlName="taxRecord"(change)="onTax($event)">
       </div>
@@ -86,7 +92,9 @@
       <!-- Commercial Record -->
       <div class="form-group">
         <label for="commercialRecord">Commercial Record</label>
-        <img src="{{commercialBasde64}}" alt="">
+        <img src="{{commercialBasde64}}" width="200px" height="200px" alt="">
+      
+
         <input type="file" class="form-control-file" id="commercialRecord" formControlName="commercialRecord"(change)="onCommercial($event)">
       </div>
   

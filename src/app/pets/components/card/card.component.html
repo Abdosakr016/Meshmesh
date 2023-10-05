@@ -5,10 +5,18 @@
         <div class="row">
           <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
             <div class="bg-image hover-zoom ripple rounded ripple-surface">
-              <img [src]="pet.petPic" class="w-100" height="200px" width="200px" />
+              <img
+                [src]="pet.petPic"
+                class="w-100"
+                height="200px"
+                width="200px"
+              />
               <a href="#!">
                 <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(253, 253, 253, 0.15)"></div>
+                  <div
+                    class="mask"
+                    style="background-color: rgba(253, 253, 253, 0.15)"
+                  ></div>
                 </div>
               </a>
             </div>
@@ -33,26 +41,78 @@
             </div>
             <p class="text-truncate mb-4 mb-md-0">{{ pet.petType }}</p>
           </div>
-          <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+          <div
+            class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start"
+          >
             <div class="d-flex flex-row align-items-center mb-1">
               <h4 class="mb-1 me-1">$20</h4>
             </div>
             <h6 class="text-success">Free shipping</h6>
             <div class="d-flex flex-column mt-4">
-              <button class="btn btn-success btn-sm" type="button" (click)="AddToCart(pet)">
+              <button
+                class="btn btn-success btn-sm"
+                type="button"
+                (click)="AddToCart(pet)"
+              >
                 Go to cart
                 <i class="pi pi-cart-plus" style="font-size: 0.8rem"></i>
               </button>
 
-            
-              <button type="button" class="btn btn-primary mt-2" (click)="openEditSellerModal(pet)" data-bs-toggle="modal"
-                data-bs-target="#editSellerModal">
+              <button
+                type="button"
+                class="btn btn-primary mt-2"
+                (click)="openEditSellerModal(pet)"
+                data-bs-toggle="modal"
+                data-bs-target="#editSellerModal"
+              >
                 Edit product
               </button>
-              <button type="button" class="btn btn-danger btn-sm mt-2" (click)="deleteProduct(pet.id)">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm mt-2"
+                data-bs-toggle="modal"
+                data-bs-target="#myModal"
+              >
                 Delete product
                 <i class="fa fa-trash"></i>
               </button>
+              <div
+                class="modal fade"
+                id="myModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div
+                        class="alert alert-warning alert-dismissible fade show"
+                        role="alert"
+                      >
+                        are you sure that you want to delete this pet
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                        (click)="deleteProduct(pet.id)"
+                      >
+                        confirme
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -63,49 +123,85 @@
 
 <!-- Edit Seller Modal -->
 <div class="container-fluid">
-  <div class="modal " #editSellerModal tabindex="-1" aria-labelledby="editSellerModalLabel" aria-hidden="true"
-    >
+  <div
+    class="modal"
+    #editSellerModal
+    tabindex="-1"
+    aria-labelledby="editSellerModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="editSellerModalLabel">Edit Seller Data</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"
-        (click)="closeEditSellerModal()"
-        aria-label="Close"></button>
-       
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="closeEditSellerModal()"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <!-- Form to edit seller data -->
-        <form [formGroup]="editSellerForm" >
+        <form [formGroup]="editSellerForm">
           <div class="mb-3">
             <label for="sellerName" class="form-label">Seller Name</label>
-            <input type="text" class="form-control" id="sellerName" formControlName="sellerName">
+            <input
+              type="text"
+              class="form-control"
+              id="sellerName"
+              formControlName="sellerName"
+            />
           </div>
           <div class="mb-3">
             <label for="petType" class="form-label">Pet Type</label>
-            <input type="text" class="form-control" id="petType" formControlName="petType">
+            <input
+              type="text"
+              class="form-control"
+              id="petType"
+              formControlName="petType"
+            />
           </div>
           <div class="mb-3">
             <label for="petGender" class="form-label">Pet Gender</label>
-            <input type="text" class="form-control" id="petGender" formControlName="petGender">
+            <input
+              type="text"
+              class="form-control"
+              id="petGender"
+              formControlName="petGender"
+            />
           </div>
           <div class="mb-3">
             <label for="petPic" class="form-label">Pet Picture URL</label>
-            <input type="file" (change)="get_imagepath($event)"
-            
-            class="form-control" id="petPic" 
-            
-            formControlName="petPic">
-            <img src="{{base64}}"width="200px" height="200px"  alt="">
-
-
+            <input
+              type="file"
+              (change)="get_imagepath($event)"
+              class="form-control"
+              id="petPic"
+              formControlName="petPic"
+            />
+            <img src="{{ base64 }}" width="200px" height="200px" alt="" />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeEditSellerModal()" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!editSellerForm.valid">Save changes</button>
-
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeEditSellerModal()"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onSubmit()"
+          [disabled]="!editSellerForm.valid"
+        >
+          Save changes
+        </button>
       </div>
     </div>
   </div>
-</div >
+</div>

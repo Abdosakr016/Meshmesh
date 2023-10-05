@@ -26,6 +26,8 @@ export class CardComponent {
   editSellerForm!: FormGroup;
   @ViewChild('editSellerModal')editSellerModal!: ElementRef;
   @Input() pet !: Ipet;
+  showAlert_delete: boolean = false;
+
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
@@ -106,6 +108,7 @@ export class CardComponent {
       (response) => {
         console.log('Product deleted successfully:', response);
   
+        this.showAlert_delete = false;
  
       },
       (error) => {
@@ -118,4 +121,7 @@ export class CardComponent {
     this.counter.setCartValue(++this.count)
     this.router.navigate(['cart' , item.id])
   }
+
+
+ 
 }

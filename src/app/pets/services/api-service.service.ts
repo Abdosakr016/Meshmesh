@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Ipet } from '../interface/Ipet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServiceService {
-  private url = 'https://retoolapi.dev/uRwiMx/data';
+  private url = 'https://retoolapi.dev/lAurQ6/data';
   constructor(private http: HttpClient) { }
 
   getProductList() {
-    return this.http.get(this.url, {
-      headers: {
-        'Accept-language': 'en',
-      }
-      })
+    return this.http.get(this.url)
   }
   getProductDetails(id : Number) {
     return this.http.get(`${this.url}/${id}`);

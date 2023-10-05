@@ -16,12 +16,17 @@ export class ProductListComponent {
    
     }
     ngOnInit(){
-      this.apiService.getProductList().subscribe(((data)=>this.pets=data))
+      this.apiService.getProductList().subscribe(((data)=>this.pets=data),
+      (error) => console.log(error),
+      () => console.log("COMPLETE"))
       this.addPetForm = this.FormBuild.group({
-        sellerName: ['',Validators.required],
+        sellerName: ['',[
+          Validators.required,
+          Validators.minLength(2),
+        ]],
+        PetAge: ['',Validators.required],
         petType: ['',Validators.required],
         petGender: ['',Validators.required],
-        petPic: ['',Validators.required],
       });
     }
 
@@ -46,8 +51,6 @@ export class ProductListComponent {
              
               console.log('Data updated successfully:', response);
       
-             
-              this.closePetModal();
             },
             (error: any) => {
              
@@ -57,13 +60,8 @@ export class ProductListComponent {
         }
     
       }
-      closePetModal() {
-        this.addPetModal.nativeElement.style.display = 'none';
-      }
- 
-  openPetModal() {
-
-    this.addPetModal.nativeElement.style.display = 'block';}
+    submitForm() {
     
+      console.log(this.addPetForm);}
 }
 

@@ -1,21 +1,10 @@
 import { Component,ViewChild, ElementRef,Input } from '@angular/core';
 import {  Router } from '@angular/router';
-
-
-
-
-
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
-
 import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Ipet } from '../../interface/Ipet';
-
-
-
-
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -24,8 +13,8 @@ import { Ipet } from '../../interface/Ipet';
 
 export class CardComponent {
   editSellerForm!: FormGroup;
-  @ViewChild('editSellerModal')editSellerModal!: ElementRef;
   @Input() pet !: Ipet;
+  @ViewChild('editSellerModal')editSellerModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
@@ -59,17 +48,10 @@ export class CardComponent {
     this.editSellerModal.nativeElement.style.display = 'block';
   
     this.base64=pet.pet_pic
-    // this.editSellerForm.get('sellerName')?.setValue(seller.Seller);
-    // this.editSellerForm.get('petType')?.setValue(seller.pet_type);
-    // this.editSellerForm.get('petGender')?.setValue(seller.pet_gender);
-    // this.editSellerForm.get('imge')?.setValue(seller.pet_pic)
-    // this.editSellerForm.get('petPic')?.setValue(seller.pet_pic);
     this.editSellerForm.patchValue({
       sellerName: pet.Seller,
       petType: pet.pet_type,
       petGender: pet.pet_gender,
-      // imge: seller.pet_pic,
-     
     });
   }
   

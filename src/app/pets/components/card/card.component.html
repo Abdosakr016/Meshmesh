@@ -5,51 +5,75 @@
         <div class="row">
           <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
             <div class="bg-image hover-zoom ripple rounded ripple-surface">
-              <img src="{{ pet.pet_pic }}" class="w-100" height="200px" width="200px" />
+              <img src="{{ pet.pet_pic }}" height="200px" width="200px" />
               <a href="#!">
                 <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(253, 253, 253, 0.15)"></div>
+                  <div
+                    class="mask"
+                    style="background-color: rgba(253, 253, 253, 0.15)"
+                  ></div>
                 </div>
               </a>
             </div>
           </div>
           <div class="col-md-6 col-lg-6 col-xl-6">
-            <h5>{{ pet.Seller }}</h5>
-            <div class="d-flex flex-row">
-              <div class="text-danger mb-1 me-2">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <span>310</span>
-            </div>
+            <h5>
+              <span style="color: darkcyan">Pet Seller: </span>{{ pet.Seller }}
+            </h5>
             <div class="mt-1 mb-0 text-muted small">
-              <span>{{ pet.pet_gender }}</span>
-              <span class="text-primary"> • </span>
-              <span>German</span>
-              <span class="text-primary"> • </span>
-              <span>3M<br /></span>
+              <span
+                ><span style="color: darkcyan">Gender: </span
+                >{{ pet.pet_gender }}</span
+              >
+              <span class="text-warning"> • </span>
+              <span
+                ><span style="color: darkcyan">Nationality: </span>German</span
+              >
+              <span class="text-warning"> • </span>
+              <span><span style="color: darkcyan">Age: </span>2Y<br /></span>
             </div>
-            <p class="text-truncate mb-4 mb-md-0">{{ pet.pet_type }}</p>
+            <p class="text-truncate mb-4 mb-md-0 pt-2">
+              <span style="color: darkcyan">Pet Type: </span>{{ pet.pet_type }}
+            </p>
+            <blockquote class="text-truncate mb-4 mb-md-0 pt-2">
+              <span style="color: darkcyan">Description: </span> <br />A very
+              good boi that loves playing fetch and ice-cream! Gentle with
+              everyone. <br />Scared of the rain.
+            </blockquote>
           </div>
-          <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+          <div
+            class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start"
+          >
             <div class="d-flex flex-row align-items-center mb-1">
               <h4 class="mb-1 me-1">$20</h4>
             </div>
             <h6 class="text-success">Free shipping</h6>
             <div class="d-flex flex-column mt-4">
-              <button class="btn btn-success btn-sm" type="button" (click)="AddToCart(pet)">
+              <button
+                class="btn btn-success btn-sm"
+                type="button"
+                (click)="AddToCart(pet)"
+              >
                 Go to cart
                 <i class="pi pi-cart-plus" style="font-size: 0.8rem"></i>
               </button>
 
-            
-              <button type="button" class="btn btn-primary mt-2" (click)="openEditSellerModal(pet)" data-bs-toggle="modal"
-                data-bs-target="#editSellerModal">
+              <button
+                type="button"
+                class="btn btn-sm mt-2 text-white"
+                style="background-color: #13a7d1"
+                data-bs-toggle="modal"
+                data-bs-target="#editModal"
+              >
                 Edit product
+                <i class="fa fa-edit"></i>
               </button>
-              <button type="button" class="btn btn-danger btn-sm mt-2" (click)="deleteProduct(pet.id)">
+              <button
+                type="button"
+                style="background-color: #ce0000d8"
+                class="btn btn-danger btn-sm mt-2"
+                (click)="deleteProduct(pet.id)"
+              >
                 Delete product
                 <i class="fa fa-trash"></i>
               </button>
@@ -63,49 +87,174 @@
 
 <!-- Edit Seller Modal -->
 <div class="container-fluid">
-  <div class="modal " #editSellerModal tabindex="-1" aria-labelledby="editSellerModalLabel" aria-hidden="true"
-    >
+  <div
+    class="modal"
+    #editSellerModal
+    tabindex="-1"
+    aria-labelledby="editSellerModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="editSellerModalLabel">Edit Seller Data</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"
-        (click)="closeEditSellerModal()"
-        aria-label="Close"></button>
-       
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="closeEditSellerModal()"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <!-- Form to edit seller data -->
-        <form [formGroup]="editSellerForm" >
+        <form [formGroup]="editSellerForm">
           <div class="mb-3">
             <label for="sellerName" class="form-label">Seller Name</label>
-            <input type="text" class="form-control" id="sellerName" formControlName="sellerName">
+            <input
+              type="text"
+              class="form-control"
+              id="sellerName"
+              formControlName="sellerName"
+            />
           </div>
           <div class="mb-3">
             <label for="petType" class="form-label">Pet Type</label>
-            <input type="text" class="form-control" id="petType" formControlName="petType">
+            <input
+              type="text"
+              class="form-control"
+              id="petType"
+              formControlName="petType"
+            />
           </div>
           <div class="mb-3">
             <label for="petGender" class="form-label">Pet Gender</label>
-            <input type="text" class="form-control" id="petGender" formControlName="petGender">
+            <input
+              type="text"
+              class="form-control"
+              id="petGender"
+              formControlName="petGender"
+            />
           </div>
           <div class="mb-3">
             <label for="petPic" class="form-label">Pet Picture URL</label>
-            <input type="file" (change)="get_imagepath($event)"
-            
-            class="form-control" id="petPic" 
-            
-            formControlName="petPic">
-            <img src="{{base64}}"width="200px" height="200px"  alt="">
-
-
+            <input
+              type="file"
+              (change)="get_imagepath($event)"
+              class="form-control"
+              id="petPic"
+              formControlName="petPic"
+            />
+            <img src="{{ base64 }}" width="200px" height="200px" alt="" />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeEditSellerModal()" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!editSellerForm.valid">Save changes</button>
-
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeEditSellerModal()"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onSubmit()"
+          [disabled]="!editSellerForm.valid"
+        >
+          Save changes
+        </button>
       </div>
     </div>
   </div>
-</div >
+</div>
+
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog mt-1" style="width: 50%; max-width: none">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add your pet details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="formbold-main-wrapper pt-0">
+          <div class="formbold-form-wrapper pt-0">
+            <div class="text-center">
+              <img src="assets/pet_welcome_edit.jpg" style="width: 50%" />
+            </div>
+
+            <form [formGroup]="editSellerForm">
+              <div class="mb-3">
+                <label for="sellerName" class="form-label">Seller Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="sellerName"
+                  formControlName="sellerName"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="petType" class="form-label">Pet Type</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="petType"
+                  formControlName="petType"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="petGender" class="form-label">Pet Gender</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="petGender"
+                  formControlName="petGender"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="petPic" class="form-label">Pet Picture URL</label>
+                <input
+                  type="file"
+                  (change)="get_imagepath($event)"
+                  class="form-control"
+                  id="petPic"
+                  formControlName="petPic"
+                />
+                <img src="{{ base64 }}" width="200px" height="200px" alt="" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="editSellerForm.invalid"
+          data-bs-dismiss="modal"
+          (click)="onSubmit()"
+          [disabled]="!editSellerForm.valid"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

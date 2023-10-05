@@ -35,7 +35,8 @@ export class CreateVeterinaryComponent implements OnInit  {
       servicesProvided: ['',Validators.required],
       taxRecord: ['',Validators.required],
       commercialRecord: ['',Validators.required],
-      location: [ '' , Validators.required  ] ,
+     
+      aboutCenter: [ '' , Validators.required  ] ,
     });
   }
 
@@ -73,15 +74,13 @@ export class CreateVeterinaryComponent implements OnInit  {
         const vetData = this.vetCenterForm.value;
         console.log(vetData);
     
-        // Update the data using the API service
+       
         this.VetService.addVeterinary( vetData).subscribe(
           (response: any) => {
            
-            console.log('Data updated successfully:', response);
+            console.log('Data of veternary center Added successfully:', response);
     
-           
-           
-            
+       
           },
           (error: any) => {
            
@@ -91,8 +90,6 @@ export class CreateVeterinaryComponent implements OnInit  {
       }
   
   }
-  addDoctor(){
-
-  }
+  
   
 }

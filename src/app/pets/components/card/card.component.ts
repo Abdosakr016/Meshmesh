@@ -65,9 +65,9 @@ export class CardComponent {
     // this.editSellerForm.get('imge')?.setValue(seller.pet_pic)
     // this.editSellerForm.get('petPic')?.setValue(seller.pet_pic);
     this.editSellerForm.patchValue({
-      sellerName: pet.Seller,
-      petType: pet.pet_type,
-      petGender: pet.pet_gender,
+      sellerName: pet.sellerName,
+      petType: pet.petType,
+      petGender: pet.petGender,
       // imge: seller.pet_pic,
      
     });

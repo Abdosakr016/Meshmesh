@@ -16,6 +16,7 @@ import { PetsModule } from './pets/pets.module';
 
 import { HomeModule } from './home/home.module';
 import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.module';
+import { VetsCenterModule } from './vets-center/vets-center.module';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.modul
    HomeModule,
    PetsModule,
    AuthModule,
-    
+   VetsCenterModule,
     SharedModule,
     PortoVeterinaryModule
   ],

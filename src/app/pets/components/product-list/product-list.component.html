@@ -1,61 +1,300 @@
-
-<section>
-  
-  <button type="button" class="btn btn-success mt-2" (click)="openPetModal()" data-bs-toggle="modal"
-                data-bs-target="#editSellerModal">
-               ADD New Pet 
-              </button>
-
-<div class="row row-cols-1">
-  <div class="col" *ngFor="let pet of pets">
-    <app-card [pet]="pet"></app-card>
-  </div>
-</div>
-
-</section>
-
-<div class="container-fluid">
-  <div class="modal "#addPetModal tabindex="-1" aria-labelledby="editSellerModalLabel" aria-hidden="true"
-    >
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog mt-1" style="width: 50%; max-width: none">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editSellerModalLabel">add pet Data</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"
-        (click)="closePetModal()"
-        aria-label="Close"></button>
-       
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add your pet details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <!-- Form to add pet data -->
-        <form [formGroup]="addPetForm" >
-          <div class="mb-3">
-            <label for="sellerName" class="form-label">Seller Name</label>
-            <input type="text" class="form-control" id="sellerName" formControlName="sellerName">
-          </div>
-          <div class="mb-3">
-            <label for="petType" class="form-label">Pet Type</label>
-            <input type="text" class="form-control" id="petType" formControlName="petType">
-          </div>
-          <div class="mb-3">
-            <label for="petGender" class="form-label">Pet Gender</label>
-            <input type="text" class="form-control" id="petGender" formControlName="petGender">
-          </div>
-          <div class="mb-3">
-            <label for="petPic" class="form-label">Pet Picture URL</label>
-            <input type="file" (change)="get_imagPet($event)"
-                        class="form-control" id="petPic" formControlName="petPic">
+        <div class="formbold-main-wrapper pt-0">
+          <div class="formbold-form-wrapper pt-0">
+            <img src="assets/pet_welcome.png" style="width: 90%" />
+            <form [formGroup]="addPetForm" (ngSubmit)="submitForm()">
+              <div class="formbold-input-wrapp formbold-mb-3">
+                <label for="sellerName" class="formbold-form-label">
+                  Seller Name
+                </label>
 
-            <img src="{{petAddBase64}}" width="200px" height="200px" alt="">
+                <div>
+                  <input
+                    type="text"
+                    name="sellerName"
+                    id="sellerName"
+                    formControlName="sellerName"
+                    placeholder="Your name"
+                    class="formbold-form-input form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    addPetForm.controls['sellerName'].touched &&
+                    addPetForm.controls['sellerName'].invalid
+                  "
+                  id="sellerName"
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="addPetForm.controls['sellerName'].errors?.['required']"
+                  >
+                    this field is required
+                  </small>
+                  <small
+                    *ngIf="addPetForm.controls['sellerName'].errors?.['email']"
+                  >
+                    Please enter a valid name format.
+                  </small>
+                </div>
+              </div>
 
+              <div class="formbold-mb-3">
+                <label for="PetAge" class="formbold-form-label">Pet Age </label>
+                <input
+                  type="number"
+                  name="PetAge"
+                  id="PetAge"
+                  placeholder="ex:18"
+                  class="formbold-form-input form-control"
+                  formControlName="PetAge"
+                />
+                <div
+                  *ngIf="
+                    addPetForm.controls['PetAge'].touched &&
+                    addPetForm.controls['PetAge'].invalid
+                  "
+                  id="PetAge"
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="addPetForm.controls['PetAge'].errors?.['required']"
+                  >
+                    this field is required
+                  </small>
+                  <small
+                    *ngIf="addPetForm.controls['PetAge'].errors?.['number']"
+                  >
+                    Please enter a valid name format.
+                  </small>
+                </div>
+              </div>
 
+              <div class="formbold-mb-3">
+                <label for="PetType" class="formbold-form-label">
+                  Pet Type
+                </label>
+                <input
+                  type="text"
+                  name="PetType"
+                  id="petType"
+                  class="formbold-form-input form-control"
+                  formControlName="petType"
+                />
+                <div
+                  *ngIf="
+                    addPetForm.controls['petType'].touched &&
+                    addPetForm.controls['petType'].invalid
+                  "
+                  id="petType"
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="addPetForm.controls['petType'].errors?.['required']"
+                  >
+                    this field is required
+                  </small>
+                  <small
+                    *ngIf="addPetForm.controls['petType'].errors?.['text']"
+                  >
+                    Please enter a valid Known Type.
+                  </small>
+                </div>
+              </div>
+
+              <div class="formbold-mb-3">
+                <label class="formbold-form-label">Pet Gender</label>
+
+                <select
+                  class="formbold-form-input form-control"
+                  name="occupation"
+                  id="occupation"
+                  formControlName="petGender"
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="others">Others</option>
+                </select>
+                <div
+                  *ngIf="
+                    addPetForm.controls['PetAge'].touched &&
+                    addPetForm.controls['PetAge'].invalid
+                  "
+                  id="PetAge"
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="addPetForm.controls['PetAge'].errors?.['required']"
+                  >
+                    this field is required
+                  </small>
+                  <small
+                    *ngIf="addPetForm.controls['PetAge'].errors?.['email']"
+                  >
+                    Please choose a valid Gender from above.
+                  </small>
+                </div>
+              </div>
+              <div
+                class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm"
+              >
+                <input
+                  id="upload"
+                  type="file"
+                  (change)="get_imagPet($event)"
+                  class="form-control border-0"
+                />
+                <label
+                  id="upload-label"
+                  for="upload"
+                  class="font-weight-light text-muted"
+                  >Choose file</label
+                >
+                <div class="input-group-append">
+                  <label
+                    for="upload"
+                    class="btn btn-light m-0 rounded-pill px-4"
+                  >
+                    <i class="fa fa-cloud-upload mr-2 text-muted"></i
+                    ><small class="text-uppercase font-weight-bold text-muted"
+                      >Choose file</small
+                    ></label
+                  >
+                </div>
+              </div>
+
+              <!-- Uploaded image area-->
+              <p class="font-italic text-dark text-center">
+                The image uploaded will be rendered inside the box below.
+              </p>
+              <div class="image-area mt-4">
+                <img
+                  id="imageResult"
+                  src="{{ petAddBase64 }}"
+                  alt=""
+                  class="img-fluid rounded shadow-sm mx-auto d-block"
+                />
+              </div>
+
+              <div class="formbold-checkbox-wrapper mt-2">
+                <label for="supportCheckbox" class="formbold-checkbox-label">
+                  <div class="formbold-relative">
+                    <input
+                      type="checkbox"
+                      id="supportCheckbox"
+                      class="formbold-input-checkbox"
+                    />
+                    <div class="formbold-checkbox-inner">
+                      <span class="formbold-opacity-0">
+                        <svg
+                          width="11"
+                          height="8"
+                          viewBox="0 0 11 8"
+                          class="formbold-stroke-current"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8.81868 0.688604L4.16688 5.4878L2.05598 3.29507C1.70417 2.92271 1.1569 2.96409 0.805082 3.29507C0.453266 3.66742 0.492357 4.24663 0.805082 4.61898L3.30689 7.18407C3.54143 7.43231 3.85416 7.55642 4.16688 7.55642C4.47961 7.55642 4.79233 7.43231 5.02688 7.18407L10.0696 2.05389C10.4214 1.68154 10.4214 1.10233 10.0696 0.729976C9.71776 0.357624 9.17049 0.357625 8.81868 0.688604Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  I agree to the defined
+                  <a href="#"> terms, conditions, and policies</a>
+                </label>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closePetModal()" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onAddPet()" [disabled]="!addPetForm">ADD Pet</button>
-
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="addPetForm.invalid"
+          data-bs-dismiss="modal"
+          (click)="onAddPet()"
+        >
+          Save changes
+        </button>
       </div>
     </div>
   </div>
-</div >
+</div>
+
+<section>
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-success my-3 me-5"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    style="float: right"
+  >
+    Add a new Pet <i class="fa-solid fa-cat fa-2xs"></i>
+  </button>
+  <div class="row row-cols-1" style="float: left">
+    <div class="col" *ngFor="let pet of pets">
+      <app-card [pet]="pet"></app-card>
+    </div>
+  </div>
+</section>
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#imageResult").attr("src", e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $(function () {
+    $("#upload").on("change", function () {
+      readURL(input);
+    });
+  });
+
+  /*  ==========================================
+    SHOW UPLOADED IMAGE NAME
+* ========================================== */
+  var input = document.getElementById("upload");
+  var infoArea = document.getElementById("upload-label");
+
+  input.addEventListener("change", showFileName);
+  function showFileName(event) {
+    var input = event.srcElement;
+    var fileName = input.files[0].name;
+    infoArea.textContent = "File name: " + fileName;
+  }
+</script>

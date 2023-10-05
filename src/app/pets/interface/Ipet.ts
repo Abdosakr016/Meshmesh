@@ -1,7 +1,7 @@
 export interface Ipet {
         id: number;
-        sellerName:string;
-        petType: string;
-        petGender: string; 
-        petPic: string;     
+        Seller:string;
+        pet_type: string;
+        pet_gender: string; 
+        pet_pic: string;     
 }

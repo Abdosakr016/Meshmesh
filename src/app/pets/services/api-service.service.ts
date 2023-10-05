@@ -6,7 +6,7 @@ import { Ipet } from '../interface/Ipet';
   providedIn: 'root'
 })
 export class ApiServiceService {
-  private url = 'https://retoolapi.dev/ynC84L/data';
+  private url = 'https://retoolapi.dev/lAurQ6/data';
   constructor(private http: HttpClient) { }
 
   getProductList() {

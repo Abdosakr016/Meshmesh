@@ -24,10 +24,8 @@ import { Ipet } from '../../interface/Ipet';
 
 export class CardComponent {
   editSellerForm!: FormGroup;
-  @ViewChild('editSellerModal')editSellerModal!: ElementRef;
   @Input() pet !: Ipet;
-  showAlert_delete: boolean = false;
-
+  @ViewChild('editSellerModal')editSellerModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
@@ -61,17 +59,10 @@ export class CardComponent {
     this.editSellerModal.nativeElement.style.display = 'block';
   
     this.base64=pet.pet_pic
-    // this.editSellerForm.get('sellerName')?.setValue(seller.Seller);
-    // this.editSellerForm.get('petType')?.setValue(seller.pet_type);
-    // this.editSellerForm.get('petGender')?.setValue(seller.pet_gender);
-    // this.editSellerForm.get('imge')?.setValue(seller.pet_pic)
-    // this.editSellerForm.get('petPic')?.setValue(seller.pet_pic);
     this.editSellerForm.patchValue({
-      sellerName: pet.sellerName,
-      petType: pet.petType,
-      petGender: pet.petGender,
-      // imge: seller.pet_pic,
-     
+      sellerName: pet.Seller,
+      petType: pet.pet_type,
+      petGender: pet.pet_gender,
     });
   }
   
@@ -108,7 +99,6 @@ export class CardComponent {
       (response) => {
         console.log('Product deleted successfully:', response);
   
-        this.showAlert_delete = false;
  
       },
       (error) => {
@@ -121,7 +111,4 @@ export class CardComponent {
     this.counter.setCartValue(++this.count)
     this.router.navigate(['cart' , item.id])
   }
-
-
- 
 }

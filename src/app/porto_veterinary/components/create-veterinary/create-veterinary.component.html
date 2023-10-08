@@ -8,7 +8,24 @@
         <div class="form-group">
           <label for="vetCenterName">Veterinary Center Name</label>
           <input type="text" class="form-control" id="vetCenterName" formControlName="vetCenterName">
+       
+          <div
+          *ngIf="
+            vetCenterForm.controls['vetCenterName'].touched &&
+          vetCenterForm.controls['vetCenterName'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['vetCenterName'].errors?.['required']">
+            this field is required
+          </small>
+          <small *ngIf="vetCenterForm.controls['vetCenterName'].errors?.['minlength']">
+            Min. length is 2
+          </small>
         </div>
+        </div>
+
     
         <!-- Location Information -->
         <div class="form-row">
@@ -25,7 +42,19 @@
         
           </div>
           
-         
+          <div
+          *ngIf="
+          vetCenterForm.controls['city'].touched &&
+          vetCenterForm.controls['city'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['city'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
         <!-- ... Other Center Details Fields ... -->
@@ -36,18 +65,58 @@
           <img src="{{logoBase64}}"width="200px" height="200px"alt="">
   
           <input type="file" class="form-control-file" id="logoPhotos" formControlName="logoPhotos" (change)="onlogo($event)">
+        
+          <div
+          *ngIf="
+          vetCenterForm.controls['logoPhotos'].touched &&
+          vetCenterForm.controls['logoPhotos'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['logoPhotos'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
         <!-- Services Offered -->
         <div class="form-group">
           <label for="servicesOffered">Services Offered</label>
           <textarea class="form-control" id="servicesOffered" formControlName="servicesOffered" rows="4"></textarea>
+          <div
+          *ngIf="
+          vetCenterForm.controls['servicesOffered'].touched &&
+          vetCenterForm.controls['servicesOffered'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['servicesOffered'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
         <!-- About the Center -->
         <div class="form-group">
           <label for="aboutCenter">About the Center</label>
           <textarea class="form-control" id="aboutCenter" formControlName="aboutCenter" rows="4"></textarea>
+          <div
+          *ngIf="
+          vetCenterForm.controls['aboutCenter'].touched &&
+          vetCenterForm.controls['aboutCenter'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['aboutCenter'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
         <!-- Add Doctors Button -->
@@ -58,24 +127,78 @@
         <div class="form-group">
           <label for="license">License</label>
           <input type="text" class="form-control" id="license" formControlName="license">
+          <div
+          *ngIf="
+          vetCenterForm.controls['license'].touched &&
+          vetCenterForm.controls['license'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['license'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
         <!-- Operating Hours -->
         <div class="form-group">
           <label for="operatingHours">Operating Hours</label>
           <input type="text" class="form-control" id="operatingHours" formControlName="operatingHours">
+          <div
+          *ngIf="
+          vetCenterForm.controls['operatingHours'].touched &&
+          vetCenterForm.controls['operatingHours'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['operatingHours'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
         <!-- Types of Pets Treated -->
         <div class="form-group">
           <label for="petsTreated">Types of Pets Treated</label>
           <input type="text" class="form-control" id="petsTreated" formControlName="petsTreated">
+          <div
+          *ngIf="
+          vetCenterForm.controls['petsTreated'].touched &&
+          vetCenterForm.controls['petsTreated'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['petsTreated'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
+        
         </div>
     
         <!-- Services Provided -->
         <div class="form-group">
           <label for="servicesProvided">Services Provided</label>
           <textarea class="form-control" id="servicesProvided" formControlName="servicesProvided" rows="4"></textarea>
+       
+          <div
+          *ngIf="
+          vetCenterForm.controls['servicesProvided'].touched &&
+          vetCenterForm.controls['servicesProvided'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['servicesProvided'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
         <!-- Tax Record -->
@@ -85,6 +208,20 @@
           <img src="{{taxBase64}}" width="200px" height="200px"width="200px" height="200px" alt="">
   
           <input type="file" class="form-control-file" id="taxRecord" formControlName="taxRecord"(change)="onTax($event)">
+          <div
+          *ngIf="
+          vetCenterForm.controls['taxRecord'].touched &&
+          vetCenterForm.controls['taxRecord'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['taxRecord'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
+        
         </div>
     
         <!-- Commercial Record -->
@@ -94,6 +231,20 @@
         
   
           <input type="file" class="form-control-file" id="commercialRecord" formControlName="commercialRecord"(change)="onCommercial($event)">
+       
+          <div
+          *ngIf="
+          vetCenterForm.controls['commercialRecord'].touched &&
+          vetCenterForm.controls['commercialRecord'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['commercialRecord'].errors?.['required']">
+            this field is required
+          </small>
+          
+        </div>
         </div>
     
     

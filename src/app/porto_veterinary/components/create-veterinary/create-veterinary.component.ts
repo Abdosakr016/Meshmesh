@@ -24,7 +24,7 @@ export class CreateVeterinaryComponent implements OnInit  {
   
   validatVetCenterForm(){
     this.vetCenterForm = this.formBuilder.group({
-      vetCenterName: ['',Validators.required],
+      vetCenterName: ['',Validators.required,Validators.minLength(2),],
       streetAddress: ['',Validators.required],
       city: ['',Validators.required],
       logoPhotos: ['',Validators.required],

@@ -33,14 +33,6 @@
             <label for="streetAddress">Street Address</label>
             <input type="text" class="form-control" id="streetAddress" formControlName="streetAddress">
           </div>
-          <div class="mb-3">
-            <label for="city" class="form-label city">City</label>
-            <select class="form-select" id="location" formControlName="city">
-              <option value="" disabled selected>Select a city</option>
-              <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
-            </select>
-        
-          </div>
           
           <div
           *ngIf="
@@ -55,7 +47,30 @@
           </small>
           
         </div>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label city">City</label>
+            <select class="form-select" id="location" formControlName="city">
+              <option value="" disabled selected>Select a city</option>
+              <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            </select>
+        
+          </div>
+          
+          <div
+          *ngIf="
+          vetCenterForm.controls['city'].touched &&
+          vetCenterForm.controls['city'].invalid
+          "
+          id="name_help"
+          class="text-danger form-text"
+        >
+          <small *ngIf="vetCenterForm.controls['city'].errors?.['required']">
+            this field is required
+          </small>
+          
         </div>
+        
     
         <!-- ... Other Center Details Fields ... -->
     

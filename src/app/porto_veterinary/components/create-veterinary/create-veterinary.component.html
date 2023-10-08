@@ -44,13 +44,13 @@
           
           <div
           *ngIf="
-          vetCenterForm.controls['city'].touched &&
-          vetCenterForm.controls['city'].invalid
+          vetCenterForm.controls['streetAddress'].touched &&
+          vetCenterForm.controls['streetAddress'].invalid
           "
           id="name_help"
           class="text-danger form-text"
         >
-          <small *ngIf="vetCenterForm.controls['city'].errors?.['required']">
+          <small *ngIf="vetCenterForm.controls['streetAddress'].errors?.['required']">
             this field is required
           </small>
           

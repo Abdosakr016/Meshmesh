@@ -11,7 +11,7 @@ import { ProductListComponent } from './pets/components/product-list/product-lis
 import { CreateVeterinaryComponent } from './porto_veterinary/components/create-veterinary/create-veterinary.component';
 import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-list-doctors/creat-list-doctors.component';
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
-
+import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 const routes: Routes = [
   {
     path: '',
@@ -59,6 +59,10 @@ const routes: Routes = [
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
+  },
+  {
+    path: 'user-account',
+    component: UserAccountComponent,
   },
 ];
 

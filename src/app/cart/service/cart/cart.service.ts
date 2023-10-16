@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { Observable } from 'rxjs';
+=======
+>>>>>>> d5ae2848a8239cbde633c89bfb2f455f62c5bcbc
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +12,18 @@ export class CartService {
 
   selectedItems: any[] = [];
   // private elements = new BehaviorSubject(this.selectedItems.length)
+<<<<<<< HEAD
 
   constructor() {
+=======
+  
+  constructor() {   
+>>>>>>> d5ae2848a8239cbde633c89bfb2f455f62c5bcbc
   }
 
   addItem(item: any) {
     this.selectedItems.push(item);
+<<<<<<< HEAD
     localStorage.setItem("Items", JSON.stringify(this.selectedItems));
 
   }
@@ -47,6 +56,23 @@ export class CartService {
   clearItems() {
     localStorage.clear()
       ;
+=======
+    
+  }
+   
+
+  getSelectedItems() 
+  {
+    return this.selectedItems;
+  }
+
+  updatedSelectedItems(value:any){
+    this.selectedItems =value ;
+
+  }
+  clearItems() {
+    this.selectedItems = [];
+>>>>>>> d5ae2848a8239cbde633c89bfb2f455f62c5bcbc
   }
 
 

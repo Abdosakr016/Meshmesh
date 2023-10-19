@@ -4,4 +4,5 @@ export interface Ipet {
         pet_type: string;
         pet_gender: string; 
         pet_pic: string;     
+        pet_price: number;
 }

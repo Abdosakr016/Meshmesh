@@ -10,7 +10,9 @@
           <li>
             <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark" routerLink="" [routerLinkActiveOptions]="{ exact: true }">Home</a>
           </li>
-          
+<li>
+  
+</li>
           <li>
             <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark"routerLink="/products">pets </a>
           </li>
@@ -35,10 +37,14 @@
         </form>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2"routerLinkActive="bg-dark text-white" routerLink="user-account">user-account</button>
-
-          <button type="button" class="btn btn-outline-light me-2"routerLinkActive="bg-dark text-white" routerLink="login">Login</button>
-          <button type="button" class="btn btn-outline-light"routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button>
+          <div *ngIf="userInSession; else loginButtons">
+            <button type="button" class="btn btn-outline-light me-2" routerLinkActive="bg-dark text-white" routerLink="user-account">{{ username }}</button>
+            <button type="button" class="btn btn-outline-light me-2" routerLinkActive="bg-dark text-white" routerLink="login">Logout</button>
+          </div>
+          <ng-template #loginButtons>
+            <button type="button" class="btn btn-outline-light me-2" routerLinkActive="bg-dark text-white" routerLink="login">Login</button>
+            <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button>
+          </ng-template>
         </div>
       </div>
     </div>

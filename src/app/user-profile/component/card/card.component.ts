@@ -2,10 +2,6 @@ import { Component,ViewChild, ElementRef,Input } from '@angular/core';
 import {  Router } from '@angular/router';
 
 
-
-
-
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
 

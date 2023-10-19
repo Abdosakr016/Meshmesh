@@ -12,10 +12,10 @@ body {
 }
 
 .background {
-  background-image: url(https://c8.alamy.com/comp/2GWKPC2/business-card-for-veterinary-clinic-illustration-with-a-veterinarian-who-takes-care-of-the-dog-and-pet-owners-vector-in-flat-style-banner-2GWKPC2.jpg);
+  /* background-image: url(https://c8.alamy.com/comp/2GWKPC2/business-card-for-veterinary-clinic-illustration-with-a-veterinarian-who-takes-care-of-the-dog-and-pet-owners-vector-in-flat-style-banner-2GWKPC2.jpg); */
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #252746;
+  /* background-color: #252746; */
   background-position: center;
   width: 100vw;
   height: 100vh;
@@ -26,11 +26,9 @@ body {
 }
 
 .background-texture {
-  background: linear-gradient(
-    to top,
-    rgba(231, 158, 74, 0.463),
-    rgba(206, 206, 206, 0.9)
-  );
+  /* background: linear-gradient(to top,
+      rgba(231, 158, 74, 0.463),
+      rgba(206, 206, 206, 0.9)); */
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -102,6 +100,7 @@ svg {
 }
 
 @keyframes ear {
+
   0%,
   20%,
   50%,
@@ -109,9 +108,11 @@ svg {
   100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-30px);
   }
+
   60% {
     transform: translateY(-15px);
   }

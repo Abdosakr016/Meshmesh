@@ -12,6 +12,8 @@ import { CreateVeterinaryComponent } from './porto_veterinary/components/create-
 import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-list-doctors/creat-list-doctors.component';
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
+import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -33,7 +35,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    
+
   },
   {
     path: 'login',
@@ -51,7 +53,6 @@ const routes: Routes = [
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
   },
-  
   {
     path: 'Add_Doctors',
     component: CreatListDoctorsComponent,
@@ -62,11 +63,14 @@ const routes: Routes = [
   },
   {
     path: 'user-account',
-    component: UserAccountComponent,
+    component: UserAccountComponent},
+    {path: 'show_Vet_details',
+    component: VeterinaryDetailsComponent,
   },
+
 ];
 
-  
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

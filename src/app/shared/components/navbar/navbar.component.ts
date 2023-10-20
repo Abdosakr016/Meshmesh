@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +11,8 @@ export class NavbarComponent {
   count: number = 0;
   username: string = '';
   userInSession: any;
-
-  constructor(private counter: CounterService) {}
+  
+  constructor(private counter: CounterService,private router: Router) {}
 
   ngOnInit() {
     this.counter.getCounterVal().subscribe(val => this.count = val);
@@ -21,6 +22,9 @@ export class NavbarComponent {
       const user = JSON.parse(userInSession);
       this.username = user.Name;
       this.userInSession = true; 
+      this.router.navigate(['/']);
+      
+
     } else {
       this.userInSession = false;
     }

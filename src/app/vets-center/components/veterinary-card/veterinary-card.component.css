@@ -266,8 +266,8 @@ a.button {
   padding: 20px;
   cursor: pointer;
   border-radius: var(--borderRadius);
-  background: var(--primaryColor);
-  color: var(--backgroundColor);
+  background: #63a95e;
+  color: #eee;
   position: relative;
   top: 0;
   transition: 0.2s ease;
@@ -648,14 +648,14 @@ footer.dark a {
 .profile a:hover {
   top: 0;
   box-shadow: none;
-  background: var(--primaryShade4);
+  background: #579553;
 }
 
 .profile a:active,
 .profile a:focus {
   top: 0;
   box-shadow: none;
-  background: var(--primaryShade5);
+  background: #63a95e;
 }
 
 .profile-default {
@@ -673,7 +673,7 @@ footer.dark a {
 }
 
 .profile-default .profile__image img {
-  border-bottom: 7px solid var(--secondaryColor);
+  border-bottom: 7px solid red;
 }
 
 .profile-default .profile__info {
@@ -708,7 +708,7 @@ footer.dark a {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 5px solid var(--backgroundColor);
+  border: 5px solid red;
   box-shadow: 0 0 0 7px var(--secondaryColor);
 }
 
@@ -797,6 +797,7 @@ footer.dark a {
   grid-auto-flow: dense;
   min-width: 500px;
   max-width: 590px;
+  background-color: #ffffffa1;
 }
 
 .profile-wide .profile__image {
@@ -808,8 +809,8 @@ footer.dark a {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 3px solid var(--backgroundColor);
-  box-shadow: 0 0 0 4px var(--secondaryColor);
+  border: 3px solid #eee;
+  box-shadow: 0 0 0 4px #a05793;
 }
 
 .profile-wide .profile__stats {

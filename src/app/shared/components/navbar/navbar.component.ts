@@ -18,17 +18,17 @@ export class NavbarComponent {
     const userInSession = sessionStorage.getItem('user');
 
     if (userInSession) {
-      // Parse the user object from the stored string
       const user = JSON.parse(userInSession);
-
-      // Access the 'name' property and assign it to the 'username' variable
       this.username = user.Name;
-
-      // You can use the 'username' variable to display the name in your template
-      this.userInSession = true; // Set userInSession to true
+      this.userInSession = true; 
     } else {
-      // The user object is not in session storage
       this.userInSession = false;
     }
+  }
+
+  logout() {
+    sessionStorage.removeItem('user');
+    this.username = ''; // Clear the username
+    this.userInSession = false;
   }
 }

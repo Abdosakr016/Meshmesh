@@ -11,6 +11,7 @@ import { ProductListComponent } from './pets/components/product-list/product-lis
 import { CreateVeterinaryComponent } from './porto_veterinary/components/create-veterinary/create-veterinary.component';
 import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-list-doctors/creat-list-doctors.component';
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
+import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
 
 const routes: Routes = [
   {
@@ -51,7 +52,6 @@ const routes: Routes = [
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
   },
-
   {
     path: 'Add_Doctors',
     component: CreatListDoctorsComponent,
@@ -59,6 +59,10 @@ const routes: Routes = [
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
+  },
+  {
+    path: 'show_Vet_details',
+    component: VeterinaryDetailsComponent,
   },
 ];
 

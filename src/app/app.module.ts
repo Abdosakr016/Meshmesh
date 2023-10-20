@@ -33,7 +33,6 @@ import { VetsCenterModule } from './vets-center/vets-center.module';
    VetsCenterModule,
     SharedModule,
     PortoVeterinaryModule,
-    VetsCenterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

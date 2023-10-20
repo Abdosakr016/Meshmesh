@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ApiServiceService } from '../../../pets/services/api-service.service';
 
 @Component({
-  selector: 'app-show-vets',
-  templateUrl: './show-vets.component.html',
-  styleUrls: ['./show-vets.component.css']
+  selector: 'app-veterinary-details',
+  templateUrl: './veterinary-details.component.html',
+  styleUrls: ['./veterinary-details.component.css']
 })
-export class ShowVetsComponent {
+export class VeterinaryDetailsComponent {
   pets :any;
     constructor(private apiService:ApiServiceService){}
       ngOnInit(){
@@ -14,5 +14,4 @@ export class ShowVetsComponent {
         (error) => console.log(error),
         () => console.log("COMPLETE"))
       }
-
 }

@@ -1,4 +1,4 @@
-/* /* Custom CSS for Professional Form */
+
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -49,4 +49,15 @@
   .professional-form .btn-success:hover {
     background-color: #1e8c3b;
   }
-   
+  .cont{
+    background-image: url('/assets/bg.jpeg');
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+  
+    background-repeat: repeat-y;
+
+  }  
+  .rVetData{
+    background-color: #67a89c;
+  }

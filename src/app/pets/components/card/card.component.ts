@@ -98,6 +98,6 @@ export class CardComponent {
   AddToCart(item : any){
     this.CartService.addItem(item);
     this.counter.setCartValue(++this.count)
-    this.router.navigate(['cart' , item.id])
+    this.router.navigate(['cart' , item])
   }
 }

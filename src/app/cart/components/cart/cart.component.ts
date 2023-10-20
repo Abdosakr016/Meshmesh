@@ -26,15 +26,27 @@ export class CartComponent {
     
     this.selectedItems = this.cartService.getSelectedItems();
     this.counter.getCounterVal().subscribe(val => this.count = val)
-    // this.totalPice()
+    this.totalPice()
     // console.log(this.selectedItems)
   }
   removeItem(item: any){
     if(confirm("do you sure  for remove this item") == true) {
       this.selectedItems = this.selectedItems.filter( val => val != item);
       this.cartService.updatedSelectedItems(this.selectedItems );
+    if(this.count>0){
       this.counter.setCartValue(--this.count)
+    }
+    this.total -= item.pet_price;
+
     }
 
     
-   }}
+   }
+   totalPice(){
+    this.total = 0;
+    for(let i in this.selectedItems){
+      this.total += this.selectedItems[i].pet_price;
+      // console.log(this.selectedItems)
+    }
+  }
+  }

@@ -14,23 +14,23 @@ import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.modul
 import { VetsCenterModule } from './vets-center/vets-center.module';
 
 
-
 @NgModule({
   declarations: [
   AppComponent,
   ],
 
   imports: [
-    
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
     RouterModule,
     NgbModule,
-    HomeModule,
-    PetsModule,
-    AuthModule,
+   HomeModule,
+   PetsModule,
+   AuthModule,
+   VetsCenterModule,
     SharedModule,
     PortoVeterinaryModule,
     VetsCenterModule

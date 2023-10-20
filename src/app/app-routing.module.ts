@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    
+
   },
   {
     path: 'login',
@@ -51,7 +51,7 @@ const routes: Routes = [
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
   },
-  
+
   {
     path: 'Add_Doctors',
     component: CreatListDoctorsComponent,
@@ -60,10 +60,9 @@ const routes: Routes = [
     path: 'show_Vets',
     component: ShowVetsComponent,
   },
-  
 ];
 
-  
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

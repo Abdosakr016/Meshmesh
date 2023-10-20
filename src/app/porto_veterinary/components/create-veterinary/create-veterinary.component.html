@@ -1,99 +1,106 @@
 <!-- Form Component -->
-<div class="container">
-    <form [formGroup]="vetCenterForm" (ngSubmit)="onVeterinary()" class="professional-form">
-      <h2 class="text-center mb-4">Veterinary Center Information</h2>
-      
-      <!-- Veterinary Center Name -->
-      <div class="form-group">
-        <label for="vetCenterName">Veterinary Center Name</label>
-        <input type="text" class="form-control" id="vetCenterName" formControlName="vetCenterName">
-      </div>
-  
-      <!-- Location Information -->
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="streetAddress">Street Address</label>
-          <input type="text" class="form-control" id="streetAddress" formControlName="streetAddress">
+<section class="cont">
+  <div class="container pt-5">
+      <form [formGroup]="vetCenterForm" (ngSubmit)="onVeterinary()" class="professional-form">
+        <h2 class="text-center mb-4 rVetData">Veterinary Center Information</h2>
+        
+        <!-- Veterinary Center Name -->
+        <div class="form-group">
+          <label for="vetCenterName">Veterinary Center Name</label>
+          <input type="text" class="form-control" id="vetCenterName" formControlName="vetCenterName">
         </div>
-        <div class="form-group col-md-3">
-          <label for="city">City</label>
-          <input type="text" class="form-control" id="city" formControlName="city">
+    
+        <!-- Location Information -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="streetAddress">Street Address</label>
+            <input type="text" class="form-control" id="streetAddress" formControlName="streetAddress">
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label city">City</label>
+            <select class="form-select" id="location" formControlName="city">
+              <option value="" disabled selected>Select a city</option>
+              <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            </select>
+        
+          </div>
+          
+         
         </div>
-        <div class="form-group col-md-3">
-          <label for="state">State</label>
-          <input type="text" class="form-control" id="state" formControlName="state">
+    
+        <!-- ... Other Center Details Fields ... -->
+    
+        <!-- Upload Logo/Photos -->
+        <div class="form-group">
+          <label for="logoPhotos">Upload Logo/Photos</label>
+          <img src="{{logoBase64}}"width="200px" height="200px"alt="">
+  
+          <input type="file" class="form-control-file" id="logoPhotos" formControlName="logoPhotos" (change)="onlogo($event)">
         </div>
-      </div>
+    
+        <!-- Services Offered -->
+        <div class="form-group">
+          <label for="servicesOffered">Services Offered</label>
+          <textarea class="form-control" id="servicesOffered" formControlName="servicesOffered" rows="4"></textarea>
+        </div>
+    
+        <!-- About the Center -->
+        <div class="form-group">
+          <label for="aboutCenter">About the Center</label>
+          <textarea class="form-control" id="aboutCenter" formControlName="aboutCenter" rows="4"></textarea>
+        </div>
+    
+        <!-- Add Doctors Button -->
+        <button type="button" class="btn btn-primary" routerLink="/Add_Doctors">Add Doctors</button>
   
-      <!-- ... Other Center Details Fields ... -->
+        
+        <!-- License -->
+        <div class="form-group">
+          <label for="license">License</label>
+          <input type="text" class="form-control" id="license" formControlName="license">
+        </div>
+    
+        <!-- Operating Hours -->
+        <div class="form-group">
+          <label for="operatingHours">Operating Hours</label>
+          <input type="text" class="form-control" id="operatingHours" formControlName="operatingHours">
+        </div>
+    
+        <!-- Types of Pets Treated -->
+        <div class="form-group">
+          <label for="petsTreated">Types of Pets Treated</label>
+          <input type="text" class="form-control" id="petsTreated" formControlName="petsTreated">
+        </div>
+    
+        <!-- Services Provided -->
+        <div class="form-group">
+          <label for="servicesProvided">Services Provided</label>
+          <textarea class="form-control" id="servicesProvided" formControlName="servicesProvided" rows="4"></textarea>
+        </div>
+    
+        <!-- Tax Record -->
+        <div class="form-group">
+          <label for="taxRecord">Tax Record</label>
+         
+          <img src="{{taxBase64}}" width="200px" height="200px"width="200px" height="200px" alt="">
   
-      <!-- Upload Logo/Photos -->
-      <div class="form-group">
-        <label for="logoPhotos">Upload Logo/Photos</label>
-        <img src="{{logoBase64}}" alt="">
-
-        <input type="file" class="form-control-file" id="logoPhotos" formControlName="logoPhotos" (change)="onlogo($event)">
-      </div>
+          <input type="file" class="form-control-file" id="taxRecord" formControlName="taxRecord"(change)="onTax($event)">
+        </div>
+    
+        <!-- Commercial Record -->
+        <div class="form-group">
+          <label for="commercialRecord">Commercial Record</label>
+          <img src="{{commercialBasde64}}" width="200px" height="200px" alt="">
+        
   
-      <!-- Services Offered -->
-      <div class="form-group">
-        <label for="servicesOffered">Services Offered</label>
-        <textarea class="form-control" id="servicesOffered" formControlName="servicesOffered" rows="4"></textarea>
-      </div>
-  
-      <!-- About the Center -->
-      <div class="form-group">
-        <label for="aboutCenter">About the Center</label>
-        <textarea class="form-control" id="aboutCenter" formControlName="aboutCenter" rows="4"></textarea>
-      </div>
-  
-      <!-- Add Doctors Button -->
-      <button type="button" class="btn btn-primary" routerLink="/Add_Doctors">Add Doctors</button>
-
-      
-      <!-- License -->
-      <div class="form-group">
-        <label for="license">License</label>
-        <input type="text" class="form-control" id="license" formControlName="license">
-      </div>
-  
-      <!-- Operating Hours -->
-      <div class="form-group">
-        <label for="operatingHours">Operating Hours</label>
-        <input type="text" class="form-control" id="operatingHours" formControlName="operatingHours">
-      </div>
-  
-      <!-- Types of Pets Treated -->
-      <div class="form-group">
-        <label for="petsTreated">Types of Pets Treated</label>
-        <input type="text" class="form-control" id="petsTreated" formControlName="petsTreated">
-      </div>
-  
-      <!-- Services Provided -->
-      <div class="form-group">
-        <label for="servicesProvided">Services Provided</label>
-        <textarea class="form-control" id="servicesProvided" formControlName="servicesProvided" rows="4"></textarea>
-      </div>
-  
-      <!-- Tax Record -->
-      <div class="form-group">
-        <label for="taxRecord">Tax Record</label>
-        <img src="{{taxBase64}}" alt="">
-
-        <input type="file" class="form-control-file" id="taxRecord" formControlName="taxRecord"(change)="onTax($event)">
-      </div>
-  
-      <!-- Commercial Record -->
-      <div class="form-group">
-        <label for="commercialRecord">Commercial Record</label>
-        <img src="{{commercialBasde64}}" alt="">
-        <input type="file" class="form-control-file" id="commercialRecord" formControlName="commercialRecord"(change)="onCommercial($event)">
-      </div>
-  
-  
-  
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-  </div>
+          <input type="file" class="form-control-file" id="commercialRecord" formControlName="commercialRecord"(change)="onCommercial($event)">
+        </div>
+    
+    
+    
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success"[disabled]="vetCenterForm.invalid">Submit</button>
+      </form>
+    </div>
+</section>
   

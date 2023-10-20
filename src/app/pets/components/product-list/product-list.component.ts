@@ -13,7 +13,7 @@ export class ProductListComponent {
   pets :any;
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private FormBuild:FormBuilder, private apiService:ApiServiceService){
-   
+
     }
     ngOnInit(){
       this.apiService.getProductList().subscribe(((data)=>this.pets=data),
@@ -38,30 +38,29 @@ export class ProductListComponent {
     this.petAddBase64=reader.result
     }
     }
-  
+
 
       onAddPet(){
         if (this.addPetForm.valid) {
           const petData = this.addPetForm.value;
           console.log(petData);
-      
+
           // Update the data using the API service
           this.apiService.addNewPet( petData).subscribe(
             (response) => {
-             
+
               console.log('Data updated successfully:', response);
-      
+
             },
             (error: any) => {
-             
+
               console.error('Error updating data:', error);
             }
           );
         }
-    
+
       }
     submitForm() {
-    
+
       console.log(this.addPetForm);}
 }
-

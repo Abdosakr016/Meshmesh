@@ -27,9 +27,9 @@ export class RegisterClinicComponent {
 
 
 
-  static EGYPT_CITIES: string[] = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Hurghada'];
 
-  cities: string[] = [];
+
+  
   registerclinc: FormGroup;
   
   
@@ -72,20 +72,9 @@ export class RegisterClinicComponent {
         Validators.pattern(/^0[0-9]{10}$/)  // Validate for 11 digits starting with '0'
       ],
     ],
-    location: [
-      '',
-      [
-        Validators.required
-      ]
-    ],
-    upload : [
-      '',
-      [
-        Validators.required
-      ]
-    ],
+
     });
-    this.cities = RegisterClinicComponent.EGYPT_CITIES;
+  
   }
 
   submitForm() {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,25 +11,28 @@ export class NavbarComponent {
   count: number = 0;
   username: string = '';
   userInSession: any;
-
-  constructor(private counter: CounterService) {}
+  
+  constructor(private counter: CounterService,private router: Router) {}
 
   ngOnInit() {
     this.counter.getCounterVal().subscribe(val => this.count = val);
     const userInSession = sessionStorage.getItem('user');
 
     if (userInSession) {
-      // Parse the user object from the stored string
       const user = JSON.parse(userInSession);
-
-      // Access the 'name' property and assign it to the 'username' variable
       this.username = user.Name;
+      this.userInSession = true; 
+      this.router.navigate(['/']);
+      
 
-      // You can use the 'username' variable to display the name in your template
-      this.userInSession = true; // Set userInSession to true
     } else {
-      // The user object is not in session storage
       this.userInSession = false;
     }
+  }
+
+  logout() {
+    sessionStorage.removeItem('user');
+    this.username = ''; // Clear the username
+    this.userInSession = false;
   }
 }

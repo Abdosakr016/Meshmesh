@@ -1,21 +1,10 @@
 import { Component,ViewChild, ElementRef,Input } from '@angular/core';
 import {  Router } from '@angular/router';
-
-
-
-
-
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
-
 import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Ipet } from '../../interface/Ipet';
-
-
-
-
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -109,6 +98,6 @@ export class CardComponent {
   AddToCart(item : any){
     this.CartService.addItem(item);
     this.counter.setCartValue(++this.count)
-    this.router.navigate(['cart' , item.id])
+    this.router.navigate(['cart' , item])
   }
 }

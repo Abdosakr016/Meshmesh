@@ -9,58 +9,68 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ProductListComponent {
   addPetForm!: FormGroup;
-  petAddBase64:any;
-  pets :any;
-  @ViewChild('addPetModal')addPetModal!: ElementRef;
-    constructor(private FormBuild:FormBuilder, private apiService:ApiServiceService){
+  petAddBase64: any;
+  pets: any;
+  @ViewChild('addPetModal')
+  addPetModal!: ElementRef;
 
-    }
-    ngOnInit(){
-      this.apiService.getProductList().subscribe(((data)=>this.pets=data),
-      (error) => console.log(error),
-      () => console.log("COMPLETE"))
-      this.addPetForm = this.FormBuild.group({
-        sellerName: ['',[
-          Validators.required,
-          Validators.minLength(2),
-        ]],
-        PetAge: ['',Validators.required],
-        petType: ['',Validators.required],
-        petGender: ['',Validators.required],
-      });
-    }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiServiceService) {}
 
-    get_imagPet(event: any){
-      const file=event.target.files[0]
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload=()=>{
-    this.petAddBase64=reader.result
-    }
-    }
-
-
-      onAddPet(){
-        if (this.addPetForm.valid) {
-          const petData = this.addPetForm.value;
-          console.log(petData);
-
-          // Update the data using the API service
-          this.apiService.addNewPet( petData).subscribe(
-            (response) => {
-
-              console.log('Data updated successfully:', response);
-
-            },
-            (error: any) => {
-
-              console.error('Error updating data:', error);
-            }
-          );
-        }
-
+  ngOnInit() {
+    this.apiService.getProductList().subscribe(
+      (data) => {
+        this.pets = data;
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        console.log('COMPLETE');
       }
-    submitForm() {
+    );
 
-      console.log(this.addPetForm);}
+    this.addPetForm = this.formBuilder.group({
+      // owner: ['', [Validators.required, Validators.minLength(2)]],
+      age: ['', Validators.required],
+      type: ['', Validators.required],
+      gender: ['', Validators.required],
+      price: ['', Validators.required],
+      operation: ['', Validators.required],
+      image: ['', Validators.required],
+    });
+    // this.addPetForm.get('user_id')!.setValue(1); // Set the age to 3 as an example
+    // this.addPetForm.get('category_id')!.setValue(1); // Set the age to 3 as an example
+
+  }
+
+  get_imagPet(event: any) {
+    const file = event.target.files[0];
+    const fileName = file.name.toLowerCase();
+    if (fileName.endsWith('.jpg')|| fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.png') || fileName.endsWith('.gif')) {
+      this.addPetForm.get('image')!.setValue(file); // Set the 'image' form control to the selected file object
+    } else {
+      // Display an error to the user indicating that the file is not a valid image.
+    }
+  }
+
+  onAddPet() {
+    if (this.addPetForm.valid) {
+      const petData = this.addPetForm.value;
+      console.log(petData);
+
+      // Update the data using the API service
+      this.apiService.addNewPet(petData).subscribe(
+        (response) => {
+          console.log('Data updated successfully:', response);
+        },
+        (error: any) => {
+          console.error('Error updating data:', error);
+        }
+      );
+    }
+  }
+
+  submitForm() {
+    console.log(this.addPetForm);
+  }
 }

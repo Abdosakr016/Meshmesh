@@ -16,4 +16,5 @@ export class VeterinaryCardComponent {
     // this.counter.setCartValue(++this.count)
     this.router.navigate(['show_Vet_details',item ])
   }
+  
 }

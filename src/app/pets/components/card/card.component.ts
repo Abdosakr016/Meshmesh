@@ -12,9 +12,9 @@ import { Ipet } from '../../interface/Ipet';
 })
 
 export class CardComponent {
-  editSellerForm!: FormGroup;
+  editPetForm!: FormGroup;
   @Input() pet !: Ipet;
-  @ViewChild('editSellerModal')editSellerModal!: ElementRef;
+  @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
@@ -28,14 +28,19 @@ export class CardComponent {
 
   ngOnInit() {
     this.counter.getCounterVal().subscribe(val => this.count = val)
-    this.editSellerForm = this.formBuilder.group({
-      sellerName: ['',Validators.required],
-      petType: ['',Validators.required],
-      petGender: ['',Validators.required],
-      petPic: ['',Validators.required],
+    this.editPetForm = this.formBuilder.group({
+    // owner: ['', [Validators.required, Validators.minLength(2)]],
+    age: ['', Validators.required],
+    type: ['', Validators.required],
+    gender: ['', Validators.required],
+    price: ['', Validators.required],
+    operation: ['', Validators.required],
+    image: ['', Validators.required],
     });
   }
-  
+  generateImageUrl(imagePath: string) {
+      // return `http://localhost:8000/api/images/${imagePath}`;
+    }  
   get_imagepath(event: any){
     const file=event.target.files[0]
     const reader = new FileReader();
@@ -44,39 +49,40 @@ export class CardComponent {
   this.base64=reader.result
   }
   }
-  openEditSellerModal(pet: any) {
-    this.editSellerModal.nativeElement.style.display = 'block';
+  openeditPetModal(pet: any) {
+    this.editPetModal.nativeElement.style.display = 'block';
   
-    this.base64=pet.pet_pic
-    this.editSellerForm.patchValue({
-      sellerName: pet.Seller,
-      petType: pet.pet_type,
-      petGender: pet.pet_gender,
+    this.base64=pet.image
+    this.editPetForm.patchValue({
+    age: pet.age,
+    type: pet.type,
+    gender: pet.gender,
+    price: pet.price,
+    operation: pet.operation,
     });
   }
   
-  closeEditSellerModal(){
-    this.editSellerModal.nativeElement.style.display = 'none';
+  closeeditPetModal(){
+    this.editPetModal.nativeElement.style.display = 'none';
   }
   onSubmit() {
-    if (this.editSellerForm.valid) {
-      const formData = this.editSellerForm.value;
+    if (this.editPetForm.valid) {
+      const formData = this.editPetForm.value;
       console.log(formData);
   
-      // Update the data using the API service
-      this.apiService.updateProduct(this.pet.id.toString(), formData).subscribe(
-        (response) => {
+      // this.apiService.updateProduct(this.pet.id.toString(), formData).subscribe(
+      //   (response) => {
          
-          console.log('Data updated successfully:', response);
+      //     console.log('Data updated successfully:', response);
   
          
-          this.closeEditSellerModal();
-        },
-        (error) => {
+        //   this.closeeditPetModal();
+        // },
+        // (error) => {
          
-          console.error('Error updating data:', error);
-        }
-      );
+        //   console.error('Error updating data:', error);
+        // }
+      // );
     }
   }
   deleteProduct(pet_id: number) {

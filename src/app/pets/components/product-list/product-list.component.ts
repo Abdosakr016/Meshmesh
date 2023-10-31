@@ -45,12 +45,11 @@ export class ProductListComponent {
 
   get_imagPet(event: any) {
     const file = event.target.files[0];
-    const fileName = file.name.toLowerCase();
-    if (fileName.endsWith('.jpg')|| fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.png') || fileName.endsWith('.gif')) {
-      this.addPetForm.get('image')!.setValue(file); // Set the 'image' form control to the selected file object
-    } else {
-      // Display an error to the user indicating that the file is not a valid image.
-    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.petAddBase64 = reader.result;
+    };
   }
 
   onAddPet() {

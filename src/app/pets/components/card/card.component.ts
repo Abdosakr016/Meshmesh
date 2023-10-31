@@ -38,7 +38,7 @@ export class CardComponent {
     image: ['', Validators.required],
     });
   }
-  generateImageUrl(imagePath: string) {
+  generateImageUrl(image: string) {
       // return `http://localhost:8000/api/images/${imagePath}`;
     }  
   get_imagepath(event: any){

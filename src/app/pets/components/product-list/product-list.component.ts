@@ -37,6 +37,8 @@ export class ProductListComponent {
       price: ['', Validators.required],
       operation: ['', Validators.required],
       image: ['', Validators.required],
+      // user_id: ['', Validators.required],
+      // category_id: ['', Validators.required],
     });
     // this.addPetForm.get('user_id')!.setValue(1); // Set the age to 3 as an example
     // this.addPetForm.get('category_id')!.setValue(1); // Set the age to 3 as an example
@@ -49,6 +51,7 @@ export class ProductListComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
       this.petAddBase64 = reader.result;
+      console.log(reader.result)
     };
   }
 
@@ -56,7 +59,8 @@ export class ProductListComponent {
     if (this.addPetForm.valid) {
       const petData = this.addPetForm.value;
       console.log(petData);
-
+      petData.category_id = "1";
+      petData.user_id = "1";
       // Update the data using the API service
       this.apiService.addNewPet(petData).subscribe(
         (response) => {

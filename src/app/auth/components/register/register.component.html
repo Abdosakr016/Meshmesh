@@ -3,6 +3,7 @@
 <hr />
 
 <form [formGroup]="regiseruser" (ngSubmit)="submitForm()">
+  <p>{{error}}</p>
   <div class="mb-3">
     <label for="name_control" class="form-label">Name</label>
     <input
@@ -10,20 +11,20 @@
       class="form-control"
       id="name_control"
       aria-describedby="name_help"
-      formControlName="Name"
+      formControlName="name"
     />
     <div
       *ngIf="
-      regiseruser.controls['Name'].touched &&
-      regiseruser.controls['Name'].invalid
+      regiseruser.controls['name'].touched &&
+      regiseruser.controls['name'].invalid
       "
       id="name_help"
       class="text-danger form-text"
     >
-      <small *ngIf="regiseruser.controls['Name'].errors?.['required']">
+      <small *ngIf="regiseruser.controls['name'].errors?.['required']">
         this field is required
       </small>
-      <small *ngIf="regiseruser.controls['Name'].errors?.['minlength']">
+      <small *ngIf="regiseruser.controls['name'].errors?.['minlength']">
         Min. length is 2
       </small>
     </div>
@@ -115,7 +116,7 @@
     </div>
   </div>
   
-  <button type="submit" class="btn btn-success" [disabled]="regiseruser.invalid">
+  <button type="submit" class="btn btn-success" >
     Register
   </button>
   <p>Already have an account!<a href="login">login</a></p>

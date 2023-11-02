@@ -8,16 +8,17 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-
+  error :any ;
   loginform: FormGroup;
   invalidLogin = false;
-  constructor(private fb: FormBuilder , private router: Router) {
+  constructor(private fb: FormBuilder , private router: Router ,private AuthService:AuthService) {
     
    
   
@@ -51,41 +52,51 @@ export class LoginComponent implements OnInit{
 
   submitForm() {
     
-    console.log(this.loginform);
+    // console.log(this.loginform);
     
     
-    const storedUserData = localStorage.getItem('userArr');
-    if (storedUserData) {
-      const userArr = JSON.parse(storedUserData);
+    // const storedUserData = localStorage.getItem('userArr');
+    // if (storedUserData) {
+    //   const userArr = JSON.parse(storedUserData);
 
-      // Check if the entered email and password match any stored user
-      const enteredEmail = this.loginform.get('email')?.value;
-      const enteredPassword = this.loginform.get('password')?.value;
+    //   // Check if the entered email and password match any stored user
+    //   const enteredEmail = this.loginform.get('email')?.value;
+    //   const enteredPassword = this.loginform.get('password')?.value;
 
-      const isValidUser = userArr.some((user: { email: any; password: any; }) => {
-        return user.email === enteredEmail && user.password === enteredPassword;
-      });
+    //   const isValidUser = userArr.some((user: { email: any; password: any; }) => {
+    //     return user.email === enteredEmail && user.password === enteredPassword;
+    //   });
 
-      if (isValidUser) {
-        // Navigate to home if the user is valid
-        this.router.navigate(['/home']);
-      } else {
-        this.invalidLogin = true;
+    //   if (isValidUser) {
+    //     // Navigate to home if the user is valid
+    //     this.router.navigate(['/home']);
+    //   } else {
+    //     this.invalidLogin = true;
         
-      }
-    } else {
-      this.invalidLogin = true;
+    //   }
+    // } else {
+    //   this.invalidLogin = true;
       
-    }  
+    // }  
 
 
+    this.AuthService.login(this.loginform.value).subscribe(res => {
+      // console.log(res);
+      if(res.token){
+        localStorage.setItem('token' ,res.token )
+        this.router.navigate(['']);
 
+      }
+    },
+    error => {
+      this.error=error.error.message;
+      // console.log(error.error);
+    });
 
 
 
 
     
-    // this.router.navigate(['/home']);
   }
 
 }   

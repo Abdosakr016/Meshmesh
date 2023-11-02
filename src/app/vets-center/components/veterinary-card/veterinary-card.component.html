@@ -1,16 +1,12 @@
 <section>
   <div class="profile profile-wide">
     <div class="profile__image">
-      <img
-        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png"
-        alt="Doggo"
-      />
+      <img src="{{ logopath }}{{ pet.logo }}" alt="Doggo" />
     </div>
     <div class="profile__info">
-      <h3>{{ pet.Seller }}</h3>
+      <h3>{{ pet.name }}</h3>
       <p class="profile__info__extra">
-        A very good boi that loves playing fetch and ice-cream! Gentle with
-        everyone. Scared of the rain.
+        {{ pet.about }}
       </p>
     </div>
     <div class="profile__stats">
@@ -26,7 +22,16 @@
       <h5 class="profile__stats__info">45.85 lbs</h5>
     </div>
     <div class="profile__cta">
-      <a class="btn btn-success button" type="button" (click)="Details(pet)"
+      <!-- <a
+        class="btn btn-success button"
+        type="button"
+        (click)="deleteProduct(pet.id)"
+        >Adopt Doggo!</a
+      > -->
+      <a
+        class="btn btn-success button"
+        type="button"
+        (click)="getVetDetails(pet.id, pet.id)"
         >Adopt Doggo!</a
       >
     </div>

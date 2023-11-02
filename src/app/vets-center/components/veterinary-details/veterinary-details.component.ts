@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiServiceService } from '../../../pets/services/api-service.service';
-
+import { ApiVetCenterService } from '../../services/api-vet-center.service';
 @Component({
   selector: 'app-veterinary-details',
   templateUrl: './veterinary-details.component.html',
@@ -8,7 +8,7 @@ import { ApiServiceService } from '../../../pets/services/api-service.service';
 })
 export class VeterinaryDetailsComponent {
   pets :any;
-    constructor(private apiService:ApiServiceService){}
+    constructor(private apiService:ApiVetCenterService){}
       ngOnInit(){
         this.apiService.getProductList().subscribe(((data)=>this.pets=data),
         (error) => console.log(error),

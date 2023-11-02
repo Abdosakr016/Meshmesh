@@ -27,6 +27,7 @@ export class CardComponent {
   base64: any
 
   ngOnInit() {
+
     this.counter.getCounterVal().subscribe(val => this.count = val)
     this.editPetForm = this.formBuilder.group({
     // owner: ['', [Validators.required, Validators.minLength(2)]],
@@ -39,8 +40,8 @@ export class CardComponent {
     });
   }
   generateImageUrl(image: string) {
-      // return `http://localhost:8000/api/images/${imagePath}`;
-    }  
+    return `http://localhost:8000/storage/${image}`;
+  } 
   get_imagepath(event: any){
     const file=event.target.files[0]
     const reader = new FileReader();

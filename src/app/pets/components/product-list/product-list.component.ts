@@ -11,9 +11,9 @@ export class ProductListComponent {
   addPetForm!: FormGroup;
   petAddBase64: any;
   pets: any;
+  imageFile: any
   @ViewChild('addPetModal')
   addPetModal!: ElementRef;
-
   constructor(private formBuilder: FormBuilder, private apiService: ApiServiceService) {}
 
   ngOnInit() {
@@ -47,22 +47,39 @@ export class ProductListComponent {
 
   get_imagPet(event: any) {
     const file = event.target.files[0];
+    this.imageFile=event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+  
     reader.onload = () => {
-      this.petAddBase64 = reader.result;
-      console.log(reader.result)
+      // Convert the image to base64
+      const base64Image = reader.result as string;
+      // Store the base64 data in a variable, but don't set it as the input value
+      this.petAddBase64 = base64Image;
     };
+  
+    reader.readAsDataURL(file);
   }
+  
 
   onAddPet() {
     if (this.addPetForm.valid) {
       const petData = this.addPetForm.value;
-      console.log(petData);
       petData.category_id = "1";
       petData.user_id = "1";
+  
+      // Create a FormData object
+      const formData = new FormData();
+  
+      // Append the base64-encoded image data to the FormData
+      formData.append('image', this.imageFile);
+  
+      // Append other form data fields
+      for (const key of Object.keys(petData)) {
+        formData.append(key, petData[key]);
+      }
+  
       // Update the data using the API service
-      this.apiService.addNewPet(petData).subscribe(
+      this.apiService.addNewPet(formData).subscribe(
         (response) => {
           console.log('Data updated successfully:', response);
         },
@@ -72,6 +89,7 @@ export class ProductListComponent {
       );
     }
   }
+  
 
   submitForm() {
     console.log(this.addPetForm);

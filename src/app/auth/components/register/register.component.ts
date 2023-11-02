@@ -87,6 +87,7 @@ error : any ;
     
     this.AuthService.signUp(this.regiseruser.value).subscribe(res => {
       console.log(res);
+      this.router.navigate(['login']);
     },
     error => {
       this.error=error.error.message;

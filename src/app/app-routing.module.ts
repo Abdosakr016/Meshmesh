@@ -16,14 +16,14 @@ import { authGuard } from './auth.guard';
 const routes: Routes = [
   {
     path: '',
-    component: ContainerComponent,
-    canActivate :[authGuard]
+    component: ContainerComponent
+    // canActivate :[authGuard]
   },
 
   {
     path: 'products',
-    component: ProductListComponent,
-    canActivate:[authGuard]
+    component: ProductListComponent
+    // canActivate:[authGuard]
 
   },
   {
@@ -71,7 +71,7 @@ const routes: Routes = [
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
-    canActivate :[authGuard]
+    // canActivate :[authGuard]
 
   },
 ];

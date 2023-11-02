@@ -79,25 +79,23 @@
   </div>
 </div>
 
-<!-- edit  pet model -->
-<div class="modal fade" id="editModal"#editPetModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Your previous code (without form) -->
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog mt-1" style="width: 50%; max-width: none">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Add your pet details
+          Edit your pet details
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="formbold-main-wrapper pt-0">
           <div class="formbold-form-wrapper pt-0">
-            <div class="text-center">
-              <img src="assets/pet_welcome_edit.jpg" style="width: 50%" />
-            </div>
-
-            <form [formGroup]="editPetForm">
-                        <!-- <div class="formbold-input-wrapp formbold-mb-3">
+            <img src="assets/pet_welcome.png" style="width: 90%" />
+            <form [formGroup]="editPetForm" (ngSubmit)="submitForm()"enctype="multipart/form-data">
+              <!-- <div class="formbold-input-wrapp formbold-mb-3">
                 <label for="owner" class="formbold-form-label">
                   owner
                 </label>
@@ -220,19 +218,19 @@
     </small>
   </div>
 </div>
-<!-- _________________________opeeration _______________ -->
+<!-- _________________________image_______________ -->
 
-              <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                <input id="upload" type="file" (change)="get_imagepath($event)"formControlName="image" name="image" class="form-control border-0" />
-                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                <div class="input-group-append">
-                  <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
-                    <i class="fa fa-cloud-upload mr-2 text-muted"></i><small
-                      class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                </div>
-              </div>
-
-              <!-- Uploaded image area-->
+<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+  <input id="upload" type="file" (change)="get_imagPet($event)" formControlName="image" name="image" class="form-control border-0" />
+  <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+  <div class="input-group-append">
+    <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
+      <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+      <small class="text-uppercase font-weight-bold text-muted">Choose file</small>
+    </label>
+  </div>
+</div>
+              <!-- Uploaded image -->
               <p class="font-italic text-dark text-center">
                 The image uploaded will be rendered inside the box below.
               </p>
@@ -244,9 +242,7 @@
               <div class="formbold-checkbox-wrapper mt-2">
                 <label for="supportCheckbox" class="formbold-checkbox-label">
                   <div class="formbold-relative">
-                    <input type="checkbox" id="supportCheckbox" class="form
-                    
-                    bold-input-checkbox" />
+                    <input type="checkbox" id="supportCheckbox" class="formbold-input-checkbox" />
                     <div class="formbold-checkbox-inner">
                       <span class="formbold-opacity-0">
                         <svg width="11" height="8" viewBox="0 0 11 8" class="formbold-stroke-current" fill="none"
@@ -271,7 +267,7 @@
           Close
         </button>
         <button type="button" class="btn btn-primary" [disabled]="editPetForm.invalid" data-bs-dismiss="modal"
-          (click)="onSubmit()" [disabled]="!editPetForm.valid">
+          (click)="onUpdate()">
           Save changes
         </button>
       </div>
@@ -279,46 +275,36 @@
   </div>
 </div>
 
-<!-- Edit pet Modal -->
-<!-- <div class="container-fluid">
-  <div class="modal" #editPetModal tabindex="-1" aria-labelledby="editPetModalLabel" aria-hidden="true">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editPetModalLabel">Edit pet Data</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeeditPetModal()"
-          aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="editPetForm">
-          <div class="mb-3">
-            <label for="petName" class="form-label">owner</label>
-            <input type="text" class="form-control" id="petName" formControlName="petName" />
-          </div>
-          <div class="mb-3">
-            <label for="petType" class="form-label">Pet Type</label>
-            <input type="text" class="form-control" id="petType" formControlName="petType" />
-          </div>
-          <div class="mb-3">
-            <label for="petGender" class="form-label">Pet Gender</label>
-            <input type="text" class="form-control" id="petGender" formControlName="petGender" />
-          </div>
-          <div class="mb-3">
-            <label for="petPic" class="form-label">Pet Picture URL</label>
-            <input type="file" (change)="get_imagepath($event)" class="form-control" id="petPic"
-              formControlName="petPic" />
-            <img src="{{ base64 }}" width="200px" height="200px" alt="" />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeeditPetModal()" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!editPetForm.valid">
-          Save changes
-        </button>
-      </div>
-    </div>
-  </div>
-</div> -->
-  
+
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#imageResult").attr("src", e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $(function () {
+    $("#upload").on("change", function () {
+      readURL(input);
+    });
+  });
+
+  /*  ==========================================
+    SHOW UPLOADED IMAGE NAME
+* ========================================== */
+  var input = document.getElementById("upload");
+  var infoArea = document.getElementById("upload-label");
+
+  input.addEventListener("change", showFileName);
+  function showFileName(event) {
+    var input = event.srcElement;
+    var fileName = input.files[0].name;
+    infoArea.textContent = "File name: " + fileName;
+  }
+</script>

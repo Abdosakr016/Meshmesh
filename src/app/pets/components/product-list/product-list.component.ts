@@ -30,7 +30,6 @@ export class ProductListComponent {
     );
 
     this.addPetForm = this.formBuilder.group({
-      // owner: ['', [Validators.required, Validators.minLength(2)]],
       age: ['', Validators.required],
       type: ['', Validators.required],
       gender: ['', Validators.required],
@@ -40,8 +39,6 @@ export class ProductListComponent {
       // user_id: ['', Validators.required],
       // category_id: ['', Validators.required],
     });
-    // this.addPetForm.get('user_id')!.setValue(1); // Set the age to 3 as an example
-    // this.addPetForm.get('category_id')!.setValue(1); // Set the age to 3 as an example
 
   }
 

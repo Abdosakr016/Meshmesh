@@ -11,9 +11,11 @@ import { ProductListComponent } from './pets/components/product-list/product-lis
 import { CreateVeterinaryComponent } from './porto_veterinary/components/create-veterinary/create-veterinary.component';
 import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-list-doctors/creat-list-doctors.component';
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
-import { authGuard } from './auth.guard';
+
+
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -31,7 +33,7 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
-    canActivate :[authGuard]
+    // canActivate :[authGuard]
 
   },
   {

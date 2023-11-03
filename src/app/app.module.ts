@@ -33,7 +33,8 @@ import { UserProfileModule } from './user-profile/user-profile.module';
    VetsCenterModule,
     SharedModule,
     PortoVeterinaryModule,
-    UserProfileModule
+    UserProfileModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

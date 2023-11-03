@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +16,8 @@ export class AuthService {
   {
     return this.http.post('http://localhost:8000/api/login' ,loginData ) ;
   } 
-  logout(loginData:any):Observable<any>
+  logout(logoutData:any):Observable<any>
   {
-    return this.http.post('http://localhost:8000/api/login' ,loginData ) ;
+    return this.http.post('http://localhost:8000/api/logout' ,logoutData ) ;
   } 
 }

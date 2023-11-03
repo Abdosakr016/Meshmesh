@@ -13,24 +13,32 @@ import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-l
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: ContainerComponent
+    // canActivate :[authGuard]
   },
 
   {
     path: 'products',
     component: ProductListComponent
+    // canActivate:[authGuard]
+
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate :[authGuard]
+
   },
   {
     path: 'cart/:id',
-    component: CartComponent
+    component: CartComponent,
+    canActivate :[authGuard]
+
   },
   {
     path: 'register',
@@ -52,14 +60,20 @@ const routes: Routes = [
   {
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
+    canActivate :[authGuard]
+
   },
   {
     path: 'Add_Doctors',
     component: CreatListDoctorsComponent,
+    canActivate :[authGuard]
+
   },
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
+    // canActivate :[authGuard]
+
   },
   {
     path: 'user-account',

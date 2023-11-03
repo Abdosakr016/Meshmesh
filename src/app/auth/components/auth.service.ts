@@ -17,4 +17,8 @@ export class AuthService {
   {
     return this.http.post('http://localhost:8000/api/login' ,loginData ) ;
   } 
+  logout(loginData:any):Observable<any>
+  {
+    return this.http.post('http://localhost:8000/api/login' ,loginData ) ;
+  } 
 }

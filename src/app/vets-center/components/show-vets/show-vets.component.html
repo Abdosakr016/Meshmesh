@@ -1,28 +1,21 @@
-<div class="background"></div>
-<div class="background-texture"></div>
-<header class="header">
-  <div class="left-content">
-    <p class="stay-home">Stay Home!!</p>
-    <h1>Be a good Easter egg.</h1>
-    <p></p>
-    <p class="para">
-      That's what we need right now. Lorem ipsum dolor sit amet consectetur,
-      adipisicing elit. Aliquam, corporis.
-    </p>
-    <button>Save Lifes</button>
-  </div>
-  <img src="assets/veterinarian-clinic.png" alt="" />
-</header>
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a longer card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
+<div class="background">
+  <div class="container">
+    <header class="header">
+      <div class="left-content">
+        <p class="stay-home">Stay Home!!</p>
+        <h1>Be a good Easter egg.</h1>
+        <p></p>
+        <p class="para">
+          That's what we need right now. Lorem ipsum dolor sit amet consectetur,
+          adipisicing elit. Aliquam, corporis.
         </p>
+        <button>Save Lifes</button>
+      </div>
+      <img src="assets/veterinarian-clinic.png" alt="" />
+    </header>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col" *ngFor="let pet of pets">
+        <app-veterinary-card [pet]="pet"></app-veterinary-card>
       </div>
     </div>
   </div>

@@ -30,7 +30,6 @@ export class CartComponent {
     // console.log(this.selectedItems)
   }
   removeItem(item: any){
-    if(confirm("do you sure  for remove this item") == true) {
       this.selectedItems = this.selectedItems.filter( val => val != item);
       this.cartService.updatedSelectedItems(this.selectedItems );
     if(this.count>0){
@@ -38,7 +37,7 @@ export class CartComponent {
     }
     this.total -= item.pet_price;
 
-    }
+    
 
     
    }

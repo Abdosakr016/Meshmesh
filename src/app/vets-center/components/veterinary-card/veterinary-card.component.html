@@ -1,0 +1,34 @@
+<section>
+  <div class="profile profile-wide">
+    <div class="profile__image">
+      <img
+        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png"
+        alt="Doggo"
+      />
+    </div>
+    <div class="profile__info">
+      <h1>{{ pet.user.name }}</h1>
+      <p class="profile__info__extra">
+        A very good boi that loves playing fetch and ice-cream! Gentle with
+        everyone. Scared of the rain.
+      </p>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">Type</p>
+      <h5 class="profile__stats__info">Puppy</h5>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">Size</p>
+      <h5>Medium</h5>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">Weight</p>
+      <h5 class="profile__stats__info">45.85 lbs</h5>
+    </div>
+    <div class="profile__cta">
+      <a class="btn btn-success button" type="button" (click)="Details(pet)"
+        >Adopt Doggo!</a
+      >
+    </div>
+  </div>
+</section>

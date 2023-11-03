@@ -1,10 +1,19 @@
 export interface Ipet {
         id: number;
-        Seller:string;
-        pet_type: string;
-        pet_gender: string; 
-        pet_pic: string;
-        pet_price: string;
-        pet_age: string;     
-
-}
+        created_at: string;
+        updated_at: string;
+        age: string;
+        type: string;
+        gender: string;
+        image: string;
+        price: string;
+        operation: string;
+        user: {
+                name: string; 
+              };
+            
+              category: {
+                name: string; 
+              };
+      }
+      

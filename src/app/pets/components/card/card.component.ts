@@ -14,7 +14,10 @@ import { Ipet } from '../../interface/Ipet';
 export class CardComponent {
   editPetForm!: FormGroup;
   @Input() pet !: Ipet;
-  @ViewChild('editPetModal')editPetModal!: ElementRef;
+  imageFile: any
+  base64: any
+
+  // @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
@@ -24,34 +27,41 @@ export class CardComponent {
     ){}
 
  
-  base64: any
 
   ngOnInit() {
 
     this.counter.getCounterVal().subscribe(val => this.count = val)
     this.editPetForm = this.formBuilder.group({
-    // owner: ['', [Validators.required, Validators.minLength(2)]],
-    age: ['', Validators.required],
-    type: ['', Validators.required],
-    gender: ['', Validators.required],
-    price: ['', Validators.required],
-    operation: ['', Validators.required],
-    image: ['', Validators.required],
+   // owner: ['', [Validators.required, Validators.minLength(2)]],
+   age: ['', Validators.required],
+   type: ['', Validators.required],
+   gender: ['', Validators.required],
+   price: ['', Validators.required],
+   operation: ['', Validators.required],
+   image: ['', Validators.required],
+   // user_id: ['', Validators.required],
+   // category_id: ['', Validators.required],
     });
   }
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   } 
-  get_imagepath(event: any){
-    const file=event.target.files[0]
+  get_imagPet(event: any) {
+    const file = event.target.files[0];
+    this.imageFile=event.target.files[0];
     const reader = new FileReader();
+  
+    reader.onload = () => {
+      // Convert the image to base64
+      const base64Image = reader.result as string;
+      // Store the base64 data in a variable, but don't set it as the input value
+      this.base64 = base64Image;
+    };
+  
     reader.readAsDataURL(file);
-    reader.onload=()=>{
-  this.base64=reader.result
-  }
   }
   openeditPetModal(pet: any) {
-    this.editPetModal.nativeElement.style.display = 'block';
+    // this.editPetModal.nativeElement.style.display = 'block';
   
     this.base64=pet.image
     this.editPetForm.patchValue({
@@ -63,27 +73,39 @@ export class CardComponent {
     });
   }
   
-  closeeditPetModal(){
-    this.editPetModal.nativeElement.style.display = 'none';
-  }
-  onSubmit() {
+  // closeeditPetModal(){
+  //   this.editPetModal.nativeElement.style.display = 'none';
+  // }
+  onUpdate() {
     if (this.editPetForm.valid) {
-      const formData = this.editPetForm.value;
-      console.log(formData);
+      const petData = this.editPetForm.value;
+      petData.category_id = "1";
+      petData.user_id = "1";
   
-      // this.apiService.updateProduct(this.pet.id.toString(), formData).subscribe(
-      //   (response) => {
+      // Create a FormData object
+      const formData = new FormData();
+  
+      // Append the base64-encoded image data to the FormData
+      formData.append('image', this.imageFile);
+  
+      // Append other form data fields
+      for (const key of Object.keys(petData)) {
+        formData.append(key, petData[key]);
+      }
+  
+      this.apiService.updateProduct(this.pet.id.toString(), formData).subscribe(
+        (response) => {
          
-      //     console.log('Data updated successfully:', response);
+          console.log('Data updated successfully:', response);
   
          
-        //   this.closeeditPetModal();
-        // },
-        // (error) => {
+          // this.closeeditPetModal();
+        },
+        (error) => {
          
-        //   console.error('Error updating data:', error);
-        // }
-      // );
+          console.error('Error updating data:', error);
+        }
+      );
     }
   }
   deleteProduct(pet_id: number) {
@@ -106,5 +128,8 @@ export class CardComponent {
     this.CartService.addItem(item);
     this.counter.setCartValue(++this.count)
     this.router.navigate(['cart' , item])
+  }
+  submitForm() {
+    console.log(this.editPetForm);
   }
 }

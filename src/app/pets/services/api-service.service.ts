@@ -26,8 +26,8 @@ export class ApiServiceService {
     return this.http.post<Ipet>('http://localhost:8000/api/pets', petData);
   }
 
-  updateProduct(id: any, newData: any) {
-    return this.http.put(`${this.url}/${id}`, newData, { headers: this.httpHeaders });
+  updatePet(id: any, petData: FormData) {
+    return this.http.put(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
   }
 
   deleteProduct(id: string) {

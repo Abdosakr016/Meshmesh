@@ -27,7 +27,7 @@ export class NavbarComponent {
     this.userService.getUserData().subscribe(
       (data) => {
         this.userData = data;
-        console.log(data); 
+        // console.log(data); 
 
       },
       (error) => {
@@ -38,8 +38,24 @@ export class NavbarComponent {
   
 
   logout() {
-    localStorage.removeItem('user');
-    // this.username = ''; 
-    this.userLogin = false;
+   
+    this.userService.logout().subscribe(
+      () => {
+    // console.log("logout")
+       
+   
+      
+      },
+      (error) => {
+     
+        console.error('Logout error:', error);
+       
+      }
+    );
+    localStorage.removeItem('access_token');
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 500);
   }
 }

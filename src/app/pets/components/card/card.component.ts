@@ -60,9 +60,9 @@ export class CardComponent {
   
     reader.readAsDataURL(file);
   }
-  openeditPetModal(pet: any) {
+  editFun(pet: any) {
     // this.editPetModal.nativeElement.style.display = 'block';
-  
+  console.log(pet)
     this.base64=pet.image
     this.editPetForm.patchValue({
     age: pet.age,
@@ -79,24 +79,23 @@ export class CardComponent {
   onUpdate() {
     if (this.editPetForm.valid) {
       const petData = this.editPetForm.value;
-      petData.category_id = "1";
+      petData.category_id = "1"
       petData.user_id = "1";
   
-      // Create a FormData object
       const formData = new FormData();
   
-      // Append the base64-encoded image data to the FormData
       formData.append('image', this.imageFile);
   
-      // Append other form data fields
       for (const key of Object.keys(petData)) {
         formData.append(key, petData[key]);
       }
   
-      this.apiService.updateProduct(this.pet.id.toString(), formData).subscribe(
+      this.apiService.updatePet(this.pet.id.toString(), formData).subscribe(
         (response) => {
          
           console.log('Data updated successfully:', response);
+          console.log(this.pet.id);
+          console.log(formData);
   
          
           // this.closeeditPetModal();

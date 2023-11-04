@@ -1,15 +1,16 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VeterinaryService } from '../../services/veterinary.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-
+import{Idoctor}from '../../services/doctorclass' ;
 @Component({
   selector: 'app-creat-list-doctors',
   templateUrl: './creat-list-doctors.component.html',
   styleUrls: ['./creat-list-doctors.component.css']
 })
 export class CreatListDoctorsComponent implements OnInit {
-  [x: string]: any;
+  // [x: string]: any;
+  imageFile: any
   doctorForm!: FormGroup;
   doctorForms: FormGroup[] = [];
   doctorBase64:any;
@@ -17,36 +18,95 @@ export class CreatListDoctorsComponent implements OnInit {
   arrDoctors:any=[];
   getId:any;
   currentDoctor:any;
-  constructor(private fb: FormBuilder,private VetService:VeterinaryService
-    ,private router:Router,private activateroute:ActivatedRoute)
+  base64: any;
+  deleteId:any;
+  imageDoctor:any;
+updateId:any;
+  // @ViewChild('updateDoctorModal')updateDoctorModal!:ElementRef;
+
+
+  
+  constructor(private fb: FormBuilder,private VetService:VeterinaryService)
     {
+      
       
       // Initialize your form group (updateDoctorForm) here
     this.updateDoctorForm = this.fb.group({
-      name: [''],
+      name: ['',Validators.required],
       image: ['', Validators.required],
       experience: ['', Validators.required],
     });
   }
 
+
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  } 
+  get_imagepath(event: any){
+    const file=event.target.files[0]
+    this.imageDoctor=event.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload=()=>{
+  this.base64=reader.result
+  }
+  }
+
   // Function to set the current doctor data for update
-  setUpdateData(doctor: any) {
-    this.currentDoctor = doctor;
+  setUpdateData(doctor: any,id: number) {
+    this.updateId=id;  
+    // this.currentDoctor = doctor;
     // Bind the data to the form controls
+    this.base64=doctor.image
     this.updateDoctorForm.patchValue({
       name: doctor.name,
       experience: doctor.experience,
-       image: doctor.image,
+       //image: doctor.image,
+       
       // You can handle the 'image' control as needed, e.g., displaying the current image
       
     });
     
   }
+
   
+  onUpdateDoctor() {
+    if (this.updateDoctorForm.valid) {
+      const doctorData = this.updateDoctorForm.value;
+      console.log(doctorData);
+
+
+      const formData = new FormData(); 
+      for (const key of Object.keys(doctorData)) {
+        formData.append(key, doctorData[key]);
+      }
+      if (this.imageDoctor) {
+        formData.append('image', this.imageDoctor);
+      }
+  
+      // Update the data using the API service
+      this.VetService.updatDoctor(this.updateId,formData).subscribe(
+        (response) => {
+          console.log('Data updated successfully:', response);
+        },
+        (error: any) => {
+          console.error('Error updating data:', error);
+        }
+      );
+     
+    }
+     
+  }
+  
+
    
 
   ngOnInit() {
+
     this.initializeDoctorForm();
+    this.getDoctors();
+  }
+  getDoctors(){
     this.VetService.get_doctors().subscribe(res=>{
       console.log(Object.values(res)[0]);
       this.arrDoctors=Object.values(res)[0];
@@ -56,101 +116,81 @@ export class CreatListDoctorsComponent implements OnInit {
 
   initializeDoctorForm() {
     this.doctorForm = this.fb.group({
-      name: ['', Validators.required],
+       name: ['', Validators.required],
       image: ['',Validators.required],
       experience: ['',Validators.required],
       
     });
   }
-
+ 
+  
 
 
   get_doctorImagepath(event: any){
     const file=event.target.files[0]
+    this.imageFile=event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    // reader.readAsDataURL(file);
     reader.onload=()=>{
-  this.doctorBase64=reader.result
-  }
+      const base64Image=reader.result as string;
+  this.doctorBase64=base64Image;
+  };
+  reader.readAsDataURL(file);
   }
  
   onAddDoctor() {
     if (this.doctorForm.valid) {
       const doctorData = this.doctorForm.value;
       
+      const formData = new FormData();
+      formData.append('image', this.imageFile);
+      
+      for (const key of Object.keys(doctorData)) {
+        formData.append(key, doctorData[key]);
+      }
+
       // Update the data using the API service
-      this.VetService.addNewDoctor(doctorData).subscribe(
+      this.VetService.addNewDoctor(formData).subscribe(
 
         (response) => {
          
           console.log('Data updated successfully:', response);
-          
+          this.getDoctors();
         },
         (error: any) => {
           console.error('Error updating data:', error);
         }
       );
+      
     }
-  }
-
-
-  onUpdateDoctor() {
-    if (this.updateDoctorForm.valid) {
-      const doctorData = this.updateDoctorForm.value;
-      console.log(doctorData);
-  
-      // Update the data using the API service
-      this.VetService.updatDoctor(this.getId,doctorData).subscribe(
-        (response) => {
-          console.log('Data updated successfully:', response);
-          
-        },
-        (error: any) => {
-          console.error('Error updating data:', error);
-        }
-      );
-    }
-  }
- 
-
-  
-  
-  // deleteDoctor(id:any,i:any) {
-  //  console.log(id);
-       
-  //   this.VetService.deleteDoctor(id).subscribe(res =>{
-  //     this.arrDoctors.splice(i,1);
-  //   })
     
-  //    }
+  }
+
+
+ 
   
   
-  // deleteDoctor(id: any) {
-  //   // Find the index of the doctor with the specified 'id' in the arrDoctors array
-  //   const index = this.arrDoctors.findIndex((doctor: { id: any }) => doctor.id === id);
-  
-  //   if (index !== -1) {
-  //     // Delete the doctor on the server using your service method
-  //     this.VetService.deleteDoctor(id).subscribe((res) => {
-  //       // Remove the doctor from the arrDoctors array
-  //       this.arrDoctors.splice(index, 1);
-  //     });
-  //   }
-  // }
   
   deleteDoctor(id: number) {
    
-    const id_str = id.toString();
-    this.VetService.deleteDoctor(id_str).subscribe(
-      (response) => {
-        console.log('doctor deleted successfully:', response);
+  this.deleteId=id;
+    
+  }
+  modeldeleteDoctor(){
+    this.VetService.deleteDoctor( this.deleteId).subscribe(
+      (data) => {
+        console.log('doctor deleted successfully:', data);
+        this.getDoctors();
       },
+
       (error) => {
         console.error('Error deleting doctor:', error);
       }
     );
   }
-
     
   }
+ 
+
+
 

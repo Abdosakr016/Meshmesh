@@ -23,7 +23,7 @@ export class VeterinaryService {
     return this.httpClient.post(this.veturl,vetData)
   }
   
- addNewDoctor(data:Idoctor):Observable<any>{
+ addNewDoctor(data: FormData):Observable<any>{
   let API_URL=`${this.REST_API}`;
   return this.httpClient.post(API_URL,data)
 
@@ -43,20 +43,19 @@ export class VeterinaryService {
     catchError(this.handleError))
 
  }
-  updatDoctor(id:any,data:Idoctor){
+ 
+  updatDoctor(id:any,data:FormData){
     let API_URL=`${this.REST_API}/${id}`;
     return this.httpClient.put(API_URL,data,{headers: this.httpHeaders})
-    
-    .pipe(catchError(this.handleError))
-   
-  
    }
 
-   deleteDoctor(id:string){
+ 
+
+   deleteDoctor(id:any){
     let API_URL=`${this.REST_API}/${id}`;
     return this.httpClient.delete(API_URL,{headers: this.httpHeaders})
     
-    .pipe(catchError(this.handleError))
+    
   
    }
    handleError(error:HttpErrorResponse){

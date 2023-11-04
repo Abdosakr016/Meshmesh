@@ -31,16 +31,16 @@ export class CreateVeterinaryComponent implements OnInit  {
 
   validatVetCenterForm(){
     this.vetCenterForm = this.formBuilder.group({
-      name: ['',Validators.required],
-      street_address: ['',Validators.required],
-      governorate: ['',Validators.required],
-      logo: ['',Validators.required],
-      license: ['',Validators.required],
-      open_at: ['',Validators.required],
-      close_at: ['',Validators.required],
-      tax_record: ['',Validators.required],
-      commercial_record: ['',Validators.required],
-      about: [ '',Validators.required]
+      name: ['',],
+      street_address: ['',],
+      governorate: ['',],
+      logo: ['',],
+      license: ['',],
+      open_at: ['',],
+      close_at: ['',],
+      tax_record: ['',],
+      commercial_record: ['',],
+      about: [ '',]
     });
   }
 
@@ -133,38 +133,7 @@ export class CreateVeterinaryComponent implements OnInit  {
     }
   }
 
-  // onUpdateVet() {
-  //   if (this.vetCenterForm.valid) {
-  //     const vetData = this.vetCenterForm.value;
-  //     vetData.user_id = "1"; // Assuming user_id needs to be sent with the request
 
-  //     const formData = new FormData();
-
-  //     // Append the base64-encoded image data to the FormData (if they have been previously uploaded)
-  //       formData.append('logo', this.imageFileLogo);
-  //       formData.append('license', this.imageFilelicense);
-  //       formData.append('tax_record', this.imageFileTax);
-  //       formData.append('commercial_record', this.imageFileCommrec);
-  //     // ... similar checks for other image files
-
-  //     // Append other form data fields
-  //     for (const key of Object.keys(vetData)) {
-  //       formData.append(key, vetData[key]);
-  //     }
-
-  //     // Assuming you have the vet's ID stored in a variable called 'vetId'
-  //     this.apiService.updateVet(20, formData).subscribe(
-  //       (response) => {
-  //         console.log('Data updated successfully:', response);
-  //       },
-  //       (error: any) => {
-  //         console.error('Error updating data:', error);
-  //       }
-  //     );
-  //   } else {
-  //     console.log('Validation error');
-  //   }
-  // }
 
   onUpdateVet() {
     if (this.vetCenterForm.valid) {
@@ -175,17 +144,18 @@ export class CreateVeterinaryComponent implements OnInit  {
       const formData = new FormData();
 
       // Append the base64-encoded image data to the FormData (if they have been previously uploaded)
-      if (this.imageFileLogo) {
-        formData.append('logo', this.imageFileLogo);
+      if (vetData.imageFileLogo) {
+        formData.append('logo', vetData.imageFileLogo);
       }
-      if (this.imageFilelicense) {
-        formData.append('license', this.imageFilelicense);
+      if (vetData.imageFilelicense) {
+        formData.append('license', vetData.imageFilelicense);
       }
-      if (this.imageFileTax) {
-        formData.append('tax_record', this.imageFileTax);
+      if (vetData.imageFileTax) {
+        formData.append('tax_record', vetData.imageFileTax);
       }
       if (this.imageFileCommrec) {
-        formData.append('commercial_record', this.imageFileCommrec);
+      console.log("hi",vetData.imageFileCommrec);
+        formData.append('commercial_record', vetData.imageFileCommrec);
       }
 
       // Append other form data fields
@@ -197,7 +167,7 @@ export class CreateVeterinaryComponent implements OnInit  {
       formData.append('close_at', vetData.close_at);
 
       // Assuming you have the vet's ID stored in a variable called 'vetId'
-      this.apiService.updateVet(20, vetData.name).subscribe(
+      this.apiService.updateVet(23, vetData).subscribe(
         (response) => {
           console.log('Data updated successfully:', response);
         },
@@ -209,4 +179,5 @@ export class CreateVeterinaryComponent implements OnInit  {
       console.log('Validation error');
     }
   }
+
 }

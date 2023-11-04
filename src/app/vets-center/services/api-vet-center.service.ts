@@ -36,7 +36,8 @@ export class ApiVetCenterService {
   addNewVet(vetData: FormData) {
     return this.httpClient.post<Ivetcenter>(`${this.url}`,vetData);
   }
-  updateVet(id: any, newData: FormData): Observable<any> {
-    return this.httpClient.put(`${this.url}${id}`, newData);
+  updateVet(id: any, newData: any): Observable<any> {
+    // newData.append('_method', 'PUT');
+    return this.httpClient.put(`${this.url}${id}`, newData , { headers: this.httpHeaders });
   }
 }

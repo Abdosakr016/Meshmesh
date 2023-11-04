@@ -10,6 +10,9 @@ import { ContainerComponent } from './home/components/container/container.compon
 import { ProductListComponent } from './pets/components/product-list/product-list.component';
 import { CreateVeterinaryComponent } from './porto_veterinary/components/create-veterinary/create-veterinary.component';
 import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-list-doctors/creat-list-doctors.component';
+import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
+import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
+import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
 
 const routes: Routes = [
   {
@@ -32,7 +35,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    
+
   },
   {
     path: 'login',
@@ -50,15 +53,24 @@ const routes: Routes = [
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
   },
-  
   {
     path: 'Add_Doctors',
     component: CreatListDoctorsComponent,
   },
-  
+  {
+    path: 'show_Vets',
+    component: ShowVetsComponent,
+  },
+  {
+    path: 'user-account',
+    component: UserAccountComponent},
+    {path: 'show_Vet_details/:id',
+    component: VeterinaryDetailsComponent,
+  },
+
 ];
 
-  
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,39 @@
+<section>
+  <div class="profile profile-wide">
+    <div class="profile__image">
+      <img src="{{ logopath }}{{ pet.logo }}" alt="Doggo" />
+    </div>
+    <div class="profile__info">
+      <h3>{{ pet.name }}</h3>
+      <p class="profile__info__extra">
+        {{ pet.about }}
+      </p>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">Type</p>
+      <h5 class="profile__stats__info">Puppy</h5>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">Size</p>
+      <h5>Medium</h5>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">Weight</p>
+      <h5 class="profile__stats__info">45.85 lbs</h5>
+    </div>
+    <div class="profile__cta">
+      <!-- <a
+        class="btn btn-success button"
+        type="button"
+        (click)="deleteProduct(pet.id)"
+        >Adopt Doggo!</a
+      > -->
+      <a
+        class="btn btn-success button"
+        type="button"
+        [routerLink]="['/show_Vet_details', pet.id]"
+        >Adopt Doggo!</a
+      >
+    </div>
+  </div>
+</section>

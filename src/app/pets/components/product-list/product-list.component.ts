@@ -13,15 +13,20 @@ export class ProductListComponent {
   pets :any;
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private FormBuild:FormBuilder, private apiService:ApiServiceService){
-   
+
     }
     ngOnInit(){
-      this.apiService.getProductList().subscribe(((data)=>this.pets=data))
+      this.apiService.getProductList().subscribe(((data)=>this.pets=data),
+      (error) => console.log(error),
+      () => console.log("COMPLETE"))
       this.addPetForm = this.FormBuild.group({
-        sellerName: ['',Validators.required],
+        sellerName: ['',[
+          Validators.required,
+          Validators.minLength(2),
+        ]],
+        PetAge: ['',Validators.required],
         petType: ['',Validators.required],
         petGender: ['',Validators.required],
-        petPic: ['',Validators.required],
       });
     }
 
@@ -33,37 +38,29 @@ export class ProductListComponent {
     this.petAddBase64=reader.result
     }
     }
-  
+
 
       onAddPet(){
         if (this.addPetForm.valid) {
           const petData = this.addPetForm.value;
           console.log(petData);
-      
+
           // Update the data using the API service
           this.apiService.addNewPet( petData).subscribe(
             (response) => {
-             
+
               console.log('Data updated successfully:', response);
-      
-             
-              this.closePetModal();
+
             },
             (error: any) => {
-             
+
               console.error('Error updating data:', error);
             }
           );
         }
-    
-      }
-      closePetModal() {
-        this.addPetModal.nativeElement.style.display = 'none';
-      }
- 
-  openPetModal() {
 
-    this.addPetModal.nativeElement.style.display = 'block';}
-    
+      }
+    submitForm() {
+
+      console.log(this.addPetForm);}
 }
-

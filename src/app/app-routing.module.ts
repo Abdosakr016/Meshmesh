@@ -64,7 +64,7 @@ const routes: Routes = [
   {
     path: 'user-account',
     component: UserAccountComponent},
-    {path: 'show_Vet_details',
+    {path: 'show_Vet_details/:id',
     component: VeterinaryDetailsComponent,
   },
 

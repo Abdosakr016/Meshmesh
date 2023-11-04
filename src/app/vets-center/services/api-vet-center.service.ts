@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from  '@angular/common/http';
 import { Ivetcenter } from  '../interface/ivetcenter'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,11 @@ export class ApiVetCenterService {
 
   getVetDetails(id: Number) {
     return this.httpClient.get(`${this.url}${id}`, { headers: this.httpHeaders });
+  }
+  addNewVet(vetData: FormData) {
+    return this.httpClient.post<Ivetcenter>(`${this.url}`,vetData);
+  }
+  updateVet(id: any, newData: FormData): Observable<any> {
+    return this.httpClient.put(`${this.url}${id}`, newData);
   }
 }

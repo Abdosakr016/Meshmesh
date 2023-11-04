@@ -4,6 +4,7 @@ import { Ipet } from '../../../pets/interface/Ipet';
 import { Router } from '@angular/router';
 import { Ivetcenter } from '../../interface/ivetcenter';
 import { ApiVetCenterService } from '../../services/api-vet-center.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-veterinary-card',
@@ -12,13 +13,9 @@ import { ApiVetCenterService } from '../../services/api-vet-center.service';
 })
 export class VeterinaryCardComponent {
   @Input() pet !: Ivetcenter;
+  vet : any;
   logopath: any = 'http://127.0.0.1:8000/';
-  constructor(private apiService:ApiVetCenterService, private router : Router){}
-  // Details(item : any){
-  //   // this.CartService.addItem(item);
-  //   // this.counter.setCartValue(++this.count)
-  //   this.router.navigate(['show_Vet_details',item ])
-  // }
+  constructor(private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute){}
     deleteProduct(id: number) {
 
     const pet_id_str = id.toString();
@@ -31,18 +28,17 @@ export class VeterinaryCardComponent {
       }
     );
   }
-  getVetDetails(id: number, item: any) {
-
-    const pet_id_str = id.toString();
-    this.apiService.getVetDetails(id).subscribe(
-      (response) => {
-        console.log('Product deleted successfully:', response);
-      this.router.navigate(['show_Vet_details',item.id ])
-
-      },
-      (error) => {
-        console.error('Error deleting product:', error);
-      }
-    );
-  }
+  // getVetDetails(id: number) {
+  //   this.apiService.getVetDetails(id).subscribe(
+  //     (response) => {
+  //       this.vet= response;
+  //       // console.log(this.vet)
+  //       console.log('Product showed successfully:', response);
+  //     this.router.navigate(['show_Vet_details',id])
+  //     },
+  //     (error) => {
+  //       console.error('Error show product:', error);
+  //     }
+  //   );
+  // }
 }

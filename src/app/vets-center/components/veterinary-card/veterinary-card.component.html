@@ -31,7 +31,7 @@
       <a
         class="btn btn-success button"
         type="button"
-        (click)="getVetDetails(pet.id, pet.id)"
+        [routerLink]="['/show_Vet_details', pet.id]"
         >Adopt Doggo!</a
       >
     </div>

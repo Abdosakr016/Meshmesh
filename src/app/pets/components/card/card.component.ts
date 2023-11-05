@@ -5,6 +5,7 @@ import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Ipet } from '../../interface/Ipet';
+import { AuthService } from 'src/app/auth/components/auth.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -16,14 +17,15 @@ export class CardComponent {
   @Input() pet !: Ipet;
   imageFile: any
   base64: any
-
+  userData: any
   // @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: ApiServiceService ,
     private CartService : CartService,
-    private counter : CounterService
+    private counter : CounterService,
+    private userService:AuthService
     ){}
 
  
@@ -42,6 +44,7 @@ export class CardComponent {
    // user_id: ['', Validators.required],
    // category_id: ['', Validators.required],
     });
+    this.getAuthUser()
   }
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
@@ -131,4 +134,16 @@ export class CardComponent {
   submitForm() {
     console.log(this.editPetForm);
   }
+
+  getAuthUser(){
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.userData = data;
+        console.log(data); 
+  
+      },
+      (error) => {
+        console.error(error);
+      }
+    );}
 }

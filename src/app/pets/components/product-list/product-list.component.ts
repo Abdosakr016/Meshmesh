@@ -16,7 +16,9 @@ export class ProductListComponent {
   userData: any;
   @ViewChild('addPetModal')
   addPetModal!: ElementRef;
-  constructor(private formBuilder: FormBuilder, private apiService: ApiServiceService,private userService:AuthService) {}
+  constructor(private formBuilder: FormBuilder,
+     private apiService: ApiServiceService,
+     private userService:AuthService) {}
 
   ngOnInit() {
     this.apiService.getProductList().subscribe(
@@ -33,6 +35,7 @@ export class ProductListComponent {
 
     this.validation();
     this.getAuthUser()
+    this.validation();
   }
 
 

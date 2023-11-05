@@ -26,8 +26,16 @@ export class ApiServiceService {
     return this.http.post<Ipet>('http://localhost:8000/api/pets', petData);
   }
 
-  updatePet(id: any, petData: FormData) {
+  updatePet(id: any, petData: any) {
+    console.log("hello")
+    console.log(petData)
+      // Clear the existing headers
+  this.httpHeaders = new HttpHeaders();
+
+  // Append the correct content type
+  this.httpHeaders.append('Content-Type', 'multipart/form-data');
     return this.http.put(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
+  
   }
 
   deleteProduct(id: string) {

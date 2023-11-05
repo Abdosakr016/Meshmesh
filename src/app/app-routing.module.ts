@@ -77,7 +77,9 @@ const routes: Routes = [
   },
   {
     path: 'user-account',
-    component: UserAccountComponent},
+    component: UserAccountComponent,
+    //  canActivate :[authGuard]
+  },
     {path: 'show_Vet_details',
     component: VeterinaryDetailsComponent,
   },

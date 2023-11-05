@@ -6,16 +6,18 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private urlApi = 'http://localhost:8000/api';
-
+  private httpHeaders: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
   constructor(private http:HttpClient) { }
 
   signUp(registerData:any):Observable<any>
   {
-    return this.http.post('http://localhost:8000/api/register' ,registerData ) ;
+    return this.http.post('http://localhost:8000/api/register' ,registerData , { headers: this.httpHeaders });
   } 
   login(loginData:any):Observable<any>
   {
-    return this.http.post('http://localhost:8000/api/login' ,loginData ) ;
+    return this.http.post('http://localhost:8000/api/login' ,loginData , { headers: this.httpHeaders });
   } 
 
   getUserData(): Observable<any> {

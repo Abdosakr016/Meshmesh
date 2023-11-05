@@ -13,19 +13,78 @@
   <div class="container">
     <div class="row">
       <div
-        *ngFor="let doctor of arrDoctors"
+        *ngFor="let doctor of arrDoctors; let i=index"
         class="col-lg-4 col-md-6 col-sm-12 mb-3"
       >
         <div class="card" style="width: 80%">
           <img
-            [src]="doctor.Dimg"
+            [src]="'http://localhost:8000/storage/' + doctor.image"
             class="card-img-top"
             style="margin: auto; width: 80%; border-radius: 50%"
             alt="..."
           />
           <div class="card-body">
             <p class="card-text text-center">{{ doctor.name }}</p>
-            <p class="card-text text-center">{{ doctor.experience }}</p>
+
+
+          <!-- button update doctor -->
+          <!-- Add Update Button to Doctor Cards -->
+          <button
+  type="button"
+  class="btn btn-success"
+  data-bs-toggle="modal"
+  data-bs-target="#updateDoctorModal"
+  (click)="setUpdateData(doctor,doctor.id)"
+>
+  Update Doctor
+</button>
+
+
+<!-- The Modal for Updating Doctor -->
+<div class="modal fade" id="updateDoctorModal" tabindex="-1" aria-labelledby="updateDoctorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateDoctorModalLabel">
+          Update Doctor
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Update Doctor Form -->
+        <form [formGroup]="updateDoctorForm" (ngSubmit)="onUpdateDoctor()">
+          <div class="mb-3">
+            <label for="name">Doctor Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" required />
+          </div>
+          <div class="mb-3">
+            <label for="image">Doctor Photo</label>
+            <input
+              type="file"
+              (change)="get_doctorImagepath($event)"
+              class="form-control"
+              formControlName="image"
+              id="image"
+            />
+            <!-- Display the current image -->
+            <img [src]="updateDoctorForm.get('image')?.value" width="200px" height="200px" alt="" />
+
+          </div>
+          <div class="mb-3">
+            <label for="experience">Doctor Experience</label>
+            <input type="text" class="form-control" id="experience" formControlName="experience" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+        <!-- End of Update Doctor Form -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            <!-- button delete doctor -->
             <div class="text-center">
               <button
                 class="btn btn-danger mx-2"
@@ -65,6 +124,7 @@
                         class="btn btn-danger"
                         data-bs-dismiss="modal"
                         (click)="deleteDoctor(doctor.id)"
+
                       >
                         confirme
                       </button>
@@ -81,6 +141,7 @@
     </div>
   </div>
 
+ 
   <!-- The Modal -->
   <div
     class="modal fade"
@@ -104,7 +165,7 @@
         </div>
         <div class="modal-body">
           <!-- Your form goes here -->
-          <form [formGroup]="doctorForm" (ngSubmit)="onAddDoctor()">
+          <form [formGroup]="doctorForm" (ngSubmit)="onAddDoctor()" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="name">Doctor Name</label>
               <input
@@ -115,20 +176,32 @@
                 required
               />
             </div>
+            
             <div class="mb-3">
-              <label for="photo">Doctor Photo</label>
+              <label for="image">Doctor Photo</label>
               <input
                 type="file"
                 (change)="get_doctorImagepath($event)"
                 class="form-control"
-                formControlName="photo"
-                id="photo"
+                formControlName="image"
+                id="image"
               />
               <img
                 src="{{ doctorBase64 }}"
                 width="200px"
                 height="200px"
                 alt=""
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="experience">Doctor experience</label>
+              <input
+                type="text"
+                class="form-control"
+                id="experience"
+                formControlName="experience"
+                required
               />
             </div>
             <button type="submit" class="btn btn-primary">Save</button>

@@ -68,7 +68,7 @@ error : any ;
     });
   }
 
-  submitForm() {
+  submitForm() {-+
     // console.log(this.regiseruser.value);
 
    

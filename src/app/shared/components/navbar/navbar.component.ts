@@ -42,9 +42,7 @@ export class NavbarComponent {
     this.userService.logout().subscribe(
       () => {
     // console.log("logout")
-       
-   
-      
+  
       },
       (error) => {
      

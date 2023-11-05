@@ -18,6 +18,7 @@ export class CardComponent {
   imageFile: any
   base64: any
   userData: any
+  pets: any;
   // @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
@@ -33,6 +34,19 @@ export class CardComponent {
   ngOnInit() {
 
     this.counter.getCounterVal().subscribe(val => this.count = val)
+    this.apiService.getProductList().subscribe(
+      (data) => {
+        this.pets = data;
+        console.log(this.pets );
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        console.log('COMPLETE');
+      }
+    );
+
     this.editPetForm = this.formBuilder.group({
    // owner: ['', [Validators.required, Validators.minLength(2)]],
    age: ['', Validators.required],

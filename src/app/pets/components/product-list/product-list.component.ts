@@ -21,17 +21,17 @@ export class ProductListComponent {
      private userService:AuthService) {}
 
   ngOnInit() {
-    this.apiService.getProductList().subscribe(
-      (data) => {
-        this.pets = data;
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        console.log('COMPLETE');
-      }
-    );
+    // this.apiService.getProductList().subscribe(
+    //   (data) => {
+    //     this.pets = data;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   },
+    //   () => {
+    //     console.log('COMPLETE');
+    //   }
+    // );
 
     this.validation();
     this.getAuthUser()

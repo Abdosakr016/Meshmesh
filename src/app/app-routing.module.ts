@@ -60,7 +60,7 @@ const routes: Routes = [
   {
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
-    canActivate :[authGuard]
+    // canActivate :[authGuard]
 
   },
   {

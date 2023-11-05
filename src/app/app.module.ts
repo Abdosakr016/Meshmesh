@@ -12,7 +12,6 @@ import { PetsModule } from './pets/pets.module';
 import { HomeModule } from './home/home.module';
 import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.module';
 import { VetsCenterModule } from './vets-center/vets-center.module';
-
 import { UserProfileModule } from './user-profile/user-profile.module';
 @NgModule({
   declarations: [
@@ -33,7 +32,8 @@ import { UserProfileModule } from './user-profile/user-profile.module';
    VetsCenterModule,
     SharedModule,
     PortoVeterinaryModule,
-    UserProfileModule
+    UserProfileModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

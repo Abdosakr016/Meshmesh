@@ -5,6 +5,7 @@ import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Ipet } from '../../interface/Ipet';
+import { AuthService } from 'src/app/auth/components/auth.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -12,65 +13,95 @@ import { Ipet } from '../../interface/Ipet';
 })
 
 export class CardComponent {
-  editSellerForm!: FormGroup;
+  editPetForm!: FormGroup;
   @Input() pet !: Ipet;
-  @ViewChild('editSellerModal')editSellerModal!: ElementRef;
+  imageFile: any
+  base64: any
+  userData: any
+  // @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: ApiServiceService ,
     private CartService : CartService,
-    private counter : CounterService
+    private counter : CounterService,
+    private userService:AuthService
     ){}
 
  
-  base64: any
 
   ngOnInit() {
+
     this.counter.getCounterVal().subscribe(val => this.count = val)
-    this.editSellerForm = this.formBuilder.group({
-      sellerName: ['',Validators.required],
-      petType: ['',Validators.required],
-      petGender: ['',Validators.required],
-      petPic: ['',Validators.required],
+    this.editPetForm = this.formBuilder.group({
+   // owner: ['', [Validators.required, Validators.minLength(2)]],
+   age: ['', Validators.required],
+   type: ['', Validators.required],
+   gender: ['', Validators.required],
+   price: ['', Validators.required],
+   operation: ['', Validators.required],
+   image: ['', Validators.required],
+   // user_id: ['', Validators.required],
+   // category_id: ['', Validators.required],
     });
+    this.getAuthUser()
   }
-  
-  get_imagepath(event: any){
-    const file=event.target.files[0]
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  } 
+  get_imagPet(event: any) {
+    const file = event.target.files[0];
+    this.imageFile=event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload=()=>{
-  this.base64=reader.result
-  }
-  }
-  openEditSellerModal(pet: any) {
-    this.editSellerModal.nativeElement.style.display = 'block';
   
-    this.base64=pet.pet_pic
-    this.editSellerForm.patchValue({
-      sellerName: pet.Seller,
-      petType: pet.pet_type,
-      petGender: pet.pet_gender,
+    reader.onload = () => {
+      // Convert the image to base64
+      const base64Image = reader.result as string;
+      // Store the base64 data in a variable, but don't set it as the input value
+      this.base64 = base64Image;
+    };
+  
+    reader.readAsDataURL(file);
+  }
+  editFun(pet: any) {
+    // this.editPetModal.nativeElement.style.display = 'block';
+  console.log(pet)
+    this.base64=pet.image
+    this.editPetForm.patchValue({
+    age: pet.age,
+    type: pet.type,
+    gender: pet.gender,
+    price: pet.price,
+    operation: pet.operation,
     });
   }
   
-  closeEditSellerModal(){
-    this.editSellerModal.nativeElement.style.display = 'none';
-  }
-  onSubmit() {
-    if (this.editSellerForm.valid) {
-      const formData = this.editSellerForm.value;
-      console.log(formData);
+  // closeeditPetModal(){
+  //   this.editPetModal.nativeElement.style.display = 'none';
+  // }
+  onUpdate() {
+    if (this.editPetForm.valid) {
+      const petData = this.editPetForm.value;
+      petData.category_id = "1"
+      petData.user_id = "1";
   
-      // Update the data using the API service
-      this.apiService.updateProduct(this.pet.id.toString(), formData).subscribe(
+      const formData = new FormData();
+  
+      formData.append('image', this.imageFile);
+  
+      for (const key of Object.keys(petData)) {
+        formData.append(key, petData[key]);
+      }
+  
+      this.apiService.updatePet(this.pet.id.toString(), formData).subscribe(
         (response) => {
          
           console.log('Data updated successfully:', response);
+          console.log(this.pet.id);
+          console.log(formData);
   
          
-          this.closeEditSellerModal();
+          // this.closeeditPetModal();
         },
         (error) => {
          
@@ -100,4 +131,19 @@ export class CardComponent {
     this.counter.setCartValue(++this.count)
     this.router.navigate(['cart' , item])
   }
+  submitForm() {
+    console.log(this.editPetForm);
+  }
+
+  getAuthUser(){
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.userData = data;
+        console.log(data); 
+  
+      },
+      (error) => {
+        console.error(error);
+      }
+    );}
 }

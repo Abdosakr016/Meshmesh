@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
  import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
   
 import {
   FormBuilder,
@@ -18,22 +19,11 @@ import {
   styleUrls: ['./register-clinic.component.css']
 })
 export class RegisterClinicComponent {
-
-
-
-
-
-
-
-
-
-
-
-  
   registerclinc: FormGroup;
+  error: string = '';
   
-  
-  constructor(private fb: FormBuilder , private router: Router) {
+  constructor(private fb: FormBuilder , private router: Router,
+    private AuthService:AuthService) {
     
     
     
@@ -79,19 +69,21 @@ export class RegisterClinicComponent {
 
   submitForm() {
 
-   console.log(this.registerclinc);
+    console.log(this.registerclinc);
 
    if (!this.registerclinc.invalid) {
-     const arr = localStorage.getItem('userArr');  // Corrected key name
-   
-     if (arr) {
-       const userArr = JSON.parse(arr);
-       userArr.push(this.registerclinc.value); 
-       localStorage.setItem('userArr', JSON.stringify(userArr));
-     } else {
-       const userArr = [this.registerclinc.value];
-       localStorage.setItem('userArr', JSON.stringify(userArr));
-     }
+    const ownerData = this.registerclinc.value;
+    ownerData.role = "owner"
+  
+    this.AuthService.signUp(ownerData).subscribe(res => {
+      console.log(res);
+      console.log(ownerData);
+      this.router.navigate(['login']);
+    },
+    error => {
+      this.error=error.error.message;
+      console.log(error.error);
+    });
    }
    
   

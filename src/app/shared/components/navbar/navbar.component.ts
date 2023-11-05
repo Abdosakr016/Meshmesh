@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/components/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,29 +11,49 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   count: number = 0;
   username: string = '';
-  userInSession: any;
-  
-  constructor(private counter: CounterService,private router: Router) {}
+  userLogin: any;
+  userData: any;
+  constructor(private counter: CounterService,private router: Router,private userService: AuthService) {}
 
   ngOnInit() {
-    this.counter.getCounterVal().subscribe(val => this.count = val);
-    const userInSession = sessionStorage.getItem('user');
-
-    if (userInSession) {
-      const user = JSON.parse(userInSession);
-      this.username = user.Name;
-      this.userInSession = true; 
-      this.router.navigate(['/']);
-      
-
+    const access_token = localStorage.getItem('access_token'); // Check for 'access_token'
+    if (access_token) {
+      this.userLogin = true; 
     } else {
-      this.userInSession = false;
+      this.userLogin = false;
     }
+//*________________to get user data______________
+
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.userData = data;
+        // console.log(data); 
+
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
+  
 
   logout() {
-    sessionStorage.removeItem('user');
-    this.username = ''; // Clear the username
-    this.userInSession = false;
+   
+    this.userService.logout().subscribe(
+      () => {
+    // console.log("logout")
+  
+      },
+      (error) => {
+     
+        console.error('Logout error:', error);
+       
+      }
+    );
+    localStorage.removeItem('access_token');
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 500);
   }
 }

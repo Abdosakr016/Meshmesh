@@ -33,7 +33,7 @@ import { UserProfileModule } from './user-profile/user-profile.module';
     SharedModule,
     PortoVeterinaryModule,
     UserProfileModule,
-
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,20 +12,21 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
+error : any ;
   regiseruser: FormGroup;
    arrUsers:string[]=[];
-  constructor(private fb: FormBuilder , private router: Router) {
+  constructor(private fb: FormBuilder , private router: Router ,private AuthService:AuthService) {
     
   
     this.regiseruser= this.fb.group({
-      Name: [
+      name: [
         '',
         [
           Validators.required,
@@ -67,24 +68,32 @@ export class RegisterComponent {
     });
   }
 
-  submitForm() {
-    console.log(this.regiseruser);
+  submitForm() {-+
+    // console.log(this.regiseruser.value);
+
    
-    if (!this.regiseruser.invalid) {
-      const arr = localStorage.getItem('userArr');  // Corrected key name
+    // if (!this.regiseruser.invalid) {
+    //   const arr = localStorage.getItem('userArr');  // Corrected key name
     
-      if (arr) {
-        const userArr = JSON.parse(arr);
-        userArr.push(this.regiseruser.value);
-        localStorage.setItem('userArr', JSON.stringify(userArr));
-      } else {
-        const userArr = [this.regiseruser.value];
-        localStorage.setItem('userArr', JSON.stringify(userArr));
-      }
-    }
+    //   if (arr) {
+    //     const userArr = JSON.parse(arr);
+    //     userArr.push(this.regiseruser.value);
+    //     localStorage.setItem('userArr', JSON.stringify(userArr));
+    //   } else {
+    //     const userArr = [this.regiseruser.value];
+    //     localStorage.setItem('userArr', JSON.stringify(userArr));
+    //   }
+    // }
     
-    
-      this.router.navigate(['/login']);
+    this.AuthService.signUp(this.regiseruser.value).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['login']);
+    },
+    error => {
+      this.error=error.error.message;
+      console.log(error.error);
+    });
+      // this.router.navigate(['/login']);
   }
   
 

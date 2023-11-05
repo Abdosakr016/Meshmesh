@@ -87,6 +87,7 @@ updateId:any;
       // Update the data using the API service
       this.VetService.updatDoctor(this.updateId,formData).subscribe(
         (response) => {
+          console.log(formData);
           console.log('Data updated successfully:', response);
         },
         (error: any) => {

@@ -1,41 +1,53 @@
 
+
+
+
+
+
+
 <div class="container-fluid">
-    <h2 class=" py-4 text-center" >Join as a client or owner veterinary center </h2>
   <div class="row g-4 ps-md-4 pe-md-4">
-    <div class="col-md-6 col-sm-12 ">
+    <div class="col-md-6 col-sm-12">
       <label
         for="user"
         class="createLabel border rounded p-3 text-white text-center client position-relative w-100"
+        [ngClass]="{'active': accountType === 'user'}"
       >
-        <h4 class="text-left pe-xl-5 ">I'm a client </h4>
+        <h4 class="text-left pe-xl-5" style="color: black;">I'm a client </h4>
         <input
-          style="top: 15px; right: 15px ;width: 20px;height:20px"
+          style="top: 15px; right: 15px; width: 20px; height: 20px"
           class="position-absolute"
           type="radio"
           name="accountType"
           id="user"
           value="user"
           [(ngModel)]="accountType"
-      /></label>
+          (change)="updateLabelState('user')"
+        />
+      </label>
     </div>
-    <div class="col-md-6 col-sm-12 ">
+    <div class="col-md-6 col-sm-12">
       <label
         for="clinc"
         class="createLabel border rounded p-3 text-white veternary position-relative w-100"
+        [ngClass]="{'active': accountType === 'clinc'}"
       >
-        <h4 class="text-left text-center pe-xl-5">I'm an owner veternary center</h4>
+        <h4 class="text-left text-center pe-xl-5" style="color: black;">I'm an owner veterinary center</h4>
         <input
-          style="top: 15px; right: 15px; width: 20px;height:20px "
-          class="position-absolute "
+          style="top: 15px; right: 15px; width: 20px; height: 20px"
+          class="position-absolute"
           type="radio"
           name="accountType"
           id="clinc"
-  
           value="clinc"
           [(ngModel)]="accountType"
-      /></label>
+          (change)="updateLabelState('clinc')"
+        />
+      </label>
     </div>
   </div>
+
+
   <app-register-clinic *ngIf="accountType == 'clinc'"></app-register-clinic>
   <app-register *ngIf="accountType == 'user'"></app-register>
   </div>

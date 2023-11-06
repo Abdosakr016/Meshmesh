@@ -50,6 +50,16 @@
               Delete
             </button>
           </div>
+          <button
+  type="button"
+  class="btn btn-success"
+  data-bs-toggle="modal"
+  data-bs-target="#updateDoctorModal"
+  (click)="setUpdateData(doctor,doctor.id)"
+>
+  Update Doctor
+</button>
+
 
 <!-- The Modal for Updating Doctor -->
 <div class="modal fade" id="updateDoctorModal" tabindex="-1" aria-labelledby="updateDoctorModalLabel" aria-hidden="true">

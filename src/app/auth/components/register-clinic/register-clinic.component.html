@@ -1,9 +1,8 @@
 
-
-
 <hr />
 
-<form [formGroup]="registerclinc" (ngSubmit)="submitForm()" >
+<form [formGroup]="registerclinc" (ngSubmit)="submitForm()">
+  <p>{{error}}</p>
   <div class="mb-3">
     <label for="name_control" class="form-label">Name</label>
     <input
@@ -11,20 +10,20 @@
       class="form-control"
       id="name_control"
       aria-describedby="name_help"
-      formControlName="Name"
+      formControlName="name"
     />
     <div
       *ngIf="
-      registerclinc.controls['Name'].touched &&
-      registerclinc.controls['Name'].invalid
+      registerclinc.controls['name'].touched &&
+      registerclinc.controls['name'].invalid
       "
       id="name_help"
       class="text-danger form-text"
     >
-      <small *ngIf="registerclinc.controls['Name'].errors?.['required']">
+      <small *ngIf="registerclinc.controls['name'].errors?.['required']">
         this field is required
       </small>
-      <small *ngIf="registerclinc.controls['Name'].errors?.['minlength']">
+      <small *ngIf="registerclinc.controls['name'].errors?.['minlength']">
         Min. length is 2
       </small>
     </div>
@@ -58,9 +57,8 @@
       
     </div>
   </div>
-  <div class="mb-3">
-    
-
+  
+  
   <div class="mb-3">
     <label for="password" class="form-label">password</label>
     <input
@@ -81,11 +79,11 @@
       <small *ngIf="registerclinc.controls['password'].errors?.['required']">
         this field is required
       </small>
-  
       <small *ngIf="registerclinc.controls['password'].errors?.['minlength']">
         password must be more than 8 character
 
       </small>
+      
     </div>
   </div>
   <div class="mb-3">
@@ -117,16 +115,8 @@
     </div>
   </div>
   
- 
-  
-  
-  <button type="submit" class="btn btn-success"  [disabled]="registerclinc.invalid">
+  <button type="submit" class="btn btn-success"[disabled]="registerclinc.invalid" >
     Register
   </button>
   <p>Already have an account!<a href="login">login</a></p>
-</div>
 </form>
-
-
-
-

@@ -163,6 +163,30 @@
                   </small>
                 </div>
               </div>
+                    <!--_________________ category___________________-->
+
+                    <div class="formbold-mb-3">
+                      <label for="category" class="formbold-form-label">
+                        Pet category
+                      </label>
+                      <select class="formbold-form-input form-control" id="occupation"  formControlName="category">
+                        <option value="Dogs">Dogs</option>
+                        <option value="Cats">Cats</option>
+                        <option value="Birds">Birds</option>
+                        <option value="Animal For Breeding">Animal For Breeding</option>
+                      </select>
+                      <div *ngIf="
+                          addPetForm.controls['category'].touched &&
+                          addPetForm.controls['category'].invalid
+                        " id="category" class="text-danger form-text">
+                        <small *ngIf="addPetForm.controls['category'].errors?.['required']">
+                          this field is required
+                        </small>
+                        <small *ngIf="addPetForm.controls['category'].errors?.['text']">
+                          Please enter a valid Known category.
+                        </small>
+                      </div>
+                    </div>
 <!--_________________ gender___________________-->
               <div class="formbold-mb-3">
                 <label class="formbold-form-label">Pet Gender</label>

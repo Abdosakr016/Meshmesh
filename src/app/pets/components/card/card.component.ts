@@ -19,6 +19,14 @@ export class CardComponent {
   base64: any
   userData: any
   pets: any;
+  AcategoryCats_adopt: Ipet[] = [];
+  AcategoryCats_sell: Ipet[] = [];
+  AcategoryBirds_adopt: Ipet[] = [];
+  AcategoryBirds_sell: Ipet[] = [];
+  AcategoryDogs_adopt: Ipet[] = [];
+  AcategoryDogs_sell: Ipet[] = [];
+  AcategoryAnimal_breeding: Ipet[] = [];
+  AcategoryAnimal_sell: Ipet[] = [];
   // @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
@@ -31,34 +39,50 @@ export class CardComponent {
 
  
 
-  ngOnInit() {
-
-    this.counter.getCounterVal().subscribe(val => this.count = val)
-    this.apiService.getProductList().subscribe(
-      (data) => {
-        this.pets = data;
-        console.log(this.pets );
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        console.log('COMPLETE');
-      }
-    );
-
+    ngOnInit() {
+      this.counter.getCounterVal().subscribe(val => this.count = val);
+    
+      // Load the data asynchronously
+      this.apiService.getProductList().subscribe(
+        (data) => {
+          this.pets = data;
+          console.log(this.pets);
+    
+          // Apply category filters after data has been loaded
+          this.categoryCats_adopt();
+          this.categoryCats_sell();
+          this.categoryDogs_adopt();
+          this.categoryDogs_sell();
+          this.categoryBirds_adopt();
+          this.categoryBirds_sell();
+          this.categoryAnimal_breeding();
+          // this.categoryAnimal_sell();
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          console.log('COMPLETE');
+        }
+      );
+    
+      this.validation();
+      this.getAuthUser();
+    }
+    
+  validation(){
     this.editPetForm = this.formBuilder.group({
-   // owner: ['', [Validators.required, Validators.minLength(2)]],
-   age: ['', Validators.required],
-   type: ['', Validators.required],
-   gender: ['', Validators.required],
-   price: ['', Validators.required],
-   operation: ['', Validators.required],
-   image: ['', Validators.required],
-   // user_id: ['', Validators.required],
-   // category_id: ['', Validators.required],
-    });
-    this.getAuthUser()
+      // owner: ['', [Validators.required, Validators.minLength(2)]],
+      age: ['', Validators.required],
+      type: ['', Validators.required],
+     category: ['', Validators.required],
+   
+      gender: ['', Validators.required],
+      price: ['', Validators.required],
+      operation: ['', Validators.required],
+      image: ['', Validators.required],
+      user_id: ['', Validators.required],
+       });
   }
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
@@ -83,6 +107,7 @@ export class CardComponent {
     this.base64=pet.image
     this.editPetForm.patchValue({
     age: pet.age,
+    category: pet.category,
     type: pet.type,
     gender: pet.gender,
     price: pet.price,
@@ -96,7 +121,7 @@ export class CardComponent {
   onUpdate() {
     if (this.editPetForm.valid) {
       const petData = this.editPetForm.value;
-      petData.category_id = "1"
+   
       petData.user_id = "1";
   
       const formData = new FormData();
@@ -160,4 +185,71 @@ export class CardComponent {
         console.error(error);
       }
     );}
+
+   
+
+    categoryCats_adopt() {
+  this.AcategoryCats_adopt = this.pets.filter((pet: any) => pet.category === "Cats"&&pet.operation=="adopt");
+  if (this.AcategoryCats_adopt.length > 0) {
+    console.log("AcategoryCats_adopt", this.AcategoryCats_adopt);
+  } else {
+    console.log("No cats found.");
+  }
+}
+categoryCats_sell() {
+  this.AcategoryCats_sell = this.pets.filter((pet: any) => pet.category === "Cats"&&pet.operation=="sell");
+  if (this.AcategoryCats_sell.length > 0) {
+    console.log("AcategoryCats_sell", this.AcategoryCats_sell);
+  } else {
+    console.log("No cats found.");
+  }
+}
+categoryDogs_adopt() {
+  this.AcategoryDogs_adopt = this.pets.filter((pet: any) => pet.category === "Dogs"&&pet.operation=="adopt");
+  if (this.AcategoryDogs_adopt.length > 0) {
+    console.log("AcategoryDogs_adopt", this.AcategoryDogs_adopt);
+  } else {
+    console.log("No dogs found.");
+  }
+}
+categoryDogs_sell() {
+  this.AcategoryDogs_sell = this.pets.filter((pet: any) => pet.category === "Dogs"&&pet.operation=="sell");
+  if (this.AcategoryDogs_sell.length > 0) {
+    console.log("AcategoryDogs_sell", this.AcategoryDogs_sell);
+  } else {
+    console.log("No dogs found.");
+  }
+}
+categoryBirds_adopt() {
+  this.AcategoryBirds_adopt = this.pets.filter((pet: any) => pet.category === "Birds"&&pet.operation=="sell");
+  if (this.AcategoryBirds_adopt.length > 0) {
+    console.log("AcategoryBirds_adopt", this.AcategoryBirds_adopt);
+  } else {
+    console.log("No birds found.");
+  }
+}
+categoryBirds_sell() {
+  this.AcategoryBirds_sell = this.pets.filter((pet: any) => pet.category === "Birds"&&pet.operation=="adopt");
+  if (this.AcategoryBirds_sell.length > 0) {
+    console.log("AcategoryBirds_sell", this.AcategoryBirds_sell);
+  } else {
+    console.log("No birds found.");
+  }
+}
+categoryAnimal_breeding() {
+  this.AcategoryAnimal_breeding = this.pets.filter((pet: any) => pet.category === "Animal For Breeding");
+  if (this.AcategoryAnimal_breeding.length > 0) {
+    console.log("AcategoryAnimal_breeding", this.AcategoryAnimal_breeding);
+  } else {
+    console.log("No Animal For Breeding found.");
+  }
+}
+// categoryAnimal_sell() {
+//   this.AcategoryAnimal_sell = this.pets.filter((pet: any) => pet.category === "Animal For Breeding"&&pet.operation=="adopt");
+//   if (this.AcategoryAnimal_sell.length > 0) {
+//     console.log("AcategoryAnimal", this.AcategoryAnimal_sell);
+//   } else {
+//     console.log("No Animal For Breeding found.");
+//   }
+// }
 }

@@ -26,19 +26,25 @@ export class CardComponent {
  
 
   ngOnInit() {
-
-    this.editPetForm = this.formBuilder.group({
-   // owner: ['', [Validators.required, Validators.minLength(2)]],
-   age: ['', Validators.required],
-  //  type: ['', Validators.required],
-  //  gender: ['', Validators.required],
-  //  price: ['', Validators.required],
-  //  operation: ['', Validators.required],
-  //  image: ['', Validators.required],
-   // user_id: ['', Validators.required],
-   // category_id: ['', Validators.required],
-    });
+    this.validation();
+  
   }
+
+  validation(){
+    this.editPetForm = this.formBuilder.group({
+      // owner: ['', [Validators.required, Validators.minLength(2)]],
+      age: ['', Validators.required],
+      type: ['', Validators.required],
+     category: ['', Validators.required],
+   
+      gender: ['', Validators.required],
+      price: ['', Validators.required],
+      operation: ['', Validators.required],
+      image: ['', Validators.required],
+      user_id: ['', Validators.required],
+       });
+  }
+  
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   } 
@@ -75,7 +81,7 @@ export class CardComponent {
   onUpdate() {
     if (this.editPetForm.valid) {
       const petData = this.editPetForm.value;
-      petData.category_id = "1"
+     
       petData.user_id = "1";
       console.log(petData);
   

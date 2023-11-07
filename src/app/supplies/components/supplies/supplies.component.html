@@ -1,0 +1,55 @@
+<!-- <header class="hero"></header> -->
+<div class="hero">
+  
+  
+    <div class="hero-inner">
+      
+      <h1 class="hero-headline">Keep Your Pets Healthy</h1>
+      <h2>Our wide range of pet supplies ensures your furry friend's happiness and well-being</h2>
+      
+    </div>
+    
+  </div>
+  <div class="container">
+    <div class="well well-sm">
+      <div id="view" class="btn-group">
+        <a href="#" id="list" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-th-list"></span>List
+        </a>
+        <a href="#" id="grid" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-th"></span>Grid
+        </a>
+      </div>
+  
+      <div id="products" class="row">
+        <div class="item col-xs-12 col-sm-6 col-md-3" *ngFor="let supply of allSupplies">
+           
+                <div class="thumbnail">
+                  <img class="group list-group-image" src="http://res.cloudinary.com/dnhwxgf8i/image/upload/c_scale,h_250,w_400/v1488011915/mockup3_kxxwfy.jpg" alt="" />
+                  <div class="category">
+                    <h5 class="category-name">Tables</h5>
+                  </div>
+                  <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{supply.name}}</h4>
+                    <div class="row">
+                      <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                          ${{supply.price}}</p><p class="lead">
+                            ${{supply.is_available}}</p>
+                      </div>
+                      <div class="btn-group">
+                        <a class="btn btn-details" href="">Details</a>
+                        <a class="btn btn-success" href="">Add to cart</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+               
+        <!-- Repeat the above product div for each product item -->
+      </div>
+    </div>
+  </div>
+  
+  

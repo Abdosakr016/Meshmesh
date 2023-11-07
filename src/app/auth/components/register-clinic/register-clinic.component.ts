@@ -80,7 +80,7 @@ submitForm() {
     this.AuthService.signUp(owerData).subscribe(
       (res) => {
         // console.log(res);
-        debugger
+        // debugger
         this.router.navigate(['create_veterinary']);
       },
       (error) => {

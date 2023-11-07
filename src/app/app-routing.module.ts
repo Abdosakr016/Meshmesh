@@ -14,6 +14,7 @@ import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
 import { authGuard } from './auth.guard';
+import { AboutComponent } from './about/components/about/about.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,9 @@ const routes: Routes = [
     {path: 'show_Vet_details',
     component: VeterinaryDetailsComponent,
   },
+  {path: 'about_us',
+  component: AboutComponent,
+},
 
 
 ];

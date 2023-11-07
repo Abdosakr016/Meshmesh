@@ -13,6 +13,7 @@ import { HomeModule } from './home/home.module';
 import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.module';
 import { VetsCenterModule } from './vets-center/vets-center.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
+import { AboutModule } from './about/about.module';
 @NgModule({
   declarations: [
   AppComponent,
@@ -33,6 +34,7 @@ import { UserProfileModule } from './user-profile/user-profile.module';
     SharedModule,
     PortoVeterinaryModule,
     UserProfileModule,
+    AboutModule,
     
   ],
   providers: [],

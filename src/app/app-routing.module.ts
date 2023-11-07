@@ -14,6 +14,7 @@ import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
 import { authGuard } from './auth.guard';
+import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
 
 const routes: Routes = [
   {
@@ -60,7 +61,7 @@ const routes: Routes = [
   {
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
-    // canActivate :[authGuard]
+    canActivate :[authGuard]
 
   },
   {
@@ -78,11 +79,14 @@ const routes: Routes = [
   {
     path: 'user-account',
     component: UserAccountComponent,
-    //  canActivate :[authGuard]
+     canActivate :[authGuard]
   },
     {path: 'show_Vet_details',
     component: VeterinaryDetailsComponent,
   },
+  {path: 'supplies',
+  component: SuppliesComponent,
+},
 
 ];
 

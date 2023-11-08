@@ -2,14 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { VeterinaryService } from '../../services/veterinary.service';
 import { ApiVetCenterService } from '../../../vets-center/services/api-vet-center.service';
+import { ApiServiceService } from '../../../pets/services/api-service.service';
+import { Ipet } from '../../../pets/interface/Ipet';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-create-veterinary',
-  templateUrl: './create-veterinary.component.html',
-  styleUrls: ['./create-veterinary.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class CreateVeterinaryComponent implements OnInit  {
+export class UserProfileComponent {
   vetCenterForm!: FormGroup;
+  doctorForm!: FormGroup;
+  doctorForms: FormGroup[] = [];
+  vets :any;
+  vet : any;
+  doctorBase64:any;
   logoBase64: any;
   taxBase64:any;
   licenseBase64:any;
@@ -18,17 +27,25 @@ export class CreateVeterinaryComponent implements OnInit  {
   imageFilelicense: any
   imageFileTax: any
   imageFileCommrec: any
+  arrDoctors:any;
+  //* Public Path from Back-end Server
+  logopath: any = 'http://127.0.0.1:8000/';
 
   cities: string[] = ['Cairo',  'Alexandria',  'Giza',  'Shubra El Kheima',  'Port Said',  'Suez',  'Luxor',
   'Aswan',  'Damanhur',  'Al Minya',  'Beni Suef',  'Hurghada',  'Ismailia',  'Faiyum',  'Asyut',  'Mansoura',
   'Tanta',  'Damietta',  'Zagazig',  'Arish'];
 
-  constructor(private formBuilder: FormBuilder, private apiService:ApiVetCenterService){}
+  constructor(private formBuilder: FormBuilder, private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute,private VetService:VeterinaryService){}
   ngOnInit() {
     this.validatVetCenterForm()
+    this.apiService.getProductList().subscribe(((data: any) => (this.vets = data['data'])),
+    (error) => console.log(error),
+    () => console.log("COMPLETE"))
+//^ Doctors Get Data
+    this.initializeDoctorForm();
+    this.VetService.get_doctors().subscribe(((data)=>this.arrDoctors=data))
   }
-
-
+  //* Validation
   validatVetCenterForm(){
     this.vetCenterForm = this.formBuilder.group({
       name: ['',],
@@ -43,7 +60,7 @@ export class CreateVeterinaryComponent implements OnInit  {
       about: [ '',]
     });
   }
-
+  //& ImageBase 64
   get_imag_logo(event: any) {
     const logofile = event.target.files[0];
     this.imageFileLogo=event.target.files[0];
@@ -96,6 +113,15 @@ export class CreateVeterinaryComponent implements OnInit  {
     reader.readAsDataURL(commrecfile);
   }
 
+  get_doctorImagepath(event: any){
+    const file=event.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload=()=>{
+    this.doctorBase64=reader.result
+    }
+  }
+  //! API
   onAddVet() {
     console.log(this.vetCenterForm);
 
@@ -181,5 +207,60 @@ export class CreateVeterinaryComponent implements OnInit  {
     } else {
       console.log('Validation error');
     }
+  }
+
+  deleteProduct(id: number) {
+
+    const pet_id_str = id.toString();
+    this.apiService.deleteProduct(id).subscribe(
+      (response) => {
+        console.log('Product deleted successfully:', response);
+      },
+      (error) => {
+        console.error('Error deleting product:', error);
+      }
+    );
+  }
+
+  initializeDoctorForm() {
+    this.doctorForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      photo: ['',Validators.required]
+    });
+  }
+
+  onAddDoctor() {
+    if (this.doctorForm.valid) {
+      const doctorData = this.doctorForm.value;
+      console.log(doctorData);
+
+      // Update the data using the API service
+      this.VetService.addNewDoctor(doctorData).subscribe(
+        (response) => {
+          console.log('Data updated successfully:', response);
+
+        },
+        (error: any) => {
+          console.error('Error updating data:', error);
+        }
+      );
+    }
+  }
+
+  deleteDoctor(doctor_id: number) {
+
+    const doctor_id_str = doctor_id.toString();
+
+
+    this.VetService.deleteDoctor(doctor_id_str).subscribe(
+      (response) => {
+        console.log('doctor deleted successfully:', response);
+
+
+      },
+      (error) => {
+        console.error('Error deleting doctor:', error);
+      }
+    );
   }
 }

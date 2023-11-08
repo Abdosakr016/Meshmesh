@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
  import { Router } from '@angular/router';
-  
+
 import {
   FormBuilder,
   FormControl,
@@ -29,14 +29,14 @@ export class RegisterClinicComponent {
 
 
 
-  
+
   registerclinc: FormGroup;
-  
-  
+
+
   constructor(private fb: FormBuilder , private router: Router) {
-    
-    
-    
+
+
+
     this.registerclinc= this.fb.group({
       Name: [
         '',
@@ -56,16 +56,16 @@ export class RegisterClinicComponent {
         ],
       ],
 
-      
+
       password: [
-        '', 
+        '',
         [
         Validators.required,
         Validators.minLength(8),
       ],
     ],
     phone: [
-      '', 
+      '',
       [
         Validators.required,
         Validators.minLength(11),
@@ -74,7 +74,7 @@ export class RegisterClinicComponent {
     ],
 
     });
-  
+
   }
 
   submitForm() {
@@ -83,23 +83,22 @@ export class RegisterClinicComponent {
 
    if (!this.registerclinc.invalid) {
      const arr = localStorage.getItem('userArr');  // Corrected key name
-   
+
      if (arr) {
        const userArr = JSON.parse(arr);
-       userArr.push(this.registerclinc.value); 
+       userArr.push(this.registerclinc.value);
        localStorage.setItem('userArr', JSON.stringify(userArr));
      } else {
        const userArr = [this.registerclinc.value];
        localStorage.setItem('userArr', JSON.stringify(userArr));
      }
    }
-   
-  
+
     this.router.navigate(['/create_veterinary']);
   }
-  
+
 }
-    
+
 
 
 

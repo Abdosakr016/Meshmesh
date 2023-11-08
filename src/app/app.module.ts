@@ -21,19 +21,19 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 
   imports: [
 
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FontAwesomeModule,
-    RouterModule,
-    NgbModule,
-   HomeModule,
-   PetsModule,
-   AuthModule,
-   VetsCenterModule,
-    SharedModule,
-    PortoVeterinaryModule,
-    UserProfileModule
+  BrowserModule,
+  AppRoutingModule,
+  BrowserAnimationsModule,
+  FontAwesomeModule,
+  RouterModule,
+  NgbModule,
+  HomeModule,
+  PetsModule,
+  AuthModule,
+  VetsCenterModule,
+  SharedModule,
+  PortoVeterinaryModule,
+  UserProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,6 +13,8 @@ import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-l
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
+import { VetsCenterModule } from './vets-center/vets-center.module';
+import { UserProfileComponent } from './porto_veterinary/components/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -63,9 +65,15 @@ const routes: Routes = [
   },
   {
     path: 'user-account',
-    component: UserAccountComponent},
-    {path: 'show_Vet_details/:id',
+    component: UserAccountComponent
+  },
+  {
+    path: 'show_Vet_details/:id',
     component: VeterinaryDetailsComponent,
+  },
+  {
+    path: 'user_Vet',
+    component: UserProfileComponent,
   },
 
 ];

@@ -15,24 +15,33 @@ import { UserAccountComponent } from './user-profile/component/user-account/user
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
 import { VetsCenterModule } from './vets-center/vets-center.module';
 import { UserProfileComponent } from './porto_veterinary/components/user-profile/user-profile.component';
+import { authGuard } from './auth.guard';
+import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ContainerComponent
+    // canActivate :[authGuard]
   },
 
   {
     path: 'products',
     component: ProductListComponent
+    // canActivate:[authGuard]
+
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate :[authGuard]
+
   },
   {
     path: 'cart/:id',
-    component: CartComponent
+    component: CartComponent,
+    canActivate :[authGuard]
+
   },
   {
     path: 'register',
@@ -54,14 +63,20 @@ const routes: Routes = [
   {
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
+    canActivate :[authGuard]
+
   },
   {
     path: 'Add_Doctors',
     component: CreatListDoctorsComponent,
+    canActivate :[authGuard]
+
   },
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
+    // canActivate :[authGuard]
+
   },
   {
     path: 'user-account',
@@ -75,6 +90,16 @@ const routes: Routes = [
     path: 'user_Vet',
     component: UserProfileComponent,
   },
+  {
+    component: UserAccountComponent,
+     canActivate :[authGuard]
+  },
+    {path: 'show_Vet_details',
+    component: VeterinaryDetailsComponent,
+  },
+  {path: 'supplies',
+  component: SuppliesComponent,
+},
 
 ];
 

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
- import { Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 import {
   FormBuilder,
@@ -18,84 +19,78 @@ import {
   styleUrls: ['./register-clinic.component.css']
 })
 export class RegisterClinicComponent {
+  registerclinc!:FormGroup;
+  error: string = '';
+
+  constructor(private fb: FormBuilder , private router: Router,
+    private AuthService:AuthService) {
 
 
 
-
-
-
-
-
-
-
-
-
-  registerclinc: FormGroup;
-
-
-  constructor(private fb: FormBuilder , private router: Router) {
-
-
-
-    this.registerclinc= this.fb.group({
-      Name: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.pattern(/^\S+$/),
-        ],
-      ],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-
-          //Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
-        ],
-      ],
-
-
-      password: [
-        '',
-        [
-        Validators.required,
-        Validators.minLength(8),
-      ],
-    ],
-    phone: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(11),
-        Validators.pattern(/^0[0-9]{10}$/)  // Validate for 11 digits starting with '0'
-      ],
-    ],
-
-    });
 
   }
+  ngOnInit(){ this.registerclinc= this.fb.group({
+  name: [
+    '',
+    [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.pattern(/^\S+$/),
+    ],
+  ],
+  email: [
+    '',
+    [
+      Validators.required,
+      // Validators.email,
 
-  submitForm() {
+      Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
+    ],
+  ],
 
-   console.log(this.registerclinc);
+  // username: [
+  //   '',
+  //   [Validators.required,
+  //   Validators.pattern(/^\S*$/)
+  // ],
+  // ],
+  password: [
+    '',
+    [
+    Validators.required,
+    Validators.minLength(8),
+  ],
+],
+phone: [
+  '',
+  [
+    Validators.required,
+    Validators.minLength(11),
+    Validators.pattern(/^0[0-9]{10}$/)  // Validate for 11 digits starting with '0'
+  ],
+],
+});}
+submitForm() {
+  if (this.registerclinc.valid) {
+    // console.log(this.registerclinc);
 
-   if (!this.registerclinc.invalid) {
-     const arr = localStorage.getItem('userArr');  // Corrected key name
+    const owerData = this.registerclinc.value;
+    owerData.role = "owner";
 
-     if (arr) {
-       const userArr = JSON.parse(arr);
-       userArr.push(this.registerclinc.value);
-       localStorage.setItem('userArr', JSON.stringify(userArr));
-     } else {
-       const userArr = [this.registerclinc.value];
-       localStorage.setItem('userArr', JSON.stringify(userArr));
-     }
-   }
-
-    this.router.navigate(['/create_veterinary']);
+    this.AuthService.signUp(owerData).subscribe(
+      (res) => {
+        // console.log(res);
+        // debugger
+        this.router.navigate(['create_veterinary']);
+      },
+      (error) => {
+        this.error = error.error.message;
+        console.log(error.error);
+      }
+    );
   }
+}
+
 
 }
 

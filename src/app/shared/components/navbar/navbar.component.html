@@ -1,3 +1,4 @@
+
 <header class="p-3 text-white">
   <div class="container">
     <div
@@ -31,7 +32,7 @@
           </li>
           
             <li>
-              <a href="#" class="nav-link px-2 anav_white">suplies</a>
+              <a href="#" class="nav-link px-2 anav_white"routerLink="/supplies">suplies</a>
             </li>
            
           <li>
@@ -48,23 +49,41 @@
      
 
         <div class="text-end">
-          <div *ngIf="userInSession; else loginButtons">
+          <div *ngIf="userLogin; else loginButtons">
             <div class="dropdown text-end">
               <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
               </a>
               <ul class="dropdown-menu text-small">
              
-                <li><a class="dropdown-item" routerLink="user-account">{{ username }}</a></li>
+                <li><a class="dropdown-item" routerLink="user-account">{{ userData.name }}
+                </a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item"(click)="logout()" href="#">Sign out</a></li>
               </ul>
             </div>
+                        <!-- <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button> -->
+
           </div>
           <ng-template #loginButtons>
+           
             <button type="button" class="btn btn-outline-light me-2" routerLinkActive="bg-dark text-white" routerLink="login">Login</button>
-            <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button>
+             
+        <!-- <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button> -->
+
+            
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sign-up
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="register">Sign up as a client</a>
+                <a class="dropdown-item" routerLink="register-clinic">Sign up as a clinic</a>
+              </div>
+            </div>
+         
           </ng-template>
+          
         </div>
       </div>
     </div>

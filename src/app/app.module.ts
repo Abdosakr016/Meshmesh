@@ -14,6 +14,7 @@ import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.modul
 import { VetsCenterModule } from './vets-center/vets-center.module';
 
 import { UserProfileModule } from './user-profile/user-profile.module';
+import { SuppliesModule } from './supplies/supplies.module';
 @NgModule({
   declarations: [
   AppComponent,
@@ -21,19 +22,20 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 
   imports: [
 
-  BrowserModule,
-  AppRoutingModule,
-  BrowserAnimationsModule,
-  FontAwesomeModule,
-  RouterModule,
-  NgbModule,
-  HomeModule,
-  PetsModule,
-  AuthModule,
-  VetsCenterModule,
-  SharedModule,
-  PortoVeterinaryModule,
-  UserProfileModule
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FontAwesomeModule,
+    RouterModule,
+    NgbModule,
+   HomeModule,
+   PetsModule,
+   AuthModule,
+   VetsCenterModule,
+    SharedModule,
+    PortoVeterinaryModule,
+    UserProfileModule,
+    SuppliesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

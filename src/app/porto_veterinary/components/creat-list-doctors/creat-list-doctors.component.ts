@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VeterinaryService } from '../../services/veterinary.service';
 
 @Component({
@@ -8,68 +8,178 @@ import { VeterinaryService } from '../../services/veterinary.service';
   styleUrls: ['./creat-list-doctors.component.css']
 })
 export class CreatListDoctorsComponent implements OnInit {
+  // [x: string]: any;
+  imageFile: any;
   doctorForm!: FormGroup;
   doctorForms: FormGroup[] = [];
-  doctorBase64:any;
-  arrDoctors:any;
-  constructor(private fb: FormBuilder,private VetService:VeterinaryService) { }
+  doctorBase64: any;
+  updateDoctorForm!: FormGroup;
+  arrDoctors: any = [];
+  getId: any;
+  currentDoctor: any;
+  base64: any;
+  deleteId: any;
+  imageDoctor: any;
+  updateId: any;
+  // @ViewChild('updateDoctorModal')updateDoctorModal!:ElementRef;
+  constructor(private fb: FormBuilder, private VetService: VeterinaryService) {
 
-  ngOnInit() {
-    this.initializeDoctorForm();
-    this.VetService.get_doctors().subscribe(((data)=>this.arrDoctors=data))
-  }
 
-  initializeDoctorForm() {
-    this.doctorForm = this.fb.group({
+    // Initialize your form group (updateDoctorForm) here
+    this.updateDoctorForm = this.fb.group({
       name: ['', Validators.required],
-      photo: ['',Validators.required]
+      image: ['', Validators.required],
+      experience: ['', Validators.required],
     });
   }
 
-  get_doctorImagepath(event: any){
-    const file=event.target.files[0]
+
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  }
+  get_imagepath(event: any) {
+    const file = event.target.files[0];
+    this.imageDoctor = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload=()=>{
-  this.doctorBase64=reader.result
+    reader.onload = () => {
+      this.base64 = reader.result;
+    };
   }
+
+  // Function to set the current doctor data for update
+  setUpdateData(doctor: any, id: number) {
+    this.updateId = id;
+    // this.currentDoctor = doctor;
+    // Bind the data to the form controls
+    this.base64 = doctor.image;
+    this.updateDoctorForm.patchValue({
+      name: doctor.name,
+      experience: doctor.experience,
+      //image: doctor.image,
+      // You can handle the 'image' control as needed, e.g., displaying the current image
+    });
+
   }
- 
-  onAddDoctor() {
-    if (this.doctorForm.valid) {
-      const doctorData = this.doctorForm.value;
+
+
+  onUpdateDoctor() {
+    if (this.updateDoctorForm.valid) {
+      const doctorData = this.updateDoctorForm.value;
       console.log(doctorData);
-  
+
+
+      const formData = new FormData();
+      for (const key of Object.keys(doctorData)) {
+        formData.append(key, doctorData[key]);
+      }
+      if (this.imageDoctor) {
+        formData.append('image', this.imageDoctor);
+      }
+
       // Update the data using the API service
-      this.VetService.addNewDoctor(doctorData).subscribe(
+      this.VetService.updatDoctor(this.updateId, formData).subscribe(
         (response) => {
+
           console.log('Data updated successfully:', response);
-          
         },
         (error: any) => {
           console.error('Error updating data:', error);
         }
       );
-    }
-  }
- 
 
-  
-  
-  deleteDoctor(doctor_id: number) {
-   
-    const doctor_id_str = doctor_id.toString();
-  
-   
-    this.VetService.deleteDoctor(doctor_id_str).subscribe(
-      (response) => {
-        console.log('doctor deleted successfully:', response);
-  
- 
+    }
+
+  }
+
+
+
+
+  ngOnInit() {
+
+    this.initializeDoctorForm();
+    this.getDoctors();
+  }
+  getDoctors() {
+    this.VetService.get_doctors().subscribe(res => {
+      console.log(Object.values(res)[0]);
+      this.arrDoctors = Object.values(res)[0];
+    });
+  }
+
+
+  initializeDoctorForm() {
+    this.doctorForm = this.fb.group({
+      name: ['', Validators.required],
+      image: ['', Validators.required],
+      experience: ['', Validators.required],
+    });
+  }
+
+
+
+
+  get_doctorImagepath(event: any) {
+    const file = event.target.files[0];
+    this.imageFile = event.target.files[0];
+    const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64Image = reader.result as string;
+      this.doctorBase64 = base64Image;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  onAddDoctor() {
+    if (this.doctorForm.valid) {
+      const doctorData = this.doctorForm.value;
+
+      const formData = new FormData();
+      formData.append('image', this.imageFile);
+
+      for (const key of Object.keys(doctorData)) {
+        formData.append(key, doctorData[key]);
+      }
+
+      // Update the data using the API service
+      this.VetService.addNewDoctor(formData).subscribe(
+
+        (response) => {
+
+          console.log('Data updated successfully:', response);
+          this.getDoctors();
+        },
+        (error: any) => {
+          console.error('Error updating data:', error);
+        }
+      );
+
+    }
+
+  }
+
+
+
+
+
+
+  deleteDoctor(id: number) {
+
+    this.deleteId = id;
+
+  }
+  modeldeleteDoctor() {
+    this.VetService.deleteDoctor(this.deleteId).subscribe(
+      (data) => {
+        console.log('doctor deleted successfully:', data);
+        this.getDoctors();
       },
+
       (error) => {
         console.error('Error deleting doctor:', error);
       }
     );
   }
+
 }

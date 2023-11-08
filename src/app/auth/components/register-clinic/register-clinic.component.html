@@ -1,132 +1,170 @@
 
 
+<section class="h-100 gradient-form" >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
 
-<hr />
+                <div class="text-center">
+                  <img src="https://i.pinimg.com/236x/21/60/8c/21608cdce20431ff6599f988b7d1ea1d.jpg"
+                    style="width: 185px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">Clinic Registration Form</h4>
+                </div>
 
-<form [formGroup]="registerclinc" (ngSubmit)="submitForm()" >
-  <div class="mb-3">
-    <label for="name_control" class="form-label">Name</label>
+                <form [formGroup]="registerclinc" (ngSubmit)="submitForm()" >
+                  <p> Register now to get started!</p>
+
+                  <div class="form-outline mb-4">
+                    <label for="name_control" class="form-label">Name</label>
     <input
       type="text"
       class="form-control"
       id="name_control"
       aria-describedby="name_help"
-      formControlName="Name"
+      formControlName="name"
     />
     <div
       *ngIf="
-      registerclinc.controls['Name'].touched &&
-      registerclinc.controls['Name'].invalid
+      registerclinc.controls['name'].touched &&
+      registerclinc.controls['name'].invalid
       "
       id="name_help"
       class="text-danger form-text"
     >
-      <small *ngIf="registerclinc.controls['Name'].errors?.['required']">
+      <small *ngIf="registerclinc.controls['name'].errors?.['required']">
         this field is required
       </small>
-      <small *ngIf="registerclinc.controls['Name'].errors?.['minlength']">
+      <small *ngIf="registerclinc.controls['name'].errors?.['minlength']">
         Min. length is 2
       </small>
     </div>
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label"
-      >email</label
-    >
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      aria-describedby="description_help"
-      rows="5"
-      formControlName="email"
-    >
-    <div
-      *ngIf="
-      registerclinc.controls['email'].touched &&
-      registerclinc.controls['email'].invalid
-      "
-      id="email"
-      class="text-danger form-text"
-    >
-      <small *ngIf="registerclinc.controls['email'].errors?.['required']">
-        this field is required
-      </small>
-      <small *ngIf="registerclinc.controls['email'].errors?.['email']">
-        Please enter a valid email format.
-      </small>
-      
+                  </div>
+
+               
+
+                  <div class="form-outline mb-4">
+                    <label for="email" class="form-label"
+                    >email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    aria-describedby="description_help"
+                    rows="5"
+                    formControlName="email"
+                  >
+                  <div
+                    *ngIf="
+                    registerclinc.controls['email'].touched &&
+                    registerclinc.controls['email'].invalid
+                    "
+                    id="email"
+                    class="text-danger form-text"
+                  >
+                    <small *ngIf="registerclinc.controls['email'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="registerclinc.controls['email'].errors?.['pattern']">
+                      Please enter a valid email format.
+                    </small>
+                    
+                  </div>
+
+                  </div>
+                  
+
+                  <div class="form-outline mb-4">
+                    <label for="password" class="form-label"
+                    >password</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    aria-describedby="description_help"
+                    rows="5"
+                    formControlName="password"
+                  >
+                  <div
+                    *ngIf="
+                    registerclinc.controls['password'].touched &&
+                    registerclinc.controls['password'].invalid
+                    "
+                    id="password"
+                    class="text-danger form-text"
+                  >
+                    <small *ngIf="registerclinc.controls['password'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="registerclinc.controls['password'].errors?.['password']">
+                      password must be more than 8 character
+
+                    </small>
+                    
+                  </div>
+                  </div>
+                  
+
+                  <div class="form-outline mb-4">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phone"
+                      aria-describedby="phone"
+                      formControlName="phone"
+                    />
+                    <div
+                      *ngIf="
+                        registerclinc.controls['phone'].touched &&
+                        registerclinc.controls['phone'].invalid
+                      "
+                      id="phone"
+                      class="text-danger form-text"
+                    >
+                      <small *ngIf="registerclinc.controls['phone'].errors?.['required']">
+                        Phone number is required
+                      </small>
+                      <small *ngIf="registerclinc.controls['phone'].errors?.['minlength']">
+                        Phone number should be at least 11 digits long
+                      </small>
+                      <small *ngIf="registerclinc.controls['phone'].errors?.['pattern']">
+                        Phone number should start with '0' and be 11 digits long
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                     type="submit" style="width: 100%;" [disabled]="registerclinc.invalid">Register</button><br>
+                   
+                  </div>
+                 
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2"> have an account?</p>
+                    <button type="submit" class="btn btn-outline-danger" ><a href="login">Sign In</a>
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2 "
+             style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0InHz7AhDQDV0OrmExSCsZcbLOkahuVZVUA&usqp=CAU');
+              background-repeat: no-repeat;background-size: cover;">
+            </div>
+            
+            
+            
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="mb-3">
-    
-
-  <div class="mb-3">
-    <label for="password" class="form-label">password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      aria-describedby="password"
-      formControlName="password"
-    />
-    <div
-      *ngIf="
-      registerclinc.controls['password'].touched &&
-      registerclinc.controls['password'].invalid
-      "
-      id="password"
-      class="text-danger form-text"
-    >
-      <small *ngIf="registerclinc.controls['password'].errors?.['required']">
-        this field is required
-      </small>
-  
-      <small *ngIf="registerclinc.controls['password'].errors?.['minlength']">
-        password must be more than 8 character
-
-      </small>
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="phone" class="form-label">Phone</label>
-    <input
-      type="text"
-      class="form-control"
-      id="phone"
-      aria-describedby="phone"
-      formControlName="phone"
-    />
-    <div
-      *ngIf="
-        registerclinc.controls['phone'].touched &&
-        registerclinc.controls['phone'].invalid
-      "
-      id="phone"
-      class="text-danger form-text"
-    >
-      <small *ngIf="registerclinc.controls['phone'].errors?.['required']">
-        Phone number is required
-      </small>
-      <small *ngIf="registerclinc.controls['phone'].errors?.['minlength']">
-        Phone number should be at least 11 digits long
-      </small>
-      <small *ngIf="registerclinc.controls['phone'].errors?.['pattern']">
-        Phone number should start with '0' and be 11 digits long
-      </small>
-    </div>
-  </div>
-  
- 
-  
-  
-  <button type="submit" class="btn btn-success"  [disabled]="registerclinc.invalid">
-    Register
-  </button>
-  <p>Already have an account!<a href="login">login</a></p>
-</div>
-</form>
-
-
-
+</section>
 

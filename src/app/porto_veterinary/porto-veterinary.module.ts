@@ -6,8 +6,6 @@ import { CreatListDoctorsComponent } from './components/creat-list-doctors/creat
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
-
-
 @NgModule({
   declarations: [
     CreateVeterinaryComponent,
@@ -19,7 +17,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ReactiveFormsModule,
     RouterModule,
   ],
-  exports:[
+  exports: [
     CreateVeterinaryComponent,
     CreatListDoctorsComponent
   ]

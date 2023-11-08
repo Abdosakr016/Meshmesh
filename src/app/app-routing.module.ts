@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { CartComponent } from './cart/components/cart/cart.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { LoginComponent } from './auth/components/login/login.component';
@@ -13,7 +12,6 @@ import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-l
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
-import { VetsCenterModule } from './vets-center/vets-center.module';
 import { UserProfileComponent } from './porto_veterinary/components/user-profile/user-profile.component';
 import { authGuard } from './auth.guard';
 import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
@@ -24,7 +22,6 @@ const routes: Routes = [
     component: ContainerComponent
     // canActivate :[authGuard]
   },
-
   {
     path: 'products',
     component: ProductListComponent
@@ -87,20 +84,22 @@ const routes: Routes = [
     component: VeterinaryDetailsComponent,
   },
   {
-    path: 'user_Vet',
+    path: 'user-vet',
     component: UserProfileComponent,
   },
   {
+    path: 'user-account',
     component: UserAccountComponent,
-     canActivate :[authGuard]
+    canActivate :[authGuard]
   },
-    {path: 'show_Vet_details',
+  {
+    path: 'show_Vet_details',
     component: VeterinaryDetailsComponent,
   },
-  {path: 'supplies',
-  component: SuppliesComponent,
-},
-
+  {
+    path: 'supplies',
+    component: SuppliesComponent,
+  },
 ];
 
 

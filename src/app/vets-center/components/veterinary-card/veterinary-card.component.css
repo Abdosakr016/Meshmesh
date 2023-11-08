@@ -1003,3 +1003,7 @@ section:nth-child(7) {
 #pinkaru:checked~main .profile-wide img {
   box-shadow: 0 0 0 4px var(--secondaryShade5);
 }
+
+.bio-row span {
+  color: #c2964e
+}

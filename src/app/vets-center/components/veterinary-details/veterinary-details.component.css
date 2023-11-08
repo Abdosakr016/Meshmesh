@@ -21,7 +21,7 @@
  }
 
  .profile-nav .user-heading {
-   background: #30848c7a;
+   background: #FFE0CE;
    color: #fff;
    border-radius: 4px 4px 0 0;
    -webkit-border-radius: 4px 4px 0 0;
@@ -120,8 +120,8 @@
  }
 
  .bio-graph-heading {
-   background: #30848c7a;
-   color: #fff;
+   background: #ffe0ce;
+   color: #c2694e;
    text-align: center;
    padding: 40px 110px;
    border-radius: 4px 4px 0 0;
@@ -152,7 +152,9 @@
 
  .bio-row p span {
    width: 100px;
+   color: #c2694e;
    display: inline-block;
+   font-weight: bold;
  }
 
  .bio-chart,

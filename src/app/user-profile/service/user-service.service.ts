@@ -12,7 +12,7 @@ export class UserServiceService {
 
   // Define HttpHeaders as a constant
   private httpHeaders: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json'
+  'Accept': 'application/json'
   });
 
   constructor(private http: HttpClient) { }
@@ -29,15 +29,9 @@ export class UserServiceService {
   }
 
   
-  updatePet(id: any, petData: any) {
-    console.log("hello")
-    console.log(petData)
-      // Clear the existing headers
-  this.httpHeaders = new HttpHeaders();
+  updatePet(id: any, petData: FormData) {
 
-  // Append the correct content type
-  this.httpHeaders.append('Content-Type', 'multipart/form-data');
-    return this.http.put(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
+    return this.http.post(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
   
   }
 

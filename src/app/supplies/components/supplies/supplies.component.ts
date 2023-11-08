@@ -17,6 +17,7 @@ export class SuppliesComponent implements OnInit {
  
     this.getAllSuppliesData();
   }
+  
 
   getAllSuppliesData() {
     this.suppliesService.getAllSupplies().subscribe((data) => {

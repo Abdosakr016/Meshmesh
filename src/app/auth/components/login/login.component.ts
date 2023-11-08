@@ -1,5 +1,5 @@
 import { Component, OnInit   } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit{
   error :any ;
   loginform: FormGroup;
   invalidLogin = false;
-  constructor(private fb: FormBuilder , private router: Router ,private AuthService:AuthService) {
+  constructor(private fb: FormBuilder , private router: Router, private route: ActivatedRoute ,private AuthService:AuthService) {
     
    
   
@@ -81,7 +81,8 @@ export class LoginComponent implements OnInit{
       console.log(res);
       if(res.access_token){
         localStorage.setItem('access_token' ,res.access_token )
-        this.router.navigate(['']);
+        window.location.href="/"
+        // this.router.navigate([''],{relativeTo:this.route,skipLocationChange:true});
 
       }
     },

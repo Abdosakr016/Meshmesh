@@ -44,8 +44,11 @@ export class CartComponent {
    totalPice(){
     this.total = 0;
     for(let i in this.selectedItems){
-      this.total += this.selectedItems[i].pet_price;
+      this.total += this.selectedItems[i].price;
       // console.log(this.selectedItems)
     }
   }
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  } 
   }

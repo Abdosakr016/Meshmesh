@@ -24,11 +24,13 @@ export class UserAccountComponent {
    
     }
     ngOnInit() {
+  
       const userDataObservable = this.userService.getUserData();
       const petsObservable = this.apiService.getProductList();
     
       forkJoin([userDataObservable, petsObservable]).subscribe(
         ([userData, pets]) => {
+          console.log(pets)
           this.userData = userData;
           this.pets = pets;
           this.validation(); // Move the form initialization here
@@ -44,6 +46,7 @@ export class UserAccountComponent {
       this.addPetForm = this.formBuilder.group({
         age: ['', Validators.required],
         type: ['', Validators.required],
+        category: ['', Validators.required],
         gender: ['', Validators.required],
         price: ['', Validators.required],
         operation: ['', Validators.required],
@@ -70,7 +73,7 @@ export class UserAccountComponent {
     onAddPet() {
       if (this.addPetForm.valid) {
         const petData = this.addPetForm.value;
-        petData.category_id = "1";
+       
         petData.user_id = this.userData.id;
     
         const formData = new FormData();

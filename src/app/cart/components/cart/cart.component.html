@@ -9,31 +9,29 @@
               *ngFor="let item of selectedItems"
             >
               <div class="me-4">
-                <img [src]="item.pet_pic" alt="" class="avatar-lg rounded" />
+                <img [src]="generateImageUrl(item.image)" alt="" class="avatar-lg rounded" />
               </div>
               <div class="flex-grow-1 align-self-center overflow-hidden">
                 <div>
                   <h5 class="text-truncate font-size-18">
-                    <a href="#" class="text-dark">{{ item.Seller }}</a>
+                    <a href="#" class="text-dark">{{ item.type }}</a>
                   </h5>
                   <p class="mb-0 mt-1">
-                    price : <span class="fw-medium">{{ item.pet_price }}</span>
+                    price : <span class="fw-medium">{{ item.price }}</span>
                   </p>
 
                   <div class="mt-1 mb-0 text-muted small">
                     <span
                       ><span style="color: darkcyan">Gender: </span
-                      >{{ item.pet_gender }}</span
+                      >{{ item.gender }}</span
                     >
                     <span class="text-warning"> • </span>
-                    <span
-                      ><span style="color: darkcyan">Nationality: </span
-                      >{{ item.pet_natio }}</span
-                    >
+                  
+                   
                     <span class="text-warning"> • </span>
                     <span
                       ><span style="color: darkcyan">Age: </span
-                      >{{ item.pet_age }}<br
+                      >{{ item.age }}<br
                     /></span>
                   </div>
                   <p class="mb-0 mt-1">

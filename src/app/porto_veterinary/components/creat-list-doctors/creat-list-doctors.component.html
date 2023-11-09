@@ -29,6 +29,27 @@
 
           <!-- button update doctor -->
           <!-- Add Update Button to Doctor Cards -->
+          <div class="d-flex justify-content-between">
+            <!-- Update button -->
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#updateDoctorModal"
+              (click)="setUpdateData(doctor,doctor.id)"
+            >
+              Update Doctor
+            </button>
+            <!-- Delete button -->
+            <button
+              class="btn btn-danger mx-2"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal"
+              (click)="deleteDoctor(doctor.id)"
+            >
+              Delete
+            </button>
+          </div>
           <button
   type="button"
   class="btn btn-success"
@@ -61,20 +82,26 @@
             <label for="image">Doctor Photo</label>
             <input
               type="file"
-              (change)="get_doctorImagepath($event)"
+              (change)="get_imagepath($event)"
               class="form-control"
               formControlName="image"
               id="image"
             />
-            <!-- Display the current image -->
-            <img [src]="updateDoctorForm.get('image')?.value" width="200px" height="200px" alt="" />
-
+            <!-- Display the selected image -->
+            <img [src]="base64" width="200px" height="200px" alt="" />
           </div>
+          
           <div class="mb-3">
             <label for="experience">Doctor Experience</label>
             <input type="text" class="form-control" id="experience" formControlName="experience" required />
           </div>
-          <button type="submit" class="btn btn-primary">Update</button>
+          <!-- <button type="submit" class="btn btn-primary">Update</button> -->
+
+          <button type="button" class="btn btn-primary" [disabled]="updateDoctorForm.invalid"
+           data-bs-dismiss="modal"
+          (click)="onUpdateDoctor()" [disabled]="!updateDoctorForm.valid">
+          Save changes
+        </button>
         </form>
         <!-- End of Update Doctor Form -->
       </div>
@@ -85,15 +112,15 @@
 
 
             <!-- button delete doctor -->
-            <div class="text-center">
-              <button
+            
+              <!-- <button
                 class="btn btn-danger mx-2"
                 data-bs-toggle="modal"
                 data-bs-target="#myModal"
               >
                 Delete
-              </button>
-
+              </button> -->
+<div class="text-center">
               <div
                 class="modal fade"
                 id="myModal"
@@ -123,7 +150,7 @@
                         type="button"
                         class="btn btn-danger"
                         data-bs-dismiss="modal"
-                        (click)="deleteDoctor(doctor.id)"
+                        (click)="modeldeleteDoctor()"
 
                       >
                         confirme
@@ -175,6 +202,22 @@
                 formControlName="name"
                 required
               />
+
+              <div
+              *ngIf="
+              doctorForm.controls['name'].touched &&
+              doctorForm.controls['name'].invalid
+              "
+              id="name_help"
+              class="text-danger form-text"
+            >
+              <small *ngIf="doctorForm.controls['name'].errors?.['required']">
+                name field is required
+              </small>
+              <small *ngIf="doctorForm.controls['name'].errors?.['minlength']">
+                Min. length is 2
+              </small>
+            </div>
             </div>
             
             <div class="mb-3">
@@ -192,6 +235,20 @@
                 height="200px"
                 alt=""
               />
+
+              <div
+              *ngIf="
+              doctorForm.controls['image'].touched &&
+              doctorForm.controls['image'].invalid
+              "
+              id="name_help"
+              class="text-danger form-text"
+            >
+              <small *ngIf="doctorForm.controls['image'].errors?.['required']">
+                image field is required
+              </small>
+              
+            </div>
             </div>
 
             <div class="mb-3">
@@ -203,8 +260,25 @@
                 formControlName="experience"
                 required
               />
+              <div
+              *ngIf="
+              doctorForm.controls['experience'].touched &&
+              doctorForm.controls['experience'].invalid
+              "
+              id="name_help"
+              class="text-danger form-text"
+            >
+              <small *ngIf="doctorForm.controls['experience'].errors?.['required']">
+                experience field is required
+              </small>
+              
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+
+            </div>
+            <button type="button" class="btn btn-primary" [disabled]="doctorForm.invalid" data-bs-dismiss="modal"
+          (click)="onAddDoctor()" [disabled]="!doctorForm.valid">
+          Save 
+        </button>
           </form>
           <!-- End of your form -->
         </div>

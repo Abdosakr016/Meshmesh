@@ -12,8 +12,6 @@ export interface Ipet {
                 name: string; 
               };
             
-              category: {
-                name: string; 
-              };
+       category:string;
       }
       

@@ -6,16 +6,21 @@ import { AuthService } from 'src/app/auth/components/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+
 })
 export class NavbarComponent {
-  count: number = 0;
+  count: any = 0;
   username: string = '';
   userLogin: any;
   userData: any;
   constructor(private counter: CounterService,private router: Router,private userService: AuthService) {}
 
   ngOnInit() {
+   this.counter.getCounterVal().subscribe((value)=>{
+this.count=value;
+console.log(value)
+   })
     const access_token = localStorage.getItem('access_token'); // Check for 'access_token'
     if (access_token) {
       this.userLogin = true; 
@@ -56,4 +61,8 @@ export class NavbarComponent {
       this.router.navigate(['/login']);
     }, 500);
   }
+
 }
+// this.cartService.products_cart_length$.subscribe((length) => {
+//   this.header_cart_length = length;
+// });

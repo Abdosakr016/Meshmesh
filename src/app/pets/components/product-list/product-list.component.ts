@@ -21,17 +21,17 @@ export class ProductListComponent {
      private userService:AuthService) {}
 
   ngOnInit() {
-    this.apiService.getProductList().subscribe(
-      (data) => {
-        this.pets = data;
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        console.log('COMPLETE');
-      }
-    );
+    // this.apiService.getProductList().subscribe(
+    //   (data) => {
+    //     this.pets = data;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   },
+    //   () => {
+    //     console.log('COMPLETE');
+    //   }
+    // );
 
     this.validation();
     this.getAuthUser()
@@ -43,6 +43,7 @@ export class ProductListComponent {
     this.addPetForm = this.formBuilder.group({
       age: ['', Validators.required],
       type: ['', Validators.required],
+      category: ['', Validators.required],
       gender: ['', Validators.required],
       price: ['', Validators.required],
       operation: ['', Validators.required],
@@ -70,7 +71,7 @@ export class ProductListComponent {
   onAddPet() {
     if (this.addPetForm.valid) {
       const petData = this.addPetForm.value;
-      petData.category_id = "1";
+    
       petData.user_id = this.userData.id;
   
       const formData = new FormData();
@@ -103,7 +104,7 @@ getAuthUser(){
   this.userService.getUserData().subscribe(
     (data) => {
       this.userData = data;
-      console.log(data); 
+      // console.log(data); 
 
     },
     (error) => {

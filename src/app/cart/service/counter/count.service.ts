@@ -11,6 +11,7 @@ export class CounterService {
 
   getCounterVal(){
     return this.cartValue.asObservable()
+    
   }
 
 

@@ -1,5 +1,7 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { SuppliesService } from '../../services/supplies.service';
+import { CartService } from 'src/app/cart/service/cart/cart.service';
+import { CounterService } from 'src/app/cart/service/counter/count.service';
 
 @Component({
   selector: 'app-supplies',
@@ -8,7 +10,12 @@ import { SuppliesService } from '../../services/supplies.service';
 })
 export class SuppliesComponent implements OnInit {
   allSupplies: any
-  constructor(private renderer: Renderer2, private el: ElementRef,private suppliesService:SuppliesService) {}
+  count ! : number ;
+  constructor(private renderer: Renderer2,
+     private el: ElementRef,
+     private suppliesService:SuppliesService,
+     private CartService:CartService,
+     private counter:CounterService) {}
 
   ngOnInit(): void {
 
@@ -47,5 +54,10 @@ export class SuppliesComponent implements OnInit {
         });
       });
     }
+  }
+  AddToCart(item : any){
+    this.CartService.addItem(item);
+    this.counter.setCartValue(++this.count)
+    // this.router.navigate(['cart' , item])
   }
 }

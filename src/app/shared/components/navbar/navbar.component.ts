@@ -63,3 +63,6 @@ console.log(value)
   }
 
 }
+// this.cartService.products_cart_length$.subscribe((length) => {
+//   this.header_cart_length = length;
+// });

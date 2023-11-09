@@ -16,6 +16,7 @@ import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-
 import { authGuard } from './auth.guard';
 import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
+import { AboutComponent } from './about/components/about/about.component';
 
 const routes: Routes = [
   {
@@ -91,7 +92,9 @@ const routes: Routes = [
 {path: 'admin',
 component: DashboardComponent,
 },
-
+{path: 'about_us',
+  component: AboutComponent,
+},
 ];
 
 

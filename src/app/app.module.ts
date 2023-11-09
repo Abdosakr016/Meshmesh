@@ -16,6 +16,7 @@ import { VetsCenterModule } from './vets-center/vets-center.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { SuppliesModule } from './supplies/supplies.module';
 import { AdminModule } from './admin/admin.module';
+import { AboutModule } from './about/about.module';
 @NgModule({
   declarations: [
   AppComponent,
@@ -38,7 +39,8 @@ import { AdminModule } from './admin/admin.module';
     PortoVeterinaryModule,
     UserProfileModule,
     SuppliesModule,
-    AdminModule
+    AdminModule,
+    AboutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

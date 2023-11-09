@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  private _products_cart_length = new BehaviorSubject<number>(0);
+  products_cart_length$ = this._products_cart_length.asObservable();
+  // productInCart = false;
+  // alertMessage = '';
 
   selectedItems: any[] = [];
   // private elements = new BehaviorSubject(this.selectedItems.length)

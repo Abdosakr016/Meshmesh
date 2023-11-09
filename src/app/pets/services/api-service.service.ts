@@ -10,7 +10,7 @@ export class ApiServiceService {
 
   // Define HttpHeaders as a constant
   private httpHeaders: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Accept': 'application/json'
   });
 
   constructor(private http: HttpClient) { }
@@ -22,19 +22,16 @@ export class ApiServiceService {
   getProductDetails(id: Number) {
     return this.http.get(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
-  addNewPet(petData: FormData) {
-    return this.http.post<Ipet>('http://localhost:8000/api/pets', petData);
+  addNewPet(petData: FormData) { 
+  //   const headers = new HttpHeaders({
+  //   Authorization: 'Bearer ' + localStorage.getItem('access_token')
+  // });
+    return this.http.post<Ipet>('http://localhost:8000/api/pets', petData, { headers: this.httpHeaders });
   }
 
-  updatePet(id: any, petData: any) {
-    console.log("hello")
-    console.log(petData)
-      // Clear the existing headers
-  this.httpHeaders = new HttpHeaders();
-
-  // Append the correct content type
-  this.httpHeaders.append('Content-Type', 'multipart/form-data');
-    return this.http.put(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
+  updatePet(id: any, petData: FormData) {
+ 
+    return this.http.post(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
   
   }
 

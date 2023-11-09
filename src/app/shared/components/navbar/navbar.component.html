@@ -1,3 +1,4 @@
+
 <header class="p-3 text-white">
   <div class="container">
     <div
@@ -7,16 +8,7 @@
         href="/"
         class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
       >
-        <svg
-          class="bi me-2"
-          width="40"
-          height="32"
-          role="img"
-          aria-label="Bootstrap"
-        >
-          <use xlink:href="#bootstrap"></use>
-        </svg>
-        <h2>Meshmesh</h2>
+      <img src="/assets/logomeshmesh.png" style="width: 220px; height: 60px; " >        <!-- <h2>Meshmesh</h2> -->
       </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -31,12 +23,18 @@
           </li>
           
             <li>
-              <a href="#" class="nav-link px-2 anav_white">suplies</a>
+              <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark"  routerLink="/supplies">suplies</a>
             </li>
            
           <li>
-            <a href="#" class="nav-link px-2 anav_white"routerLink="/show_Vets" >vetirnary center</a>
+            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark" routerLink="/show_Vets" >vetirnary center</a>
           </li>
+       
+            <li>
+              <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark" routerLink="/about_us" >About Us</a>
+            </li>
+            <!-- <a href="#" class="nav-link px-2 anav_white"routerLink="/admin" >Dashboard</a> -->
+     
           <li class="nav-item">
             <a class="nav-link" routerLink="/cart">
               <i class="fa fa-shopping-cart anav_white fs-2"routerLinkActive="text-dark" routerLink="/cart"></i>
@@ -61,12 +59,28 @@
                 <li><a class="dropdown-item"(click)="logout()" href="#">Sign out</a></li>
               </ul>
             </div>
+                        <!-- <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button> -->
+
           </div>
           <ng-template #loginButtons>
            
             <button type="button" class="btn btn-outline-light me-2" routerLinkActive="bg-dark text-white" routerLink="login">Login</button>
-            <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button>
+             
+        <!-- <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button> -->
+
+            
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sign-up
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="register">Sign up as a client</a>
+                <a class="dropdown-item" routerLink="register-clinic">Sign up as a clinic</a>
+              </div>
+            </div>
+         
           </ng-template>
+          
         </div>
       </div>
     </div>

@@ -25,12 +25,12 @@ export class CardComponent {
 
  
 
-  ngOnInit() {
-    this.validation();
+    ngOnInit() {
+
+    this.validationFun();
   
   }
-
-  validation(){
+  validationFun(){
     this.editPetForm = this.formBuilder.group({
       // owner: ['', [Validators.required, Validators.minLength(2)]],
       age: ['', Validators.required],
@@ -41,7 +41,7 @@ export class CardComponent {
       price: ['', Validators.required],
       operation: ['', Validators.required],
       image: ['', Validators.required],
-      user_id: ['', Validators.required],
+      // user_id: ['', Validators.required],
        });
   }
   
@@ -81,36 +81,33 @@ export class CardComponent {
   onUpdate() {
     if (this.editPetForm.valid) {
       const petData = this.editPetForm.value;
-     
-      petData.user_id = "1";
-      console.log(petData);
-  
       const formData = new FormData();
   
-      // formData.append('image', this.imageFile);
-      formData.append('age', this.imageFile);
+      formData.append('user_id', '32'); // Assuming user_id is a field in your form
+      formData.append('age', petData.age);
+      formData.append('type', petData.type);
+      formData.append('category', petData.category);
+      formData.append('gender', petData.gender);
+      formData.append('price', petData.price);
+      formData.append('operation', petData.operation);
+      formData.append('_method', 'PUT');
+      formData.append('image', this.imageFile); // Append the selected image
   
-      for (const key of Object.keys(petData)) {
-        formData.append(key, petData[key]);
-      }
-      // debugger
+      console.log(petData);
   
       this.apiService.updatePet(this.pet.id.toString(), formData).subscribe(
         (response) => {
           console.log('Data updated successfully:', response);
           console.log(this.pet.id);
-          console.log(formData);
+          console.log(petData);
   
-         
           // this.closeeditPetModal();
         },
         (error) => {
-         
           console.error('Error updating data:', error);
         }
       );
-    }
-  }
+    }}
   deleteProduct(pet_id: number) {
    
     const pet_id_str = pet_id.toString();

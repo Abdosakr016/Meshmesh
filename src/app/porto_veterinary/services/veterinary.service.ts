@@ -46,7 +46,7 @@ export class VeterinaryService {
  
   updatDoctor(id:any,data:FormData){
     let API_URL=`${this.REST_API}/${id}`;
-    return this.httpClient.put(API_URL,data,{headers: this.httpHeaders})
+    return this.httpClient.post(API_URL,data,{headers: this.httpHeaders})
    }
 
  

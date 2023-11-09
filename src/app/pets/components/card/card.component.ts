@@ -76,16 +76,16 @@ export class CardComponent {
     
   validation(){
     this.editPetForm = this.formBuilder.group({
-      // owner: ['', [Validators.required, Validators.minLength(2)]],
-    //   age: ['', Validators.required],
-    //   type: ['', Validators.required],
-    //  category: ['', Validators.required],
+      owner: ['', [Validators.required, Validators.minLength(2)]],
+      age: ['', Validators.required],
+      type: ['', Validators.required],
+     category: ['', Validators.required],
    
-    //   gender: ['', Validators.required],
-    //   price: ['', Validators.required],
-    //   operation: ['', Validators.required],
-    //   image: ['', Validators.required],
-    //   user_id: ['', Validators.required],
+      gender: ['', Validators.required],
+      price: ['', Validators.required],
+      operation: ['', Validators.required],
+      image: ['', Validators.required],
+      user_id: ['', Validators.required],
        });
   }
   generateImageUrl(image: string) {

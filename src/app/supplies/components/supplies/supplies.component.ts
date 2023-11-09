@@ -2,6 +2,8 @@ import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { SuppliesService } from '../../services/supplies.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/components/auth.service';
 
 @Component({
   selector: 'app-supplies',
@@ -9,13 +11,17 @@ import { CounterService } from 'src/app/cart/service/counter/count.service';
   styleUrls: ['./supplies.component.css']
 })
 export class SuppliesComponent implements OnInit {
-  allSupplies: any
-  count ! : number ;
-  constructor(private renderer: Renderer2,
-     private el: ElementRef,
-     private suppliesService:SuppliesService,
-     private CartService:CartService,
-     private counter:CounterService) {}
+  allSupplies: any;
+  imageFile: any;
+  supplyBase64: any;
+  addSupplyForm!:FormGroup;
+  userData: any;
+  count!: number;
+  constructor(private renderer: Renderer2,private fb: FormBuilder, 
+    private el: ElementRef,private suppliesService:SuppliesService, 
+    private userService:AuthService,
+    private CartService:CartService,
+    private counter:CounterService) {}
 
   ngOnInit(): void {
 
@@ -23,8 +29,26 @@ export class SuppliesComponent implements OnInit {
     this.handelGrid()
  
     this.getAllSuppliesData();
+   this. initializesupplyForm();
+   this.getAuthUser();
   }
   
+
+  initializesupplyForm() {
+    this.addSupplyForm= this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      quantity: ['', Validators.required],
+      image: ['', Validators.required],
+      category:['', Validators.required],
+      is_available:['', Validators.required],
+      // user_id: ['', Validators.required],
+
+    });
+  }
+
+
 
   getAllSuppliesData() {
     this.suppliesService.getAllSupplies().subscribe((data) => {
@@ -32,6 +56,65 @@ export class SuppliesComponent implements OnInit {
       console.log(data); // You can replace this with how you want to use the data.
     });
   }
+
+
+
+  get_supplyImagepath(event: any) {
+    const file = event.target.files[0];
+    this.imageFile = event.target.files[0];
+    const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64Image = reader.result as string;
+      this. supplyBase64 = base64Image;
+     
+    };
+    reader.readAsDataURL(file);
+  }
+
+  onAddDoctor() {
+    if (this.addSupplyForm.valid) {
+      const doctorData = this.addSupplyForm.value;
+      doctorData.user_id = this.userData.id;
+      const formData = new FormData();
+      formData.append('image', this.imageFile);
+
+      for (const key of Object.keys(doctorData)) {
+        formData.append(key, doctorData[key]);
+      }
+
+      // Update the data using the API service
+      this.suppliesService.addNewSupply(formData).subscribe(
+
+        (response) => {
+
+          console.log('Data updated successfully:', response);
+        
+        },
+        (error: any) => {
+          console.error('Error updating data:', error);
+        }
+      );
+
+    }
+
+  }
+
+
+
+  getAuthUser(){
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.userData = data;
+        // console.log(data); 
+  
+      },
+      (error) => {
+        console.error(error);
+      }
+    );}
+
+
   handelGrid(){
     const listButton = this.el.nativeElement.querySelector('#list');
     const gridButton = this.el.nativeElement.querySelector('#grid');

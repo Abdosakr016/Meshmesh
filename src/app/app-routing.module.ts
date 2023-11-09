@@ -67,7 +67,7 @@ const routes: Routes = [
   {
     path: 'Add_Doctors',
     component: CreatListDoctorsComponent,
-    canActivate :[authGuard]
+    // canActivate :[authGuard]
 
   },
   {

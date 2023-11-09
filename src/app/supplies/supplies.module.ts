@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SuppliesComponent } from './components/supplies/supplies.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +10,8 @@ import { SuppliesComponent } from './components/supplies/supplies.component';
     SuppliesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   exports:[
    

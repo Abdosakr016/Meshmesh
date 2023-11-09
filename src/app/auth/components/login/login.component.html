@@ -23,8 +23,9 @@ style="border: 2px solid; text-align: center;padding: 30px;" action="../register
       formControlName="email"
     >
     <div
-      *ngIf="
-     loginform.controls['email'].touched &&
+      
+     *ngIf="
+      loginform.controls['email'].touched &&
       loginform.controls['email'].invalid
       "
       id="email"

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Isupply } from '../isupply';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,4 +16,10 @@ export class SuppliesService {
     const url = `${this.baseUrl}/supplies`; // Concatenate the base URL with '/supplies'
     return this.http.get(url, { headers: this.httpHeaders });
   }
+
+  addNewSupply(data: FormData){
+    const url=`${this.baseUrl}/supplies`;
+    return this.http.post<Isupply>(url,data)
+  
+   }
 }

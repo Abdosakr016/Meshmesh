@@ -5,19 +5,33 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private urlApi = 'http://localhost:8000/api';
+  private httpHeaders: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
   constructor(private http:HttpClient) { }
 
   signUp(registerData:any):Observable<any>
   {
-    return this.http.post('http://localhost:8000/api/register' ,registerData ) ;
+    return this.http.post('http://localhost:8000/api/register' ,registerData , { headers: this.httpHeaders });
   } 
   login(loginData:any):Observable<any>
   {
     return this.http.post('http://localhost:8000/api/login' ,loginData ) ;
   } 
-  logout(logoutData:any):Observable<any>
-  {
-    return this.http.post('http://localhost:8000/api/logout' ,logoutData ) ;
-  } 
+
+  getUserData(): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+
+    return this.http.get(`${this.urlApi}/user`, { headers });
+  }
+  logout() {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token'), // Include the access token in the headers
+    });
+
+    return this.http.post(`${this.urlApi}/logout`, null, { headers });
+  }
 }

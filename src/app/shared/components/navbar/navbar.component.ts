@@ -25,39 +25,37 @@ export class NavbarComponent {
     }
 //*________________to get user data______________
 
-    // this.userService.getUserData().subscribe(
-    //   (data) => {
-    //     this.userData = data;
-    //     console.log(data); 
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.userData = data;
+        // console.log(data); 
 
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-    // );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
+
   
 
   logout() {
-    const access_token = localStorage.getItem('access_token'); // Check for 'access_token'
-    
-    localStorage.removeItem('access_token');
-    // this.userService.logout(access_token).subscribe(res => {
-    //   // console.log(res);
-    //   if(! res.access_token){
-    //     // localStorage.setItem('access_token' ,res.access_token )
-    //     this.router.navigate(['login']);
-
-    //   }
-    // },
-    // error => {
-    //   this.error=error.error.message;
-    //   console.log(error.error);
-    // });
-
-
-  }
-    // this.username = ''; 
-    // this.userLogin = false;
+   
+    this.userService.logout().subscribe(
+      () => {
+    // console.log("logout")
   
+      },
+      (error) => {
+     
+        console.error('Logout error:', error);
+       
+      }
+    );
+    localStorage.removeItem('access_token');
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 500);
+  }
 }

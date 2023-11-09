@@ -48,10 +48,6 @@ export class LoginComponent implements OnInit{
   
 
   submitForm() {
-    
-  
-
-
     this.AuthService.login(this.loginform.value).subscribe(res => {
       // console.log(res);
       if(res.access_token){

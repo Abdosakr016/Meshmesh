@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
-    // canActivate :[authGuard]
+    canActivate :[authGuard]
 
   },
   {
@@ -62,7 +62,7 @@ const routes: Routes = [
   {
     path: 'create_veterinary',
     component:CreateVeterinaryComponent ,
-    canActivate :[authGuard]
+    // canActivate :[authGuard]
 
   },
   {
@@ -79,8 +79,9 @@ const routes: Routes = [
   },
   {
     path: 'user-account',
-    component: UserAccountComponent},
-
+    component: UserAccountComponent,
+    //  canActivate :[authGuard]
+  },
     {path: 'show_Vet_details',
     component: VeterinaryDetailsComponent,
   },

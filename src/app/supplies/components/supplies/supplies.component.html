@@ -15,60 +15,119 @@
   <div class="container">
     <div class="well well-sm">
       <div id="view" class="btn-group">
-        <a href="#" id="list" class="btn btn-default btn-sm">
+        <!-- <a href="#" id="list" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-th-list"></span>List
         </a>
         <a href="#" id="grid" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-th"></span>Grid
-        </a>
+        </a> -->
 
 
 <!-- ===================add new supply button ======================= -->
 
-        <button
+        <!-- <button
     type="button"
     class="btn btn-success "
     data-bs-toggle="modal"
     data-bs-target="#supplyModal" style="width: 200px;"
   >
     Add New supply
-  </button>
-
-
+  </button> -->
 
       </div>
   
-      <div id="products" class="row">
-        <div class="item col-xs-12 col-sm-6 col-md-3" *ngFor="let supply of allSupplies">
-           
-                <div class="thumbnail">
-                  <img class="group list-group-image"  [src]="'http://localhost:8000/storage/' + supply.image" />
-                  <div class="category">
-                    <h5 class="category-name">supplies data</h5>
-                  </div>
-                  <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        {{supply.name}}</h4>
-                    <div class="row">
-                      <div class="col-xs-12 col-md-6">
-                        <p class="lead">
-                          ${{supply.price}}</p><p class="lead">
-                            ${{supply.is_available}}</p>
-                      </div>
-                      <div class="btn-group">
-                        <a class="btn btn-details" href="">Details</a>
-                        <a class="btn btn-success" (click)="AddToCart(supply)">Add to cart</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>     
-               
-        <!-- Repeat the above product div for each product item -->
+      <div class="row">
+        <div class="col-md-4">
+          <button class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#supplyModal" style="width: 200px;"
+          > Add New supply</button>
+        </div>
       </div>
     </div>
   
-  
+  <div class="container p-8">
+  <ng-container *ngFor="let supply of allSupplies; let i = index">
+    <div class="row" *ngIf="i % 3 === 0">
+      <!-- Paginate after every 3 items -->
+      <div class="col-md-4" *ngFor="let supply of allSupplies.slice(i, i + 3)">
+        <div class="card d-flex flex-column" style="width: 18rem; height: 100%; margin-bottom:30px ;" >
+          <img [src]="'http://localhost:8000/storage/' + supply.image" class="card-img-top" alt="Supply Image" style="object-fit: cover; height: 100%;">
+          <div class="card-body" >
+            <h5 class="card-title">{{ supply.name }}</h5>
+            <p class="card-text">${{ supply.price }}</p>
+
+            <button
+             class="btn btn-danger mx-2"
+             data-bs-toggle="modal"
+             data-bs-target="#myModal"
+             (click)="deleteDoctor(supply.id)"
+           >
+             Delete
+           </button>
+
+           <button
+             type="button"
+             class="btn btn-primary"
+             data-bs-toggle="modal"
+             data-bs-target="#updateDoctorModal"
+             (click)="setUpdateData(supply, supply.id)"
+           >
+             Update 
+           </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
+     <!-- ////////////////////model delete////////////////////// -->
+    <div
+                class="modal fade"
+                id="myModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div
+                        class="alert alert-warning alert-dismissible fade show"
+                        role="alert"
+                      >
+                        are you sure that you want to delete this supply
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                        (click)="modeldeleteDoctor()"
+
+                      >
+                        confirme
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+            </div>
+         
+
+
 
     <!-- /////////////////////////////// add supply/////////////////////// -->
     <div
@@ -93,7 +152,7 @@
       </div>
       <div class="modal-body">
   
-        <form [formGroup]="addSupplyForm" (ngSubmit)="onAddDoctor()" enctype="multipart/form-data">
+        <form [formGroup]="addSupplyForm" (ngSubmit)="onAddSupply()" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="name">supply Name</label>
             <input
@@ -289,7 +348,7 @@
 </div>
 
           <button type="button" class="btn btn-primary" [disabled]="addSupplyForm.invalid" data-bs-dismiss="modal"
-        (click)="onAddDoctor()" [disabled]="!addSupplyForm.valid">
+        (click)="onAddSupply()" [disabled]="!addSupplyForm.valid">
         Save 
       </button>
         </form>
@@ -298,4 +357,116 @@
     </div>
   </div>
 </div>
+
+<!-- The Modal for Updating Doctor -->
+<div class="modal fade" id="updateDoctorModal" tabindex="-1"
+ aria-labelledby="updateDoctorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateDoctorModalLabel">
+          Update Doctor
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Update Doctor Form -->
+        <form [formGroup]="updateSupplyForm" (ngSubmit)="onUpdateSupply()">
+          <div class="mb-3">
+            <label for="name">supply Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+              required
+            />
+
+           
+          </div>
+          <div class="mb-3">
+            <label for="image">supply Photo</label>
+            <input
+              type="file"
+              (change)="get_supplyImagepath($event)"
+              class="form-control"
+              formControlName="image"
+              id="image"
+            />
+            <!-- Display the selected image -->
+            <img [src]="base64" width="200px" height="200px" alt="" />
+          </div>
+          
+         <!-- /////////////////////////////description//////////////////// -->
+         <div class="mb-3">
+          <label for="description">supply description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            formControlName="description"
+            required
+          />
+        </div>
+        
+           <!-- //////////////////////////////price///////////////////////////// -->
+           <div class="mb-3">
+            <label for="price">price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              formControlName="price"
+              required
+            />
+            </div>
+                             <!-- ///////////////////////quantity///////////////////// -->
+          <div class="mb-3">
+            <label for="quantity">quantity</label>
+            <input
+              type="number"
+              class="form-control"
+              id="quantity"
+              formControlName="quantity"
+              required
+            />
+            </div>
+
+            <!-- /////////////////////////////category////////////// -->
+
+<div class="mb-3">
+  <label for="category">category</label>
+  <input
+    type="text"
+    class="form-control"
+    id="category"
+    formControlName="category"
+    required
+  />
+ </div>
+ <!-- ///////////////////////is_available///////////////////// -->
+<div class="mb-3">
+  <label for="is_available">is_available</label>
+  <input
+    type="number"
+    class="form-control"
+    id="is_available"
+    formControlName="is_available"
+    required
+  />
+  </div>
+
+          <!-- <button type="submit" class="btn btn-primary">Update</button> -->
+
+          <button type="button" class="btn btn-primary" [disabled]="updateSupplyForm.invalid"
+           data-bs-dismiss="modal"
+          (click)="onUpdateSupply()" [disabled]="!updateSupplyForm.valid">
+          Save changes
+        </button>
+        </form>
+    
+        
+      </div>
+    </div>
+  </div>
 </div>

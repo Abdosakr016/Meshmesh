@@ -11,17 +11,47 @@ import { AuthService } from 'src/app/auth/components/auth.service';
   styleUrls: ['./supplies.component.css']
 })
 export class SuppliesComponent implements OnInit {
-  allSupplies: any;
+
+  allSuppliesp: any[] = []; // Your supplies array
+  currentPage: number = 0;
+
+  getIndexes() {
+    return Array(Math.ceil(this.allSuppliesp.length / 3)).fill(0).map((_, index) => index * 3);
+  }
+
+  changePage(index: number) {
+    this.currentPage = index;
+  }
+
+
+   allSupplies: any;
   imageFile: any;
   supplyBase64: any;
   addSupplyForm!:FormGroup;
+  updateSupplyForm!:FormGroup;
   userData: any;
   count!: number;
+  deleteId!:any;
+  updateId!:any;
+  base64: any;
+  imageDoctor: any;
   constructor(private renderer: Renderer2,private fb: FormBuilder, 
     private el: ElementRef,private suppliesService:SuppliesService, 
     private userService:AuthService,
     private CartService:CartService,
-    private counter:CounterService) {}
+    private counter:CounterService) {
+
+      // Initialize your form group (updateDoctorForm) here
+    this.updateSupplyForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      quantity: ['', Validators.required],
+      image: ['', Validators.required],
+      category:['', Validators.required],
+      is_available:['', Validators.required],
+    });
+    }
 
   ngOnInit(): void {
 
@@ -72,7 +102,78 @@ export class SuppliesComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onAddDoctor() {
+
+
+  setUpdateData(supply: any, id: number) {
+    this.updateId = id;
+    
+    this.base64 = supply.image;
+    this.updateSupplyForm.patchValue({
+      name: supply.name,
+      description:supply.description,
+      price:supply.price,
+      quantity:supply.quantity,
+     // image: supply.description,
+      category:supply. category,
+      is_available:supply.is_available,
+
+  }
+    );
+  }
+
+  onUpdateSupply(){
+
+
+    if (this.updateSupplyForm.valid) {
+
+      const supplyData = this.updateSupplyForm.value;
+      
+      const formData = new FormData();
+      console.log(supplyData);
+
+formData.append('user_id','2');
+formData.append(' name',supplyData.name);
+formData.append('description',supplyData.description);
+formData.append(' price',supplyData. price);
+formData.append('quantity',supplyData.quantity);
+formData.append('image',this.imageFile);
+formData.append('category',supplyData.category);
+formData.append('is_available',supplyData.is_available);
+formData.append('_method','PUT');
+
+
+
+      // Update the data using the API service
+      this.suppliesService.updatsupply(this.updateId, formData).subscribe(
+        (response) => {
+
+          console.log('Data updated successfully:', response);
+          this.getAllSuppliesData();
+        },
+        (error: any) => {
+          console.error('Error updating data:', error);
+        }
+      );
+
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  onAddSupply() {
     if (this.addSupplyForm.valid) {
       const doctorData = this.addSupplyForm.value;
       doctorData.user_id = this.userData.id;
@@ -89,7 +190,7 @@ export class SuppliesComponent implements OnInit {
         (response) => {
 
           console.log('Data updated successfully:', response);
-        
+          this.getAllSuppliesData();
         },
         (error: any) => {
           console.error('Error updating data:', error);
@@ -97,9 +198,11 @@ export class SuppliesComponent implements OnInit {
       );
 
     }
-
   }
 
+
+ 
+ 
 
 
   getAuthUser(){
@@ -113,6 +216,44 @@ export class SuppliesComponent implements OnInit {
         console.error(error);
       }
     );}
+
+
+
+  deleteDoctor(id: number) {
+
+    this.deleteId = id;
+
+  }
+  modeldeleteDoctor() {
+    this.suppliesService.deleteSupply(this.deleteId).subscribe(
+      (data) => {
+        console.log('doctor deleted successfully:', data);
+        this.getAllSuppliesData();
+      },
+
+      (error) => {
+        console.error('Error deleting doctor:', error);
+      }
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   handelGrid(){

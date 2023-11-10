@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
-import * as $ from 'jquery';
 
-const _ = $; // Rename the local declaration
+
+ // Rename the local declaration
 
 @Component({
   selector: 'app-dashboard',
@@ -9,19 +9,19 @@ const _ = $; // Rename the local declaration
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
-  ngAfterViewInit() {
-    jQuery(function ($) {
-      $(".sidebar-dropdown > a").click(function () {
-        // Your existing sidebar dropdown code
-      });
+   ngAfterViewInit() {}
+  //   jQuery(function ($) {
+  //     $(".sidebar-dropdown > a").click(function () {
+  //       // Your existing sidebar dropdown code
+  //     });
 
-      $("#close-sidebar").click(function () {
-        $(".page-wrapper").removeClass("toggled");
-      });
-      $("#show-sidebar").click(function () {
-        $(".page-wrapper").addClass("toggled");
-      });
-    });
-  }
+  //     $("#close-sidebar").click(function () {
+  //       $(".page-wrapper").removeClass("toggled");
+  //     });
+  //     $("#show-sidebar").click(function () {
+  //       $(".page-wrapper").addClass("toggled");
+  //     });
+  //   });
+  // }
 
 }

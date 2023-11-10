@@ -433,13 +433,11 @@ body{margin-top:20px;
         opacity: 0.6;
         filter: alpha(opacity=60); /* For IE8 and earlier */
     }
-    
-    .container-fluid {
+    .background {
         background-image: url('/assets/bg.png');
         /* height: 80vh; */
         background-size: cover;
         background-position: center;
-        display: flex;
         justify-content: center;
         align-items: center;
         margin: 0;

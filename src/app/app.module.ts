@@ -14,7 +14,6 @@ import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.modul
 import { VetsCenterModule } from './vets-center/vets-center.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { SuppliesModule } from './supplies/supplies.module';
-import { AdminModule } from './admin/admin.module';
 import { AboutModule } from './about/about.module';
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { AboutModule } from './about/about.module';
     PortoVeterinaryModule,
     UserProfileModule,
     SuppliesModule,
-    AdminModule,
     AboutModule
   ],
   providers: [],

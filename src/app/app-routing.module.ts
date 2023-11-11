@@ -15,6 +15,8 @@ import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-
 import { UserProfileComponent } from './porto_veterinary/components/user-profile/user-profile.component';
 import { authGuard } from './auth.guard';
 import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
+import { MyvetsComponent } from './porto_veterinary/components/myvets/myvets.component';
+import { RegisterbothComponent } from './auth/components/registerboth/registerboth.component';
 
 const routes: Routes = [
   {
@@ -99,6 +101,14 @@ const routes: Routes = [
   {
     path: 'supplies',
     component: SuppliesComponent,
+  },
+  {
+    path: 'mycenters',
+    component: MyvetsComponent,
+  },
+  {
+    path: 'registerone',
+    component: RegisterbothComponent,
   },
 ];
 

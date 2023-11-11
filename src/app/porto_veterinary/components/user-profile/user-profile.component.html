@@ -13,64 +13,28 @@
                   width="100"
                 />
                 <div class="mt-3">
-                  <h4>Auth Name</h4>
-                  <p class="text-secondary mb-1">Phone</p>
-                  <p class="text-muted font-size-sm">Email</p>
-                  <button
-                    type="button"
-                    class="btn btn-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                  >
-                    Add New Center
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8 ms-3">
-          <div class="card mb-3">
-            <div class="">
-              <div class="row">
-                <table class="table mb-0">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Pet</th>
-                      <th scope="col">Appointment</th>
-                      <th scope="col">Phone No</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-group-divider">
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Cat</td>
-                      <td>12/8/2023</td>
-                      <td>01123456789</td>
-                      <td><p class="text-success">Approved</p></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Cat</td>
-                      <td>12/8/2023</td>
-                      <td>01123456789</td>
-                      <td><p class="text-danger">Unapproved</p></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <!-- Modal start -->
+                  <h4>{{ userData.name }}</h4>
+                  <p class="text-secondary mb-1">{{ userData.phone }}</p>
+                  <p class="text-muted font-size-sm">{{ userData.email }}</p>
+                  <div class="d-flex">
+                    <button
+                      type="button"
+                      class="btn btn-success me-3"
+                      routerLink="/mycenters"
+                    >
+                      my Centers
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      Add New Center
+                    </button>
+                  </div>
 
-                  <!-- Button trigger modal -->
-
-                  <!-- Modal -->
+                  <!-- Start Add Modal -->
                   <div
                     class="modal fade"
                     id="exampleModal"
@@ -93,7 +57,7 @@
                         </div>
                         <div class="modal-body">
                           <form
-                            [formGroup]="vetCenterForm"
+                            [formGroup]="vetCenterFormstore"
                             (ngSubmit)="onAddVet()"
                             class="professional-form"
                           >
@@ -109,19 +73,19 @@
                               />
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['name'].touched &&
-                                  vetCenterForm.controls['name'].invalid
+                                  vetCenterFormstore.controls['name'].touched &&
+                                  vetCenterFormstore.controls['name'].invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['name'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['name'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
                                 <small
-                                  *ngIf="vetCenterForm.controls['name'].errors?.['minlength']"
+                                  *ngIf="vetCenterFormstore.controls['name'].errors?.['minlength']"
                                 >
                                   Min. length is 2
                                 </small>
@@ -130,31 +94,27 @@
 
                             <!-- Location Information -->
                             <div class="form-group">
-                              <div class="form-group col-md-6">
-                                <label for="street_address"
-                                  >Street Address</label
-                                >
-                                <input
-                                  name="street_address"
-                                  type="text"
-                                  class="form-control"
-                                  id="street_address"
-                                  formControlName="street_address"
-                                />
-                              </div>
+                              <label for="street_address">Street Address</label>
+                              <input
+                                name="street_address"
+                                type="text"
+                                class="form-control"
+                                id="street_address"
+                                formControlName="street_address"
+                              />
 
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['street_address']
+                                  vetCenterFormstore.controls['street_address']
                                     .touched &&
-                                  vetCenterForm.controls['street_address']
+                                  vetCenterFormstore.controls['street_address']
                                     .invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['street_address'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['street_address'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
@@ -185,7 +145,7 @@
                               </select>
                             </div>
                             <!-- ... Logo ... -->
-                            <div class="form-row">
+                            <div class="form-group">
                               <label for="license">Logo</label>
                               <div
                                 class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm"
@@ -229,14 +189,14 @@
                               </div>
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['logo'].touched &&
-                                  vetCenterForm.controls['logo'].invalid
+                                  vetCenterFormstore.controls['logo'].touched &&
+                                  vetCenterFormstore.controls['logo'].invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['logo'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['logo'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
@@ -254,25 +214,20 @@
                               ></textarea>
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['about'].touched &&
-                                  vetCenterForm.controls['about'].invalid
+                                  vetCenterFormstore.controls['about']
+                                    .touched &&
+                                  vetCenterFormstore.controls['about'].invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['about'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['about'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
                               </div>
                             </div>
-
-                            <!-- Add Doctors Button -->
-                            <!-- <button type="button" class="btn btn-primary" routerLink="/Add_Doctors">
-                            Add Doctors
-                          </button> -->
-
                             <!-- License -->
                             <div class="form-group">
                               <label for="license">License</label>
@@ -319,14 +274,15 @@
                               </div>
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['license'].touched &&
-                                  vetCenterForm.controls['license'].invalid
+                                  vetCenterFormstore.controls['license']
+                                    .touched &&
+                                  vetCenterFormstore.controls['license'].invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['license'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['license'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
@@ -337,21 +293,27 @@
                               <label for="open_at">Operating open Hours</label>
                               <input
                                 name="open_at"
-                                type="number"
+                                type="time"
+                                step="1"
                                 class="form-control"
                                 id="open_at"
+                                min="12:00"
+                                max="18:00"
+                                required
+                                pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
                                 formControlName="open_at"
                               />
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['open_at'].touched &&
-                                  vetCenterForm.controls['open_at'].invalid
+                                  vetCenterFormstore.controls['open_at']
+                                    .touched &&
+                                  vetCenterFormstore.controls['open_at'].invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['open_at'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['open_at'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
@@ -365,21 +327,28 @@
                               >
                               <input
                                 name="close_at"
-                                type="number"
+                                id="appt-time"
+                                type="time"
+                                name="appt-time"
+                                step="1"
                                 class="form-control"
                                 id="close_at"
                                 formControlName="close_at"
+                                max="24"
+                                min="0"
                               />
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['close_at'].touched &&
-                                  vetCenterForm.controls['close_at'].invalid
+                                  vetCenterFormstore.controls['close_at']
+                                    .touched &&
+                                  vetCenterFormstore.controls['close_at']
+                                    .invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['close_at'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['close_at'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
@@ -431,15 +400,16 @@
                               </div>
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['tax_record']
+                                  vetCenterFormstore.controls['tax_record']
                                     .touched &&
-                                  vetCenterForm.controls['tax_record'].invalid
+                                  vetCenterFormstore.controls['tax_record']
+                                    .invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['tax_record'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['tax_record'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
@@ -494,16 +464,18 @@
                               </div>
                               <div
                                 *ngIf="
-                                  vetCenterForm.controls['commercial_record']
-                                    .touched &&
-                                  vetCenterForm.controls['commercial_record']
-                                    .invalid
+                                  vetCenterFormstore.controls[
+                                    'commercial_record'
+                                  ].touched &&
+                                  vetCenterFormstore.controls[
+                                    'commercial_record'
+                                  ].invalid
                                 "
                                 id="name_help"
                                 class="text-danger form-text"
                               >
                                 <small
-                                  *ngIf="vetCenterForm.controls['commercial_record'].errors?.['required']"
+                                  *ngIf="vetCenterFormstore.controls['commercial_record'].errors?.['required']"
                                 >
                                   this field is required
                                 </small>
@@ -524,6 +496,7 @@
                                 type="submit"
                                 class="btn btn-primary"
                                 data-bs-dismiss="modal"
+                                [disabled]="vetCenterFormstore.invalid"
                               >
                                 Save changes
                               </button>
@@ -533,153 +506,46 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- Modal end -->
+                  <!-- end Add Modal -->
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <h1 class="text-center fs-1 fw-bold" style="color: #4b6a6f">
-          Your Centers
-        </h1>
-        <div class="container" *ngFor="let vet of vets">
-          <div class="card mt-5 border-5 pt-2 active pb-0 px-3">
-            <div class="card-body">
+        <div class="col-md-8 ms-3">
+          <div class="card mb-3">
+            <div class="">
               <div class="row">
-                <div class="col-12">
-                  <div class="profile__image d-flex">
-                    <img
-                      src="{{ logopath }}{{ vet.logo }}"
-                      class="profile__image"
-                      style="border-radius: 50%; width: 80px; height: 80px"
-                      alt="Doggo"
-                    />
-                    <h4 class="pt-4 ps-2 card-title">{{ vet.name }}</h4>
-                  </div>
-                  <h4 class="card-title d-flex">
-                    <div style="margin-left: auto">
-                      <!-- <button
-                        type="button"
-                        class="btn btn-info"
-                        style="margin-left: auto"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                      >
-                        Edit
-                      </button> -->
-                      <button
-                        type="button"
-                        class="btn btn-danger ms-2"
-                        (click)="deleteProduct(vet.id)"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </h4>
-                </div>
-                <div class="col">
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    <p class="card-text text-muted fw-bold">
-                      Address: {{ vet.street_address }}
-                    </p>
-                  </h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    <p class="card-text text-muted fw-bold">
-                      City: {{ vet.governorate }}
-                    </p>
-                  </h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    <p class="card-text text-muted fw-bold">
-                      license: <span class="text-success">Approved</span>
-                    </p>
-                  </h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    <p class="card-text text-muted fw-bold">
-                      Tax Record: <span class="text-danger">Unapproved</span>
-                    </p>
-                  </h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    <p class="card-text text-muted fw-bold">
-                      license: <span class="text-success">Approved</span>
-                    </p>
-                  </h6>
-                </div>
-              </div>
-            </div>
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseOne"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseOne"
-                  >
-                    View Doctors
-                  </button>
-                </h2>
-                <div
-                  id="flush-collapseOne"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#accordionFlushExample"
-                >
-                  <div class="accordion-body">
-                    <div class="card-footer bg-white px-0">
-                      <div class="row row-cols-3 row-cols-md-3 g-1">
-                        <div
-                          class="col d-flex"
-                          *ngFor="let doctor of arrDoctors"
-                        >
-                          <!-- start -->
-                          <div class="mt-5 d-flex justify-content-center">
-                            <div class="cardM p-4 mt-3">
-                              <div class="first">
-                                <h6 class="heading fw-bold fs-4">
-                                  Dr.{{ doctor.name }}
-                                </h6>
-                                <div
-                                  class="time d-flex flex-row align-items-center justify-content-between mt-3"
-                                >
-                                  <div class="d-flex align-items-center">
-                                    <i class="fa fa-clock-o clock"></i>
-                                    <span class="ml-1 ps-1"
-                                      >2 Years Expierience</span
-                                    >
-                                  </div>
-
-                                  <div>
-                                    <span class="font-weight-bold"></span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="second d-flex flex-row mt-2">
-                                <div class="image mr-3">
-                                  <img
-                                    src="https://i.imgur.com/0LKZQYM.jpg"
-                                    width="60"
-                                    style="border-radius: 15px"
-                                  />
-                                </div>
-                              </div>
-
-                              <hr class="line-color" />
-
-                              <div class="third mt-4">
-                                <button class="btn btn-danger btn-block ms-3">
-                                  <i class="fa fa-trash"></i> Delete
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- end -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <table class="table mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Pet</th>
+                      <th scope="col">Appointment</th>
+                      <th scope="col">Phone No</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Cat</td>
+                      <td>12/8/2023</td>
+                      <td>01123456789</td>
+                      <td><p class="text-success">Approved</p></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Cat</td>
+                      <td>12/8/2023</td>
+                      <td>01123456789</td>
+                      <td><p class="text-danger">Unapproved</p></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -688,35 +554,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        $("#imageResult").attr("src", e.target.result);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-
-  $(function () {
-    $("#upload").on("change", function () {
-      readURL(input);
-    });
-  });
-
-  /*  ==========================================
-  SHOW UPLOADED IMAGE NAME
-* ========================================== */
-  var input = document.getElementById("upload");
-  var infoArea = document.getElementById("upload-label");
-
-  input.addEventListener("change", showFileName);
-  function showFileName(event) {
-    var input = event.srcElement;
-    var fileName = input.files[0].name;
-    infoArea.textContent = "File name: " + fileName;
-  }
-</script>

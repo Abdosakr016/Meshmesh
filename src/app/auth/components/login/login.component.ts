@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit{
   loginform: FormGroup;
   invalidLogin = false;
   constructor(private fb: FormBuilder , private router: Router ,private AuthService:AuthService) {
-    
-   
-  
+
+
+
     this.loginform= this.fb.group({
-     
+
       email: [
         '',
         [
@@ -31,27 +31,27 @@ export class LoginComponent implements OnInit{
         ],
       ],
 
-     
+
       password: [
-        '', 
+        '',
         [
         Validators.required,
         Validators.minLength(8),
       ],
     ],
-    
+
     });
   }
   ngOnInit(): void {}
-    
 
-  
+
+
 
   submitForm() {
-    
+
     console.log(this.loginform);
-    
-    
+
+
     const storedUserData = localStorage.getItem('userArr');
     if (storedUserData) {
       const userArr = JSON.parse(storedUserData);
@@ -69,19 +69,20 @@ export class LoginComponent implements OnInit{
         this.router.navigate(['/home']);
       } else {
         this.invalidLogin = true;
-        
+
       }
     } else {
       this.invalidLogin = true;
-      
-    }  
+
+    }
 
 
     this.AuthService.login(this.loginform.value).subscribe(res => {
       console.log(res);
       if(res.access_token){
         localStorage.setItem('access_token' ,res.access_token )
-        this.router.navigate(['']);
+        // this.router.navigate(['']);
+        window.location.href="/"
 
       }
     },
@@ -92,9 +93,9 @@ export class LoginComponent implements OnInit{
 
 
   }
-  
 
-}   
+
+}
 
 
 

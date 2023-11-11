@@ -409,49 +409,7 @@
                 </div>
             </div>
           </div>
-          <!-- <div class="carousel-item">
-            <div class="container">
-                <h1 class="fashion_taital">Birds for Sale</h1>
-                <div class="fashion_section_2">
-                  <div class="row">
-                      <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt">
-                        <div class="box_main">
-                            <h4 class="shirt_text">{{ pet.type }}</h4>
-                            <p class="price_text">Price  <span style="color: #262626;">$  {{pet.price}}</span></p>
-                            <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
-                            <div class="btn_main">
-                              <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                              <div class="seemore_bt"><a href="#">See More</a></div>
-                            </div>
-                        </div>
-                      </div>
-                    
-                      
-                  </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-                <h1 class="fashion_taital">Birds for Adoption &sale</h1>
-                <div class="fashion_section_2">
-                  <div class="row">
-                      <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryBirds_adopt">
-                        <div class="box_main">
-                            <h4 class="shirt_text">{{ pet.type }}</h4>
-                            <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
-                            <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
-                            <div class="btn_main">
-                              <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                              <div class="seemore_bt"><a href="#">See More</a></div>
-                            </div>
-                        </div>
-                      </div>
-                    
-                  </div>
-                </div>
-            </div>
-          </div> -->
+        
       </div>
       <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
       <i class="fa fa-angle-left"></i>
@@ -461,87 +419,7 @@
       </a>
     </div>
 </div>
-<!-- animal section end -->
-    
 
-
-
-
-<!-- <div class="row justify-content-center mb-3 body">
-<div class="col-md-12 col-xl-10">
-  <div class="card shadow-0 border rounded-3">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-          <div class="bg-image hover-zoom ripple rounded ripple-surface">
-            <img [src]="generateImageUrl(pet.image)" height="200px" width="200px" />
-            <a href="#!">
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15)"></div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-6 col-xl-6">
-        
-            <h1 style="color: darkcyan">Pet owner: {{ pet.user.name }}</h1>
-            <h3>Pet category: {{ pet.category.name }}</h3>
-            <h4>For: {{ pet.operation }}</h4>
-
-          
-          <div class="mt-1 mb-0 text-muted small">
-            <span><span style="color: darkcyan">Gender: </span>{{ pet.gender }}</span>
-          
-          </div>
-          <p class="text-truncate mb-4 mb-md-0 pt-2">
-            <span style="color: darkcyan">Pet Type: </span>{{ pet.type }}
-          </p>
-          <blockquote class="text-truncate mb-4 mb-md-0 pt-2">
-            <span style="color: darkcyan">age: {{ pet.age }}</span> <br />
-              <br />
-          </blockquote>
-        </div>
-        <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-          <div class="d-flex flex-row align-items-center mb-1">
-            <h4 class="mb-1 me-1">{{ pet.price }}</h4>
-          </div>
-          <div class="d-flex flex-column mt-4">
-            <button class="btn btn-success btn-sm" type="button" (click)="AddToCart(pet)">
-              Add to cart
-              <i class="pi pi-cart-plus" style="font-size: 0.8rem"></i>
-            </button>
-            <button type="button"(click)="editFun(pet)" class="btn btn-sm mt-2 text-white" style="background-color: #13a7d1"
-            data-bs-toggle="modal" data-bs-target="#editModal">
-            Edit pet
-            <i class="fa fa-edit"></i>
-          </button>
-
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Message</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="alert alert-danger" role="alert">
-                      Are you sure that you want to delete the post?
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button data-bs-dismiss="modal"  type="button" class="btn btn-danger" (click)="deleteProduct(pet.id)">Confirm</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div> -->
 
 <!-- Your previous code (without form) -->
 <!-- Modal -->
@@ -559,27 +437,7 @@
         <div class="formbold-form-wrapper pt-0">
           <img src="assets/pet_welcome.png" style="width: 90%" />
           <form [formGroup]="editPetForm" (ngSubmit)="submitForm()"enctype="multipart/form-data">
-            <!-- <div class="formbold-input-wrapp formbold-mb-3">
-              <label for="owner" class="formbold-form-label">
-                owner
-              </label>
-
-              <div>
-                <input type="text" name="owner" id="owner" formControlName="owner" placeholder="Your name"
-                  class="formbold-form-input form-control" />
-              </div>
-              <div *ngIf="
-                  editPetForm.controls['owner'].touched &&
-                  editPetForm.controls['owner'].invalid
-                " id="owner" class="text-danger form-text">
-                <small *ngIf="editPetForm.controls['owner'].errors?.['required']">
-                  this field is required
-                </small>
-                <small *ngIf="editPetForm.controls['owner'].errors?.['email']">
-                  Please enter a valid name format.
-                </small>
-              </div>
-            </div> -->
+            
             <!--_________________ age___________________-->
 
             <div class="formbold-mb-3">
@@ -764,35 +622,3 @@
 </div>
 
 
-<!-- 
-<script>
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $("#imageResult").attr("src", e.target.result);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-$(function () {
-  $("#upload").on("change", function () {
-    readURL(input);
-  });
-});
-
-/*  ==========================================
-  SHOW UPLOADED IMAGE NAME
-* ========================================== */
-var input = document.getElementById("upload");
-var infoArea = document.getElementById("upload-label");
-
-input.addEventListener("change", showFileName);
-function showFileName(event) {
-  var input = event.srcElement;
-  var fileName = input.files[0].name;
-  infoArea.textContent = "File name: " + fileName;
-}
-</script> -->

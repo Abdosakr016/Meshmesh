@@ -12,7 +12,7 @@ import { PetsModule } from './pets/pets.module';
 import { HomeModule } from './home/home.module';
 import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.module';
 import { VetsCenterModule } from './vets-center/vets-center.module';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { SuppliesModule } from './supplies/supplies.module';
 import { AdminModule } from './admin/admin.module';
@@ -40,7 +40,9 @@ import { AboutModule } from './about/about.module';
     UserProfileModule,
     SuppliesModule,
     AdminModule,
-    AboutModule
+    AboutModule,
+    NgxPaginationModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,6 +16,7 @@ export class UserAccountComponent {
   userData: any;
   imageFile:any
   userPets: [] = [];
+  userUpdateForm!: FormGroup;
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private formBuilder:FormBuilder,
        private apiService:UserServiceService,
@@ -35,13 +36,24 @@ export class UserAccountComponent {
           this.pets = pets;
           this.validation(); // Move the form initialization here
           this.filterPetsByUserId();
+          this.userUpdateValidation() 
         },
         (error) => console.log(error)
       );
     
       this.getAuthUser();
+
     }
     
+    userUpdateValidation() {
+      this.userUpdateForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        old_password: ['', Validators.required],
+        Password: ['', [Validators.minLength(6)]],
+        phone: ['', Validators.required],
+      });
+    }
     validation() {
       this.addPetForm = this.formBuilder.group({
         age: ['', Validators.required],
@@ -125,4 +137,20 @@ export class UserAccountComponent {
             console.log("No user pets found.");
           }
         }
+        onUpdateUser() {
+          if (this.userUpdateForm.valid) {
+            const userData = this.userUpdateForm.value;
+            // Update the data using the API service
+            this.userService.updateUserData(userData).subscribe(
+              (response) => {
+                console.log('User data updated successfully:', response);
+                this.userData = response;
+              },
+              (error: any) => {
+                console.error('Error updating user data:', error);
+              }
+            );
+          }
+        }
+        
 }

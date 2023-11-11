@@ -4,16 +4,20 @@ import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
+import { FilterSearchPipe } from './pipes/filter-search.pipe';
+import { SearchComponent } from './components/search/search/search.component';
 
 @NgModule({
   declarations: [  
 
     CardComponent,
-  ProductListComponent],
+  ProductListComponent,
+  FilterSearchPipe,
+  SearchComponent],
   imports: [
     CommonModule,
     CardModule,
@@ -21,7 +25,8 @@ import { DialogModule } from 'primeng/dialog';
     HttpClientModule,
     ReactiveFormsModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    FormsModule
   ],
 
   exports:[

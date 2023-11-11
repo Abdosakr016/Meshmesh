@@ -5,7 +5,8 @@ import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Ipet } from '../../interface/Ipet';
-import { AuthService } from 'src/app/auth/components/auth.service';
+ import { AuthService } from 'src/app/auth/components/auth.service';
+import { SharedService } from '../../services/shared service/shared.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -27,6 +28,10 @@ export class CardComponent {
   AcategoryDogs_sell: Ipet[] = [];
   AcategoryAnimal_breeding: Ipet[] = [];
   AcategoryAnimal_sell: Ipet[] = [];
+
+  searchTerm: string = '';
+  searchmood="all";
+  // currentSearchMode: string = 'ALL';
   // @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
@@ -34,7 +39,8 @@ export class CardComponent {
     private apiService: ApiServiceService ,
     private CartService : CartService,
     private counter : CounterService,
-    private userService:AuthService
+    private userService:AuthService,
+    private SharedService:SharedService,
     ){}
 
  
@@ -232,4 +238,52 @@ categoryAnimal_breeding() {
   }
 }
 
+chmodSearch(mode: string) {
+  this.searchmood = mode;
+console.log(this.searchmood)
+
+}
+
+search() {
+  console.log(this.pets);
+
+  const searchResults = this.pets.filter((item: Ipet) => {
+    console.log(this.searchTerm);
+
+    switch (this.searchmood) {
+     
+
+      case "category":
+        return item.category.toLowerCase().includes(this.searchTerm.toLowerCase());
+
+      case "type":
+        return item.type.toLowerCase().includes(this.searchTerm.toLowerCase());
+
+      case "price":
+        return item.price.includes(this.searchTerm);
+
+      default:
+        // Default search mode
+        return (
+          item.type.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          item.age.includes(this.searchTerm) ||
+          item.price.includes(this.searchTerm) ||
+          item.category.toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
+    }
+  });
+
+  // Log the search results
+  console.log(searchResults);
+  this.SharedService.updateSearchResults(searchResults);
+  this.router.navigate(['/search']);
+  this.searchmood="all";
+}
+
+getPlaceholder() {
+
+   
+      return `Search by  ${this.searchmood}`;
+  
+  }
 }

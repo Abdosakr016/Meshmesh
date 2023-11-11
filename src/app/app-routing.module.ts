@@ -17,6 +17,7 @@ import { authGuard } from './auth.guard';
 import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import { AboutComponent } from './about/components/about/about.component';
+import { SearchComponent } from './pets/components/search/search/search.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,12 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductListComponent
+    // canActivate:[authGuard]
+
+  },
+  {
+    path: 'search',
+    component: SearchComponent
     // canActivate:[authGuard]
 
   },

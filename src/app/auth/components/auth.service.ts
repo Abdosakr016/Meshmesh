@@ -34,4 +34,14 @@ export class AuthService {
 
     return this.http.post(`${this.urlApi}/logout`, null, { headers });
   }
+  updateUserData(userData: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('access_token'), 
+    });
+  
+    // Do not include userData in headers; instead, pass it in the request body
+    return this.http.put(`${this.urlApi}/update_user`, userData, { headers });
+  }
+  
 }

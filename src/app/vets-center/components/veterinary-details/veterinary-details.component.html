@@ -7,8 +7,135 @@
             <a href="#">
               <img src="{{ logopath }}{{ pets.logo }}" alt="" />
             </a>
-            <h1>{{ pets.name }}</h1>
-            <p>{{ pets.about }}</p>
+            <h1 class="fw-bold fs-4" style="color: #c2694e">{{ pets.name }}</h1>
+            <p class="text-black">{{ pets.governorate }}</p>
+            <div class="card m-0" style="width: 270px">
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                >
+                  <h6 class="mb-0">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-globe mr-2 icon-inline"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                      ></path>
+                    </svg>
+                    Website
+                  </h6>
+                  <span
+                    style="font-size: 10px; color: #c2694e !important"
+                    class="text-secondary"
+                    >https://{{ pets.name }}.com</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                >
+                  <h6 class="mb-0">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-twitter mr-2 icon-inline text-info"
+                    >
+                      <path
+                        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                      ></path>
+                    </svg>
+                    Twitter
+                  </h6>
+                  <span
+                    class="text-secondary fs-6"
+                    style="color: #c2694e !important"
+                    >@{{ pets.name }}</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                >
+                  <h6 class="mb-0">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-instagram mr-2 icon-inline text-danger"
+                    >
+                      <rect
+                        x="2"
+                        y="2"
+                        width="20"
+                        height="20"
+                        rx="5"
+                        ry="5"
+                      ></rect>
+                      <path
+                        d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                      ></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    Instagram
+                  </h6>
+                  <span
+                    class="text-secondary fs-6"
+                    style="color: #c2694e !important"
+                    >{{ pets.name }}</span
+                  >
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                >
+                  <h6 class="mb-0">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-facebook mr-2 icon-inline text-primary"
+                    >
+                      <path
+                        d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                      ></path>
+                    </svg>
+                    Facebook
+                  </h6>
+                  <span
+                    class="text-secondary fs-6"
+                    style="color: #c2694e !important"
+                    >{{ pets.name }}</span
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
 
           <!-- need some thing -->
@@ -17,35 +144,28 @@
       <div class="profile-info col-md-9">
         <div class="panel">
           <div class="bio-graph-heading">
-            Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla
-            ut vel ispum. Aliquam ac magna metus.
+            {{ pets.about }}
           </div>
           <div class="panel-body bio-graph-info">
             <h1>Bio Graph</h1>
             <div class="row">
               <div class="bio-row">
-                <p><span>First Name </span>: Camila</p>
+                <p class="fw-bold"><span>Name:</span>{{ pets.name }}</p>
               </div>
               <div class="bio-row">
-                <p><span>Last Name </span>: Smith</p>
+                <p class="fw-bold">
+                  <span>Address:</span>{{ pets.street_address }}
+                </p>
               </div>
               <div class="bio-row">
-                <p><span>Country </span>: Australia</p>
+                <p class="fw-bold">
+                  <span>Open At:</span>{{ pets.open_at }} Am
+                </p>
               </div>
               <div class="bio-row">
-                <p><span>Birthday</span>: 13 July 1983</p>
-              </div>
-              <div class="bio-row">
-                <p><span>Occupation </span>: UI Designer</p>
-              </div>
-              <div class="bio-row">
-                <p><span>Email </span>: jsmith@flatlab.com</p>
-              </div>
-              <div class="bio-row">
-                <p><span>Mobile </span>: (12) 03 4567890</p>
-              </div>
-              <div class="bio-row">
-                <p><span>Phone </span>: 88 (02) 123456</p>
+                <p class="fw-bold">
+                  <span>Close At:</span>{{ pets.close_at }} Pm
+                </p>
               </div>
             </div>
           </div>
@@ -54,7 +174,7 @@
           <div class="row">
             <div
               class="col-sm-6 mb-3 mb-sm-0"
-              *ngFor="let pet of pets; let odd = odd"
+              *ngFor="let doctor of arrDoctors; let i = index; let odd = odd"
             >
               <div class="m-0">
                 <div class="card m-0 mt-4" [ngClass]="{ green: odd }">
@@ -71,11 +191,9 @@
                         aria-labelledby="title desc"
                         class="center"
                       >
-                        <title id="title">Teacher</title>
+                        <title id="title">{{ doctor.name }}</title>
                         <desc id="desc">
-                          Cartoon of a Caucasian woman smiling, and wearing
-                          black glasses and a purple shirt with white collar
-                          drawn by Alvaro Montoro.
+                          {{ doctor.name }}
                         </desc>
                         <style>
                           .skin {
@@ -274,7 +392,7 @@
                       </svg>
                     </div>
                     <div class="more-info">
-                      <h3 class="text-center">{{ pet.Seller }}</h3>
+                      <h3 class="text-center">{{ doctor.name }}</h3>
                       <div class="coords">
                         <span>Group Name</span>
                         <span>Joined January 2019</span>
@@ -308,7 +426,7 @@
                     </div>
                   </div>
                   <div class="general">
-                    <h3 class="text-center">{{ pet.Seller }}</h3>
+                    <h3 class="text-center">{{ doctor.Seller }}</h3>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Fusce a volutpat mauris, at molestie lacus. Nam vestibulum

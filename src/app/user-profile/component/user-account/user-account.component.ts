@@ -22,13 +22,13 @@ export class UserAccountComponent {
        private apiService:UserServiceService,
        private userService:AuthService
        ){
-   
+
     }
     ngOnInit() {
-  
+
       const userDataObservable = this.userService.getUserData();
       const petsObservable = this.apiService.getProductList();
-    
+          this.getAuthUser();
       forkJoin([userDataObservable, petsObservable]).subscribe(
         ([userData, pets]) => {
           console.log(pets)
@@ -40,7 +40,7 @@ export class UserAccountComponent {
         },
         (error) => console.log(error)
       );
-    
+
       this.getAuthUser();
 
     }
@@ -65,38 +65,38 @@ export class UserAccountComponent {
         image: ['', Validators.required],
       });
     }
-    
+
     get_imagPet(event: any) {
       const file = event.target.files[0];
       this.imageFile=event.target.files[0];
       const reader = new FileReader();
-    
+
       reader.onload = () => {
         // Convert the image to base64
         const base64Image = reader.result as string;
         // Store the base64 data in a variable, but don't set it as the input value
         this.petAddBase64 = base64Image;
       };
-    
+
       reader.readAsDataURL(file);
     }
-    
-  
+
+
     onAddPet() {
       if (this.addPetForm.valid) {
         const petData = this.addPetForm.value;
-       
+
         petData.user_id = this.userData.id;
-    
+
         const formData = new FormData();
-    
+
         formData.append('image', this.imageFile);
-    
+
         for (const key of Object.keys(petData)) {
           formData.append(key, petData[key]);
         }
         console.log(formData);
-    
+
         // Update the data using the API service
         this.apiService.addNewPet(formData).subscribe(
           (response) => {
@@ -110,17 +110,17 @@ export class UserAccountComponent {
         );
       }
     }
-    
+
     submitForm() {
-    
+
       console.log(this.addPetForm);
     }
       getAuthUser(){
         this.userService.getUserData().subscribe(
           (data) => {
             this.userData = data;
-            console.log(this.userData ); 
-      
+            console.log(this.userData );
+
           },
           (error) => {
             console.error(error);
@@ -128,9 +128,9 @@ export class UserAccountComponent {
         );}
         filterPetsByUserId() {
           // console.log("found.");
-    
+
          this.userPets = this.pets.filter((pet: any) => pet.user.id === this.userData.id);
-          
+
           if (this.userPets.length > 0) {
             console.log("userpets", this.userPets);
           } else {

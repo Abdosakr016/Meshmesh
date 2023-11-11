@@ -38,5 +38,5 @@ export class ApiServiceService {
   deleteProduct(id: string) {
     return this.http.delete(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
-
+  
 }

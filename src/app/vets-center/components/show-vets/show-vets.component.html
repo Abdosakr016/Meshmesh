@@ -1,20 +1,19 @@
 <div class="background">
-  <div class="container">
-    <header class="header">
-      <div class="left-content">
-        <p class="stay-home">Stay Home!!</p>
-        <h1>Be a good Easter egg.</h1>
-        <p></p>
-        <p class="para">
-          That's what we need right now. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Aliquam, corporis.
-        </p>
-        <button>Save Lifes</button>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Explore the Our Magical Centers</h1>
+        <p class="hero-description">All Your Bets in our safe Hand.</p>
+        <a (click)="scrollToSection()" class="hero-button">Start Exploring</a>
       </div>
-      <img src="assets/veterinarian-clinic.png" alt="" />
-    </header>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col" *ngFor="let pet of pets">
+    </div>
+  </section>
+  <div class="container">
+    <h1 class="text-center my-3" id="here">Our Trusted Centers</h1>
+    <hr />
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+      <div class="col" *ngFor="let pet of vets">
+        <h1 class="fs-2 text-center">{{ pet.name }}</h1>
         <app-veterinary-card [pet]="pet"></app-veterinary-card>
       </div>
     </div>

@@ -6,8 +6,66 @@
               <h3 class="mt-2">Name: {{userData.name}}</h3>
               <p>Email:{{userData.email}}</p>
               <p>Phone: {{userData.phone}}</p>
+              <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Update My Data
+</button>
           </div>
       </div>
+<!-- Modal for updating the user data -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="exampleModalLongTitle">Update User Information</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userUpdateForm" (ngSubmit)="onUpdateUser()">
+          <!-- Name -->
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" formControlName="name" />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="form-control" formControlName="email" />
+          </div>
+
+          <!-- Old Password -->
+          <div class="form-group">
+            <label for="oldPassword">Old Password:</label>
+            <input type="password" id="oldPassword" class="form-control" formControlName="old_password" />
+          </div>
+
+          <!-- New Password -->
+          <div class="form-group">
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" class="form-control" formControlName="Password" />
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" class="form-control" formControlName="phone" />
+          </div>
+
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" [disabled]="userUpdateForm.invalid">save changes</button>
+      </div>
+    </form>
+  </div>
+    </div>
+  </div>
+</div>
+
+<!-- END OF Modal for updating the user data -->
       <div class="col-md-8">
         <h2>Order History</h2>
         <table class="table">
@@ -39,15 +97,7 @@
           </div>
       </div>
   </div>
-  <div class="col-md-4">
-      <div class="card">
-          <div class="card-body">
-              <h5 class="card-title">Notifications</h5>
-              <p class="card-text">You have new product inquiries.</p>
-              <a href="#" class="btn btn-primary">View Notifications</a>
-          </div>
-      </div>
-  </div>
+
   <div class="col-md-4">
       <div class="card">
           <div class="card-body">
@@ -287,15 +337,15 @@
   </div>
 </div>
 
-<section class="container col">
+
  
-  <div class="container row row-cols-1" style="float: left">
+  <div class="container " >
     <div class="col" *ngFor="let pet of userPets">
 
       <app-card [pet]="pet"></app-card>
     </div>
   </div>
-</section>
+
 
 <script>
   function readURL(input) {
@@ -328,3 +378,6 @@
     infoArea.textContent = "File name: " + fileName;
   }
 </script>
+
+
+

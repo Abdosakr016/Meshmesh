@@ -83,7 +83,7 @@ export class CardComponent {
       const petData = this.editPetForm.value;
       const formData = new FormData();
   
-      formData.append('user_id', '32'); // Assuming user_id is a field in your form
+      formData.append('user_id', '1'); // Assuming user_id is a field in your form
       formData.append('age', petData.age);
       formData.append('type', petData.type);
       formData.append('category', petData.category);

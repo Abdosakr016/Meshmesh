@@ -45,23 +45,23 @@
                 </div>
                 <span class="toggle_icon" onclick="openNav()"></span>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Dogs</a>
-                      <a class="dropdown-item" href="#">Cats</a>
-                      <a class="dropdown-item" href="#">Birds</a>
+                      <button class="dropdown-item" (click)="chmodSearch('all')">all</button>
+                      <button class="dropdown-item" (click)="chmodSearch('category')">category</button>
+                      <button class="dropdown-item" (click)="chmodSearch('price')">price</button>
                       
-                      <a class="dropdown-item" href="#">Animals for breeding</a>
+                      <button class="dropdown-item" (click)="chmodSearch('type')">type</button>
                     
                     </div>
                 </div>
                 <div class="main">
                     <!-- Another variation with a button -->
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search this blog">
+                      <input [(ngModel)]="searchTerm" type="text" class="form-control" [placeholder]="getPlaceholder()">
                       <div class="input-group-append">
-                          <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                          <button (click)="search()" class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
                           <i class="fa fa-search"></i>
                           </button>
                       </div>

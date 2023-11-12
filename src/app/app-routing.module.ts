@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { CartComponent } from './cart/components/cart/cart.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { LoginComponent } from './auth/components/login/login.component';
@@ -13,10 +12,14 @@ import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-l
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
+import { UserProfileComponent } from './porto_veterinary/components/user-profile/user-profile.component';
 import { authGuard } from './auth.guard';
 import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
-import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import { AboutComponent } from './about/components/about/about.component';
+import { SearchComponent } from './pets/components/search/search/search.component';
+import { MyPetsComponent } from './user-profile/component/my-pets/my-pets.component';
+import { RegisterbothComponent } from './auth/components/registerboth/registerboth.component';
+import { MyvetsComponent } from './porto_veterinary/components/myvets/myvets.component';
 
 const routes: Routes = [
   {
@@ -24,10 +27,15 @@ const routes: Routes = [
     component: ContainerComponent
     // canActivate :[authGuard]
   },
-
   {
     path: 'products',
     component: ProductListComponent
+    // canActivate:[authGuard]
+
+  },
+  {
+    path: 'search',
+    component: SearchComponent
     // canActivate:[authGuard]
 
   },
@@ -80,21 +88,47 @@ const routes: Routes = [
   },
   {
     path: 'user-account',
-    component: UserAccountComponent,
-     canActivate :[authGuard]
+    component: UserAccountComponent
   },
-    {path: 'show_Vet_details',
+  {
+    path: 'show_Vet_details/:id',
     component: VeterinaryDetailsComponent,
   },
   {path: 'supplies',
   component: SuppliesComponent,
 },
-{path: 'admin',
-component: DashboardComponent,
-},
+
 {path: 'about_us',
   component: AboutComponent,
 },
+{path: 'myPets',
+  component: MyPetsComponent,
+},
+  {
+    path: 'user-vet',
+    component: UserProfileComponent,
+  },
+  {
+    path: 'user-account',
+    component: UserAccountComponent,
+    canActivate :[authGuard]
+  },
+  {
+    path: 'show_Vet_details',
+    component: VeterinaryDetailsComponent,
+  },
+  {
+    path: 'supplies',
+    component: SuppliesComponent,
+  },
+  {
+    path: 'mycenters',
+    component: MyvetsComponent,
+  },
+  {
+    path: 'registerone',
+    component: RegisterbothComponent,
+  },
 ];
 
 

@@ -50,14 +50,11 @@ export class CreatListDoctorsComponent implements OnInit {
   // Function to set the current doctor data for update
   setUpdateData(doctor: any, id: number) {
     this.updateId = id;
-    // this.currentDoctor = doctor;
     // Bind the data to the form controls
     this.base64 = doctor.image;
     this.updateDoctorForm.patchValue({
       name: doctor.name,
       experience: doctor.experience,
-      //image: doctor.image,
-      // You can handle the 'image' control as needed, e.g., displaying the current image
     });
 
   }
@@ -169,6 +166,7 @@ export class CreatListDoctorsComponent implements OnInit {
     this.deleteId = id;
 
   }
+
   modeldeleteDoctor() {
     this.VetService.deleteDoctor(this.deleteId).subscribe(
       (data) => {

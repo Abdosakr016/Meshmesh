@@ -34,7 +34,7 @@ export class NavbarComponent {
     this.userService.getUserData().subscribe(
       (data) => {
         this.userData = data;
-        // console.log(data); 
+        console.log(this.userData); 
 
       },
       (error) => {

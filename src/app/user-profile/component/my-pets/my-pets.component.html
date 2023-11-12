@@ -1,4 +1,5 @@
-<div class="container mt-4">
+<div class="background">
+<div class="container pt-4">
     <div class="row">
         <div class="col-md-4">
             <div class="text-center">
@@ -22,7 +23,7 @@
                 data-bs-target="#exampleModal"
               
               >
-                <i class="fa  fa-plus-circle fa-5x bg-white"></i>
+                <i class="fa  fa-plus-circle fa-5x" style="background-color: rgba(255, 255, 255, 0) !important;"></i>
               </button>
             
     </div>
@@ -42,7 +43,6 @@
         <div class="modal-body">
           <div class="formbold-main-wrapper pt-0">
             <div class="formbold-form-wrapper pt-0">
-              <img src="assets/pet_welcome.png" style="width: 90%" />
               <form [formGroup]="addPetForm" (ngSubmit)="submitForm()"enctype="multipart/form-data">
                 <!-- <div class="formbold-input-wrapp formbold-mb-3">
                   <label for="owner" class="formbold-form-label">
@@ -195,11 +195,9 @@
   
   <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
     <input id="upload" type="file" (change)="get_imagPet($event)" formControlName="image" name="image" class="form-control border-0" />
-    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
     <div class="input-group-append">
       <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
         <i class="fa fa-cloud-upload mr-2 text-muted"></i>
-        <small class="text-uppercase font-weight-bold text-muted">Choose file</small>
       </label>
     </div>
   </div>
@@ -257,7 +255,7 @@
       </div>
     </div>
   
-  
+</div>
   <script>
     function readURL(input) {
       if (input.files && input.files[0]) {
@@ -289,3 +287,4 @@
       infoArea.textContent = "File name: " + fileName;
     }
   </script>
+  

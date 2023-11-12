@@ -18,6 +18,10 @@ export class UserAccountComponent {
   imageFile:any
   userPets: [] = [];
   userUpdateForm!: FormGroup;
+
+  userOrders: any
+
+
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private formBuilder:FormBuilder,
        private apiService:UserServiceService,
@@ -44,7 +48,7 @@ export class UserAccountComponent {
       );
 
       this.getAuthUser();
-      debugger     
+      // debugger     
       this.getUserOrder()
     }
     
@@ -157,10 +161,10 @@ export class UserAccountComponent {
         }
      
     getUserOrder(){
-      debugger 
+     
       this.orderService.getOrders().subscribe(
         (data) => {
-       data
+       this.userOrders =data
           console.log("orders:",data );
 
         },

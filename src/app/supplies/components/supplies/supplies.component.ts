@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./supplies.component.css']
 })
 export class SuppliesComponent implements OnInit {
+  p:number=1;
+  itemsPerPage:number=1;  
 
   allSuppliesp: any[] = []; // Your supplies array
   currentPage: number = 0;

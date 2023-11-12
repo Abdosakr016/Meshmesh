@@ -23,6 +23,8 @@ export class CartService {
       this.cartArray = [...this.cartArray, product];
       this._products_cart_length.next(this.cartArray.length); 
       product['quantity'] = 1;
+    console.log(this.cartArray)
+
     }
   }
 
@@ -32,10 +34,10 @@ export class CartService {
     // alert('Product is already in the cart!')
     console.log(product)
   }
-  clearItems() {
-    localStorage.clear()
-      ;
-  }
+  // printCartArray() {
+  //   console.log(this.cartArray)
+  //     ;
+  // }
 
 
 

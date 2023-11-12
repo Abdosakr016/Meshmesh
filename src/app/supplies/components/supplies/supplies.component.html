@@ -63,7 +63,10 @@
 
 
       <div class="row product-list pt-5" >
-          <div class="col-md-4 mb-4"*ngFor="let supply of allSupplies">
+          <div class="col-md-4 mb-4"*ngFor="let supply of allSupplies
+          | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
+          >
+
               <section class=" card">
                   <div class="pro-img-box">
                     <img [src]="generateImageUrl(supply.image)" height="100" width="200" alt="" class="avatar-lg rounded" />
@@ -102,7 +105,9 @@
               </section>
           </div>
         
-         
+          <div class="text-center" *ngIf="allSupplies.length">    
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
           
 
          

@@ -3,6 +3,7 @@ import { UserServiceService } from '../../service/user-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { forkJoin } from 'rxjs';
+import { OrderService } from 'src/app/cart/service/order/order.service';
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
@@ -20,7 +21,8 @@ export class UserAccountComponent {
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private formBuilder:FormBuilder,
        private apiService:UserServiceService,
-       private userService:AuthService
+       private userService:AuthService,
+       private orderService:OrderService,
        ){
 
     }
@@ -42,7 +44,8 @@ export class UserAccountComponent {
       );
 
       this.getAuthUser();
-
+      debugger     
+      this.getUserOrder()
     }
     
     userUpdateValidation() {
@@ -152,5 +155,18 @@ export class UserAccountComponent {
             );
           }
         }
-        
+     
+    getUserOrder(){
+      debugger 
+      this.orderService.getOrders().subscribe(
+        (data) => {
+       data
+          console.log("orders:",data );
+
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
+    }
 }

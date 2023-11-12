@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CartService } from '../../service/cart/cart.service';
+import { OrderService } from '../../service/order/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,9 @@ export class CartComponent {
   total: number = 0;
 
   cart_products:any[]=[]
-  constructor(private cartService: CartService ) { }
+  constructor(
+    private cartService: CartService,
+    private orderService:OrderService ) { }
 
   ngOnInit() {
 
@@ -52,16 +55,22 @@ export class CartComponent {
       return total + product.price * product.quantity;
     }, 0);
   
-  
-  
   }
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   } 
-
-
-  
-  
+ 
+  checkout(){
+   const newOrder=1
+    this.orderService.makeOrder(newOrder ).subscribe(
+      (response) => {
+        console.log('Data added successfully:', response);
+      },
+      (error: any) => {
+        console.error('Error added data:', error);
+      }
+    );
+  }
   
   }
   

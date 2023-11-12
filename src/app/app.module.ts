@@ -39,7 +39,6 @@ import { AdminModule } from './admin/admin.module';
     PortoVeterinaryModule,
     UserProfileModule,
     SuppliesModule,
-    
     AboutModule,
     NgxPaginationModule,
 

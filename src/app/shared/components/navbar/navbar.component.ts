@@ -63,12 +63,8 @@ console.log(value)
       this.router.navigate(['/login']);
     }, 500);
   }
-<<<<<<< HEAD
-}
-=======
 
 }
 // this.cartService.products_cart_length$.subscribe((length) => {
 //   this.header_cart_length = length;
 // });
->>>>>>> 80571994fb2245b49d8967cec77444679982847f

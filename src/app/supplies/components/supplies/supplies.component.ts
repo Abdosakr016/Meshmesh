@@ -41,7 +41,7 @@ export class SuppliesComponent implements OnInit {
     private CartService:CartService,
     private counter:CounterService) {
 
-      // Initialize your form group (updateDoctorForm) here
+      // Initialize your form group (updateDoctorForm) herebb
     this.updateSupplyForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],

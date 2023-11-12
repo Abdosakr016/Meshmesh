@@ -1,12 +1,11 @@
 import { Component,ViewChild, ElementRef,Input } from '@angular/core';
 import {  Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Ipet } from '../../interface/Ipet';
  import { AuthService } from 'src/app/auth/components/auth.service';
-import { SharedService } from '../../services/shared service/shared.service';
+import { SharedService } from '../../services/shared.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -31,14 +30,19 @@ export class CardComponent {
 
   searchTerm: string = '';
   searchmood="all";
+
+
+  arryCart:any[]=[];
+productInCart=false;
+alertMessage=''
   // currentSearchMode: string = 'ALL';
   // @ViewChild('editPetModal')editPetModal!: ElementRef;
-  count ! : number ;
+ 
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: ApiServiceService ,
     private CartService : CartService,
-    private counter : CounterService,
+   
     private userService:AuthService,
     private SharedService:SharedService,
     ){}
@@ -46,7 +50,6 @@ export class CardComponent {
  
 
     ngOnInit() {
-      this.counter.getCounterVal().subscribe(val => this.count = val);
     
       // Load the data asynchronously
       this.apiService.getProductList().subscribe(
@@ -175,11 +178,18 @@ export class CardComponent {
       }
     );
   }
-  AddToCart(item : any){
-    this.CartService.addItem(item);
-    this.counter.setCartValue(++this.count)
-    this.router.navigate(['cart' , item])
-  }
+  addToCart(product: any) {
+    this.productInCart=this.CartService.productInCart
+    this.alertMessage=this.CartService.alertMessage
+    
+    this.CartService.addCartArray_service(product);
+    
+      }
+    
+      closeAlert() {
+        this.productInCart = false;
+      }
+    
   submitForm() {
     console.log(this.editPetForm);
   }

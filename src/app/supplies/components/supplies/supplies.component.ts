@@ -1,9 +1,9 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { SuppliesService } from '../../services/supplies.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
-import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supplies',
@@ -15,6 +15,9 @@ export class SuppliesComponent implements OnInit {
   allSuppliesp: any[] = []; // Your supplies array
   currentPage: number = 0;
 
+  arryCart:any[]=[];
+  productInCart=false;
+  alertMessage=''
   getIndexes() {
     return Array(Math.ceil(this.allSuppliesp.length / 3)).fill(0).map((_, index) => index * 3);
   }
@@ -30,7 +33,7 @@ export class SuppliesComponent implements OnInit {
   addSupplyForm!:FormGroup;
   updateSupplyForm!:FormGroup;
   userData: any;
-  count!: number;
+
   deleteId!:any;
   updateId!:any;
   base64: any;
@@ -39,7 +42,9 @@ export class SuppliesComponent implements OnInit {
     private el: ElementRef,private suppliesService:SuppliesService, 
     private userService:AuthService,
     private CartService:CartService,
-    private counter:CounterService) {
+   
+    private router:Router
+    ) {
 
       // Initialize your form group (updateDoctorForm) here
     this.updateSupplyForm = this.fb.group({
@@ -120,7 +125,9 @@ export class SuppliesComponent implements OnInit {
   }
     );
   }
-
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  } 
   onUpdateSupply(){
 
 
@@ -158,20 +165,6 @@ formData.append('_method','PUT');
     }
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   onAddSupply() {
     if (this.addSupplyForm.valid) {
@@ -279,9 +272,14 @@ formData.append('_method','PUT');
       });
     }
   }
-  AddToCart(item : any){
-    this.CartService.addItem(item);
-    this.counter.setCartValue(++this.count)
-    // this.router.navigate(['cart' , item])
-  }
+  addToCart(product: any) {
+    this.productInCart=this.CartService.productInCart
+    this.alertMessage=this.CartService.alertMessage
+    
+    this.CartService.addCartArray_service(product);
+    
+      }
+      closeAlert() {
+        this.productInCart = false;
+      }
 }

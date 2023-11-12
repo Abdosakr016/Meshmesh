@@ -307,7 +307,7 @@ export class MyvetsComponent {
   onAddDoctor() {
     if (this.doctorForm.valid) {
       const doctorData = this.doctorForm.value;
-      doctorData.veterinary_center_id = 2;
+      doctorData.veterinary_center_id = 1;
 
       const formData = new FormData();
       formData.append('image', this.imageFile);
@@ -328,8 +328,6 @@ export class MyvetsComponent {
           console.error('Error updating data:', error);
         }
       );
-
     }
-
   }
 }

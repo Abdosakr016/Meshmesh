@@ -518,31 +518,31 @@
               <div class="row">
                 <table class="table mb-0">
                   <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Pet</th>
-                      <th scope="col">Appointment</th>
-                      <th scope="col">Phone No</th>
-                      <th scope="col">Status</th>
+                    <tr class="text-center">
+                      <th>Name</th>
+                      <th>Pet</th>
+                      <th>Appointment date</th>
+                      <th>Appointment time</th>
+                      <th>Accept</th>
+                      <th>Reject</th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider">
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Cat</td>
-                      <td>12/8/2023</td>
-                      <td>01123456789</td>
-                      <td><p class="text-success">Approved</p></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Cat</td>
-                      <td>12/8/2023</td>
-                      <td>01123456789</td>
-                      <td><p class="text-danger">Unapproved</p></td>
+                  <tbody class="table-group-divider text-center">
+                    <tr *ngFor="let app of apps">
+                      <td>User name</td>
+                      <td>{{ app.pet_type }}</td>
+                      <td>{{ app.date }}</td>
+                      <td>{{ app.time }}</td>
+                      <td>
+                        <a class="btn btn-success" (click)="acceptmail()"
+                          >Accept</a
+                        >
+                      </td>
+                      <td>
+                        <a class="btn btn-danger" (click)="rejectmail()"
+                          >Reject</a
+                        >
+                      </td>
                     </tr>
                   </tbody>
                 </table>

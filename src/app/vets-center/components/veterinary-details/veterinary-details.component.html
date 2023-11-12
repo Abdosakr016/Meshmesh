@@ -1,14 +1,95 @@
 <div class="background">
-  <div class="container bootstrap snippets bootdey pb-5">
+  <div class="container bootstrap snipvets bootdey pb-5">
     <div class="row">
       <div class="profile-nav col-md-3">
         <div class="panel">
           <div class="user-heading round">
             <a href="#">
-              <img src="{{ logopath }}{{ pets.logo }}" alt="" />
+              <img src="{{ logopath }}{{ vets.logo }}" alt="" />
             </a>
-            <h1 class="fw-bold fs-4" style="color: #c2694e">{{ pets.name }}</h1>
-            <p class="text-black">{{ pets.governorate }}</p>
+            <h1 class="fw-bold fs-4" style="color: #c2694e">{{ vets.name }}</h1>
+            <p class="text-black">{{ vets.governorate }}</p>
+            <button
+              type="button"
+              class="btn btn-success rounded-2 mb-2"
+              data-bs-toggle="modal"
+              data-bs-target="#AppModal"
+            >
+              Book Appointment
+            </button>
+            <div
+              class="modal fade"
+              id="AppModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog update-modal">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1
+                      class="modal-title fs-5 text-black"
+                      id="exampleModalLabel"
+                    >
+                      Get Appoointment
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body text-black">
+                    <form [formGroup]="AppFom" enctype="multipart/form-data">
+                      <div class="form-group">
+                        <label for="name">Date</label>
+                        <input
+                          name="date"
+                          type="date"
+                          class="form-control"
+                          id="date"
+                          formControlName="date"
+                        />
+                      </div>
+                      <div class="form-group text-black fw-bold">
+                        <label for="time">Time</label>
+                        <input
+                          name="time"
+                          type="time"
+                          class="form-control"
+                          id="time"
+                          step="1"
+                          formControlName="time"
+                        />
+                      </div>
+                      <div class="form-group text-black fw-bold">
+                        <label for="pet_type">Type</label>
+                        <input
+                          name="pet_type"
+                          type="text"
+                          class="form-control"
+                          id="pet_type"
+                          step="1"
+                          formControlName="pet_type"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          data-bs-dismiss="modal"
+                          (click)="onAddAppoint()"
+                          [disabled]="AppFom.invalid"
+                        >
+                          Save changes
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="card m-0" style="width: 270px">
               <ul class="list-group list-group-flush">
                 <li
@@ -38,7 +119,7 @@
                   <span
                     style="font-size: 10px; color: #c2694e !important"
                     class="text-secondary"
-                    >https://{{ pets.name }}.com</span
+                    >https://{{ vets.name }}.com</span
                   >
                 </li>
                 <li
@@ -66,7 +147,7 @@
                   <span
                     class="text-secondary fs-6"
                     style="color: #c2694e !important"
-                    >@{{ pets.name }}</span
+                    >@{{ vets.name }}</span
                   >
                 </li>
                 <li
@@ -103,7 +184,7 @@
                   <span
                     class="text-secondary fs-6"
                     style="color: #c2694e !important"
-                    >{{ pets.name }}</span
+                    >{{ vets.name }}</span
                   >
                 </li>
                 <li
@@ -131,7 +212,7 @@
                   <span
                     class="text-secondary fs-6"
                     style="color: #c2694e !important"
-                    >{{ pets.name }}</span
+                    >{{ vets.name }}</span
                   >
                 </li>
               </ul>
@@ -144,27 +225,27 @@
       <div class="profile-info col-md-9">
         <div class="panel">
           <div class="bio-graph-heading">
-            {{ pets.about }}
+            {{ vets.about }}
           </div>
           <div class="panel-body bio-graph-info">
             <h1>Bio Graph</h1>
             <div class="row">
               <div class="bio-row">
-                <p class="fw-bold"><span>Name:</span>{{ pets.name }}</p>
+                <p class="fw-bold"><span>Name:</span>{{ vets.name }}</p>
               </div>
               <div class="bio-row">
                 <p class="fw-bold">
-                  <span>Address:</span>{{ pets.street_address }}
+                  <span>Address:</span>{{ vets.street_address }}
                 </p>
               </div>
               <div class="bio-row">
                 <p class="fw-bold">
-                  <span>Open At:</span>{{ pets.open_at }} Am
+                  <span>Open At:</span>{{ vets.open_at }} Am
                 </p>
               </div>
               <div class="bio-row">
                 <p class="fw-bold">
-                  <span>Close At:</span>{{ pets.close_at }} Pm
+                  <span>Close At:</span>{{ vets.close_at }} Pm
                 </p>
               </div>
             </div>

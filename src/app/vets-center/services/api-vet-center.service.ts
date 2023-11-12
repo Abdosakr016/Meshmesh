@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from  '@angular/common/http';
 import { Ivetcenter } from  '../interface/ivetcenter'
+import { Iappoint } from '../interface/iappoint';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,15 +9,45 @@ import { Observable } from 'rxjs';
 })
 export class ApiVetCenterService {
   url : string = 'http://127.0.0.1:8000/api/VeterinaryCenters/';
-  urlAppoint : string = 'http://127.0.0.1:8000/api/Appointment/';
+  urlAppoint : string = 'http://127.0.0.1:8000/api/appointment/';
+  urlAccept : string = 'http://127.0.0.1:8000/api/accept/';
+  urlReject : string = 'http://127.0.0.1:8000/api/reject/';
+
+  AccessToken:any = localStorage.getItem('access_token');
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+  httpHeadersToken = new HttpHeaders().set('Authorization', `Bearer ${this.AccessToken}`);
+
+  header = new HttpHeaders().set("Authorization", `Bearer ${this.AccessToken}`);
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductList() {
+  // getTransferIp() {
 
+  //   let header = new HttpHeaders().set(
+
+  //     "Authorization", this.AccessToken);
+
+
+  //   return this.httpClient.get("http://127.0.0.1:8000/api/accept/", {headers: this.httpHeadersToken});
+  // }
+
+  acceptmail(){
+    return  this.httpClient.get(`${this.urlAccept}`, {headers: this.header});
+  }
+
+  rejectmail(){
+    return  this.httpClient.get(`${this.urlReject}`, {headers: this.header});
+  }
+
+
+  getProductList() {
     return  this.httpClient.get(`${this.url}`);
   }
+
+  getAppointList() {
+    return  this.httpClient.get(`${this.urlAppoint}`, {headers: this.header});
+  }
+
   getProductDetails(id : Number) {
     return this.httpClient.get(`${this.url}/${id}`);
   }
@@ -40,8 +71,8 @@ export class ApiVetCenterService {
   updateVet(id: any, newData: any){
     return this.httpClient.put(`${this.url}${id}`, newData , { headers: this.httpHeaders });
   }
-  getAppointList() {
-    return  this.httpClient.get(`${this.urlAppoint}`);
-  }
 
+  addAppointment( AppData:Iappoint){
+    return this.httpClient.post(`${this.urlAppoint}`,AppData);
+  }
 }

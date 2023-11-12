@@ -50,16 +50,13 @@ export class RegisterbothComponent {
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.pattern(/^\S+$/),
         ],
       ],
       email: [
         '',
         [
           Validators.required,
-          // Validators.email,
-
-          Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
+          Validators.pattern("[a-z0-9A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
         ],
       ],
       password: [
@@ -128,25 +125,15 @@ export class RegisterbothComponent {
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.pattern(/^\S+$/),
         ],
       ],
       email: [
         '',
         [
           Validators.required,
-          // Validators.email,
-
-        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
+        Validators.pattern("[a-z0-9A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
         ],
       ],
-
-      // username: [
-      //   '',
-      //   [Validators.required,
-      //   Validators.pattern(/^\S*$/)
-      // ],
-      // ],
       password: [
         '',
         [

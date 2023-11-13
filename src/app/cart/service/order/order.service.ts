@@ -8,6 +8,7 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
   private urlorder = 'http://localhost:8000/api/orders';
+  private urlPaypal = 'http://localhost:8000/api/payment';
 
   // Define HttpHeaders as a constant
   private httpHeaders: HttpHeaders = new HttpHeaders({
@@ -34,4 +35,11 @@ export class OrderService {
     deleteOrder(id: string) {
       return this.http.delete(`${this.urlorder}/${id}`, { headers: this.httpHeaders });
     }
+
+    payment(newapayment: any) { 
+      //   const headers = new HttpHeaders({
+      //   Authorization: 'Bearer ' + localStorage.getItem('access_token')
+      // });
+        return this.http.post(`${this.urlPaypal}`, newapayment, { headers: this.httpHeaders });
+      }
 }

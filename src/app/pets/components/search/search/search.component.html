@@ -8,15 +8,15 @@
                 <!-- pet-card.component.html -->
                 <div class="card mb-5 pt-3 pb-3" style="width: 100%; max-width: 350px;">
                     <img [src]="generateImageUrl(pet.image)" style="width: 100%; height: 200px; object-fit: contain;">
+                    <hr>
                     <div class="card-body">
                         <h3 class="card-title"><span style="color: #FF9831; font-weight: bold;"></span>{{ pet?.type }}</h3>
-                        <p class="card-text"><span style="color: #FF9831;font-weight: bold;">Age  : </span>{{ pet?.age }}</p>
-                        <p class="card-text"><span style="color: #FF9831;font-weight: bold;">Category : </span>{{ pet?.category }}</p>
                         <!-- <p class="card-text"><span style="color: green;">Price: </span>{{ pet?.price }}</p> -->
-                        <p class="card-text"><span style="color: #FF9831;font-weight: bold;">Gender : </span>{{ pet?.gender }}</p>
-            <p class="card-text"><span style="color: #FF9831;font-weight: bold;">Seller : </span>{{ pet?.user.name }}</p>
 
-                        <p class="card-text"><span style="color: #FF9831;font-weight: bold;">For : </span>{{ pet?.operation }}</p>
+                       <div class="card-text d-flex"> <p><span style="color: #FF9831;font-weight: bold;">For&nbsp;:&nbsp;</span>{{ pet?.operation }} </p>
+                        <div class="seemore_bt"><a href="#"[routerLink]="['/product', pet.id]">show pet</a></div>
+
+                    </div>
 
 
                         <div class="btn_main">

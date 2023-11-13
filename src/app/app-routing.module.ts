@@ -15,7 +15,6 @@ import { UserAccountComponent } from './user-profile/component/user-account/user
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
 import { authGuard } from './auth.guard';
 import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
-import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import { AboutComponent } from './about/components/about/about.component';
 
 const routes: Routes = [
@@ -89,9 +88,7 @@ const routes: Routes = [
   {path: 'supplies',
   component: SuppliesComponent,
 },
-{path: 'admin',
-component: DashboardComponent,
-},
+
 {path: 'about_us',
   component: AboutComponent,
 },

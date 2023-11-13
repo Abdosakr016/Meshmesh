@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { Router } from '@angular/router';
 
+import { Isupply } from '../../isupply';
 @Component({
   selector: 'app-supplies',
   templateUrl: './supplies.component.html',
@@ -14,19 +15,13 @@ export class SuppliesComponent implements OnInit {
   p:number=1;
   itemsPerPage:number=1;  
 
-  allSuppliesp: any[] = []; // Your supplies array
-  currentPage: number = 0;
+
+ 
 
   arryCart:any[]=[];
   productInCart=false;
   alertMessage=''
-  getIndexes() {
-    return Array(Math.ceil(this.allSuppliesp.length / 3)).fill(0).map((_, index) => index * 3);
-  }
 
-  changePage(index: number) {
-    this.currentPage = index;
-  }
 
 
    allSupplies: any;
@@ -48,7 +43,7 @@ export class SuppliesComponent implements OnInit {
     private router:Router
     ) {
 
-      // Initialize your form group (updateDoctorForm) here
+      // Initialize your form group (updateDoctorForm) herebb
     this.updateSupplyForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -61,6 +56,7 @@ export class SuppliesComponent implements OnInit {
     }
 
   ngOnInit(): void {
+
 
 
     this.handelGrid()

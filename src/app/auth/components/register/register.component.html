@@ -70,7 +70,10 @@
                     </small>
                     
                   </div>
-
+                  <div *ngIf="error" style="color: black;">
+                    <p class="text-danger form-text" style="display: inline;">{{ error }}</p>
+                    <a href="login" style="display: inline; color: black;">Want to login?</a>
+                  </div>
                   </div>
 
                   <div class="form-outline mb-4">

@@ -22,6 +22,10 @@ import { RegisterbothComponent } from './auth/components/registerboth/registerbo
 import { MyvetsComponent } from './porto_veterinary/components/myvets/myvets.component';
 import { PetDetailsComponent } from './pets/components/pet-details/pet-details.component';
 
+import { CatsComponent } from './pets/components/cats/cats.component';
+import { DogsComponent } from './pets/components/dogs/dogs.component';
+import { BirdsComponent } from './pets/components/birds/birds.component';
+import { AnimaForBreadingComponent } from './pets/components/anima-for-breading/anima-for-breading.component';
 const routes: Routes = [
   {
     path: '',
@@ -121,16 +125,28 @@ const routes: Routes = [
     component: VeterinaryDetailsComponent,
   },
   {
-    path: 'supplies',
-    component: SuppliesComponent,
-  },
-  {
     path: 'mycenters',
     component: MyvetsComponent,
   },
   {
     path: 'registerone',
     component: RegisterbothComponent,
+  },
+  {
+    path: 'cats',
+    component: CatsComponent,
+  },
+  {
+    path: 'dogs',
+    component: DogsComponent,
+  },
+  {
+    path: 'birds',
+    component: BirdsComponent,
+  },
+  {
+    path: 'animalforbreading',
+    component: AnimaForBreadingComponent,
   },
 ];
 

@@ -118,10 +118,6 @@ const routes: Routes = [
     component: VeterinaryDetailsComponent,
   },
   {
-    path: 'supplies',
-    component: SuppliesComponent,
-  },
-  {
     path: 'mycenters',
     component: MyvetsComponent,
   },

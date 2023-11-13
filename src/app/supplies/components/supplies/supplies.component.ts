@@ -13,15 +13,17 @@ import { AuthService } from 'src/app/auth/components/auth.service';
 export class SuppliesComponent implements OnInit {
 
   allSuppliesp: any[] = []; // Your supplies array
-  currentPage: number = 0;
+  
+  p:number=1;
+  itemsPerPage:number=3;
+  items = [
+    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
+  ]
+  
 
-  getIndexes() {
-    return Array(Math.ceil(this.allSuppliesp.length / 3)).fill(0).map((_, index) => index * 3);
-  }
-
-  changePage(index: number) {
-    this.currentPage = index;
-  }
+  // changePage(index: number) {
+  //   this.currentPage = index;
+  // }
 
 
    allSupplies: any;
@@ -54,6 +56,7 @@ export class SuppliesComponent implements OnInit {
     }
 
   ngOnInit(): void {
+     this.allSupplies = this.items
 
 
     this.handelGrid()

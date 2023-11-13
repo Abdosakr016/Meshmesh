@@ -72,10 +72,11 @@
 
 
       <div class="row product-list pt-5">
-          <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4" *ngFor="let item of allSupplies
+          | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
               <section class=" card">
                   <div class="pro-img-box">
-                      <img src="./assets/stand_cat.png" style="padding: 20px;" alt="" />
+                      <img src="./assets/stand_cat.png" style="padding: 20px;" alt="item" />
                       <a href="#" class="adtocart">
                           <i class="fa fa-shopping-cart"></i>
                       </a>
@@ -87,106 +88,13 @@
                               Leopard Shirt Dress
                           </a>
                       </h4>
-                      <p class="price">$300.00</p>
+                      <p class="price">{{item}}</p>
                   </div>
               </section>
-          </div>
-          <div class="col-md-4 mb-4">
-              <section class=" card">
-                  <div class="pro-img-box">
-                    <img src="./assets/stand_cat.png" style="padding: 20px;" alt="" />
-                    <a href="#" class="adtocart">
-                          <i class="fa fa-shopping-cart"></i>
-                      </a>
-                  </div>
-
-                  <div class=" card-body text-center">
-                      <h4>
-                          <a href="#" class="pro-title">
-                              Leopard Shirt Dress
-                          </a>
-                      </h4>
-                      <p class="price">$300.00</p>
-                  </div>
-              </section>
-          </div>
-          <div class="col-md-4 mb-4">
-              <section class=" card">
-                  <div class="pro-img-box">
-                    <img src="./assets/stand_cat.png" style="padding: 20px;" alt="" />
-                    <a href="#" class="adtocart">
-                          <i class="fa fa-shopping-cart"></i>
-                      </a>
-                  </div>
-
-                  <div class=" card-body text-center">
-                      <h4>
-                          <a href="#" class="pro-title">
-                              Leopard Shirt Dress
-                          </a>
-                      </h4>
-                      <p class="price">$300.00</p>
-                  </div>
-              </section>
-          </div>
-          <div class="col-md-4 mb-4">
-              <section class=" card">
-                  <div class="pro-img-box">
-                    <img src="./assets/stand_cat.png" style="padding: 20px;" alt="" />
-                    <a href="#" class="adtocart">
-                          <i class="fa fa-shopping-cart"></i>
-                      </a>
-                  </div>
-
-                  <div class=" card-body text-center">
-                      <h4>
-                          <a href="#" class="pro-title">
-                              Leopard Shirt Dress
-                          </a>
-                      </h4>
-                      <p class="price">$300.00</p>
-                  </div>
-              </section>
-          </div>
-
-          <div class="col-md-4 mb-4">
-              <section class=" card">
-                  <div class="pro-img-box">
-                    <img src="./assets/stand_cat.png" style="padding: 20px;" alt="" />
-                    <a href="#" class="adtocart">
-                          <i class="fa fa-shopping-cart"></i>
-                      </a>
-                  </div>
-
-                  <div class=" card-body text-center">
-                      <h4>
-                          <a href="#" class="pro-title">
-                              Leopard Shirt Dress
-                          </a>
-                      </h4>
-                      <p class="price">$300.00</p>
-                  </div>
-              </section>
-          </div>
-          <div class="col-md-4 mb-4">
-              <section class=" card">
-                  <div class="pro-img-box">
-                    <img src="./assets/stand_cat.png" style="padding: 20px;" alt="" />
-                    <a href="#" class="adtocart">
-                          <i class="fa fa-shopping-cart"></i>
-                      </a>
-                  </div>
-
-                  <div class=" card-body text-center">
-                      <h4>
-                          <a href="#" class="pro-title">
-                              Leopard Shirt Dress
-                          </a>
-                      </h4>
-                      <p class="price">$300.00</p>
-                  </div>
-              </section>
-          </div>
+       
       </div>
+<div class="text-center" *ngIf="allSupplies.length">    
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
   </div>
 </div>

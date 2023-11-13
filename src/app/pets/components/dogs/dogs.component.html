@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="row product-list pt-5">
+                <div class="col-md-4 mb-4" *ngFor="let pet of pets | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                    <section class="card mx-auto"> <!-- Added mx-auto class to center the card -->
+                        <div class="pro-img-box">
+                            <img src="./assets/stand_cat.png" style="padding: 20px;" alt="pet" />
+                            <!-- <a href="#" class="adtocart">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a> -->
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">
+                                <a href="#" class="pro-title text-primary">type:{{ pet.type }}</a>
+                            </h4>
+                            <p class="card-text text-success">Price: {{ pet.price }}</p>
+                            <p class="card-text text-info">Owner: {{ pet.owner }}</p>
+                            <p class="card-text text-warning">Age: {{ pet.age }}</p>
+                            <a href="#" class="text-reset">
+                                <p class="card-text text-danger">Category: {{ pet.category }}</p>
+                            </a>
+                            <p class="card-text text-secondary">Gender: {{ pet.gender }}</p>
+                            <p class="card-text text-muted">Operation: {{ pet.operation }}</p>
+                        </div>
+                        
+                        
+                    </section>
+                </div>
+            </div>
+            <div class="text-center" *ngIf="pets.length">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

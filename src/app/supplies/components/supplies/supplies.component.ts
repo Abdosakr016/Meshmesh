@@ -4,7 +4,7 @@ import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
-
+import { Isupply } from '../../isupply';
 @Component({
   selector: 'app-supplies',
   templateUrl: './supplies.component.html',
@@ -12,11 +12,11 @@ import { AuthService } from 'src/app/auth/components/auth.service';
 })
 export class SuppliesComponent implements OnInit {
 
-  allSuppliesp: any[] = []; // Your supplies array
+  // allSuppliesp: any[] = []; // Your supplies array
   
   p:number=1;
   itemsPerPage:number=3;
-  items = [
+  supply = [
     1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
   ]
   
@@ -56,7 +56,7 @@ export class SuppliesComponent implements OnInit {
     }
 
   ngOnInit(): void {
-     this.allSupplies = this.items
+     this.allSupplies = this.supply
 
 
     this.handelGrid()

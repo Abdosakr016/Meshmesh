@@ -20,7 +20,10 @@ import { SearchComponent } from './pets/components/search/search/search.componen
 import { MyPetsComponent } from './user-profile/component/my-pets/my-pets.component';
 import { RegisterbothComponent } from './auth/components/registerboth/registerboth.component';
 import { MyvetsComponent } from './porto_veterinary/components/myvets/myvets.component';
-
+import { CatsComponent } from './pets/components/cats/cats.component';
+import { DogsComponent } from './pets/components/dogs/dogs.component';
+import { BirdsComponent } from './pets/components/birds/birds.component';
+import { AnimaForBreadingComponent } from './pets/components/anima-for-breading/anima-for-breading.component';
 const routes: Routes = [
   {
     path: '',
@@ -124,6 +127,22 @@ const routes: Routes = [
   {
     path: 'registerone',
     component: RegisterbothComponent,
+  },
+  {
+    path: 'cats',
+    component: CatsComponent,
+  },
+  {
+    path: 'dogs',
+    component: DogsComponent,
+  },
+  {
+    path: 'birds',
+    component: BirdsComponent,
+  },
+  {
+    path: 'animalforbreading',
+    component: AnimaForBreadingComponent,
   },
 ];
 

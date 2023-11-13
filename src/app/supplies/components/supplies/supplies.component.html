@@ -72,24 +72,27 @@
 
 
       <div class="row product-list pt-5">
-          <div class="col-md-4 mb-4" *ngFor="let item of allSupplies
+          <div class="col-md-4 mb-4" *ngFor="let supply of allSupplies
           | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
               <section class=" card">
                   <div class="pro-img-box">
-                      <img src="./assets/stand_cat.png" style="padding: 20px;" alt="item" />
+                      <img src="./assets/stand_cat.png" style="padding: 20px;" alt="supply" />
                       <a href="#" class="adtocart">
                           <i class="fa fa-shopping-cart"></i>
                       </a>
                   </div>
 
-                  <div class=" card-body text-center">
-                      <h4>
-                          <a href="#" class="pro-title">
-                              Leopard Shirt Dress
-                          </a>
-                      </h4>
-                      <p class="price">{{item}}</p>
-                  </div>
+                  <div class="card-body text-center">
+                    <h4 class="card-title">
+                        <a href="#" class="pro-title text-primary">Name:{{ supply.name }}</a>
+                    </h4>
+                    <p class="card-text text-success">Price: {{ supply.price }}</p>
+                    <p class="card-text text-info">Description: {{ supply.description }}</p>
+                    <p class="card-text text-warning">Category: {{ supply.category }}</p>
+                    <p class="card-text text-secondary">Availability: {{ supply.is_available }}</p>
+                    <p class="card-text text-muted">Quantity: {{ supply.quantity }}</p>
+                </div>
+                
               </section>
        
       </div>

@@ -11,25 +11,42 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { FilterSearchPipe } from './pipes/filter-search.pipe';
 import { SearchComponent } from './components/search/search/search.component';
-
+import { DogsComponent } from './components/dogs/dogs.component';
+import { CatsComponent } from './components/cats/cats.component';
+import { BirdsComponent } from './components/birds/birds.component';
+import { AnimaForBreadingComponent } from './components/anima-for-breading/anima-for-breading.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [  
     CardComponent,
   ProductListComponent,
   FilterSearchPipe,
-  SearchComponent],
+  SearchComponent,
+  CatsComponent,
+  DogsComponent,
+  BirdsComponent,
+  AnimaForBreadingComponent,
+
+
+],
   imports: [
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
     ButtonModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
 
   exports:[
     ProductListComponent,
     CardComponent,
+    DogsComponent,
+    CatsComponent,
+    BirdsComponent,
+    AnimaForBreadingComponent
+
 
   ]
 })

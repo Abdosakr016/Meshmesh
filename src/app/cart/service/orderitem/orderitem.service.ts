@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class OrderitemService {
 
   constructor(private http: HttpClient) { }
-  private urlorderitem = 'http://localhost:8000/api/orders';
+  private urlorderitem = 'http://localhost:8000/api/orders_items';
 
   // Define HttpHeaders as a constant
   private httpHeaders: HttpHeaders = new HttpHeaders({
@@ -18,7 +18,7 @@ export class OrderitemService {
     return this.http.get(`${this.urlorderitem}`, { headers: this.httpHeaders });
   }
 
-  makeOrderitem(newOrder: any) { 
+  createOrderItem(newOrder: any) { 
     //   const headers = new HttpHeaders({
     //   Authorization: 'Bearer ' + localStorage.getItem('access_token')
     // });

@@ -11,20 +11,24 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { FilterSearchPipe } from './pipes/filter-search.pipe';
 import { SearchComponent } from './components/search/search/search.component';
+import { PetDetailsComponent } from './components/pet-details/pet-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [  
     CardComponent,
   ProductListComponent,
   FilterSearchPipe,
-  SearchComponent],
+  SearchComponent,
+  PetDetailsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
     ButtonModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
 
   exports:[

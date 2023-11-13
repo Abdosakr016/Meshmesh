@@ -20,6 +20,7 @@ import { SearchComponent } from './pets/components/search/search/search.componen
 import { MyPetsComponent } from './user-profile/component/my-pets/my-pets.component';
 import { RegisterbothComponent } from './auth/components/registerboth/registerboth.component';
 import { MyvetsComponent } from './porto_veterinary/components/myvets/myvets.component';
+import { PetDetailsComponent } from './pets/components/pet-details/pet-details.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,8 @@ const routes: Routes = [
     // canActivate:[authGuard]
 
   },
+  { path: 'product/:id', component: PetDetailsComponent },
+
   {
     path: 'search',
     component: SearchComponent

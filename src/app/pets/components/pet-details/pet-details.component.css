@@ -4,9 +4,18 @@ img{
     max-height:auto;
 }
 
-body{
- background-image: url("https://user-images.githubusercontent.com/71839001/96373522-daf4c780-1121-11eb-9081-b139c03b55ee.png");
- background-position: center;
- background-position: no-repeat;
- height:auto;
-}
+
+
+.container-fluid {
+    background-image: url('/assets/bg.png');
+    /* height: 80vh; */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-repeat: repeat-y;
+  }
+  

@@ -40,6 +40,6 @@ export class OrderService {
       //   const headers = new HttpHeaders({
       //   Authorization: 'Bearer ' + localStorage.getItem('access_token')
       // });
-        return this.http.post(`${this.urlPaypal}`, newapayment, { headers: this.httpHeaders });
+        return this.http.post(`${this.urlPaypal}`, newapayment );
       }
 }

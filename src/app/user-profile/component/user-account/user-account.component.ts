@@ -52,6 +52,7 @@ export class UserAccountComponent {
       this.getUserOrder()
     }
     
+    
     userUpdateValidation() {
       this.userUpdateForm = this.formBuilder.group({
         name: ['', Validators.required],

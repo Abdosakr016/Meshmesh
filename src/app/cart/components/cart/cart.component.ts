@@ -4,7 +4,6 @@ import { CartService } from '../../service/cart/cart.service';
 import { OrderService } from '../../service/order/order.service';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { OrderitemService } from '../../service/orderitem/orderitem.service';
-import { Order } from '../../interfaces/order/order';
 
 @Component({
   selector: 'app-cart',
@@ -78,7 +77,7 @@ export class CartComponent {
   
     this.orderService.payment(newapayment).subscribe(
       (response) => {
-        console.log('Data added successfully:', response);
+    return  response;
       },
       (error: any) => {
         console.error('Error adding data:', error);

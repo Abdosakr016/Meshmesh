@@ -16,10 +16,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { SuppliesModule } from './supplies/supplies.module';
 import { AboutModule } from './about/about.module';
-import { AdminModule } from './admin/admin.module';
+import { AdminComponent } from './admin/admin.component';
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { LayoutComponent } from './admin/layout/layout.component';
+import { TpetsComponent } from './admin/tpets/tpets.component';
+import { TusersComponent } from './admin/tusers/tusers.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,7 +40,9 @@ import { AdminModule } from './admin/admin.module';
     SuppliesModule,
     AboutModule,
     NgxPaginationModule,
-
+    UserProfileModule,
+    AdminRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

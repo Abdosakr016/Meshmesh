@@ -95,7 +95,8 @@ const routes: Routes = [
   },
   {
     path: 'user-account',
-    component: UserAccountComponent
+    component: UserAccountComponent,
+   canActivate :[authGuard]
   },
   {
     path: 'show_Vet_details/:id',
@@ -110,10 +111,12 @@ const routes: Routes = [
 },
 {path: 'myPets',
   component: MyPetsComponent,
+    canActivate :[authGuard]
 },
   {
     path: 'user-vet',
     component: UserProfileComponent,
+      canActivate :[authGuard]
   },
   {
     path: 'user-account',
@@ -127,6 +130,7 @@ const routes: Routes = [
   {
     path: 'mycenters',
     component: MyvetsComponent,
+      canActivate :[authGuard]
   },
   {
     path: 'registerone',

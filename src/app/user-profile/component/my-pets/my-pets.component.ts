@@ -71,6 +71,8 @@ export class MyPetsComponent {
     
   
     onAddPet() {
+     
+      
       if (this.addPetForm.valid) {
         const petData = this.addPetForm.value;
        

@@ -30,7 +30,7 @@ export class CardComponent {
     ngOnInit() {
 
     this.validationFun();
-  
+    this.getAuthUser()
   }
   validationFun(){
     this.editPetForm = this.formBuilder.group({
@@ -82,9 +82,11 @@ export class CardComponent {
   // }
   onUpdate() {
     if (this.editPetForm.valid) {
+     
+
       const petData = this.editPetForm.value;
       const formData = new FormData();
-  
+      console.log(this.userData.id);
       formData.append('user_id', this.userData.id); // Assuming user_id is a field in your form
       formData.append('age', petData.age);
       formData.append('type', petData.type);
@@ -135,6 +137,7 @@ export class CardComponent {
     this.userService.getUserData().subscribe(
       (data) => {
         this.userData = data;
+        
         console.log(this.userData );
 
       },

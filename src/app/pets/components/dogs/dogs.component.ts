@@ -14,13 +14,13 @@ import { Ipet } from '../../interface/Ipet';
   styleUrls: ['./dogs.component.css']
 })
 export class DogsComponent {
-  pets:any;
   userData: any;
+  pets: any;
+
   p:number=1;
   itemsPerPage:number=3;
-  
-  
-  count ! : number ;
+ 
+dogs: Ipet[] = [];
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: ApiServiceService ,
@@ -35,10 +35,9 @@ export class DogsComponent {
       this.apiService.getProductList().subscribe(
         (data) => {
           this.pets = data;
-          console.log(this.pets);
+  
     
-          // Apply category filters after data has been loaded
-          //* for cat
+          this.categorydogs()
         
         },
         (error) => {
@@ -48,9 +47,7 @@ export class DogsComponent {
           console.log('COMPLETE');
         }
       );
-    
-      
-
+         
       this.getAuthUser();
 
   }
@@ -66,5 +63,20 @@ export class DogsComponent {
         console.error(error);
       }
     );}
-}
 
+    categorydogs() {
+
+      this.dogs = this.pets.filter((pet: any) => pet.category === "Dogs");
+      if (this.dogs.length > 0) {
+       
+        console.log("dogs", this.dogs);
+      } else {
+        console.log("No dogs found.");
+      }
+    }
+
+    generateImageUrl(image: string) {
+      return `http://localhost:8000/storage/${image}`;
+    } 
+  
+}

@@ -18,10 +18,8 @@ export class BirdsComponent {
 
   p:number=1;
   itemsPerPage:number=3;
-
-
-
-  count ! : number ;
+ 
+birds: Ipet[] = [];
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: ApiServiceService ,
@@ -36,10 +34,9 @@ export class BirdsComponent {
       this.apiService.getProductList().subscribe(
         (data) => {
           this.pets = data;
-          console.log(this.pets);
+  
     
-          // Apply category filters after data has been loaded
-          //* for cat
+          this.categorybirds()
         
         },
         (error) => {
@@ -49,9 +46,7 @@ export class BirdsComponent {
           console.log('COMPLETE');
         }
       );
-    
-      
-
+         
       this.getAuthUser();
 
   }
@@ -67,4 +62,20 @@ export class BirdsComponent {
         console.error(error);
       }
     );}
+
+    categorybirds() {
+
+      this.birds = this.pets.filter((pet: any) => pet.category === "Birds");
+      if (this.birds.length > 0) {
+       
+        console.log("birds", this.birds);
+      } else {
+        console.log("No birds found.");
+      }
+    }
+
+    generateImageUrl(image: string) {
+      return `http://localhost:8000/storage/${image}`;
+    } 
+  
 }

@@ -1,7 +1,10 @@
 <!-- pet-list.component.html -->
 <div class="container-fluid">
-    <div class="container mt-4">
+    <div class="container mt-4 ">
+        <div class="d-flex">
         <h1 class="display-4 fw-bold pb-4">Search<span style="color: #FF9831;"> Result</span></h1>
+        <a href="#" class="fw-semibold d-block text-dark pt-5 ps-5" routerLink="/products">Return To All Pets  <i class="fa fa-arrow-right"></i></a>
+    </div>
 
         <div class="row">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let pet of searchResults">
@@ -23,10 +26,10 @@
                         <div class="btn_main">
                             <div class="buy_bt">
                                 <button class="btn btn-outline-success">
-Add to cart
+Add to cart <i class="fa fa-cart-plus"></i>
                                 </button>
                             </div>
-                            <div class="seemore_bt btn btn-secondary"><a href="#"[routerLink]="['/product', pet.id]">show pet</a></div>
+                            <div class=" btn btn-outline-secondary text-dark"><a class="text-dark" href="#"[routerLink]="['/product', pet.id]">show pet  <i class="fa fa-arrow-right"></i></a></div>
 
                         </div>
                         <!-- Add more content based on your data structure -->

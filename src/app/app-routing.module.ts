@@ -152,6 +152,7 @@ const routes: Routes = [
     path: 'animalforbreading',
     component: AnimaForBreadingComponent,
   },
+
 ];
 
 

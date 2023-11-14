@@ -49,10 +49,9 @@
 
         <div class="text-end">
           <div *ngIf="userLogin; else loginButtons">
-            <div class="dropdown text-end">
-              <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-              </a>
+            <div class="dropdown text-end ">
+              <a href="#" class="d-block link-body-emphasis text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user-circle fa-lg text-white fs-3"></i>              </a>
               <ul class="dropdown-menu text-small">
              
                 <li><a class="dropdown-item" routerLink="user-account">{{ userData.name }}

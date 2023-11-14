@@ -21,9 +21,10 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { LayoutComponent } from './admin/layout/layout.component';
 import { TpetsComponent } from './admin/tpets/tpets.component';
 import { TusersComponent } from './admin/tusers/tusers.component';
+import { TsupplyComponent } from './admin/tsupply/tsupply.component';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent],
+  declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent, TsupplyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

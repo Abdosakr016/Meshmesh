@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module';
+
 import { PetsModule } from './pets/pets.module';
 import { HomeModule } from './home/home.module';
 import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.module';
@@ -21,6 +21,7 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { LayoutComponent } from './admin/layout/layout.component';
 import { TpetsComponent } from './admin/tpets/tpets.component';
 import { TusersComponent } from './admin/tusers/tusers.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent],
@@ -42,7 +43,7 @@ import { TusersComponent } from './admin/tusers/tusers.component';
     NgxPaginationModule,
     UserProfileModule,
     AdminRoutingModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -21,6 +21,7 @@ export class CartComponent {
   total: number = 0;
   userData: any
   cart_products:any[]=[]
+  cart_id:any
   constructor(
     private cartService: CartService,
     private orderService:OrderService ,
@@ -34,11 +35,16 @@ export class CartComponent {
     this.getAuthUser()
     this.cart_products=this.cartService.cartArray
   }
-  removeItem(product: any){
-    const index = this.cart_products.findIndex((p) => p.id === product.id);
+  deleteDoctor(id:any){
+    this.cart_id=id
+      }
+  removeItem(){
+    const index = this.cart_products.findIndex((p) => p.id === this.cart_id);
     if (index !== -1) {
       this.cart_products.splice(index, 1);
+      this.cartService.remove_item()
     }
+
 
    }
    increaseQuantity(product: any) {
@@ -76,9 +82,11 @@ export class CartComponent {
     const newapayment = {  "total_price": this.getTotalPrice() };
   
     this.orderService.payment(newapayment).subscribe(
-      (response) => {
-    return  response;
-      },
+
+        (response :any) => {
+          window.location.href= response;
+          },
+
       (error: any) => {
         console.error('Error adding data:', error);
       }

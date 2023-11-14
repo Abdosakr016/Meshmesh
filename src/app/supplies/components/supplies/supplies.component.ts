@@ -226,25 +226,8 @@ formData.append('_method','PUT');
         console.error('Error deleting doctor:', error);
       }
     );
+  
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   handelGrid(){

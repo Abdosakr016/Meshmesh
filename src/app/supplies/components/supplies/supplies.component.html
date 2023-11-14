@@ -68,8 +68,8 @@
               <section class=" card">
                   <div class="pro-img-box">
                     <img [src]="generateImageUrl(supply.image)" height="100" width="200" alt="" class="avatar-lg rounded" />
-                      <a href="#" class="adtocart">
-                          <i class="fa fa-shopping-cart"></i>
+                    <a height="20" width="20" class="adtocart"(click)="addToCart(supply)">
+                      <i class="fa fa-shopping-cart"></i>
                       </a>
                   </div>
 

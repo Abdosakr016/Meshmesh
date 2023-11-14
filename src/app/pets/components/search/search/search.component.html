@@ -14,8 +14,9 @@
                         <!-- <p class="card-text"><span style="color: green;">Price: </span>{{ pet?.price }}</p> -->
 
                        <div class="card-text d-flex"> <p><span style="color: #FF9831;font-weight: bold;">For&nbsp;:&nbsp;</span>{{ pet?.operation }} </p>
-                        <div class="seemore_bt"><a href="#"[routerLink]="['/product', pet.id]">show pet</a></div>
-
+                        <div class="rounded-circle" >
+                            <h5 class=" ps-3 pe-3" >{{ pet?.price }}<span style="color: green;">$</span></h5>
+                            </div>
                     </div>
 
 
@@ -25,9 +26,8 @@
 Add to cart
                                 </button>
                             </div>
-                            <div class="rounded-circle" >
-                            <h5 class=" ps-3 pe-3" >{{ pet?.price }}<span style="color: green;">$</span></h5>
-                            </div>
+                            <div class="seemore_bt btn btn-secondary"><a href="#"[routerLink]="['/product', pet.id]">show pet</a></div>
+
                         </div>
                         <!-- Add more content based on your data structure -->
                     </div>

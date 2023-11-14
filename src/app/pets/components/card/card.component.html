@@ -87,7 +87,7 @@
                     <h1 class="fashion_taital">Cats for Adoption </h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_adopt">
+                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_adopt.slice(0, 3)">
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
                                 <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
@@ -108,7 +108,7 @@
                     <h1 class="fashion_taital">Cats for Sale</h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_sell">
+                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_sell.slice(0, 3)">
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
                                 <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
@@ -145,7 +145,7 @@
                     <h1 class="fashion_taital">Dogs for Adoption </h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_sell">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_sell.slice(0, 3)">
                           
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
@@ -170,7 +170,7 @@
                     <h1 class="fashion_taital">Dogs for Sale</h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                          <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_adopt">
+                          <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_adopt.slice(0, 3)">
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
                                 <p class="price_text">Price  <span style="color: #262626;">$  {{pet.price}}</span></p>
@@ -212,7 +212,7 @@
                   <h1 class="fashion_taital">Birds For Adoption</h1>
                   <div class="fashion_section_2">
                       <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt.slice(0, 3)">
                           <div class="box_main">
                               <h4 class="shirt_text">{{ pet.type }}</h4>
                               <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
@@ -232,7 +232,7 @@
                   <h1 class="fashion_taital">Birds For Sale</h1>
                   <div class="fashion_section_2">
                       <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_sell">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_sell.slice(0, 3)">
                           <div class="box_main">
                               <h4 class="shirt_text">{{ pet.type }}</h4>
                               <p class="price_text">Start Price  <span style="color: #262626;">$ {{ pet.price }}</span></p>
@@ -272,7 +272,7 @@
                 <h1 class="fashion_taital"> Another animals </h1>
                 <div class="fashion_section_2">
                   <div class="row">
-                    <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryAnimal_breeding">
+                    <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryAnimal_breeding.slice(0, 3)">
                       
                         <div class="box_main">
                             <h4 class="shirt_text">{{ pet.type }}</h4>
@@ -293,8 +293,8 @@
           </div>
         
       </div>
-      <button type="button" class="btn btn-info text-white text-center ms-5"><a class=" text-white text-center" href="anima-for-breading">See More</a></button>
-      <div class="d-flex">
+      <button type="button" class="btn btn-info text-white text-center"><a class=" text-white text-center" href="animalforbreading">See More</a></button>
+
       <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
       <i class="fa fa-angle-left"></i>
       </a>

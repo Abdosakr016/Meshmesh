@@ -14,7 +14,7 @@ export class OrderService {
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Accept': 'application/json'
   });
-
+private headerpaypal = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
   getOrders() {
     return this.http.get(`${this.urlorder}`, { headers: this.httpHeaders });
   }
@@ -40,6 +40,5 @@ export class OrderService {
       //   const headers = new HttpHeaders({
       //   Authorization: 'Bearer ' + localStorage.getItem('access_token')
       // });
-        return this.http.post(`${this.urlPaypal}`, newapayment );
-      }
+      return this.http.post(`${this.urlPaypal}`, newapayment ,{ headers: this.headerpaypal } );      }
 }

@@ -228,3 +228,11 @@ select.formbold-form-input,
   z-index: 2;
   position: relative;
 }
+.container-fluid {
+  background-image: url('/assets/bg.png');
+  /* height: 80vh; */
+  display: flex;
+  margin: 0;
+  padding: 0;
+  background-repeat: repeat-y;
+}

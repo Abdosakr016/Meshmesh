@@ -1,5 +1,4 @@
 
-
     <!-- banner bg main start -->
     <div class="banner_bg_main">
         <!-- header top section start -->
@@ -124,28 +123,7 @@
                     </div>
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="container">
-                    <h1 class="fashion_taital">Cats for Adoption & sale</h1>
-                    <div class="fashion_section_2">
-                      <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_sell">
-                            <div class="box_main">
-                                <h4 class="shirt_text">{{ pet.type }}</h4>
-                                <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
-                                <div class="electronic_img"><img [src]="generateImageUrl(pet.image)"></div>
-                                <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="addToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#"[routerLink]="['/product', pet.id]">show pet</a></div>                               
-
-                                </div>
-                            </div>
-                          </div>
-                        
-                      </div>
-                    </div>
-                </div>
-              </div>
+             
           </div>
           <button type="button" class="btn btn-info text-white text-center"><a class=" text-white text-center" href="cats">See More</a></button>
 
@@ -208,26 +186,7 @@
                     </div>
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="container">
-                    <h1 class="fashion_taital">Dogs for Adoption &sale</h1>
-                    <div class="fashion_section_2">
-                      <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryDogs_adopt">
-                            <div class="box_main">
-                                <h4 class="shirt_text">{{ pet.type }}</h4>
-                                <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
-                                <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
-                                <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="addToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#"[routerLink]="['/product', pet.id]">show pet</a></div>                                </div>
-                            </div>
-                          </div>
-                        
-                      </div>
-                    </div>
-                </div>
-              </div>
+              
           </div>
           <button type="button" class="btn btn-info text-white text-center"><a class=" text-white text-center" href="dogs">See More</a></button>
 
@@ -238,7 +197,7 @@
           <i class="fa fa-angle-right"></i>
           </a>
           
-        </div>1
+        </div>
     </div>
     <!-- Dogs section end -->
   
@@ -288,27 +247,7 @@
                   </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="container">
-                  <h1 class="fashion_taital">Birds For Adoption & Sale<</h1>
-                  <div class="fashion_section_2">
-                      <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt">
-                          <div class="box_main">
-                              <h4 class="shirt_text">{{ pet.type }}</h4>
-                              <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                              <div class="jewellery_img"><img [src]="generateImageUrl(pet.image)"></div>
-                              <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="addToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#"[routerLink]="['/product', pet.id]">show pet</a></div>                              </div>
-                            </div>
-                        </div>
-                      
-                        
-                      </div>
-                  </div>
-                </div>
-            </div>
+            
           </div>
           <button type="button" class="btn btn-info text-white text-center"><a class=" text-white text-center" href="birds">See More</a></button>
 
@@ -330,7 +269,7 @@
       <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="container">
-                <h1 class="fashion_taital"> Animal For Breading </h1>
+                <h1 class="fashion_taital"> Another animals </h1>
                 <div class="fashion_section_2">
                   <div class="row">
                     <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryAnimal_breeding">
@@ -354,14 +293,15 @@
           </div>
         
       </div>
-      <button type="button" class="btn btn-info text-white text-center"><a class=" text-white text-center" href="anima-for-breading">See More</a></button>
-
+      <button type="button" class="btn btn-info text-white text-center ms-5"><a class=" text-white text-center" href="anima-for-breading">See More</a></button>
+      <div class="d-flex">
       <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
       <i class="fa fa-angle-left"></i>
       </a>
       <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
       <i class="fa fa-angle-right"></i>
       </a>
+    </div>
     </div>
 </div>
 

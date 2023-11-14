@@ -16,7 +16,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { SuppliesModule } from './supplies/supplies.module';
 import { AboutModule } from './about/about.module';
-import { AdminModule } from './admin/admin.module';
 @NgModule({
   declarations: [
   AppComponent,

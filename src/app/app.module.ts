@@ -17,7 +17,6 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { SuppliesModule } from './supplies/supplies.module';
 import { AboutModule } from './about/about.module';
 import { AdminModule } from './admin/admin.module';
-import { AdminRoutingModule } from './admin/admin-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +37,6 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
     AboutModule,
     NgxPaginationModule,
     AdminModule,
-    AdminRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

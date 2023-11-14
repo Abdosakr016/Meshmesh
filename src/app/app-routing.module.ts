@@ -26,7 +26,6 @@ import { CatsComponent } from './pets/components/cats/cats.component';
 import { DogsComponent } from './pets/components/dogs/dogs.component';
 import { BirdsComponent } from './pets/components/birds/birds.component';
 import { AnimaForBreadingComponent } from './pets/components/anima-for-breading/anima-for-breading.component';
-import { LayoutComponent } from './admin/components/layout/layout.component';
 const routes: Routes = [
   {
     path: '',
@@ -149,10 +148,7 @@ const routes: Routes = [
     path: 'animalforbreading',
     component: AnimaForBreadingComponent,
   },
-  {
-    path: 'dlay',
-    component: LayoutComponent,
-  },
+
 ];
 
 

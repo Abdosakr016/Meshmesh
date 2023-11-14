@@ -1,9 +1,10 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { SuppliesService } from '../../services/supplies.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
-import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
+import { Router } from '@angular/router';
+
 import { Isupply } from '../../isupply';
 @Component({
   selector: 'app-supplies',
@@ -11,19 +12,16 @@ import { Isupply } from '../../isupply';
   styleUrls: ['./supplies.component.css']
 })
 export class SuppliesComponent implements OnInit {
-
-  // allSuppliesp: any[] = []; // Your supplies array
-  
   p:number=1;
-  itemsPerPage:number=3;
-  supply = [
-    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
-  ]
-  
+  itemsPerPage:number=1;  
 
-  // changePage(index: number) {
-  //   this.currentPage = index;
-  // }
+
+ 
+
+  arryCart:any[]=[];
+  productInCart=false;
+  alertMessage=''
+
 
 
    allSupplies: any;
@@ -32,7 +30,7 @@ export class SuppliesComponent implements OnInit {
   addSupplyForm!:FormGroup;
   updateSupplyForm!:FormGroup;
   userData: any;
-  count!: number;
+
   deleteId!:any;
   updateId!:any;
   base64: any;
@@ -41,7 +39,9 @@ export class SuppliesComponent implements OnInit {
     private el: ElementRef,private suppliesService:SuppliesService, 
     private userService:AuthService,
     private CartService:CartService,
-    private counter:CounterService) {
+   
+    private router:Router
+    ) {
 
       // Initialize your form group (updateDoctorForm) herebb
     this.updateSupplyForm = this.fb.group({
@@ -56,7 +56,7 @@ export class SuppliesComponent implements OnInit {
     }
 
   ngOnInit(): void {
-     this.allSupplies = this.supply
+
 
 
     this.handelGrid()
@@ -123,7 +123,9 @@ export class SuppliesComponent implements OnInit {
   }
     );
   }
-
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  } 
   onUpdateSupply(){
 
 
@@ -161,20 +163,6 @@ formData.append('_method','PUT');
     }
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   onAddSupply() {
     if (this.addSupplyForm.valid) {
@@ -238,25 +226,8 @@ formData.append('_method','PUT');
         console.error('Error deleting doctor:', error);
       }
     );
+  
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   handelGrid(){
@@ -282,9 +253,14 @@ formData.append('_method','PUT');
       });
     }
   }
-  AddToCart(item : any){
-    this.CartService.addItem(item);
-    this.counter.setCartValue(++this.count)
-    // this.router.navigate(['cart' , item])
-  }
+  addToCart(product: any) {
+    this.productInCart=this.CartService.productInCart
+    this.alertMessage=this.CartService.alertMessage
+    
+    this.CartService.addCartArray_service(product);
+    
+      }
+      closeAlert() {
+        this.productInCart = false;
+      }
 }

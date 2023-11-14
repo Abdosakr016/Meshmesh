@@ -24,19 +24,30 @@ export class UserServiceService {
   getProductDetails(id: Number) {
     return this.http.get(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
-  addNewPet(petData: FormData) {
-    return this.http.post<Ipet>('http://localhost:8000/api/pets', petData);
+  addNewPet(petData: FormData) { 
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+ 
+    return this.http.post<Ipet>('http://localhost:8000/api/pets', petData, { headers });
   }
 
   
   updatePet(id: any, petData: FormData) {
-
-    return this.http.post(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+ 
+    return this.http.post(`${this.url}/${id}`, petData, { headers });
   
   }
 
   deleteProduct(id: string) {
-    return this.http.delete(`${this.url}/${id}`, { headers: this.httpHeaders });
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+ 
+    return this.http.delete(`${this.url}/${id}`, {headers});
   }
 
 }

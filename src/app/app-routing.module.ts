@@ -20,6 +20,8 @@ import { SearchComponent } from './pets/components/search/search/search.componen
 import { MyPetsComponent } from './user-profile/component/my-pets/my-pets.component';
 import { RegisterbothComponent } from './auth/components/registerboth/registerboth.component';
 import { MyvetsComponent } from './porto_veterinary/components/myvets/myvets.component';
+import { PetDetailsComponent } from './pets/components/pet-details/pet-details.component';
+
 import { CatsComponent } from './pets/components/cats/cats.component';
 import { DogsComponent } from './pets/components/dogs/dogs.component';
 import { BirdsComponent } from './pets/components/birds/birds.component';
@@ -36,6 +38,8 @@ const routes: Routes = [
     // canActivate:[authGuard]
 
   },
+  { path: 'product/:id', component: PetDetailsComponent },
+
   {
     path: 'search',
     component: SearchComponent
@@ -92,7 +96,8 @@ const routes: Routes = [
   },
   {
     path: 'user-account',
-    component: UserAccountComponent
+    component: UserAccountComponent,
+   canActivate :[authGuard]
   },
   {
     path: 'show_Vet_details/:id',
@@ -107,10 +112,12 @@ const routes: Routes = [
 },
 {path: 'myPets',
   component: MyPetsComponent,
+    canActivate :[authGuard]
 },
   {
     path: 'user-vet',
     component: UserProfileComponent,
+      canActivate :[authGuard]
   },
   {
     path: 'user-account',
@@ -124,6 +131,7 @@ const routes: Routes = [
   {
     path: 'mycenters',
     component: MyvetsComponent,
+      canActivate :[authGuard]
   },
   {
     path: 'registerone',
@@ -145,6 +153,7 @@ const routes: Routes = [
     path: 'animalforbreading',
     component: AnimaForBreadingComponent,
   },
+
 ];
 
 

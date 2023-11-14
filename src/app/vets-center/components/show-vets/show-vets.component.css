@@ -81,16 +81,14 @@ button {
 .hero {
 
   /* background-image: url(/assets/bg.jpeg); */
-  background-image: url(/assets/images/VetcenterP.jpg);
+  background-image: url(/assets/vet_hero.jpg);
   background-repeat: no-reapeat;
   background-size: cover;
-  opacity: 80%;
   background-position: center;
-  text-align: center;
+  text-align: left;
   padding: 100px;
-  color: #fff;
   height: 100vh;
-  /* width: 100%; */
+  width: 100%;
   background-repeat: repeat-y;
 }
 
@@ -103,18 +101,19 @@ button {
   font-size: 60px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   text-transform: upperCase;
-  color: #fff;
+  color: #c25452;
   padding-bottom: 20px;
 }
 
 .hero-description {
   font-size: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .hero-button {
   background-color: #ff6600;
   padding: 20px;
+  margin-top: 30px;
   color: #fff;
   text-decoration: none;
   border-radius: 10px;

@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CardComponent } from './components/card/card.component';
-import { CartModule } from '../cart/cart.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { FilterSearchPipe } from './pipes/filter-search.pipe';
 import { SearchComponent } from './components/search/search/search.component';
+import { PetDetailsComponent } from './components/pet-details/pet-details.component';
+import { RouterModule } from '@angular/router';
+
 import { DogsComponent } from './components/dogs/dogs.component';
 import { CatsComponent } from './components/cats/cats.component';
 import { BirdsComponent } from './components/birds/birds.component';
@@ -22,6 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ProductListComponent,
   FilterSearchPipe,
   SearchComponent,
+  PetDetailsComponent,
   CatsComponent,
   DogsComponent,
   BirdsComponent,
@@ -36,6 +38,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ButtonModule,
     DialogModule,
     FormsModule,
+    RouterModule,
     NgxPaginationModule
   ],
 

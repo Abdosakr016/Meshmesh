@@ -25,6 +25,7 @@ import { CartModule } from '../cart/cart.module';
   exports:[
     NavbarComponent,
     FooterComponent,
+    
   ]
 })
 export class SharedModule { }

@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit{
       console.log(res);
       if(res.access_token){
         localStorage.setItem('access_token' ,res.access_token )
-        this.router.navigate(['']);
+        window.location.href='';
 
       }
     },

@@ -68,7 +68,7 @@ export class CreatListDoctorsComponent implements OnInit {
 
       // const formData = new FormnameData();
       // formData.append('_method', 'PUT');
-   
+
       // if (this.imageDoctor) {
       //   formData.append('image', this.imageDoctor);
 
@@ -161,23 +161,5 @@ export class CreatListDoctorsComponent implements OnInit {
 
 
 
-  deleteDoctor(id: number) {
-
-    this.deleteId = id;
-
-  }
-
-  modeldeleteDoctor() {
-    this.VetService.deleteDoctor(this.deleteId).subscribe(
-      (data) => {
-        console.log('doctor deleted successfully:', data);
-        this.getDoctors();
-      },
-
-      (error) => {
-        console.error('Error deleting doctor:', error);
-      }
-    );
-  }
 
 }

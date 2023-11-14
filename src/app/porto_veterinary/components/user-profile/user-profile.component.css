@@ -252,3 +252,9 @@ img {
   color: green;
   height: 3px;
 }
+
+.waiting {
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  color: #ff8800;
+}

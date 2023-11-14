@@ -3,13 +3,24 @@ import { HttpClient,HttpHeaders,HttpHeaderResponse, HttpErrorResponse } from '@a
 import { Idoctor } from './doctorclass';
 import { catchError,map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { Ivetcenter } from 'src/app/vets-center/interface/ivetcenter';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VeterinaryService {
 
+  AccessToken:any = localStorage.getItem('access_token');
+
   REST_API:string='http://localhost:8000/api/doctors';
+  REST_API_mydoc:string='http://localhost:8000/api/mydoctors';
+  REST_API_allmydoc:string='http://localhost:8000/api/allmydoctors';
+  REST_API_delmydoc:string='http://localhost:8000/api/veterinary-centers/';
+
+
+
+  header = new HttpHeaders().set("Authorization", `Bearer ${this.AccessToken}`);
+
 
   httpHeaders=new HttpHeaders().set('Content-Type','application/json');
 
@@ -23,6 +34,14 @@ export class VeterinaryService {
  get_doctors(){
   return this.httpClient.get(`${this.REST_API}`);
  }
+ get_my_doctors(){
+  return this.httpClient.get(`${this.REST_API_mydoc}`,{headers: this.header});
+ }
+
+//  get_my_doctors(){
+//   return this.httpClient.get(`${this.REST_API_allmydoc}`);
+//  }
+
 
  getOneDoctor(id: any){
   let API_URL=`${this.REST_API}/${id}`;
@@ -39,9 +58,9 @@ export class VeterinaryService {
     return this.httpClient.post(API_URL,data,{headers: this.httpHeaders})
    }
 
-   deleteDoctor(id:any){
-    let API_URL=`${this.REST_API}/${id}`;
-    return this.httpClient.delete(API_URL,{headers: this.httpHeaders})
+   deleteDoctor(id:any,doctorId:any){
+    let API_URL=`${this.REST_API_delmydoc}${id}/doctors/${doctorId}`;
+    return this.httpClient.delete(API_URL,{headers: this.header})
    }
 
    handleError(error:HttpErrorResponse){

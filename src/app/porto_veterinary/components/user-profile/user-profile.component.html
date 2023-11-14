@@ -29,8 +29,9 @@
                       class="btn btn-success"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
+                      *ngIf="!havevet()"
                     >
-                      Add New Center
+                      Add Your Center
                     </button>
                   </div>
 
@@ -521,27 +522,333 @@
                     <tr class="text-center">
                       <th>Name</th>
                       <th>Pet</th>
-                      <th>Appointment date</th>
-                      <th>Appointment time</th>
+                      <th>date</th>
+                      <th>time</th>
+                      <th>Status</th>
                       <th>Accept</th>
                       <th>Reject</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody class="table-group-divider text-center">
                     <tr *ngFor="let app of apps">
-                      <td>User name</td>
+                      <td>{{ app.user.name }}</td>
                       <td>{{ app.pet_type }}</td>
                       <td>{{ app.date }}</td>
                       <td>{{ app.time }}</td>
-                      <td>
-                        <a class="btn btn-success" (click)="acceptmail()"
-                          >Accept</a
+                      <td rejectModalToggle class="text-success">
+                        <p
+                          class="text-success"
+                          *ngIf="app.status == 'accepted'"
                         >
+                          Accepted
+                        </p>
+                        <p class="text-danger" *ngIf="app.status == 'rejected'">
+                          Rejected
+                        </p>
+                        <p *ngIf="app.status == 'wait'" class="waiting">
+                          Wait for action
+                        </p>
                       </td>
-                      <td>
-                        <a class="btn btn-danger" (click)="rejectmail()"
-                          >Reject</a
+                      <!-- start accept mail -->
+                      <td rejectModalToggle>
+                        <button
+                          *ngIf="app.status == 'wait'"
+                          class="btn btn-success"
+                          [attr.data-bs-target]="'#acceptModalToggle' + app.id"
+                          data-bs-toggle="modal"
                         >
+                          Accept
+                        </button>
+
+                        <!-- start modal -->
+                        <div
+                          class="modal fade"
+                          id="acceptModalToggle{{ app.id }}"
+                          aria-hidden="true"
+                          aria-labelledby="exampleModalToggleLabel"
+                          tabindex="-1"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalToggleLabel"
+                                >
+                                  acceptmail
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                We will send accept mail to your customer email
+                                address
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  class="btn btn-success"
+                                  data-bs-target="#acceptModalToggle2"
+                                  data-bs-toggle="modal"
+                                  (click)="acceptmail(app.id)"
+                                >
+                                  Done
+                                </button>
+                                <button
+                                  class="btn btn-danger"
+                                  data-bs-target="#exampleModalToggle2"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="modal fade"
+                          id="acceptModalToggle2"
+                          aria-hidden="true"
+                          aria-labelledby="exampleModalToggleLabel2"
+                          tabindex="-1"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalToggleLabel2"
+                                >
+                                  Done
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                Email Send Successfuly
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  class="btn btn-primary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  close
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end modal -->
+                      </td>
+                      <!-- end accept mail -->
+
+                      <!-- start reject mail -->
+                      <td rejectModalToggle>
+                        <button
+                          class="btn btn-danger"
+                          [attr.data-bs-target]="'#rejectModalToggle' + app.id"
+                          data-bs-toggle="modal"
+                          *ngIf="app.status == 'wait'"
+                        >
+                          Reject
+                        </button>
+                        <div
+                          class="modal fade"
+                          id="rejectModalToggle{{ app.id }}"
+                          aria-hidden="true"
+                          aria-labelledby="exampleModalToggleLabel"
+                          tabindex="-1"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalToggleLabel"
+                                >
+                                  rejectmail
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                We will send email with Reject for the client.
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  class="btn btn-success"
+                                  data-bs-target="#rejectModalToggle2"
+                                  data-bs-toggle="modal"
+                                  (click)="rejectmail(app.id)"
+                                >
+                                  Done
+                                </button>
+                                <button
+                                  class="btn btn-danger"
+                                  data-bs-target="#exampleModalToggle2"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="modal fade"
+                          id="rejectModalToggle2"
+                          aria-hidden="true"
+                          aria-labelledby="exampleModalToggleLabel2"
+                          tabindex="-1"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalToggleLabel2"
+                                >
+                                  Done
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                Email Send Successfuly
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  class="btn btn-primary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  close
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <!-- end reject mail -->
+                      <td *ngIf="app.status == 'rejected'">
+                        <!-- Start Modal Delete -->
+
+                        <button
+                          class="btn btn-danger mx-2"
+                          data-bs-toggle="modal"
+                          data-bs-target="#DeleteModaldoc"
+                          (click)="deleteAppoint(app.id)"
+                        >
+                          Delete
+                        </button>
+                        <div
+                          class="modal fade"
+                          id="DeleteModaldoc"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-body">
+                                <div
+                                  class="alert alert-warning alert-dismissible fade show"
+                                  role="alert"
+                                >
+                                  are you sure that you want to delete this
+                                  Appointment ?
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Close
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-danger"
+                                  data-bs-dismiss="modal"
+                                  (click)="modaldeleteAppoint()"
+                                >
+                                  confirme
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Modal Delete -->
+                      </td>
+                      <td *ngIf="app.status == 'accepted'">
+                        <!-- Start Modal Delete -->
+
+                        <button
+                          class="btn btn-danger mx-2"
+                          data-bs-toggle="modal"
+                          data-bs-target="#DeleteModaldoc"
+                          (click)="deleteAppoint(app.id)"
+                        >
+                          Delete
+                        </button>
+                        <div
+                          class="modal fade"
+                          id="DeleteModaldoc"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-body">
+                                <div
+                                  class="alert alert-warning alert-dismissible fade show"
+                                  role="alert"
+                                >
+                                  are you sure that you want to delete this
+                                  Appointment ?
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Close
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-danger"
+                                  data-bs-dismiss="modal"
+                                  (click)="modaldeleteAppoint()"
+                                >
+                                  confirme
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Modal Delete -->
+                      </td>
+                      <td *ngIf="app.status == 'wait'">
+                        <p class="fw-900 text-warning waiting">Wait Action</p>
                       </td>
                     </tr>
                   </tbody>

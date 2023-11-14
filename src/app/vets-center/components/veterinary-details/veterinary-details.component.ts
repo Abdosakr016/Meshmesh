@@ -59,6 +59,7 @@ export class VeterinaryDetailsComponent {
       const appointData = this.AppFom.value;
       appointData.veternary_id = this.vetid;
       appointData.user_id = this.userData.id;
+
       const formData = new FormData();
       for (const key of Object.keys(appointData)) {
         formData.append(key, appointData[key]);

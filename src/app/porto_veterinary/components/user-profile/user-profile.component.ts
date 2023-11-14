@@ -5,6 +5,7 @@ import { ApiVetCenterService } from '../../../vets-center/services/api-vet-cente
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/components/auth.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,6 +19,7 @@ export class UserProfileComponent {
   doctorForms: FormGroup[] = [];
   vets :any;
   vet : any;
+  vetss : any[] = [];
   doctorBase64:any;
   logoBase64: any;
   taxBase64:any;
@@ -35,19 +37,37 @@ export class UserProfileComponent {
   userData: any;
   apps: any;
   app: any;
+  deleteappId: any;
+  appid: any;
   logopath: any = 'http://127.0.0.1:8000/';
   cities: string[] = ['Cairo',  'Alexandria',  'Giza',  'Shubra El Kheima',  'Port Said',  'Suez',  'Luxor',
   'Aswan',  'Damanhur',  'Al Minya',  'Beni Suef',  'Hurghada',  'Ismailia',  'Faiyum',  'Asyut',  'Mansoura',
   'Tanta',  'Damietta',  'Zagazig',  'Arish'];
+
   constructor( private userService:AuthService,private formBuilder: FormBuilder, private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute,private VetService:VeterinaryService){}
   ngOnInit() {
-    this.validatVetCenterFormstore();
-    this.validatVetCenterFormupdate();
-    this.getvets();
-    this.getDoctors();
-    this.getAuthUser();
-    this.getAppoints();
-    this.initializeDoctorForm();
+    const userDataObservable = this.userService.getUserData();
+    const vetsObservable = this.apiService.getProductList();
+      this.getAuthUser();
+      forkJoin([userDataObservable, vetsObservable]).subscribe(
+        ([userData, vetss]) => {
+          console.log(vetss)
+          this.userData = userData;
+          this.vetss = Object.values(vetss)[0];
+          this.getAuthUser();
+          this.getallvets();
+          this.havevet();
+          this.validatVetCenterFormstore();
+          this.validatVetCenterFormupdate();
+          this.getvets();
+          // this.getDoctors();
+          this.getAppoints();
+          this.initializeDoctorForm();
+        },
+        (error) => console.log(error)
+      );
+
+
   }
 
   validatVetCenterFormstore(){
@@ -81,9 +101,9 @@ export class UserProfileComponent {
   }
 
   getvets(){
-    this.apiService.getProductList().subscribe(
+    this.apiService.getmyvet().subscribe(
       ( data) => {
-       data
+      data
         console.log("done:",data );
 
       },
@@ -91,6 +111,27 @@ export class UserProfileComponent {
         console.error(error);
       }
     )
+  }
+
+  getallvets(){
+    this.apiService.getProductList().subscribe(
+      (res) => {
+        this.vetss = Object.values(res)[0]
+       console.log(res);
+       console.log(this.userData.id);
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
+
+  havevet(): boolean {
+    if (Array.isArray(this.vetss)) {
+      const foundUser = this.vetss.find((vet: any) => vet.user_id === this.userData.id);
+      return foundUser !== undefined;
+    }
+    return false;
   }
 
   getAppoints(){
@@ -105,19 +146,38 @@ export class UserProfileComponent {
     )
   }
 
-  acceptmail(){
-    this.apiService.acceptmail().subscribe(
+  deleteAppoint( appid:number) {
+    this.deleteappId = appid;
+  }
+
+  modaldeleteAppoint(){
+    this.apiService.deleteAppointList(this.deleteappId).subscribe(
+      (data) => {
+        this.apps = data
+        console.log("done:",data );
+        this.getAppoints();
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
+
+  acceptmail(id:number){
+    this.apiService.acceptmail(id).subscribe(
       (res)=> {
         console.log(res);
+        this.getAppoints();
       }
     )
     console.log("message Done");
   }
 
-  rejectmail(){
-    this.apiService.rejectmail().subscribe(
+  rejectmail(id:number){
+    this.apiService.rejectmail(id).subscribe(
       (res)=> {
         console.log(res);
+        this.getAppoints();
       }
     )
     console.log("message Done");
@@ -178,7 +238,7 @@ export class UserProfileComponent {
   onAddVet() {
     if (this.vetCenterFormstore.valid) {
       const vetData = this.vetCenterFormstore.value;
-      vetData.user_id = "1";
+      vetData.user_id = this.userData.id;
 
       // Create a FormData object
       const formData = new FormData();
@@ -290,23 +350,7 @@ export class UserProfileComponent {
     });
   }
 
-  deleteDoctor(id: number) {
-    this.deleteId = id;
-  }
 
-  modeldeleteDoctor() {
-    this.VetService.deleteDoctor(this.deleteId).subscribe(
-      (response) => {
-        console.log('doctor deleted successfully:', response);
-        this.getDoctors();
-      },
-
-      (error) => {
-        console.error('Error deleting doctor:', error);
-        this.getDoctors();
-      }
-    );
-  }
 
   getAuthUser(){
     this.userService.getUserData().subscribe(

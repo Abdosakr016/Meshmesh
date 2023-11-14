@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/components/auth.service';
+// import { AuthService } from '../../../auth/components/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,9 @@ export class NavbarComponent {
   username: string = '';
   userLogin: any;
   userData: any;
+  AuthService: any;
+  loginform: any;
+  error: any;
   constructor(private counter: CounterService,private router: Router,private userService: AuthService) {}
 
   ngOnInit() {
@@ -23,7 +27,7 @@ console.log(value)
    })
     const access_token = localStorage.getItem('access_token'); // Check for 'access_token'
     if (access_token) {
-      this.userLogin = true; 
+      this.userLogin = true;
     } else {
       this.userLogin = false;
     }
@@ -32,7 +36,7 @@ console.log(value)
     this.userService.getUserData().subscribe(
       (data) => {
         this.userData = data;
-        // console.log(data); 
+        // console.log(data);
 
       },
       (error) => {
@@ -40,19 +44,19 @@ console.log(value)
       }
     );
   }
-  
+
 
   logout() {
-   
+
     this.userService.logout().subscribe(
       () => {
     // console.log("logout")
-  
+
       },
       (error) => {
-     
+
         console.error('Logout error:', error);
-       
+
       }
     );
     localStorage.removeItem('access_token');
@@ -62,7 +66,8 @@ console.log(value)
     }, 500);
   }
 
-}
+
 // this.cartService.products_cart_length$.subscribe((length) => {
 //   this.header_cart_length = length;
 // });
+}

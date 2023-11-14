@@ -5,54 +5,44 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
+  cartArray: any[] = [];
   private _products_cart_length = new BehaviorSubject<number>(0);
   products_cart_length$ = this._products_cart_length.asObservable();
-  // productInCart = false;
-  // alertMessage = '';
+  productInCart = false;
+  alertMessage = '';
 
-  selectedItems: any[] = [];
-  // private elements = new BehaviorSubject(this.selectedItems.length)
+  constructor() { }
 
-  constructor() {
-  }
-
-  addItem(item: any) {
-    this.selectedItems.push(item);
-    localStorage.setItem("Items", JSON.stringify(this.selectedItems));
-
-  }
-
-
-  getSelectedItems() {
-    if (localStorage.getItem("Items") != null) {
-      return this.selectedItems = JSON.parse(localStorage.getItem("Items") as any) || [];
+  addCartArray_service(product: any) {
+    if (this.cartArray.find((cartProduct) => cartProduct.id === product.id)) {
+      this.arlreadyFound(product);
+      // console.log("is already here");
     } else {
-      return " your cart Empty";
+      this.productInCart = false;
+      this.alertMessage = '';
+      this.cartArray = [...this.cartArray, product];
+      this._products_cart_length.next(this.cartArray.length); 
+      product['quantity'] = 1;
+    console.log(this.cartArray)
+
     }
   }
-  ItemsInCart(item: any) {
-    return this.selectedItems.findIndex((x: any) => x.id === item.id) > -1;
+
+  arlreadyFound(product: any) {
+    this.productInCart = true;
+    this.alertMessage = 'Product is already in the cart!';
+    // alert('Product is already in the cart!')
+    console.log(product)
   }
+  // printCartArray() {
+  //   console.log(this.cartArray)
+  //     ;
+  // }
 
-  removeItem(item: any) {
-    const index = this.selectedItems.findIndex((x: any) => x.id === item.id);
-    if (index > -1) {
-      this.selectedItems.splice(index, 1);
-      localStorage.setItem("Items", JSON.stringify(this.selectedItems));
-    }
+remove_item(){
+  this._products_cart_length.next(this.cartArray.length); 
 
-  }
-
-  updatedSelectedItems(value: any) {
-    this.selectedItems = value;
-
-  }
-  clearItems() {
-    localStorage.clear()
-      ;
-  }
-
-
-
+}
+  clearItems(){}
 
 }

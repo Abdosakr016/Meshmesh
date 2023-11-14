@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedService } from 'src/app/pets/services/shared service/shared.service';
+import { SharedService } from 'src/app/pets/services/shared.service';
 
 @Component({
   selector: 'app-search',

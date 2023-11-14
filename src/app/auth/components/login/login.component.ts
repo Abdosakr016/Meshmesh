@@ -49,30 +49,38 @@ export class LoginComponent implements OnInit{
 
   submitForm() {
 
-    console.log(this.loginform);
-    const storedUserData = localStorage.getItem('userArr');
-    if (storedUserData) {
-      const userArr = JSON.parse(storedUserData);
-      // Check if the entered email and password match any stored user
-      const enteredEmail = this.loginform.get('email')?.value;
-      const enteredPassword = this.loginform.get('password')?.value;
+    // console.log(this.loginform);
 
-      const isValidUser = userArr.some((user: { email: any; password: any; }) => {
-        return user.email === enteredEmail && user.password === enteredPassword;
-      });
 
-      if (isValidUser) {
-        // Navigate to home if the user is valid
-        // this.router.navigate(['/home']);
-      } else {
-        this.invalidLogin = true;
-      }
-    } else {
-      this.invalidLogin = true;
-    }
+    // const storedUserData = localStorage.getItem('userArr');
+    // if (storedUserData) {
+    //   const userArr = JSON.parse(storedUserData);
+
+    //   // Check if the entered email and password match any stored user
+    //   const enteredEmail = this.loginform.get('email')?.value;
+    //   const enteredPassword = this.loginform.get('password')?.value;
+
+    //   const isValidUser = userArr.some((user: { email: any; password: any; }) => {
+    //     return user.email === enteredEmail && user.password === enteredPassword;
+    //   });
+
+    //   if (isValidUser) {
+    //     // Navigate to home if the user is valid
+    //     this.router.navigate(['/home']);
+    //   } else {
+    //     this.invalidLogin = true;
+
+    //   }
+    // } else {
+    //   this.invalidLogin = true;
+
+    // }
+
+
     this.AuthService.login(this.loginform.value).subscribe(res => {
       if(res.access_token){
-      console.log(res.role);
+        localStorage.setItem('access_token' ,res.access_token )
+        window.location.href='';
 
         localStorage.setItem('access_token' ,res.access_token )
         if(res.role == 'owner'){

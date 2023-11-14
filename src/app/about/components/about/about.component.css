@@ -128,6 +128,7 @@ ul li .date::after {
 /* title descr */
 ul li .title,
 ul li .descr {
+  padding-top: 20px;
   background: var(--bgColor);
   position: relative;
   padding-inline: 1.5rem;

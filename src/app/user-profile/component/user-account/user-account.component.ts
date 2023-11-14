@@ -3,6 +3,7 @@ import { UserServiceService } from '../../service/user-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { forkJoin } from 'rxjs';
+import { OrderService } from 'src/app/cart/service/order/order.service';
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
@@ -17,17 +18,22 @@ export class UserAccountComponent {
   imageFile:any
   userPets: [] = [];
   userUpdateForm!: FormGroup;
+
+  userOrders: any
+
+
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private formBuilder:FormBuilder,
-       private apiService:UserServiceService,
-       private userService:AuthService
+       private petuserService:UserServiceService,
+       private userService:AuthService,
+       private orderService:OrderService,
        ){
 
     }
     ngOnInit() {
 
       const userDataObservable = this.userService.getUserData();
-      const petsObservable = this.apiService.getProductList();
+      const petsObservable = this.petuserService.getProductList();
           this.getAuthUser();
       forkJoin([userDataObservable, petsObservable]).subscribe(
         ([userData, pets]) => {
@@ -40,17 +46,19 @@ export class UserAccountComponent {
         },
         (error) => console.log(error)
       );
-
+      this.userUpdateValidation() 
       this.getAuthUser();
-
+      // debugger     
+      this.getUserOrder()
     }
+    
     
     userUpdateValidation() {
       this.userUpdateForm = this.formBuilder.group({
         name: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
+        email: ['', Validators.required],
         old_password: ['', Validators.required],
-        Password: ['', [Validators.minLength(6)]],
+        Password: ['', Validators.required],
         phone: ['', Validators.required],
       });
     }
@@ -98,7 +106,7 @@ export class UserAccountComponent {
         console.log(formData);
 
         // Update the data using the API service
-        this.apiService.addNewPet(formData).subscribe(
+        this.petuserService.addNewPet(formData).subscribe(
           (response) => {
         console.log(formData);
 
@@ -139,12 +147,13 @@ export class UserAccountComponent {
         }
         onUpdateUser() {
           if (this.userUpdateForm.valid) {
-            const userData = this.userUpdateForm.value;
+            const updateData = this.userUpdateForm.value;
+            
             // Update the data using the API service
-            this.userService.updateUserData(userData).subscribe(
+            this.userService.updateUserData(updateData).subscribe(
               (response) => {
                 console.log('User data updated successfully:', response);
-                this.userData = response;
+                // this.userData = response;
               },
               (error: any) => {
                 console.error('Error updating user data:', error);
@@ -152,5 +161,18 @@ export class UserAccountComponent {
             );
           }
         }
-        
+     
+    getUserOrder(){
+     
+      this.orderService.getOrders().subscribe(
+        (data) => {
+       this.userOrders =data
+          console.log("orders:",data );
+
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
+    }
 }

@@ -23,10 +23,11 @@ export class ApiServiceService {
     return this.http.get(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
   addNewPet(petData: FormData) { 
-  //   const headers = new HttpHeaders({
-  //   Authorization: 'Bearer ' + localStorage.getItem('access_token')
-  // });
-    return this.http.post<Ipet>('http://localhost:8000/api/pets', petData, { headers: this.httpHeaders });
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+    console.log(headers )
+    return this.http.post<Ipet>('http://localhost:8000/api/pets', petData, { headers });
   }
 
   updatePet(id: any, petData: FormData) {

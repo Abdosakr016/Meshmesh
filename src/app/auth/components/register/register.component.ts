@@ -31,16 +31,17 @@ error : any ;
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.pattern(/^\S+$/),
+
+          
         ],
       ],
       email: [
         '',
         [
           Validators.required,
-          // Validators.email,
+          //  Validators.email,
 
-        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
         ],
       ],
 

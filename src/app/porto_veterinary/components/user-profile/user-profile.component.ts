@@ -66,6 +66,7 @@ export class UserProfileComponent {
         },
         (error) => console.log(error)
       );
+      this.validatVetCenterFormstore();
 
 
   }
@@ -76,12 +77,13 @@ export class UserProfileComponent {
       street_address: ['',Validators.required],
       governorate: ['',Validators.required],
       logo: ['',Validators.required],
+      about: [ '',Validators.required],
       license: ['',Validators.required],
       open_at: ['',Validators.required],
-      close_at: ['',Validators.required],
+      close_at: ['',Validators.required,],
       tax_record: ['',Validators.required],
       commercial_record: ['',Validators.required],
-      about: [ '',Validators.required]
+
     });
   }
 

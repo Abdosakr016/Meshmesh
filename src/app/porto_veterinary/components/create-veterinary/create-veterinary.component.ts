@@ -51,13 +51,13 @@ export class CreateVeterinaryComponent implements OnInit  {
 
   validatVetCenterFormstore(){
     this.vetCenterFormstore = this.formBuilder.group({
-      name: ['',Validators.required, Validators.min(2)],
+      name: ['',Validators.required],
       street_address: ['',Validators.required],
       governorate: ['',Validators.required],
       logo: ['',Validators.required],
       license: ['',Validators.required],
-      open_at: ['',Validators.required],
-      close_at: ['',Validators.required],
+      open_at: ['',Validators.required, Validators.pattern(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/)],
+      close_at: ['',Validators.required, Validators.pattern(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/)],
       tax_record: ['',Validators.required],
       commercial_record: ['',Validators.required],
       about: [ '',Validators.required]
@@ -90,15 +90,15 @@ export class CreateVeterinaryComponent implements OnInit  {
     )
   }
 
-  acceptmail(id:number){
-    this.apiService.acceptmail(id).subscribe(
-      (res)=> {
-        console.log(res);
-        this.getAppoints();
-      }
-    )
-    console.log("message Done");
-  }
+  // acceptmail(id:number){
+  //   this.apiService.acceptmail(id).subscribe(
+  //     (res)=> {
+  //       console.log(res);
+  //       this.getAppoints();
+  //     }
+  //   )
+  //   console.log("message Done");
+  // }
 
   rejectmail(id:number){
     this.apiService.rejectmail(id).subscribe(

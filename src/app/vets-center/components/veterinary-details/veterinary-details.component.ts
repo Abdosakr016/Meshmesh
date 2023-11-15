@@ -27,6 +27,7 @@ export class VeterinaryDetailsComponent {
   imageDoctor: any;
   updateId: any;
   userData: any;
+  vetsa: any;
 
   constructor(private userService:AuthService,private formBuilder: FormBuilder,private fb: FormBuilder,private apiService:ApiVetCenterService, private route: ActivatedRoute,private router: Router,private VetService: VeterinaryService){}
   ngOnInit() {
@@ -34,18 +35,26 @@ export class VeterinaryDetailsComponent {
     this.apiService.getVetDetails(this.vetid).subscribe(
       ((data: any) => (this.vets = data['data']))
   )
-  this.getDoctors();
+  this.VetService.get_anydoctors(this.vetid).subscribe(((data: any) => (this.vetsa = data['data'])),
+  (error) => console.log(error),
+  () => console.log("COMPLETE"))
+  // this.getDoctors();
   this.initializeAppForm();
   this.getAuthUser()
+  this.getvets()
   }
 
-  getDoctors() {
-    this.VetService.get_doctors().subscribe(res => {
-      console.log(Object.values(res)[0]);
-      this.arrDoctors = Object.values(res)[0];
-    });
+  // getDoctors() {
+  //   this.VetService.get_anydoctors(this.vetid).subscribe(res => {
+  //     console.log(Object.values(res)[0]);
+  //     this.arrDoctors = Object.values(res)[0];
+  //   });
+  // }
+  getvets(){
+    this.VetService.get_anydoctors(this.vetid).subscribe(((data: any) => (this.vetsa = data['data'])),
+    (error) => console.log(error),
+    () => console.log("COMPLETE"))
   }
-
   initializeAppForm() {
     this.AppFom = this.formBuilder.group({
       date: ['', Validators.required],

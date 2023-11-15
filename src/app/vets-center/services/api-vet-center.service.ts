@@ -26,17 +26,27 @@ export class ApiVetCenterService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // acceptmail(id : number){
+  //   const updateAcceptRequest = this.httpClient.get(`${this.urlupdateAccept}${id}`);
+  //   const acceptRequest = this.httpClient.get(`${this.urlAccept}${id}`, { headers: this.header });
+
+  //   // Use forkJoin to combine multiple observables
+  //   return forkJoin([updateAcceptRequest, acceptRequest]);
+  // }
+
+
   acceptmail(id : number){
     const updateAcceptRequest = this.httpClient.get(`${this.urlupdateAccept}${id}`);
-    const acceptRequest = this.httpClient.get(`${this.urlAccept}`, { headers: this.header });
+    const acceptRequest = this.httpClient.get(`${this.urlAccept}${id}`, { headers: this.header });
 
     // Use forkJoin to combine multiple observables
     return forkJoin([updateAcceptRequest, acceptRequest]);
   }
 
+
   rejectmail(id: number){
     const updateAcceptRequest = this.httpClient.get(`${this.urlupdatereject}${id}`);
-    const rejectRequest = this.httpClient.get(`${this.urlReject}`, { headers: this.header });
+    const rejectRequest = this.httpClient.get(`${this.urlReject}${id}`, { headers: this.header });
 
     // Use forkJoin to combine multiple observables
     return forkJoin([updateAcceptRequest, rejectRequest]);
@@ -62,7 +72,11 @@ export class ApiVetCenterService {
     return   this.httpClient.post(`${this.url}`,petData);
   }
   updateProduct(id: any, newData: Ivetcenter) {
-    return this.httpClient.put(`${this.url}/${id}`, newData);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.put(`${this.url}/${id}`, newData,{ headers });
   }
 
   deleteProduct(id: number) {
@@ -73,18 +87,34 @@ export class ApiVetCenterService {
     return this.httpClient.get(`${this.url}${id}`, { headers: this.httpHeaders });
   }
   addNewVet(vetData: FormData) {
-    return this.httpClient.post<Ivetcenter>(`${this.url}`,vetData);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.post<Ivetcenter>(`${this.url}`,vetData, { headers });
   }
 
   updateVet(id: any, vetData: FormData){
-    return this.httpClient.post(`${this.url}${id}`, vetData , { headers: this.httpHeadersupdate });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.post(`${this.url}${id}`, vetData , { headers });
   }
 
   addAppointment( AppData:Iappoint){
-    return this.httpClient.post(`${this.urlAppoint}`,AppData);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.post(`${this.urlAppoint}`,AppData, { headers });
   }
 
   deleteAppointList(id : number) {
-    return  this.httpClient.delete(`${this.urlAppoint}${id}`, {headers: this.header});
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return  this.httpClient.delete(`${this.urlAppoint}${id}`, { headers });
   }
 }

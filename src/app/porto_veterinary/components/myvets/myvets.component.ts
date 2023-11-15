@@ -35,12 +35,22 @@ export class MyvetsComponent {
   userData: any;
   logopath: any = 'http://127.0.0.1:8000/';
   veterenaryid: any;
+  updateDoctorForm!: FormGroup;
 
   cities: string[] = ['Cairo',  'Alexandria',  'Giza',  'Shubra El Kheima',  'Port Said',  'Suez',  'Luxor',
   'Aswan',  'Damanhur',  'Al Minya',  'Beni Suef',  'Hurghada',  'Ismailia',  'Faiyum',  'Asyut',  'Mansoura',
   'Tanta',  'Damietta',  'Zagazig',  'Arish'];
+  updateId: any;
+  base64: any;
+  imageDoctor: any;
 
-  constructor(private userService:AuthService,private formBuilder: FormBuilder, private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute,private VetService:VeterinaryService){}
+  constructor(private userService:AuthService,private formBuilder: FormBuilder, private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute,private VetService:VeterinaryService){
+    this.updateDoctorForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      image: ['', Validators.required],
+      experience: ['', Validators.required],
+    });
+  }
   ngOnInit() {
     this.validatVetCenterFormstore();
     this.validatVetCenterFormupdate();
@@ -82,9 +92,9 @@ export class MyvetsComponent {
   }
 
   getvets(){
-    this.apiService.getmyvet().subscribe(((data: any) => (this.vets = data['data'])),
+    this.apiService.getmyvet().subscribe(((data: any) =>  (this.vets = data['data'])),
     (error) => console.log(error),
-    () => console.log("COMPLETE"))
+    () => console.log("COMPLETE" , this.vets))
   }
 
   get_imag_logo(event: any) {
@@ -345,5 +355,51 @@ export class MyvetsComponent {
     }
   }
 
+  setUpdatedoctorData(doctor: any, id: number) {
+    this.updateId = id;
+    // Bind the data to the form controls
+    this.base64 = doctor.image;
+    this.updateDoctorForm.patchValue({
+      name: doctor.name,
+      experience: doctor.experience,
+    });
+  }
+
+  onUpdateDoctor() {
+
+    if (this.updateDoctorForm.valid) {
+      const doctorData = this.updateDoctorForm.value;
+      // doctorData.user_id = this.userData.id; // Assuming user_id needs to be sent with the request
+
+      const formData = new FormData();
+      formData.append('name', doctorData.name);
+      formData.append('image', this.imageDoctor);
+      formData.append('experience', doctorData.experience);
+      formData.append('_method', 'PUT');
+      console.log(doctorData);
+
+      // Update the data using the API service
+      this.VetService.updatDoctor(this.updateId,doctorData).subscribe(
+        (response) => {
+
+          console.log('Data updated successfully:', response);
+          this.getDoctors();
+        },
+        (error: any) => {
+          console.error('Error updating data:', error);
+        }
+      );
+    }
+  }
+
+  get_imagepath(event: any) {
+    const file = event.target.files[0];
+    this.imageDoctor = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.base64 = reader.result;
+    };
+  }
 
 }

@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CartModule } from '../cart/cart.module';
-import { SideComponent } from './side/side.component';
 
 
 
@@ -14,7 +13,6 @@ import { SideComponent } from './side/side.component';
   declarations: [
     NavbarComponent,
     FooterComponent,
-    SideComponent
   ],
   imports: [
     CommonModule,
@@ -22,12 +20,11 @@ import { SideComponent } from './side/side.component';
     ReactiveFormsModule,
    FormsModule,
     HttpClientModule,
-   
+
   ],
   exports:[
     NavbarComponent,
     FooterComponent,
-    SideComponent
   ]
 })
 export class SharedModule { }

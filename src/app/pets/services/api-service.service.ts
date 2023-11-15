@@ -7,7 +7,7 @@ import { Ipet } from '../interface/Ipet';
 })
 export class ApiServiceService {
   private url = 'http://localhost:8000/api/pets';
-
+  private accessToken : any = localStorage.getItem('access_token');
   // Define HttpHeaders as a constant
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Accept': 'application/json'
@@ -22,7 +22,7 @@ export class ApiServiceService {
   getProductDetails(id: Number) {
     return this.http.get(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
-  addNewPet(petData: FormData) { 
+  addNewPet(petData: FormData) {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('access_token')
     });
@@ -31,13 +31,16 @@ export class ApiServiceService {
   }
 
   updatePet(id: any, petData: FormData) {
- 
-    return this.http.post(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
-  
+  const headers = new HttpHeaders({
+  'Authorization': `Bearer ${this.accessToken}`,
+  'Accept': 'application/json'
+});
+    return this.http.post(`${this.url}/${id}`, petData, { headers });
+
   }
 
   deleteProduct(id: string) {
     return this.http.delete(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
-  
+
 }

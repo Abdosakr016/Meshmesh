@@ -80,15 +80,17 @@ export class LoginComponent implements OnInit{
     this.AuthService.login(this.loginform.value).subscribe(res => {
       if(res.access_token){
         localStorage.setItem('access_token' ,res.access_token )
-        window.location.href='';
 
-        localStorage.setItem('access_token' ,res.access_token )
         if(res.role == 'owner'){
-          this.router.navigate(['/user-vet']);
+          window.location.href='/user-vet';
         }else if(res.role == 'client'){
-          this.router.navigate(['/']);
+          // this.router.navigate(['/']);
+          window.location.href='';
+        }else if(res.role == 'admin'){
+          window.location.href='/admin';
         }else{
-          this.router.navigate(['']);
+          // this.router.navigate(['']);
+          window.location.href='/login';
         }
       }
     },

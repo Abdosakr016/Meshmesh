@@ -22,9 +22,11 @@ import { LayoutComponent } from './admin/layout/layout.component';
 import { TpetsComponent } from './admin/tpets/tpets.component';
 import { TusersComponent } from './admin/tusers/tusers.component';
 import { SharedModule } from './shared/shared.module';
+import { TvetcentersComponent } from './admin/tvetcenters/tvetcenters.component';
+import { TappointmentComponent } from './admin/tappointment/tappointment.component';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent],
+  declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent, TvetcentersComponent, TappointmentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

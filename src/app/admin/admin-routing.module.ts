@@ -4,23 +4,32 @@ import { LayoutComponent } from './layout/layout.component';
 import { AdminComponent } from './admin.component';
 import { TpetsComponent } from './tpets/tpets.component';
 import { TusersComponent } from './tusers/tusers.component';
+import { TvetcentersComponent } from './tvetcenters/tvetcenters.component';
+import { TappointmentComponent } from './tappointment/tappointment.component';
 
 const routes: Routes = [
- 
+
   {
     path: 'admin',
     component: AdminComponent,
     children:[
       {
        path: 'tpets',
-      component:TpetsComponent ,
+       component:TpetsComponent ,
      },
      {
       path: 'tusers',
-     component:TusersComponent ,
+      component:TusersComponent ,
+    },
+    {
+     path: 'tvetcenters',
+     component:TvetcentersComponent ,
+    },
+    {
+     path: 'tappointment',
+     component:TappointmentComponent ,
     }
-  ]
-  },
+]},
 ];
 
 

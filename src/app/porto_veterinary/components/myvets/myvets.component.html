@@ -15,7 +15,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Edit your New vet
+              Add your New Doctor
             </h1>
             <button
               type="button"
@@ -242,11 +242,23 @@
                 </div>
               </div>
               <hr />
-              <div class="row">
+              <div class="row" *ngIf="vet.status == 'approved'">
                 <div class="col-sm-3">
                   <h6 class="mb-0">license</h6>
                 </div>
                 <div class="col-sm-9 text-success">Approved</div>
+              </div>
+              <div class="row" *ngIf="vet.status == 'unapproved'">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">license</h6>
+                </div>
+                <div class="col-sm-9 text-success">Unapproved</div>
+              </div>
+              <div class="row" *ngIf="vet.status == 'pending'">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">license</h6>
+                </div>
+                <div class="col-sm-9 text-warning fw-bold">Pending...</div>
               </div>
               <hr />
               <div class="row">
@@ -852,6 +864,114 @@
                                       </div>
                                     </div>
                                     <!-- End Modal Delete -->
+                                    <button
+                                      type="button"
+                                      class="btn btn-info"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#updateDoctorModal"
+                                      (click)="
+                                        setUpdatedoctorData(dvet, dvet.id)
+                                      "
+                                    >
+                                      edit
+                                    </button>
+                                    <div
+                                      class="modal fade"
+                                      id="updateDoctorModal"
+                                      tabindex="-1"
+                                      aria-labelledby="updateDoctorModalLabel"
+                                      aria-hidden="true"
+                                    >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5
+                                              class="modal-title"
+                                              id="updateDoctorModalLabel"
+                                            >
+                                              Update Doctor
+                                            </h5>
+                                            <button
+                                              type="button"
+                                              class="btn-close"
+                                              data-bs-dismiss="modal"
+                                              aria-label="Close"
+                                            ></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <!-- Update Doctor Form -->
+                                            <form
+                                              [formGroup]="updateDoctorForm"
+                                              (ngSubmit)="onUpdateDoctor()"
+                                            >
+                                              <div class="mb-3">
+                                                <label for="name"
+                                                  >Doctor Name</label
+                                                >
+                                                <input
+                                                  type="text"
+                                                  class="form-control"
+                                                  id="name"
+                                                  formControlName="name"
+                                                  required
+                                                />
+                                              </div>
+                                              <div class="mb-3">
+                                                <label for="image"
+                                                  >Doctor Photo</label
+                                                >
+                                                <input
+                                                  type="file"
+                                                  (change)="
+                                                    get_imagepath($event)
+                                                  "
+                                                  class="form-control"
+                                                  formControlName="image"
+                                                  id="image"
+                                                />
+                                                <!-- Display the selected image -->
+                                                <img
+                                                  [src]="base64"
+                                                  width="200px"
+                                                  height="200px"
+                                                  alt=""
+                                                />
+                                              </div>
+
+                                              <div class="mb-3">
+                                                <label for="experience"
+                                                  >Doctor Experience</label
+                                                >
+                                                <input
+                                                  type="text"
+                                                  class="form-control"
+                                                  id="experience"
+                                                  formControlName="experience"
+                                                  required
+                                                />
+                                              </div>
+                                              <!-- <button type="submit" class="btn btn-primary">Update</button> -->
+
+                                              <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                                [disabled]="
+                                                  updateDoctorForm.invalid
+                                                "
+                                                data-bs-dismiss="modal"
+                                                (click)="onUpdateDoctor()"
+                                                [disabled]="
+                                                  !updateDoctorForm.valid
+                                                "
+                                              >
+                                                Save changes
+                                              </button>
+                                            </form>
+                                            <!-- End of Update Doctor Form -->
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                     <hr />
                                   </div>
                                 </div>

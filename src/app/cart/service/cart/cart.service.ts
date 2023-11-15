@@ -39,9 +39,10 @@ export class CartService {
   //     ;
   // }
 
+remove_item(){
+  this._products_cart_length.next(this.cartArray.length); 
 
-  remove_item(){
-    this._products_cart_length.next(this.cartArray.length); 
-  
-  }
+}
+  clearItems(){}
+
 }

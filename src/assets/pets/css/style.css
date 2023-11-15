@@ -26,7 +26,6 @@ html {
 }
 
 body {
-    color: #666666;
     font-size: 14px;
     line-height: 1.80857;
     font-weight: normal;
@@ -171,7 +170,6 @@ img {
 
 .form-control:focus {
     border-color: #ffffff !important;
-    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
 }
 
 .navbar-form input {
@@ -574,7 +572,6 @@ a:hover {
     background-color: #ffffff;
     height: auto;
     padding: 20px;
-    box-shadow: 0px 0 30px 10px #f0f0f0;
     margin-bottom: 20px;
 }
 

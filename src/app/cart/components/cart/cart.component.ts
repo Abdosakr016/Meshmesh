@@ -82,8 +82,8 @@ export class CartComponent {
     const newapayment = {"total_price": this.getTotalPrice()};
   
     this.orderService.payment(newapayment).subscribe(
-      (response :any) => {
-      window.location.href= response;
+      (response) => {
+    return  response;
       },
       (error: any) => {
         console.error('Error adding data:', error);

@@ -17,7 +17,7 @@ export class OrderService {
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Accept': 'application/json'
   });
-
+private headerpaypal = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
   getOrders() {
     return this.http.get(`${this.urlorder}`, { headers: this.httpHeaders });
   }

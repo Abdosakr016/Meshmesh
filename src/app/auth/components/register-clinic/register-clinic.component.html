@@ -4,19 +4,21 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
+        <div class="card rounded-3 text-black" style="background-color: #ffe1c9b4;">
           <div class="row g-0">
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
 
                 <div class="text-center">
-                  <img src="https://i.pinimg.com/236x/21/60/8c/21608cdce20431ff6599f988b7d1ea1d.jpg"
-                    style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Clinic Registration Form</h4>
+                  <img
+                  src="./assets/logof.png"
+                  style="width: 240px; margin-bottom: 25px; "
+                  alt="logo"
+                />
+                  <h4 class="mt-1 mb-5 pb-1">Clinic Registration</h4>
                 </div>
 
                 <form [formGroup]="registerclinc" (ngSubmit)="submitForm()" >
-                  <p> Register now to get started!</p>
 
                   <div class="form-outline mb-4">
                     <label for="name_control" class="form-label">Name</label>
@@ -145,23 +147,23 @@
                   </div>
 
                   <div class="form-outline mb-4">
-                    <button class="btn btn-primary btn-block fa-lg  mb-3"
-                     type="submit" style="width: 100%; background-color: #56423C;" [disabled]="registerclinc.invalid">Register</button><br>
+                    <button class="btn btn-success btn-block  fa-lg p-2 mb-3"
+                     type="submit" style="width: 100%;" [disabled]="registerclinc.invalid">Register</button><br>
                    
                   </div>
                  
                   <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2"> have an account?</p>
-                    <button type="submit" class="btn btn-outline-danger" ><a href="login">Sign In</a>
+                    <button type="submit" class="btn btn-primary" ><a class="text-white" href="login">Sign In</a>
                     </button>
                   </div>
                 </form>
 
               </div>
             </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2 "
-             style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0InHz7AhDQDV0OrmExSCsZcbLOkahuVZVUA&usqp=CAU');
-              background-repeat: no-repeat;background-size: cover;">
+            <div class="col-lg-6 d-flex align-items-center  "
+             style="background-image: url('./assets/veterinarian-clinic.png');
+              background-repeat: no-repeat; margin-top: 200px;">
             </div>
             
             

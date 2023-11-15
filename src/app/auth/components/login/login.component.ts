@@ -49,33 +49,9 @@ export class LoginComponent implements OnInit{
 
   submitForm() {
 
-    // console.log(this.loginform);
-
-
-    // const storedUserData = localStorage.getItem('userArr');
-    // if (storedUserData) {
-    //   const userArr = JSON.parse(storedUserData);
-
-    //   // Check if the entered email and password match any stored user
-    //   const enteredEmail = this.loginform.get('email')?.value;
-    //   const enteredPassword = this.loginform.get('password')?.value;
-
-    //   const isValidUser = userArr.some((user: { email: any; password: any; }) => {
-    //     return user.email === enteredEmail && user.password === enteredPassword;
-    //   });
-
-    //   if (isValidUser) {
-    //     // Navigate to home if the user is valid
-    //     this.router.navigate(['/home']);
-    //   } else {
-    //     this.invalidLogin = true;
-
-    //   }
-    // } else {
-    //   this.invalidLogin = true;
-
-    // }
-
+   
+    
+    
 
     this.AuthService.login(this.loginform.value).subscribe(res => {
       console.log(res);

@@ -1,18 +1,16 @@
-/* form{
-    background-color: #f5e1dc;
-    padding: 20px;
-    border-radius: 10px solid  #da6274;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
-    width: 60%;
-    margin: 0 auto;
+.loginbackground {
+  background-image: url('/assets/bg.png');
+  /* height: 80vh; */
+  background-size: cover;
+  background-position: center;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-repeat: repeat-y;
 }
-input{
-    width: 80%;
-    margin: 0 auto;
 
-} */
 
 
 

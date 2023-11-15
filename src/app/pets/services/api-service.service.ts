@@ -22,6 +22,9 @@ private access_token=localStorage.getItem('access_token')
   getProductDetails(id: Number) {
     return this.http.get(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
+
+
+
   addNewPet(petData: FormData) { 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.access_token}`,
@@ -30,6 +33,9 @@ private access_token=localStorage.getItem('access_token')
     console.log(headers )
     return this.http.post<Ipet>('http://localhost:8000/api/pets', petData, { headers });
   }
+
+  
+
 
   updatePet(id: any, petData: FormData) {
     const headers = new HttpHeaders({

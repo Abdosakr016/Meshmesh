@@ -7,6 +7,7 @@ import { TusersComponent } from './tusers/tusers.component';
 import { authGuard } from '../auth.guard';
 import { TordersComponent } from './torders/torders.component';
 
+import { TsupplyComponent } from './tsupply/tsupply.component';
 const routes: Routes = [
  
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
       path: 'torders',
      component:TordersComponent ,
     }
+    ,
+    {
+      path: 'tsupply',
+     component:TsupplyComponent ,
+    },
   ]
   },
 ];

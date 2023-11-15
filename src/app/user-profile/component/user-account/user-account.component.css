@@ -434,3 +434,15 @@ body{margin-top:20px;
         filter: alpha(opacity=60); /* For IE8 and earlier */
     }
     
+    .container-fluid {
+        background-image: url('/assets/bg.png');
+        /* height: 80vh; */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        background-repeat: repeat-y;
+      }

@@ -13,7 +13,7 @@
   <div class="container">
     <div class="row">
       <div
-        *ngFor="let doctor of arrDoctors; let i=index"
+        *ngFor="let doctor of arrDoctors; let i = index"
         class="col-lg-4 col-md-6 col-sm-12 mb-3"
       >
         <div class="card" style="width: 80%">
@@ -26,90 +26,122 @@
           <div class="card-body">
             <p class="card-text text-center">{{ doctor.name }}</p>
 
-
-          <!-- button update doctor -->
-          <!-- Add Update Button to Doctor Cards -->
-          <div class="d-flex justify-content-between">
-            <!-- Update button -->
+            <!-- button update doctor -->
+            <!-- Add Update Button to Doctor Cards -->
+            <div class="d-flex justify-content-between">
+              <!-- Update button -->
+              <button
+                type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#updateDoctorModal"
+                (click)="setUpdateData(doctor, doctor.id)"
+              >
+                Update Doctor
+              </button>
+              <!-- Delete button -->
+              <button
+                class="btn btn-danger mx-2"
+                data-bs-toggle="modal"
+                data-bs-target="#myModal"
+                (click)="deleteDoctor(doctor.id)"
+              >
+                Delete
+              </button>
+            </div>
             <button
               type="button"
               class="btn btn-success"
               data-bs-toggle="modal"
               data-bs-target="#updateDoctorModal"
-              (click)="setUpdateData(doctor,doctor.id)"
+              (click)="setUpdateData(doctor, doctor.id)"
             >
               Update Doctor
             </button>
-            <!-- Delete button -->
-            <button
-              class="btn btn-danger mx-2"
-              data-bs-toggle="modal"
-              data-bs-target="#myModal"
-              (click)="deleteDoctor(doctor.id)"
+
+            <!-- The Modal for Updating Doctor -->
+            <div
+              class="modal fade"
+              id="updateDoctorModal"
+              tabindex="-1"
+              aria-labelledby="updateDoctorModalLabel"
+              aria-hidden="true"
             >
-              Delete
-            </button>
-          </div>
-          <button
-  type="button"
-  class="btn btn-success"
-  data-bs-toggle="modal"
-  data-bs-target="#updateDoctorModal"
-  (click)="setUpdateData(doctor,doctor.id)"
->
-  Update Doctor
-</button>
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="updateDoctorModalLabel">
+                      Update Doctor
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Update Doctor Form -->
+                    <form
+                      [formGroup]="updateDoctorForm"
+                      (ngSubmit)="onUpdateDoctor()"
+                    >
+                      <div class="mb-3">
+                        <label for="name">Doctor Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          formControlName="name"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="image">Doctor Photo</label>
+                        <input
+                          type="file"
+                          (change)="get_imagepath($event)"
+                          class="form-control"
+                          formControlName="image"
+                          id="image"
+                        />
+                        <!-- Display the selected image -->
+                        <img
+                          [src]="base64"
+                          width="200px"
+                          height="200px"
+                          alt=""
+                        />
+                      </div>
 
+                      <div class="mb-3">
+                        <label for="experience">Doctor Experience</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="experience"
+                          formControlName="experience"
+                          required
+                        />
+                      </div>
+                      <!-- <button type="submit" class="btn btn-primary">Update</button> -->
 
-<!-- The Modal for Updating Doctor -->
-<div class="modal fade" id="updateDoctorModal" tabindex="-1" aria-labelledby="updateDoctorModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateDoctorModalLabel">
-          Update Doctor
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Update Doctor Form -->
-        <form [formGroup]="updateDoctorForm" (ngSubmit)="onUpdateDoctor()">
-          <div class="mb-3">
-            <label for="name">Doctor Name</label>
-            <input type="text" class="form-control" id="name" formControlName="name" required />
-          </div>
-          <div class="mb-3">
-            <label for="image">Doctor Photo</label>
-            <input
-              type="file"
-              (change)="get_imagepath($event)"
-              class="form-control"
-              formControlName="image"
-              id="image"
-            />
-            <!-- Display the selected image -->
-            <img [src]="base64" width="200px" height="200px" alt="" />
-          </div>
-          
-          <div class="mb-3">
-            <label for="experience">Doctor Experience</label>
-            <input type="text" class="form-control" id="experience" formControlName="experience" required />
-          </div>
-          <!-- <button type="submit" class="btn btn-primary">Update</button> -->
-
-          <button type="button" class="btn btn-primary" [disabled]="updateDoctorForm.invalid"
-           data-bs-dismiss="modal"
-          (click)="onUpdateDoctor()" [disabled]="!updateDoctorForm.valid">
-          Save changes
-        </button>
-        </form>
-        <!-- End of Update Doctor Form -->
-      </div>
-    </div>
-  </div>
-</div>
-
-
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        [disabled]="updateDoctorForm.invalid"
+                        data-bs-dismiss="modal"
+                        (click)="onUpdateDoctor()"
+                        [disabled]="!updateDoctorForm.valid"
+                      >
+                        Save changes
+                      </button>
+                    </form>
+                    <!-- End of Update Doctor Form -->
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- button delete doctor -->
             
@@ -151,7 +183,6 @@
                         class="btn btn-danger"
                         data-bs-dismiss="modal"
                         (click)="modeldeleteDoctor()"
-
                       >
                         confirme
                       </button>
@@ -159,8 +190,6 @@
                   </div>
                 </div>
               </div>
-
-              
             </div>
           </div>
         </div>
@@ -168,7 +197,6 @@
     </div>
   </div>
 
- 
   <!-- The Modal -->
   <div
     class="modal fade"
@@ -180,9 +208,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="doctorModalLabel">
-            Add/Edit/Delete Doctor
-          </h5>
+          <h5 class="modal-title" id="doctorModalLabel">Add Doctor</h5>
           <button
             type="button"
             class="btn-close"
@@ -192,7 +218,11 @@
         </div>
         <div class="modal-body">
           <!-- Your form goes here -->
-          <form [formGroup]="doctorForm" (ngSubmit)="onAddDoctor()" enctype="multipart/form-data">
+          <form
+            [formGroup]="doctorForm"
+            (ngSubmit)="onAddDoctor()"
+            enctype="multipart/form-data"
+          >
             <div class="mb-3">
               <label for="name">Doctor Name</label>
               <input
@@ -204,22 +234,24 @@
               />
 
               <div
-              *ngIf="
-              doctorForm.controls['name'].touched &&
-              doctorForm.controls['name'].invalid
-              "
-              id="name_help"
-              class="text-danger form-text"
-            >
-              <small *ngIf="doctorForm.controls['name'].errors?.['required']">
-                name field is required
-              </small>
-              <small *ngIf="doctorForm.controls['name'].errors?.['minlength']">
-                Min. length is 2
-              </small>
+                *ngIf="
+                  doctorForm.controls['name'].touched &&
+                  doctorForm.controls['name'].invalid
+                "
+                id="name_help"
+                class="text-danger form-text"
+              >
+                <small *ngIf="doctorForm.controls['name'].errors?.['required']">
+                  name field is required
+                </small>
+                <small
+                  *ngIf="doctorForm.controls['name'].errors?.['minlength']"
+                >
+                  Min. length is 2
+                </small>
+              </div>
             </div>
-            </div>
-            
+
             <div class="mb-3">
               <label for="image">Doctor Photo</label>
               <input
@@ -237,18 +269,19 @@
               />
 
               <div
-              *ngIf="
-              doctorForm.controls['image'].touched &&
-              doctorForm.controls['image'].invalid
-              "
-              id="name_help"
-              class="text-danger form-text"
-            >
-              <small *ngIf="doctorForm.controls['image'].errors?.['required']">
-                image field is required
-              </small>
-              
-            </div>
+                *ngIf="
+                  doctorForm.controls['image'].touched &&
+                  doctorForm.controls['image'].invalid
+                "
+                id="name_help"
+                class="text-danger form-text"
+              >
+                <small
+                  *ngIf="doctorForm.controls['image'].errors?.['required']"
+                >
+                  image field is required
+                </small>
+              </div>
             </div>
 
             <div class="mb-3">
@@ -261,24 +294,30 @@
                 required
               />
               <div
-              *ngIf="
-              doctorForm.controls['experience'].touched &&
-              doctorForm.controls['experience'].invalid
-              "
-              id="name_help"
-              class="text-danger form-text"
+                *ngIf="
+                  doctorForm.controls['experience'].touched &&
+                  doctorForm.controls['experience'].invalid
+                "
+                id="name_help"
+                class="text-danger form-text"
+              >
+                <small
+                  *ngIf="doctorForm.controls['experience'].errors?.['required']"
+                >
+                  experience field is required
+                </small>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              [disabled]="doctorForm.invalid"
+              data-bs-dismiss="modal"
+              (click)="onAddDoctor()"
+              [disabled]="!doctorForm.valid"
             >
-              <small *ngIf="doctorForm.controls['experience'].errors?.['required']">
-                experience field is required
-              </small>
-              
-            </div>
-
-            </div>
-            <button type="button" class="btn btn-primary" [disabled]="doctorForm.invalid" data-bs-dismiss="modal"
-          (click)="onAddDoctor()" [disabled]="!doctorForm.valid">
-          Save 
-        </button>
+              Save
+            </button>
           </form>
           <!-- End of your form -->
         </div>

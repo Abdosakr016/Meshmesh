@@ -7,7 +7,7 @@ import { Isupply } from '../isupply';
 export class SuppliesService {
   private baseUrl = 'http://localhost:8000/api'; // Base URL
   private httpHeaders: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Accept': 'application/json'
   });
 
   constructor(private http: HttpClient) { }
@@ -21,5 +21,16 @@ export class SuppliesService {
     const url=`${this.baseUrl}/supplies`;
     return this.http.post<Isupply>(url,data)
   
+   }
+   updatsupply(id:any,data:FormData){
+    const url=`${this.baseUrl}/supplies/${id}`;
+    return this.http.post(url,data,{headers: this.httpHeaders})
+   }
+
+   deleteSupply(id:any){
+    const url=`${this.baseUrl}/supplies/${id}`;
+    return this.http.delete(url);
+    
+
    }
 }

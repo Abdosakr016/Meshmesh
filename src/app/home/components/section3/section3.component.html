@@ -307,20 +307,20 @@
   -------------------------------------------------------------
   ------------------------------------------------------------>
 	
-	<form>
-		<h1 class="title text-center mb-4">Give us your opinion</h1>
 
-			
-
-			<!-- Message -->
-			<div class="form-group message">
-				<textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="Message"></textarea>
-			</div>
-		
-			<!-- Submit btn -->
-			<div class="text-center">
-				<button type="submit" class="btn btn-primary" tabIndex="-1">Send message</button>
-			</div>
-	</form>
+<form [formGroup]="feedbackForm" (ngSubmit)="sendMessage()">
+	<h1 class="title text-center mb-4">Give us your Feedback</h1>
+  
+	<!-- Message -->
+	<div class="form-group message">
+	  <textarea formControlName="feedback" class="form-control form-control-lg" rows="7" placeholder="Message"></textarea>
+	</div>
+  
+	<!-- Submit btn -->
+	<div class="text-center">
+	  <button type="submit" class="btn btn-primary" tabIndex="-1">Send message</button>
+	</div>
+  </form>
+  
 	
 </div>

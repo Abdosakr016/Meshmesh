@@ -3,6 +3,7 @@ import { UserServiceService } from '../../service/user-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { forkJoin } from 'rxjs';
+import { OrderService } from 'src/app/cart/service/order/order.service';
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
@@ -16,18 +17,24 @@ export class UserAccountComponent {
   userData: any;
   imageFile:any
   userPets: [] = [];
+  userUpdateForm!: FormGroup;
+
+  userOrders: any
+
+
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private formBuilder:FormBuilder,
        private apiService:UserServiceService,
-       private userService:AuthService
+       private userService:AuthService,
+       private orderService:OrderService,
        ){
-   
+
     }
     ngOnInit() {
-  
+
       const userDataObservable = this.userService.getUserData();
       const petsObservable = this.apiService.getProductList();
-    
+          this.getAuthUser();
       forkJoin([userDataObservable, petsObservable]).subscribe(
         ([userData, pets]) => {
           console.log(pets)
@@ -35,13 +42,26 @@ export class UserAccountComponent {
           this.pets = pets;
           this.validation(); // Move the form initialization here
           this.filterPetsByUserId();
+          this.userUpdateValidation() 
         },
         (error) => console.log(error)
       );
-    
+
       this.getAuthUser();
+      // debugger     
+      this.getUserOrder()
     }
     
+    
+    userUpdateValidation() {
+      this.userUpdateForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        old_password: ['', Validators.required],
+        Password: ['', [Validators.minLength(6)]],
+        phone: ['', Validators.required],
+      });
+    }
     validation() {
       this.addPetForm = this.formBuilder.group({
         age: ['', Validators.required],
@@ -53,38 +73,38 @@ export class UserAccountComponent {
         image: ['', Validators.required],
       });
     }
-    
+
     get_imagPet(event: any) {
       const file = event.target.files[0];
       this.imageFile=event.target.files[0];
       const reader = new FileReader();
-    
+
       reader.onload = () => {
         // Convert the image to base64
         const base64Image = reader.result as string;
         // Store the base64 data in a variable, but don't set it as the input value
         this.petAddBase64 = base64Image;
       };
-    
+
       reader.readAsDataURL(file);
     }
-    
-  
+
+
     onAddPet() {
       if (this.addPetForm.valid) {
         const petData = this.addPetForm.value;
-       
+
         petData.user_id = this.userData.id;
-    
+
         const formData = new FormData();
-    
+
         formData.append('image', this.imageFile);
-    
+
         for (const key of Object.keys(petData)) {
           formData.append(key, petData[key]);
         }
         console.log(formData);
-    
+
         // Update the data using the API service
         this.apiService.addNewPet(formData).subscribe(
           (response) => {
@@ -98,17 +118,17 @@ export class UserAccountComponent {
         );
       }
     }
-    
+
     submitForm() {
-    
+
       console.log(this.addPetForm);
     }
       getAuthUser(){
         this.userService.getUserData().subscribe(
           (data) => {
             this.userData = data;
-            console.log(this.userData ); 
-      
+            console.log(this.userData );
+
           },
           (error) => {
             console.error(error);
@@ -116,13 +136,42 @@ export class UserAccountComponent {
         );}
         filterPetsByUserId() {
           // console.log("found.");
-    
+
          this.userPets = this.pets.filter((pet: any) => pet.user.id === this.userData.id);
-          
+
           if (this.userPets.length > 0) {
             console.log("userpets", this.userPets);
           } else {
             console.log("No user pets found.");
           }
         }
+        onUpdateUser() {
+          if (this.userUpdateForm.valid) {
+            const userData = this.userUpdateForm.value;
+            // Update the data using the API service
+            this.userService.updateUserData(userData).subscribe(
+              (response) => {
+                console.log('User data updated successfully:', response);
+                this.userData = response;
+              },
+              (error: any) => {
+                console.error('Error updating user data:', error);
+              }
+            );
+          }
+        }
+     
+    getUserOrder(){
+     
+      this.orderService.getOrders().subscribe(
+        (data) => {
+       this.userOrders =data
+          console.log("orders:",data );
+
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
+    }
 }

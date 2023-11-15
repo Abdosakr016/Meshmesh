@@ -1,33 +1,39 @@
-<section>
+<section class="mb-3">
   <div class="profile profile-wide">
-    <div class="profile__image">
-      <img
-        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png"
-        alt="Doggo"
-      />
+    <div class="profile__image mt-3">
+      <img src="{{ logopath }}{{ pet.logo }}" alt="Doggo" />
     </div>
     <div class="profile__info">
-      <h1>{{ pet.user.name }}</h1>
+      <h3>{{ pet.name }}</h3>
       <p class="profile__info__extra">
-        A very good boi that loves playing fetch and ice-cream! Gentle with
-        everyone. Scared of the rain.
+        <span class="fw-bold">Address:</span> {{ pet.street_address }}
       </p>
     </div>
     <div class="profile__stats">
-      <p class="profile__stats__title">Type</p>
-      <h5 class="profile__stats__info">Puppy</h5>
+      <p class="profile__stats__title">governorate</p>
+      <h5 class="profile__stats__info ps-4">{{ pet.governorate }}</h5>
     </div>
     <div class="profile__stats">
-      <p class="profile__stats__title">Size</p>
-      <h5>Medium</h5>
+      <p class="profile__stats__title">Open at</p>
+      <h5 class="profile__stats__info ps-4">{{ pet.open_at }} Am</h5>
     </div>
     <div class="profile__stats">
-      <p class="profile__stats__title">Weight</p>
-      <h5 class="profile__stats__info">45.85 lbs</h5>
+      <p class="profile__stats__title">close at</p>
+      <h5 class="profile__stats__info ps-4">{{ pet.close_at }} Pm</h5>
     </div>
     <div class="profile__cta">
-      <a class="btn btn-success button" type="button" (click)="Details(pet)"
-        >Adopt Doggo!</a
+      <!-- <a
+        class="btn btn-danger button"
+        style="background-color: #dc3545"
+        type="button"
+        (click)="deleteProduct(pet.id)"
+        >Delete Doggo!</a
+      > -->
+      <a
+        class="btn btn-info button"
+        type="button"
+        [routerLink]="['/show_Vet_details', pet.id]"
+        >Show Center</a
       >
     </div>
   </div>

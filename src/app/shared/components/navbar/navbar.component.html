@@ -1,44 +1,46 @@
 
-<header class="p-3 text-white">
-  <div class="container">
+<header class="p-1 text-white">
+  <div class="container-fluid">
     <div
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
     >
       <a
         href="/"
-        class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+        class=" text-decoration-none"
       >
-      <img src="/assets/logomeshmesh.png" style="width: 220px; height: 60px; " >        <!-- <h2>Meshmesh</h2> -->
+      
+        <img src="/assets/logof.png" class="me-5" style="width: 220px; height: 60px; " >
       </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <ul class="nav col-12 col-lg-auto me-lg-auto pt-2 justify-content-center mb-md-0">
           <li>
-            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark" routerLink="" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="background rounded text-dark" routerLink="" [routerLinkActiveOptions]="{ exact: true }">Home</a>
           </li>
 <li>
   
 </li>
           <li>
-            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark"routerLink="/products">pets </a>
+            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="background rounded text-dark"routerLink="/products">Pets </a>
           </li>
           
             <li>
-              <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark"  routerLink="/supplies">suplies</a>
+              <a href="#" class="nav-link px-2 anav_white" routerLinkActive="background rounded text-dark"  routerLink="/supplies">Supplies</a>
             </li>
            
           <li>
-            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark" routerLink="/show_Vets" >vetirnary center</a>
+            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="background rounded text-dark" routerLink="/show_Vets" >Vetirnary center</a>
           </li>
-       
-            <li>
-              <a href="#" class="nav-link px-2 anav_white" routerLinkActive="text-dark" routerLink="/about_us" >About Us</a>
-            </li>
-            <!-- <a href="#" class="nav-link px-2 anav_white"routerLink="/admin" >Dashboard</a> -->
-     
+          <li>
+            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="background rounded text-dark" routerLink="/about_us" >About Us</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-2 anav_white" routerLinkActive="background rounded text-dark" routerLink="/myPets">My Pets</a>
+          </li>
+          
           <li class="nav-item">
             <a class="nav-link" routerLink="/cart">
-              <i class="fa fa-shopping-cart anav_white fs-2"routerLinkActive="text-dark" routerLink="/cart"></i>
-              <span class="badge badge-danger">{{count}}</span>
+              <i class="fa fa-shopping-cart anav_white fs-2 ps-1 pe-1"routerLinkActive="background rounded text-dark" routerLink="/cart"></i>
+              <span class="badge badge-danger">{{cart_length}}</span>
             </a>
           </li>
         </ul>
@@ -64,13 +66,13 @@
           </div>
           <ng-template #loginButtons>
            
-            <button type="button" class="btn btn-outline-light me-2" routerLinkActive="bg-dark text-white" routerLink="login">Login</button>
+            <button type="button" class="btn btn-outline-light me-2" routerLinkActive="background rounded text-dark" routerLink="login">Login</button>
              
         <!-- <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button> -->
 
             
             <div class="btn-group">
-              <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-outline-light rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Sign-up
               </button>
               <div class="dropdown-menu">

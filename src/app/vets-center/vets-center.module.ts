@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ShowVetsComponent } from './components/show-vets/show-vets.component';
 import { VeterinaryCardComponent } from './components/veterinary-card/veterinary-card.component';
 import { VeterinaryDetailsComponent } from './components/veterinary-details/veterinary-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { VeterinaryDetailsComponent } from './components/veterinary-details/vete
     VeterinaryDetailsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class VetsCenterModule { }

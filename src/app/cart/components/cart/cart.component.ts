@@ -77,11 +77,6 @@ export class CartComponent {
   } 
  
 
-
-
-
-
-
   checkout() {
     if (!this.userData) {
       console.error('User data is not available.');
@@ -99,8 +94,8 @@ export class CartComponent {
         const orderItemsPromises = this.cart_products.map((product) => {
           const orderItem = {
             "order_id": orderResponse.id,
-            "pet_id": !product.is_available ? product.id : null,
-            "supply_id": product.is_available  ? product.id : null,
+            "pet_id": !product.description ? product.id : null,
+            "supply_id": product.description  ? product.id : null,
             "quantity": product.quantity,
           };
   

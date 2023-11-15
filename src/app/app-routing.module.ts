@@ -26,6 +26,7 @@ import { CatsComponent } from './pets/components/cats/cats.component';
 import { DogsComponent } from './pets/components/dogs/dogs.component';
 import { BirdsComponent } from './pets/components/birds/birds.component';
 import { AnimaForBreadingComponent } from './pets/components/anima-for-breading/anima-for-breading.component';
+import { SuccesspaymentComponent } from './cart/components/successpayment/successpayment.component';
 const routes: Routes = [
   {
     path: '',
@@ -91,7 +92,7 @@ const routes: Routes = [
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
-    // canActivate :[authGuard]
+    canActivate :[authGuard]
 
   },
   {
@@ -154,6 +155,12 @@ const routes: Routes = [
     component: AnimaForBreadingComponent,
   },
 
+  {
+    path: 'success_payment',
+    component: SuccesspaymentComponent,
+  },
+
+  
 ];
 
 

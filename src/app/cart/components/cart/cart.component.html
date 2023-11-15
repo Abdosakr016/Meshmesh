@@ -19,11 +19,11 @@
               <div class="flex-grow-1 align-self-center overflow-hidden">
                 <div>
                   <h5 class="text-truncate font-size-18">
-                    <div *ngIf="!item.is_available"  >
+                    <div *ngIf="!item.description"  >
 
                     <a href="#" class="text-dark">{{ item.type }}</a>
                     </div>
-                    <div *ngIf="item.is_available"  >
+                    <div *ngIf="item.description"  >
                       <a href="#" class="text-dark">{{ item.name }}</a>
 
                     </div>
@@ -32,15 +32,15 @@
                     price : <span class="fw-medium">{{ item.price }}</span>
                   </p>
 
-                  <div *ngIf="!item.is_available"  >
+                  <div *ngIf="!item.description"  >
 
                   <p class="mb-0 mt-1">type : <span class="fw-medium">{{ item.type }}</span></p>
                   </div>
-                  <div *ngIf="item.is_available"  >
+                  <div *ngIf="item.description"  >
                    <p class="mb-0 mt-1"> type : <span class="fw-medium">{{ item.name }}</span></p>
                   </div>
                   <p class="mx-3">Quantity: {{ item.quantity }}</p>
-               <div *ngIf="item.is_available"  >
+               <div *ngIf="item.description"  >
                    <button class="btn btn-outline-success m-1" (click)="increaseQuantity(item)"><i class="fa fa-plus"></i></button>
                    <button class="btn btn-outline-danger m-1" (click)="decreaseQuantity(item)"><i class="fa fa-minus"></i></button>
                </div>

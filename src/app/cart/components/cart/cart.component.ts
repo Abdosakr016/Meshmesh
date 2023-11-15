@@ -76,25 +76,7 @@ export class CartComponent {
     return `http://localhost:8000/storage/${image}`;
   } 
  
-  // checkout() {
-  //   if (!this.userData) {
-  //     console.error('User data is not available.');
-  //     return;
-  //   }
-  
-  //   const newapayment = {  "total_price": this.getTotalPrice() };
-  
-  //   this.orderService.payment(newapayment).subscribe(
 
-  //       (response :any) => {
-  //         window.location.href= response;
-  //         },
-
-  //     (error: any) => {
-  //       console.error('Error adding data:', error);
-  //     }
-  //   );
-  // }
 
 
 
@@ -112,7 +94,7 @@ export class CartComponent {
     this.orderService.makeOrder(newOrder).subscribe(
       (orderResponse: any) => {  // Add the type annotation for orderResponse
         console.log('Order created successfully:', orderResponse);
-  
+        this.cartService.clearItems()
         // Step 2: Create OrderItems for each product in the cart
         const orderItemsPromises = this.cart_products.map((product) => {
           const orderItem = {
@@ -120,9 +102,7 @@ export class CartComponent {
             "pet_id": !product.is_available ? product.id : null,
             "supply_id": product.is_available  ? product.id : null,
             "quantity": product.quantity,
-           
-            // ... other properties of OrderItem
-        };
+          };
   
           return this.oItemService.createOrderItem(orderItem).toPromise();
         });
@@ -130,10 +110,17 @@ export class CartComponent {
         // Wait for all OrderItems to be created
         Promise.all(orderItemsPromises).then(
           (orderItemsResponses) => {
-            console.log('OrderItems created successfully:', orderItemsResponses);
+            const newapayment = {  "total_price": this.getTotalPrice() };
   
-            // Optionally, you can clear the cart after successful checkout
-            this.cartService.clearItems();
+            this.orderService.payment(newapayment).subscribe(
+              (response: any) => {
+                this.cartService.clearItems();
+                window.location.href = response;
+              },
+              (paymentError) => {
+                console.error('Error processing payment:', paymentError);
+              }
+            );
           },
           (orderItemsError) => {
             console.error('Error creating OrderItems:', orderItemsError);
@@ -145,6 +132,7 @@ export class CartComponent {
       }
     );
   }
+  
   
   
   getAuthUser(){

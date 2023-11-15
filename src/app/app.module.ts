@@ -22,6 +22,9 @@ import { LayoutComponent } from './admin/layout/layout.component';
 import { TpetsComponent } from './admin/tpets/tpets.component';
 import { TusersComponent } from './admin/tusers/tusers.component';
 import { TsupplyComponent } from './admin/tsupply/tsupply.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent, TsupplyComponent],
@@ -43,6 +46,7 @@ import { TsupplyComponent } from './admin/tsupply/tsupply.component';
     NgxPaginationModule,
     UserProfileModule,
     AdminRoutingModule,
+    ReactiveFormsModule
     
   ],
   providers: [],

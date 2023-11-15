@@ -22,6 +22,9 @@ export class ApiServiceService {
   getProductDetails(id: Number) {
     return this.http.get(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
+
+
+
   addNewPet(petData: FormData) { 
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('access_token')
@@ -29,6 +32,9 @@ export class ApiServiceService {
     console.log(headers )
     return this.http.post<Ipet>('http://localhost:8000/api/pets', petData, { headers });
   }
+
+  
+
 
   updatePet(id: any, petData: FormData) {
  

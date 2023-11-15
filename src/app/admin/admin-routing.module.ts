@@ -4,7 +4,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { AdminComponent } from './admin.component';
 import { TpetsComponent } from './tpets/tpets.component';
 import { TusersComponent } from './tusers/tusers.component';
-
+import { TsupplyComponent } from './tsupply/tsupply.component';
 const routes: Routes = [
  
   {
@@ -19,6 +19,11 @@ const routes: Routes = [
       path: 'tusers',
      component:TusersComponent ,
     }
+    ,
+    {
+      path: 'tsupply',
+     component:TsupplyComponent ,
+    },
   ]
   },
 ];

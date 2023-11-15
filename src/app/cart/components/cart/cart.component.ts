@@ -77,11 +77,6 @@ export class CartComponent {
   } 
  
 
-
-
-
-
-
   checkout() {
     if (!this.userData) {
       console.error('User data is not available.');
@@ -149,4 +144,3 @@ export class CartComponent {
 
     
   }
-  

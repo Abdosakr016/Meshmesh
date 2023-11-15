@@ -54,9 +54,10 @@ export class MyvetsComponent {
   ngOnInit() {
     this.validatVetCenterFormstore();
     this.validatVetCenterFormupdate();
-    this.getvets();
-    this.getDoctors()
     this.getAuthUser();
+    this.getOwner();
+    this.getDoctors()
+   
     this.initializeDoctorForm();
     console.log(this.vetCenterFormstore);
 
@@ -91,7 +92,7 @@ export class MyvetsComponent {
     });
   }
 
-  getvets(){
+  getOwner(){
     this.apiService.getmyvet().subscribe(((data: any) =>  (this.vets = data['data'])),
     (error) => console.log(error),
     () => console.log("COMPLETE" , this.vets))
@@ -172,7 +173,7 @@ export class MyvetsComponent {
       this.apiService.addNewVet(formData).subscribe(
         (response) => {
           console.log('Data Added successfully:', response);
-          this.getvets();
+          this.getOwner();
         },
         (error: any) => {
           console.error('Error Adding data:', error);
@@ -229,7 +230,7 @@ export class MyvetsComponent {
           console.log('Data updated successfully:', response);
           console.log(vetData);
           console.log(this.userData.id);
-          this.getvets();
+          this.getOwner();
         },
         (error: any) => {
           console.error('Error updating data:', error);
@@ -251,7 +252,7 @@ export class MyvetsComponent {
       (response) => {
         console.log('Vet deleted successfully:', response);
         // this.getDoctors();
-      this.getvets();
+      this.getOwner();
 
       },
 

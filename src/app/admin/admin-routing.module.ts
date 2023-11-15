@@ -10,12 +10,13 @@ import { TvetcentersComponent } from './tvetcenters/tvetcenters.component';
 import { TappointmentComponent } from './tappointment/tappointment.component';
 
 import { TsupplyComponent } from './tsupply/tsupply.component';
+import { AdminGuard } from '../admin.guard';
 const routes: Routes = [
 
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate :[authGuard],
+    canActivate :[AdminGuard],
     children:[
       {
        path: 'tpets',
@@ -35,7 +36,7 @@ const routes: Routes = [
      component:TsupplyComponent ,
     },
   
-  {
+  { path: 'tusers',
       component:TusersComponent ,
     },
     {

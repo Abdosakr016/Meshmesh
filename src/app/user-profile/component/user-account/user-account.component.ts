@@ -27,11 +27,11 @@ export class UserAccountComponent {
        private petuserService:UserServiceService,
        private userService:AuthService,
        private orderService:OrderService,
-       ){
+       )
+       {
 
     }
     ngOnInit() {
-
       const userDataObservable = this.userService.getUserData();
       const petsObservable = this.petuserService.getProductList();
           this.getAuthUser();
@@ -50,6 +50,7 @@ export class UserAccountComponent {
       this.getAuthUser();
       // debugger     
       this.getUserOrder()
+      this.validation(); 
     }
     
     
@@ -62,6 +63,7 @@ export class UserAccountComponent {
         phone: ['', Validators.required],
       });
     }
+
     validation() {
       this.addPetForm = this.formBuilder.group({
         age: ['', Validators.required],
@@ -91,13 +93,12 @@ export class UserAccountComponent {
 
 
     onAddPet() {
+     
       if (this.addPetForm.valid) {
         const petData = this.addPetForm.value;
 
         petData.user_id = this.userData.id;
-
         const formData = new FormData();
-
         formData.append('image', this.imageFile);
 
         for (const key of Object.keys(petData)) {

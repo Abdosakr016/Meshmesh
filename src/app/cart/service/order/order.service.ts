@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class OrderService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http : HttpClient) { }
   private urlorder = 'http://localhost:8000/api/orders';
   private urlPaypal = 'http://localhost:8000/api/payment';
 

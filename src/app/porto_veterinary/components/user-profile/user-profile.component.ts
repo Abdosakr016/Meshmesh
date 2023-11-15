@@ -255,7 +255,7 @@ export class UserProfileComponent {
       for (const key of Object.keys(vetData)) {
         formData.append(key, vetData[key]);
       }
-
+console.log(formData);
       // Update the data using the API service
       this.apiService.addNewVet(formData).subscribe(
         (response) => {

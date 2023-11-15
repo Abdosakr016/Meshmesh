@@ -3,120 +3,7 @@
     <h1 class="text-center fs-1 fw-bold pt-3" style="color: #4b6a6f">
       Your Centers
     </h1>
-    <!-- Start Add Modal -->
-    <div
-      class="modal fade"
-      id="doctorModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog update-modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Add your New Doctor
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form
-              [formGroup]="doctorForm"
-              (ngSubmit)="onAddDoctor()"
-              enctype="multipart/form-data"
-            >
-              <div class="form-group">
-                <label for="name">Doctor Name</label>
-                <input
-                  name="name"
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  formControlName="name"
-                />
-                <div
-                  *ngIf="
-                    vetCenterFormupdate.controls['name'].touched &&
-                    vetCenterFormupdate.controls['name'].invalid
-                  "
-                  id="name_help"
-                  class="text-danger form-text"
-                >
-                  <small
-                    *ngIf="vetCenterFormupdate.controls['name'].errors?.['required']"
-                  >
-                    this field is required
-                  </small>
-                  <small
-                    *ngIf="vetCenterFormupdate.controls['name'].errors?.['minlength']"
-                  >
-                    Min. length is 2
-                  </small>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="image">Doctor Photo</label>
-                <input
-                  type="file"
-                  (change)="get_doctorImagepath($event)"
-                  class="form-control"
-                  formControlName="image"
-                  id="image"
-                />
-                <img
-                  src="{{ doctorBase64 }}"
-                  width="200px"
-                  height="200px"
-                  alt=""
-                />
-                <div
-                  *ngIf="
-                    doctorForm.controls['image'].touched &&
-                    doctorForm.controls['image'].invalid
-                  "
-                  id="name_help"
-                  class="text-danger form-text"
-                >
-                  <small
-                    *ngIf="doctorForm.controls['image'].errors?.['required']"
-                  >
-                    image field is required
-                  </small>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="experience text-black fw-bold"
-                  >Doctor experience</label
-                >
-                <input
-                  name="experience"
-                  type="text"
-                  class="form-control"
-                  id="experience"
-                  formControlName="experience"
-                />
-              </div>
-              <div class="form-group">
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  data-bs-dismiss="modal"
-                  [disabled]="doctorForm.invalid"
-                >
-                  Save changes
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end Add Modal -->
+
     <div class="main-body pt-3" *ngFor="let vet of veterenary">
       <div class="row gutters-sm">
         <div class="col-md-3 mb-3">
@@ -139,6 +26,121 @@
                   >
                     Add New Doctor
                   </button>
+                  <!-- Start Add Modal -->
+                  <div
+                    class="modal fade"
+                    id="doctorModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog update-modal">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            Add your New Doctor
+                          </h1>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form
+                            [formGroup]="doctorForm"
+                            (ngSubmit)="onAddDoctor(vet.id)"
+                            enctype="multipart/form-data"
+                          >
+                            <div class="form-group">
+                              <label for="name">Doctor Name</label>
+                              <input
+                                name="name"
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                formControlName="name"
+                              />
+                              <div
+                                *ngIf="
+                                  vetCenterFormupdate.controls['name']
+                                    .touched &&
+                                  vetCenterFormupdate.controls['name'].invalid
+                                "
+                                id="name_help"
+                                class="text-danger form-text"
+                              >
+                                <small
+                                  *ngIf="vetCenterFormupdate.controls['name'].errors?.['required']"
+                                >
+                                  this field is required
+                                </small>
+                                <small
+                                  *ngIf="vetCenterFormupdate.controls['name'].errors?.['minlength']"
+                                >
+                                  Min. length is 2
+                                </small>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="image">Doctor Photo</label>
+                              <input
+                                type="file"
+                                (change)="get_doctorImagepath($event)"
+                                class="form-control"
+                                formControlName="image"
+                                id="image"
+                              />
+                              <img
+                                src="{{ doctorBase64 }}"
+                                width="200px"
+                                height="200px"
+                                alt=""
+                              />
+                              <div
+                                *ngIf="
+                                  doctorForm.controls['image'].touched &&
+                                  doctorForm.controls['image'].invalid
+                                "
+                                id="name_help"
+                                class="text-danger form-text"
+                              >
+                                <small
+                                  *ngIf="doctorForm.controls['image'].errors?.['required']"
+                                >
+                                  image field is required
+                                </small>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="experience text-black fw-bold"
+                                >Doctor experience</label
+                              >
+                              <input
+                                name="experience"
+                                type="text"
+                                class="form-control"
+                                id="experience"
+                                formControlName="experience"
+                              />
+                            </div>
+                            <div class="form-group">
+                              <button
+                                type="submit"
+                                class="btn btn-primary"
+                                data-bs-dismiss="modal"
+                                [disabled]="doctorForm.invalid"
+                              >
+                                Save changes
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end Add Modal -->
                   <!-- Start Modal Delete -->
                   <button
                     class="btn btn-danger mx-2"

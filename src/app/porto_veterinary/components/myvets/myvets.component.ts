@@ -328,10 +328,10 @@ export class MyvetsComponent {
     reader.readAsDataURL(file);
   }
 
-  onAddDoctor() {
+  onAddDoctor(id: any) {
     if (this.doctorForm.valid) {
       const doctorData = this.doctorForm.value;
-      doctorData.veterinary_center_id = 1;
+      doctorData.veterinary_center_id = id;
 
       const formData = new FormData();
       formData.append('image', this.imageFile);

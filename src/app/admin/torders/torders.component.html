@@ -1,27 +1,29 @@
 
 <div class="container table-responsive py-5"> 
-    <h1> All Pets Created</h1>
+    <h1> All Orders Created</h1>
     <table class="table table-bordered table-hover">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Id </th>
-          <th scope="col">Name</th>
-          <th scope="col">Phone</th>
+        
+          <th scope="col">Total Price</th>
           <th scope="col">Created at</th>
           <th scope="col">Updated at</th>
-      
+          <th scope="col">user_name</th>
+  
           <th scope="col"class="bg-danger">Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr  *ngFor="let user of users| paginate: { itemsPerPage: itemsPerPage, currentPage: p}">
-          <th scope="row">{{user.id}}</th>
-          <td>{{user.name}}</td>
-          <td>{{user.phone}}</td>
-          <td>{{ user.created_at | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
-          <td>{{ user.updated_at | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
-         
+        <tr  *ngFor="let order of orders| paginate: { itemsPerPage: itemsPerPage, currentPage: p}">
+          <th scope="row">{{order.id}}</th>
         
+          <td>{{order.total_price}}</td>
+          <td>{{ order.created_at | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ order.updated_at | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+       
+          <td>{{order.user.name}}</td>
+         
           <td class="text-danger p-1">  
          <div>
           <div class="flex-shrink-0 ms-2">
@@ -29,7 +31,7 @@
             <input
               type="button"
               value="Remove"
-             (click)=" deleteUser(user.id) "
+             (click)=" deleteOrder(order.id) "
               class="btn btn-outline-danger"
               data-bs-toggle="modal" data-bs-target="#deleteModal"
             />
@@ -41,7 +43,7 @@
          </td>
   
         </tr>
-        <div class="text-center" *ngIf="users.length">
+        <div class="text-center" *ngIf="orders.length">
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
       </tbody>
@@ -63,7 +65,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button data-bs-dismiss="modal"  type="button" class="btn btn-danger" (click)=" removeUser()">Confirm</button>
+                        <button data-bs-dismiss="modal"  type="button" class="btn btn-danger" (click)=" removeOrder()">Confirm</button>
                       </div>
                     </div>
                   </div>

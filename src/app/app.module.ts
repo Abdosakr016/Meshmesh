@@ -21,9 +21,10 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { LayoutComponent } from './admin/layout/layout.component';
 import { TpetsComponent } from './admin/tpets/tpets.component';
 import { TusersComponent } from './admin/tusers/tusers.component';
+import { TordersComponent } from './admin/torders/torders.component';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent],
+  declarations: [AppComponent, AdminComponent,LayoutComponent, TpetsComponent, TusersComponent,  TordersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,7 +43,7 @@ import { TusersComponent } from './admin/tusers/tusers.component';
     NgxPaginationModule,
     UserProfileModule,
     AdminRoutingModule,
-    
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

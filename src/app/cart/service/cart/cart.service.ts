@@ -24,7 +24,7 @@ export class CartService {
       this._products_cart_length.next(this.cartArray.length); 
       product['quantity'] = 1;
     console.log(this.cartArray)
-
+    this.saveCartToLocalStorage()
     }
   }
 
@@ -34,15 +34,30 @@ export class CartService {
     // alert('Product is already in the cart!')
     console.log(product)
   }
-  // printCartArray() {
-  //   console.log(this.cartArray)
-  //     ;
-  // }
+  saveCartToLocalStorage() {
+    const cartArrayJSON = JSON.stringify(this.cartArray);
 
+    localStorage.setItem('cartArray', cartArrayJSON);
+  }
+
+  loadCartFromLocalStorage() {
+    const cartArrayJSON = localStorage.getItem('cartArray');
+  
+    if (cartArrayJSON) {
+      this.cartArray = JSON.parse(cartArrayJSON);
+     this. updateCartLength()
+    }
+
+  }
 remove_item(){
   this._products_cart_length.next(this.cartArray.length); 
-
 }
-  clearItems(){}
-
+  clearItems(){
+    localStorage.removeItem('cartArray');
+    this.updateCartLength()
+  }
+  updateCartLength() {
+    this._products_cart_length.next(this.cartArray.length);
+  }
+  
 }

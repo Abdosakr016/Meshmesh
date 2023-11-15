@@ -58,7 +58,7 @@ export class UserAccountComponent {
         name: ['', Validators.required],
         email: ['', Validators.required],
         old_password: ['', Validators.required],
-        Password: ['', Validators.required],
+        password: ['', Validators.required],
         phone: ['', Validators.required],
       });
     }

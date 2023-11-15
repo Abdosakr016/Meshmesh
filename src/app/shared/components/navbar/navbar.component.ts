@@ -20,9 +20,11 @@ export class NavbarComponent {
     private userService: AuthService) {}
 
   ngOnInit() {
+    
     this.cartService.products_cart_length$.subscribe((length) => {
      this.cart_length = length;
     });
+
     const access_token = localStorage.getItem('access_token'); // Check for 'access_token'
     if (access_token) {
       this.userLogin = true; 

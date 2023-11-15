@@ -19,6 +19,9 @@ export class AnimaForBreadingComponent {
   itemsPerPage:number=3;
  
 animals: Ipet[] = [];
+arryCart:any[]=[];
+productInCart=false;
+alertMessage=''
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: ApiServiceService ,
@@ -49,7 +52,13 @@ animals: Ipet[] = [];
       this.getAuthUser();
 
   }
-
+  addToCart(product: any) {
+    this.productInCart=this.CartService.productInCart
+    this.alertMessage=this.CartService.alertMessage
+    
+    this.CartService.addCartArray_service(product);
+    
+      }
   getAuthUser(){
     this.userService.getUserData().subscribe(
       (data) => {

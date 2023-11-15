@@ -21,6 +21,9 @@ export class DogsComponent {
   itemsPerPage:number=3;
  
 dogs: Ipet[] = [];
+arryCart:any[]=[];
+productInCart=false;
+alertMessage=''
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: ApiServiceService ,
@@ -51,6 +54,13 @@ dogs: Ipet[] = [];
       this.getAuthUser();
 
   }
+  addToCart(product: any) {
+    this.productInCart=this.CartService.productInCart
+    this.alertMessage=this.CartService.alertMessage
+    
+    this.CartService.addCartArray_service(product);
+    
+      } 
 
   getAuthUser(){
     this.userService.getUserData().subscribe(

@@ -180,7 +180,7 @@ formData.append('_method','PUT');
 
         (response) => {
 
-          console.log('Data updated successfully:', response);
+          console.log('supply created successfully:', response);
           this.getAllSuppliesData();
         },
         (error: any) => {

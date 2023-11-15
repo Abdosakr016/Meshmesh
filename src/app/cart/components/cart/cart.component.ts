@@ -33,9 +33,12 @@ export class CartComponent {
   ngOnInit() {
 
     this.getAuthUser()
+    this.cartService.loadCartFromLocalStorage();
     this.cart_products=this.cartService.cartArray
+    this.cartService.updateCartLength() 
+    
   }
-  deleteDoctor(id:any){
+  deleteitem(id:any){
     this.cart_id=id
       }
   removeItem(){
@@ -73,75 +76,75 @@ export class CartComponent {
     return `http://localhost:8000/storage/${image}`;
   } 
  
-  checkout() {
-    if (!this.userData) {
-      console.error('User data is not available.');
-      return;
-    }
-  
-    const newapayment = {  "total_price": this.getTotalPrice() };
-  
-    this.orderService.payment(newapayment).subscribe(
-
-        (response :any) => {
-          window.location.href= response;
-          },
-
-      (error: any) => {
-        console.error('Error adding data:', error);
-      }
-    );
-  }
-
-
-
-
-
   // checkout() {
   //   if (!this.userData) {
   //     console.error('User data is not available.');
   //     return;
   //   }
   
-  //   // Step 1: Create an order
-  //   const newOrder = { "user_id": this.userData.id, "total_price": this.getTotalPrice() };
+  //   const newapayment = {  "total_price": this.getTotalPrice() };
   
-  //   this.orderService.makeOrder(newOrder).subscribe(
-  //     (orderResponse: any) => {  // Add the type annotation for orderResponse
-  //       console.log('Order created successfully:', orderResponse);
-  
-  //       // Step 2: Create OrderItems for each product in the cart
-  //       const orderItemsPromises = this.cart_products.map((product) => {
-  //         const orderItem = {
-  //           "order_id": orderResponse.id,
-  //           "pet_id": !product.is_available ? product.id : null,
-  //           "supply_id": product.is_available  ? product.id : null,
-  //           "quantity": product.quantity,
-           
-  //           // ... other properties of OrderItem
-  //       };
-  
-  //         return this.oItemService.createOrderItem(orderItem).toPromise();
-  //       });
-  
-  //       // Wait for all OrderItems to be created
-  //       Promise.all(orderItemsPromises).then(
-  //         (orderItemsResponses) => {
-  //           console.log('OrderItems created successfully:', orderItemsResponses);
-  
-  //           // Optionally, you can clear the cart after successful checkout
-  //           this.cartService.clearItems();
+  //   this.orderService.payment(newapayment).subscribe(
+
+  //       (response :any) => {
+  //         window.location.href= response;
   //         },
-  //         (orderItemsError) => {
-  //           console.error('Error creating OrderItems:', orderItemsError);
-  //         }
-  //       );
-  //     },
-  //     (orderError: any) => {
-  //       console.error('Error creating order:', orderError);
+
+  //     (error: any) => {
+  //       console.error('Error adding data:', error);
   //     }
   //   );
   // }
+
+
+
+
+
+  checkout() {
+    if (!this.userData) {
+      console.error('User data is not available.');
+      return;
+    }
+  
+    // Step 1: Create an order
+    const newOrder = { "user_id": this.userData.id, "total_price": this.getTotalPrice() };
+  
+    this.orderService.makeOrder(newOrder).subscribe(
+      (orderResponse: any) => {  // Add the type annotation for orderResponse
+        console.log('Order created successfully:', orderResponse);
+  
+        // Step 2: Create OrderItems for each product in the cart
+        const orderItemsPromises = this.cart_products.map((product) => {
+          const orderItem = {
+            "order_id": orderResponse.id,
+            "pet_id": !product.is_available ? product.id : null,
+            "supply_id": product.is_available  ? product.id : null,
+            "quantity": product.quantity,
+           
+            // ... other properties of OrderItem
+        };
+  
+          return this.oItemService.createOrderItem(orderItem).toPromise();
+        });
+  
+        // Wait for all OrderItems to be created
+        Promise.all(orderItemsPromises).then(
+          (orderItemsResponses) => {
+            console.log('OrderItems created successfully:', orderItemsResponses);
+  
+            // Optionally, you can clear the cart after successful checkout
+            this.cartService.clearItems();
+          },
+          (orderItemsError) => {
+            console.error('Error creating OrderItems:', orderItemsError);
+          }
+        );
+      },
+      (orderError: any) => {
+        console.error('Error creating order:', orderError);
+      }
+    );
+  }
   
   
   getAuthUser(){

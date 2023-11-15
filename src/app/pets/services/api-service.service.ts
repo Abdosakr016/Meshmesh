@@ -7,7 +7,7 @@ import { Ipet } from '../interface/Ipet';
 })
 export class ApiServiceService {
   private url = 'http://localhost:8000/api/pets';
-
+private access_token=localStorage.getItem('access_token')
   // Define HttpHeaders as a constant
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Accept': 'application/json'
@@ -24,20 +24,28 @@ export class ApiServiceService {
   }
   addNewPet(petData: FormData) { 
     const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+      'Authorization': `Bearer ${this.access_token}`,
+      'Accept': 'application/json'
     });
     console.log(headers )
     return this.http.post<Ipet>('http://localhost:8000/api/pets', petData, { headers });
   }
 
   updatePet(id: any, petData: FormData) {
- 
-    return this.http.post(`${this.url}/${id}`, petData, { headers: this.httpHeaders });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.access_token}`,
+      'Accept': 'application/json'
+    });
+    return this.http.post(`${this.url}/${id}`, petData, {headers});
   
   }
 
   deleteProduct(id: string) {
-    return this.http.delete(`${this.url}/${id}`, { headers: this.httpHeaders });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.access_token}`,
+      'Accept': 'application/json'
+    });
+    return this.http.delete(`${this.url}/${id}`, {headers});
   }
   
 }

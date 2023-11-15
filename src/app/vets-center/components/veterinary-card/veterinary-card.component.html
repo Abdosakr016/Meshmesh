@@ -22,17 +22,7 @@
       <h5 class="profile__stats__info ps-4">{{ pet.close_at }} Pm</h5>
     </div>
     <div class="profile__cta">
-      <!-- <a
-        class="btn btn-danger button"
-        style="background-color: #dc3545"
-        type="button"
-        (click)="deleteProduct(pet.id)"
-        >Delete Doggo!</a
-      > -->
-      <a
-        class="btn btn-info button"
-        type="button"
-        [routerLink]="['/show_Vet_details', pet.id]"
+      <a class="btn btn-info button" type="button" (click)="showdetails(pet.id)"
         >Show Center</a
       >
     </div>

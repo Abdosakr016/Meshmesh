@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit{
   loginform: FormGroup;
   invalidLogin = false;
   constructor(private fb: FormBuilder , private router: Router ,private AuthService:AuthService) {
-    
-   
-  
+
+
+
     this.loginform= this.fb.group({
 
       email: [
@@ -54,22 +54,27 @@ export class LoginComponent implements OnInit{
     
 
     this.AuthService.login(this.loginform.value).subscribe(res => {
-      console.log(res);
       if(res.access_token){
         localStorage.setItem('access_token' ,res.access_token )
-        window.location.href='';
 
+        if(res.role == 'owner'){
+          window.location.href='/user-vet';
+        }else if(res.role == 'client'){
+          // this.router.navigate(['/']);
+          window.location.href='';
+        }else if(res.role == 'admin'){
+          window.location.href='/admin';
+        }else{
+          // this.router.navigate(['']);
+          window.location.href='/login';
+        }
       }
     },
     error => {
       this.error=error.error.message;
       console.log(error.error);
     });
-
-
   }
-
-
 }
 
 

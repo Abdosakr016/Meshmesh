@@ -99,18 +99,18 @@
   /* border: none; */
 }
 
-.professional-form .btn-primary:hover {
+/* .professional-form .btn-primary:hover {
   background-color: #0056b3;
-}
+} */
 
 .professional-form .btn-success {
   background-color: #28a745;
   border: none;
 }
 
-.professional-form .btn-success:hover {
+/* .professional-form .btn-success:hover {
   background-color: #1e8c3b;
-}
+} */
 
 .cont {
   background-image: url('/assets/bg.jpeg');
@@ -194,9 +194,9 @@
   border-radius: 10px !important;
 } */
 
-a:hover {
+/* a:hover {
   background-color: #ccc !important;
-}
+} */
 
 
 
@@ -251,4 +251,10 @@ img {
 .line-color {
   color: green;
   height: 3px;
+}
+
+.waiting {
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  color: #ff8800;
 }

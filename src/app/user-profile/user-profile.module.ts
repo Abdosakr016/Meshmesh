@@ -4,6 +4,7 @@ import { CardComponent } from './component/card/card.component';
 import { UserAccountComponent } from './component/user-account/user-account.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyPetsComponent } from './component/my-pets/my-pets.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MyPetsComponent } from './component/my-pets/my-pets.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class UserProfileModule { }

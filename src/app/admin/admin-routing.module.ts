@@ -6,10 +6,12 @@ import { TpetsComponent } from './tpets/tpets.component';
 import { TusersComponent } from './tusers/tusers.component';
 import { authGuard } from '../auth.guard';
 import { TordersComponent } from './torders/torders.component';
+import { TvetcentersComponent } from './tvetcenters/tvetcenters.component';
+import { TappointmentComponent } from './tappointment/tappointment.component';
 
 import { TsupplyComponent } from './tsupply/tsupply.component';
 const routes: Routes = [
- 
+
   {
     path: 'admin',
     component: AdminComponent,
@@ -17,7 +19,7 @@ const routes: Routes = [
     children:[
       {
        path: 'tpets',
-      component:TpetsComponent ,
+       component:TpetsComponent ,
      },
      {
       path: 'tusers',
@@ -32,8 +34,19 @@ const routes: Routes = [
       path: 'tsupply',
      component:TsupplyComponent ,
     },
-  ]
-  },
+  
+  {
+      component:TusersComponent ,
+    },
+    {
+     path: 'tvetcenters',
+     component:TvetcentersComponent ,
+    },
+    {
+     path: 'tappointment',
+     component:TappointmentComponent ,
+    }
+]},
 ];
 
 

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module';
+
 import { PetsModule } from './pets/pets.module';
 import { HomeModule } from './home/home.module';
 import { PortoVeterinaryModule } from './porto_veterinary/porto-veterinary.module';
@@ -24,7 +24,9 @@ import { TusersComponent } from './admin/tusers/tusers.component';
 import { TordersComponent } from './admin/torders/torders.component';
 import { TsupplyComponent } from './admin/tsupply/tsupply.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { TvetcentersComponent } from './admin/tvetcenters/tvetcenters.component';
+import { TappointmentComponent } from './admin/tappointment/tappointment.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { ReactiveFormsModule } from '@angular/forms';
       TpetsComponent, 
       TusersComponent,
        TsupplyComponent,
-       TordersComponent
+       TordersComponent,
+       TvetcentersComponent,
+       TappointmentComponent
       ],
   imports: [
     BrowserModule,

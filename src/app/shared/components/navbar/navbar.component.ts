@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/components/auth.service';
+// import { AuthService } from '../../../auth/components/auth.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class NavbarComponent {
 
     const access_token = localStorage.getItem('access_token'); // Check for 'access_token'
     if (access_token) {
-      this.userLogin = true; 
+      this.userLogin = true;
     } else {
       this.userLogin = false;
     }
@@ -36,7 +37,7 @@ export class NavbarComponent {
     this.userService.getUserData().subscribe(
       (data) => {
         this.userData = data;
-        console.log(this.userData); 
+        console.log(this.userData);
 
       },
       (error) => {
@@ -44,19 +45,19 @@ export class NavbarComponent {
       }
     );
   }
-  
+
 
   logout() {
-   
+
     this.userService.logout().subscribe(
       () => {
     // console.log("logout")
-  
+
       },
       (error) => {
-     
+
         console.error('Logout error:', error);
-       
+
       }
     );
     localStorage.removeItem('access_token');
@@ -66,7 +67,8 @@ export class NavbarComponent {
     }, 500);
   }
 
-}
+
 // this.cartService.products_cart_length$.subscribe((length) => {
 //   this.header_cart_length = length;
 // });
+}

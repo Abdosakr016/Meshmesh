@@ -7,8 +7,8 @@
     /* background-image: url('https://i.pinimg.com/564x/e5/3c/b2/e53cb2efbae7b0a338af5471506a3da3.jpg'); */
     /* background-color: #FFB6C1;  */
     background-image: url('/assets/bg.jpeg');
-    width: 100%;
-    min-height: 50vh;
+    /* width: 100%;
+    min-height: 50vh; */
    
     background-size: cover;
     background-position: center;

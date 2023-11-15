@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ApiServiceService } from '../../../pets/services/api-service.service';
 import { ApiVetCenterService } from '../../services/api-vet-center.service';
-import { ElementRef, Renderer2 } from '@angular/core';
+import { ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-show-vets',
@@ -10,7 +9,7 @@ import { ElementRef, Renderer2 } from '@angular/core';
 })
 export class ShowVetsComponent {
   vets :any;
-    constructor(private apiService:ApiVetCenterService,private el: ElementRef, private renderer: Renderer2){}
+    constructor(private apiService:ApiVetCenterService,private el: ElementRef){}
       ngOnInit(){
         this.apiService.getProductList().subscribe(((data: any) => (this.vets = data['data'])),
         (error) => console.log(error),

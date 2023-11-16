@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedService } from 'src/app/pets/services/shared.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -18,6 +19,7 @@ alertMessage=''
   constructor(
     private sharedService: SharedService,
     private CartService : CartService,
+     private router: Router
     ) {}
 
   ngOnInit() {
@@ -33,6 +35,7 @@ alertMessage=''
     this.alertMessage=this.CartService.alertMessage
     
     this.CartService.addCartArray_service(product);
+    this.router.navigate(['cart']);
     
       }
     

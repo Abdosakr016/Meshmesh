@@ -16,26 +16,25 @@
           </div>
           <div class="col-md-6 col-lg-6 col-xl-6">
           
-              <h1 style="color: darkcyan">Pet owner: {{ pet.user.name }}</h1>
-              <h3>Pet category: {{ pet.category }}</h3>
-              <h4>For: {{ pet.operation }}</h4>
+              <h1 style="color: darkcyan">Owner : {{ pet.user.name }}</h1>
+              <h3>category : {{ pet.category }}</h3>
+              <h4>For : {{ pet.operation }}</h4>
 
            
             <div class="mt-1 mb-0 text-muted small">
-              <span><span style="color: darkcyan">Gender: </span>{{ pet.gender }}</span>
-           
-            </div>
-            <p class="text-truncate mb-4 mb-md-0 pt-2">
-              <span style="color: darkcyan">Pet Type: </span>{{ pet.type }}
-            </p>
-            <blockquote class="text-truncate mb-4 mb-md-0 pt-2">
-              <span style="color: darkcyan">age: {{ pet.age }}</span> <br />
-               <br />
-            </blockquote>
+              <span><span style="color: darkcyan; font-size: larger;">Gender : </span>{{ pet.gender }}</span>
+           <br>
+            
+              <span style="color: darkcyan; font-size: larger;">Pet Type : </span>{{ pet.type }}
+            <br>
+          
+              <span style="color: darkcyan; font-size: larger;">age : {{ pet.age }}</span> <br />
+         
+          </div>
           </div>
           <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
             <div class="d-flex flex-row align-items-center mb-1">
-              <h4 class="mb-1 me-1">{{ pet.price }}</h4>
+              <h4 class="mb-1 me-1">Price : {{ pet.price }} </h4>
             </div>
             <div class="d-flex flex-column mt-4">
               
@@ -50,6 +49,7 @@
                 Delete pet
                 <i class="fa fa-trash"></i>
               </button>
+              
               <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -69,6 +69,7 @@
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>

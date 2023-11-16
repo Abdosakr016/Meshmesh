@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { CounterService } from 'src/app/cart/service/counter/count.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/components/auth.service';
+// import { AuthService } from '../../../auth/components/auth.service';
+import { CartService } from 'src/app/cart/service/cart/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,20 +11,24 @@ import { AuthService } from 'src/app/auth/components/auth.service';
 
 })
 export class NavbarComponent {
-  count: any = 0;
+  cart_length: number = 0;
   username: string = '';
   userLogin: any;
   userData: any;
-  constructor(private counter: CounterService,private router: Router,private userService: AuthService) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private userService: AuthService) {}
 
   ngOnInit() {
-   this.counter.getCounterVal().subscribe((value)=>{
-this.count=value;
-console.log(value)
-   })
+    
+    this.cartService.products_cart_length$.subscribe((length) => {
+     this.cart_length = length;
+    });
+
     const access_token = localStorage.getItem('access_token'); // Check for 'access_token'
     if (access_token) {
-      this.userLogin = true; 
+      this.userLogin = true;
     } else {
       this.userLogin = false;
     }
@@ -32,7 +37,7 @@ console.log(value)
     this.userService.getUserData().subscribe(
       (data) => {
         this.userData = data;
-        // console.log(data); 
+        console.log(this.userData);
 
       },
       (error) => {
@@ -40,19 +45,19 @@ console.log(value)
       }
     );
   }
-  
+
 
   logout() {
-   
+
     this.userService.logout().subscribe(
       () => {
     // console.log("logout")
-  
+
       },
       (error) => {
-     
+
         console.error('Logout error:', error);
-       
+
       }
     );
     localStorage.removeItem('access_token');
@@ -62,7 +67,8 @@ console.log(value)
     }, 500);
   }
 
-}
+
 // this.cartService.products_cart_length$.subscribe((length) => {
 //   this.header_cart_length = length;
 // });
+}

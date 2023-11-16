@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegisterClinicComponent } from './components/register-clinic/register-clinic.component';
 import { ChooseFormComponent } from './components/choose-form/choose-form.component';
+import { RegisterbothComponent } from './components/registerboth/registerboth.component';
 
 
 
@@ -14,7 +15,8 @@ import { ChooseFormComponent } from './components/choose-form/choose-form.compon
     RegisterComponent,
     LoginComponent,
     RegisterClinicComponent,
-    ChooseFormComponent
+    ChooseFormComponent,
+    RegisterbothComponent
   ],
   imports: [
     CommonModule,

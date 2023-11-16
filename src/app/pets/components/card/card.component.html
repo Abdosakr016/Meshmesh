@@ -1,67 +1,34 @@
 
-
     <!-- banner bg main start -->
     <div class="banner_bg_main">
         <!-- header top section start -->
-        <div class="container">
-          <div class="header_section_top">
-              <div class="row">
-                <div class="col-sm-12">
-                    <div class="custom_menu">
-                      <ul>
-                          <li><a href="#">Dogs</a></li>
-                          <li><a href="#">Cats</a></li>
-                          <li><a href="#">Birds</a></li>
-                        
-                          <li><a href="#">Animal For Breading</a></li>
-                      </ul>
-                    </div>
-                </div>
-              </div>
-          </div>
-        </div>
+
         <!-- header top section start -->
         <!-- logo section start -->
-        <div class="logo_section">
-          <div class="container">
-              <div class="row">
-                <div class="col-sm-12">
-                    <div class="logo"><a href="index.html"><img src="/assets/images/logo.png"></a></div>
-                </div>
-              </div>
-          </div>
-        </div>
         <!-- logo section end -->
         <!-- header section start -->
         <div class="header_section">
           <div class="container">
               <div class="containt_main">
-                <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="index.html">Home</a>
-                    <a href="fashion.html">Fashion</a>
-                    <a href="electronic.html">Electronic</a>
-                    <a href="jewellery.html">Jewellery</a>
-                </div>
-                <span class="toggle_icon" onclick="openNav()"></span>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
+
+                <div class="dropdown pt-5">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Dogs</a>
-                      <a class="dropdown-item" href="#">Cats</a>
-                      <a class="dropdown-item" href="#">Birds</a>
+                      <button class="dropdown-item" (click)="chmodSearch('all')">all</button>
+                      <button class="dropdown-item" (click)="chmodSearch('category')">category</button>
+                      <button class="dropdown-item" (click)="chmodSearch('price')">price</button>
                       
-                      <a class="dropdown-item" href="#">Animals for breeding</a>
+                      <button class="dropdown-item" (click)="chmodSearch('type')">type</button>
                     
                     </div>
                 </div>
-                <div class="main">
+                <div class="main pt-5">
                     <!-- Another variation with a button -->
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search this blog">
+                      <input [(ngModel)]="searchTerm" type="text" class="form-control" [placeholder]="getPlaceholder()">
                       <div class="input-group-append">
-                          <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                          <button (click)="search()" class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
                           <i class="fa fa-search"></i>
                           </button>
                       </div>
@@ -79,67 +46,40 @@
                           </a>
                       </div>
                     </div> -->
-                    <div class="login_menu">
-                      <ul>
-                          <!-- <li><a href="#">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="padding_10">Cart</span></a>
-                          </li> -->
-                          <li><a href="#">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span class="padding_10">my profile</span></a>
-                          </li>
-                      </ul>
-                    </div>
+
                 </div>
               </div>
           </div>
         </div>
+        
         <!-- header section end -->
         <!-- banner section start -->
         <div class="banner_section layout_padding">
           <div class="container">
-              <div id="my_slider" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
+
                       <div class="row">
-                          <div class="col-sm-12">
-                            <h1 class="banner_taital">Get Start <br>Pets for Sale: Change Two Lives Forever.</h1>
-                            <div class="buynow_bt"><a href="#">Add To Cart</a></div>
+                        <div class="px-4  text-center">
+                          <!-- <img class="d-block mx-auto mb-4" src="/assets/logomeshmesh.png" alt="" width="200" height="100"> -->
+                          <h1 class="display-5 fw-bold pb-4 ">Give<span style="color: #FF9831;"> Meshmesh</span> the care<br> it deserves</h1>
+                          <div class="col-lg-6 mx-auto">
+                            <p class="lead mb-4 pe-4 ps-4 pb-5">Meshmesh, your all-in-one solution for your pet .</p>
+                           
+                          </div>
                           </div>
                       </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="row">
-                          <div class="col-sm-12">
-                            <h1 class="banner_taital">Get Start <br> Adopt a Pet and Change a Life.</h1>
-                            <div class="buynow_bt"><a href="#">Add To Cart</a></div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="row">
-                          <div class="col-sm-12">
-                            <h1 class="banner_taital">Get Start <br>Responsible Pet Ownership Starts Here.</h1>
-                            <div class="buynow_bt"><a href="#">Add To Cart</a></div>
-                          </div>
-                      </div>
-                    </div>
+ 
                 </div>
-                <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-                </a>
-                <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-                </a>
+
               </div>
-          </div>
-        </div>
+
         <!-- banner section end -->
     </div>
     <!-- banner bg main end -->
+   
       <!-- Cats section start -->
       <div class="fashion_section">
+        <div class="b-example-divider"></div>
+
         <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
               <div class="carousel-item active">
@@ -147,14 +87,14 @@
                     <h1 class="fashion_taital">Cats for Adoption </h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_adopt">
+                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_adopt.slice(0, 3)">
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
                                 <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
                                 <div class="electronic_img"><img [src]="generateImageUrl(pet.image)"></div>
                                 <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>
                                 </div>
                             </div>
                           </div>
@@ -168,15 +108,14 @@
                     <h1 class="fashion_taital">Cats for Sale</h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_sell">
+                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_sell.slice(0, 3)">
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
                                 <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
                                 <div class="electronic_img"><img [src]="generateImageUrl(pet.image)"></div>
                                 <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
-                                </div>
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                                </div>
                             </div>
                           </div>
                          
@@ -184,31 +123,13 @@
                     </div>
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="container">
-                    <h1 class="fashion_taital">Cats for Adoption & sale</h1>
-                    <div class="fashion_section_2">
-                      <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_sell">
-                            <div class="box_main">
-                                <h4 class="shirt_text">{{ pet.type }}</h4>
-                                <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
-                                <div class="electronic_img"><img [src]="generateImageUrl(pet.image)"></div>
-                                <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
-                                </div>
-                            </div>
-                          </div>
-                        
-                      </div>
-                    </div>
-                </div>
-              </div>
+             
           </div>
           <a class="carousel-control-prev" href="#electronic_main_slider" role="button" data-slide="prev">
           <i class="fa fa-angle-left"></i>
           </a>
+          <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="cats">See More <i class="fa fa-plus "></i></a></button>
+
           <a class="carousel-control-next" href="#electronic_main_slider" role="button" data-slide="next">
           <i class="fa fa-angle-right"></i>
           </a>
@@ -224,7 +145,7 @@
                     <h1 class="fashion_taital">Dogs for Adoption </h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_sell">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_sell.slice(0, 3)">
                           
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
@@ -232,8 +153,9 @@
                                 <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
                                 <div class="tshirt_img"><img width="300" height="200" [src]="generateImageUrl(pet.image)"></div>
                                 <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                               
+
                                 </div>
                             </div>
                           </div>
@@ -248,15 +170,14 @@
                     <h1 class="fashion_taital">Dogs for Sale</h1>
                     <div class="fashion_section_2">
                       <div class="row">
-                          <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_adopt">
+                          <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_adopt.slice(0, 3)">
                             <div class="box_main">
                                 <h4 class="shirt_text">{{ pet.type }}</h4>
                                 <p class="price_text">Price  <span style="color: #262626;">$  {{pet.price}}</span></p>
                                 <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
                                 <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
-                                </div>
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                                </div>
                             </div>
                           </div>
                         
@@ -265,28 +186,10 @@
                     </div>
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="container">
-                    <h1 class="fashion_taital">Dogs for Adoption &sale</h1>
-                    <div class="fashion_section_2">
-                      <div class="row">
-                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryDogs_adopt">
-                            <div class="box_main">
-                                <h4 class="shirt_text">{{ pet.type }}</h4>
-                                <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
-                                <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
-                                <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
-                                </div>
-                            </div>
-                          </div>
-                        
-                      </div>
-                    </div>
-                </div>
-              </div>
+              
           </div>
+          <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="dogs">See More <i class="fa fa-plus "></i></a></button>
+
           <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
           <i class="fa fa-angle-left"></i>
           </a>
@@ -294,7 +197,7 @@
           <i class="fa fa-angle-right"></i>
           </a>
           
-        </div>1
+        </div>
     </div>
     <!-- Dogs section end -->
   
@@ -309,15 +212,14 @@
                   <h1 class="fashion_taital">Birds For Adoption</h1>
                   <div class="fashion_section_2">
                       <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt.slice(0, 3)">
                           <div class="box_main">
                               <h4 class="shirt_text">{{ pet.type }}</h4>
                               <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
                               <div class="jewellery_img"><img [src]="generateImageUrl(pet.image)"></div>
                               <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
-                              </div>
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                              </div>
                             </div>
                         </div>
                      
@@ -330,15 +232,14 @@
                   <h1 class="fashion_taital">Birds For Sale</h1>
                   <div class="fashion_section_2">
                       <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_sell">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_sell.slice(0, 3)">
                           <div class="box_main">
                               <h4 class="shirt_text">{{ pet.type }}</h4>
                               <p class="price_text">Start Price  <span style="color: #262626;">$ {{ pet.price }}</span></p>
                               <div class="jewellery_img"><img [src]="generateImageUrl(pet.image)"></div>
                               <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
-                              </div>
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                              </div>
                             </div>
                         </div>
                       
@@ -346,37 +247,21 @@
                   </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="container">
-                  <h1 class="fashion_taital">Birds For Adoption & Sale<</h1>
-                  <div class="fashion_section_2">
-                      <div class="row">
-                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt">
-                          <div class="box_main">
-                              <h4 class="shirt_text">{{ pet.type }}</h4>
-                              <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                              <div class="jewellery_img"><img [src]="generateImageUrl(pet.image)"></div>
-                              <div class="btn_main">
-                                  <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                                  <div class="seemore_bt"><a href="#">See More</a></div>
-                              </div>
-                            </div>
-                        </div>
-                      
-                        
-                      </div>
-                  </div>
-                </div>
-            </div>
+
           </div>
+          <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="birds">See More <i class="fa fa-plus "></i></a></button>
+
           <a class="carousel-control-prev" href="#jewellery_main_slider" role="button" data-slide="prev">
           <i class="fa fa-angle-left"></i>
           </a>
+          
           <a class="carousel-control-next" href="#jewellery_main_slider" role="button" data-slide="next">
           <i class="fa fa-angle-right"></i>
           </a>
           <div class="loader_main">
-            <div class="loader"></div>
+            <div class="loader">
+
+            </div>
           </div>
       </div>
     </div>
@@ -387,10 +272,10 @@
       <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="container">
-                <h1 class="fashion_taital"> Anima For Breading </h1>
+                <h1 class="fashion_taital"> Another animals </h1>
                 <div class="fashion_section_2">
                   <div class="row">
-                    <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryAnimal_breeding">
+                    <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryAnimal_breeding.slice(0, 3)">
                       
                         <div class="box_main">
                             <h4 class="shirt_text">{{ pet.type }}</h4>
@@ -398,8 +283,8 @@
                             <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
                             <div class="tshirt_img"><img width="300" height="200" [src]="generateImageUrl(pet.image)"></div>
                             <div class="btn_main">
-                              <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                              <div class="seemore_bt"><a href="#">See More</a></div>
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                              <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>
                             </div>
                         </div>
                       </div>
@@ -409,390 +294,17 @@
                 </div>
             </div>
           </div>
-          <!-- <div class="carousel-item">
-            <div class="container">
-                <h1 class="fashion_taital">Birds for Sale</h1>
-                <div class="fashion_section_2">
-                  <div class="row">
-                      <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt">
-                        <div class="box_main">
-                            <h4 class="shirt_text">{{ pet.type }}</h4>
-                            <p class="price_text">Price  <span style="color: #262626;">$  {{pet.price}}</span></p>
-                            <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
-                            <div class="btn_main">
-                              <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                              <div class="seemore_bt"><a href="#">See More</a></div>
-                            </div>
-                        </div>
-                      </div>
-                    
-                      
-                  </div>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-                <h1 class="fashion_taital">Birds for Adoption &sale</h1>
-                <div class="fashion_section_2">
-                  <div class="row">
-                      <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryBirds_adopt">
-                        <div class="box_main">
-                            <h4 class="shirt_text">{{ pet.type }}</h4>
-                            <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
-                            <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
-                            <div class="btn_main">
-                              <div class="buy_bt"><a (click)="AddToCart(pet)">Add To Cart</a></div>
-                              <div class="seemore_bt"><a href="#">See More</a></div>
-                            </div>
-                        </div>
-                      </div>
-                    
-                  </div>
-                </div>
-            </div>
-          </div> -->
-      </div>
-      <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-      <i class="fa fa-angle-left"></i>
-      </a>
-      <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-      <i class="fa fa-angle-right"></i>
-      </a>
-    </div>
-</div>
-<!-- animal section end -->
-    
-
-
-
-
-<!-- <div class="row justify-content-center mb-3 body">
-<div class="col-md-12 col-xl-10">
-  <div class="card shadow-0 border rounded-3">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-          <div class="bg-image hover-zoom ripple rounded ripple-surface">
-            <img [src]="generateImageUrl(pet.image)" height="200px" width="200px" />
-            <a href="#!">
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15)"></div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-6 col-xl-6">
         
-            <h1 style="color: darkcyan">Pet owner: {{ pet.user.name }}</h1>
-            <h3>Pet category: {{ pet.category.name }}</h3>
-            <h4>For: {{ pet.operation }}</h4>
-
-          
-          <div class="mt-1 mb-0 text-muted small">
-            <span><span style="color: darkcyan">Gender: </span>{{ pet.gender }}</span>
-          
-          </div>
-          <p class="text-truncate mb-4 mb-md-0 pt-2">
-            <span style="color: darkcyan">Pet Type: </span>{{ pet.type }}
-          </p>
-          <blockquote class="text-truncate mb-4 mb-md-0 pt-2">
-            <span style="color: darkcyan">age: {{ pet.age }}</span> <br />
-              <br />
-          </blockquote>
-        </div>
-        <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-          <div class="d-flex flex-row align-items-center mb-1">
-            <h4 class="mb-1 me-1">{{ pet.price }}</h4>
-          </div>
-          <div class="d-flex flex-column mt-4">
-            <button class="btn btn-success btn-sm" type="button" (click)="AddToCart(pet)">
-              Add to cart
-              <i class="pi pi-cart-plus" style="font-size: 0.8rem"></i>
-            </button>
-            <button type="button"(click)="editFun(pet)" class="btn btn-sm mt-2 text-white" style="background-color: #13a7d1"
-            data-bs-toggle="modal" data-bs-target="#editModal">
-            Edit pet
-            <i class="fa fa-edit"></i>
-          </button>
-
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Message</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="alert alert-danger" role="alert">
-                      Are you sure that you want to delete the post?
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button data-bs-dismiss="modal"  type="button" class="btn btn-danger" (click)="deleteProduct(pet.id)">Confirm</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+      <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="animalforbreading">See More <i class="fa fa-plus "></i></a></button>
+
+
     </div>
-  </div>
-</div>
-</div> -->
+    </div>
+
 
 <!-- Your previous code (without form) -->
 <!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog mt-1" style="width: 50%; max-width: none">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h1 class="modal-title fs-5" id="exampleModalLabel">
-        Edit your pet details
-      </h1>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <div class="formbold-main-wrapper pt-0">
-        <div class="formbold-form-wrapper pt-0">
-          <img src="assets/pet_welcome.png" style="width: 90%" />
-          <form [formGroup]="editPetForm" (ngSubmit)="submitForm()"enctype="multipart/form-data">
-            <!-- <div class="formbold-input-wrapp formbold-mb-3">
-              <label for="owner" class="formbold-form-label">
-                owner
-              </label>
-
-              <div>
-                <input type="text" name="owner" id="owner" formControlName="owner" placeholder="Your name"
-                  class="formbold-form-input form-control" />
-              </div>
-              <div *ngIf="
-                  editPetForm.controls['owner'].touched &&
-                  editPetForm.controls['owner'].invalid
-                " id="owner" class="text-danger form-text">
-                <small *ngIf="editPetForm.controls['owner'].errors?.['required']">
-                  this field is required
-                </small>
-                <small *ngIf="editPetForm.controls['owner'].errors?.['email']">
-                  Please enter a valid name format.
-                </small>
-              </div>
-            </div> -->
-            <!--_________________ age___________________-->
-
-            <div class="formbold-mb-3">
-              <label for="PetAge" class="formbold-form-label">Pet Age </label>
-              <input type="number" name="age" id="PetAge" placeholder="ex:18"
-                class="formbold-form-input form-control" formControlName="age" />
-              <div *ngIf="
-                  editPetForm.controls['age'].touched &&
-                  editPetForm.controls['age'].invalid
-                " id="PetAge" class="text-danger form-text">
-                <small *ngIf="editPetForm.controls['PetAge'].errors?.['required']">
-                  this field is required
-                </small>
-                <small *ngIf="editPetForm.controls['age'].errors?.['number']">
-                  Please enter a valid age .
-                </small>
-              </div>
-            </div>
-            <!--_________________ type___________________-->
-
-            <div class="formbold-mb-3">
-              <label for="type" class="formbold-form-label">
-                Pet Type
-              </label>
-              <input type="text" name="type" id="type" class="formbold-form-input form-control"
-                formControlName="type" />
-              <div *ngIf="
-                  editPetForm.controls['type'].touched &&
-                  editPetForm.controls['type'].invalid
-                " id="type" class="text-danger form-text">
-                <small *ngIf="editPetForm.controls['type'].errors?.['required']">
-                  this field is required
-                </small>
-                <small *ngIf="editPetForm.controls['type'].errors?.['text']">
-                  Please enter a valid Known Type.
-                </small>
-              </div>
-            </div>
-
-            <!--_________________ price___________________-->
-
-            <div class="formbold-mb-3">
-              <label for="price" class="formbold-form-label">
-                Pet price
-              </label>
-              <input type="number" name="price" id="price" class="formbold-form-input form-control"
-                formControlName="price" />
-              <div *ngIf="
-                  editPetForm.controls['price'].touched &&
-                  editPetForm.controls['price'].invalid
-                " id="price" class="text-danger form-text">
-                <small *ngIf="editPetForm.controls['price'].errors?.['required']">
-                  this field is required
-                </small>
-                <small *ngIf="editPetForm.controls['price'].errors?.['text']">
-                  Please enter a valid Known price.
-                </small>
-              </div>
-            </div>
-               <!--_________________ category___________________-->
-
-               <div class="formbold-mb-3">
-                <label for="category" class="formbold-form-label">
-                  Pet category
-                </label>
-                <select class="formbold-form-input form-control" id="occupation" formControlName="category">
-                  <option value="Dogs">Dogs</option>
-                  <option value="Cats">Cats</option>
-                  <option value="Birds">Birds</option>
-                  <option value="Animal For Breeding">Animal For Breeding</option>
-                </select>
-                <div *ngIf="
-                    editPetForm.controls['category'].touched &&
-                    editPetForm.controls['category'].invalid
-                  " id="category" class="text-danger form-text">
-                  <small *ngIf="editPetForm.controls['category'].errors?.['required']">
-                    this field is required
-                  </small>
-                  <small *ngIf="editPetForm.controls['category'].errors?.['text']">
-                    Please enter a valid Known category.
-                  </small>
-                </div>
-              </div>
-<!--_________________ gender___________________-->
-            <div class="formbold-mb-3">
-              <label class="formbold-form-label">Pet Gender</label>
-
-              <select class="formbold-form-input form-control" name="gender" id="occupation"
-                formControlName="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-              <div *ngIf="
-                  editPetForm.controls['gender'].touched &&
-                  editPetForm.controls['gender'].invalid
-                " id="PetAge" class="text-danger form-text">
-                <small *ngIf="editPetForm.controls['gender'].errors?.['required']">
-                  this field is required
-                </small>
-                <small *ngIf="editPetForm.controls['gender'].errors?.['email']">
-                  Please choose a valid Gender from above.
-                </small>
-              </div>
-            </div>
-<!-- _________________________opeeration _______________ -->
-
-<div class="formbold-mb-3">
-<label class="formbold-form-label">Pet operation</label>
-
-<select class="formbold-form-input form-control" name="operation" id="occupation"
-  formControlName="operation">
-  <option value="sell">sell </option>
-  <option value="adopt">adopt</option>
-</select>
-<div *ngIf="
-    editPetForm.controls['operation'].touched &&
-    editPetForm.controls['operation'].invalid
-  " id="PetAge" class="text-danger form-text">
-  <small *ngIf="editPetForm.controls['operation'].errors?.['required']">
-    this field is required
-  </small>
-  <small *ngIf="editPetForm.controls['operation'].errors?.['email']">
-    Please choose a valid Gender from above.
-  </small>
-</div>
-</div>
-<!-- _________________________image_______________ -->
-
-<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-<input id="upload" type="file" (change)="get_imagPet($event)" formControlName="image" name="image" class="form-control border-0" />
-<label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-<div class="input-group-append">
-  <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
-    <i class="fa fa-cloud-upload mr-2 text-muted"></i>
-    <small class="text-uppercase font-weight-bold text-muted">Choose file</small>
-  </label>
-</div>
-</div>
-            <!-- Uploaded image -->
-            <p class="font-italic text-dark text-center">
-              The image uploaded will be rendered inside the box below.
-            </p>
-            <div class="image-area mt-4">
-              <img id="imageResult" src="{{ base64 }}" alt=""
-                class="img-fluid rounded shadow-sm mx-auto d-block" />
-            </div>
-
-            <div class="formbold-checkbox-wrapper mt-2">
-              <label for="supportCheckbox" class="formbold-checkbox-label">
-                <div class="formbold-relative">
-                  <input type="checkbox" id="supportCheckbox" class="formbold-input-checkbox" />
-                  <div class="formbold-checkbox-inner">
-                    <span class="formbold-opacity-0">
-                      <svg width="11" height="8" viewBox="0 0 11 8" class="formbold-stroke-current" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M8.81868 0.688604L4.16688 5.4878L2.05598 3.29507C1.70417 2.92271 1.1569 2.96409 0.805082 3.29507C0.453266 3.66742 0.492357 4.24663 0.805082 4.61898L3.30689 7.18407C3.54143 7.43231 3.85416 7.55642 4.16688 7.55642C4.47961 7.55642 4.79233 7.43231 5.02688 7.18407L10.0696 2.05389C10.4214 1.68154 10.4214 1.10233 10.0696 0.729976C9.71776 0.357624 9.17049 0.357625 8.81868 0.688604Z"
-                          fill="white" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                I agree to the defined
-                <a href="#"> terms, conditions, and policies</a>
-              </label>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-        Close
-      </button>
-      <button type="button" class="btn btn-primary" [disabled]="editPetForm.invalid" data-bs-dismiss="modal"
-        (click)="onUpdate()">
-        Save changes
-      </button>
-    </div>
-  </div>
-</div>
-</div>
 
 
-<!-- 
-<script>
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
 
-    reader.onload = function (e) {
-      $("#imageResult").attr("src", e.target.result);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-$(function () {
-  $("#upload").on("change", function () {
-    readURL(input);
-  });
-});
-
-/*  ==========================================
-  SHOW UPLOADED IMAGE NAME
-* ========================================== */
-var input = document.getElementById("upload");
-var infoArea = document.getElementById("upload-label");
-
-input.addEventListener("change", showFileName);
-function showFileName(event) {
-  var input = event.srcElement;
-  var fileName = input.files[0].name;
-  infoArea.textContent = "File name: " + fileName;
-}
-</script> -->

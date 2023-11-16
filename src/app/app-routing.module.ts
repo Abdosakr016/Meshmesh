@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { CartComponent } from './cart/components/cart/cart.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { LoginComponent } from './auth/components/login/login.component';
@@ -13,24 +12,42 @@ import { CreatListDoctorsComponent } from './porto_veterinary/components/creat-l
 import { ShowVetsComponent } from './vets-center/components/show-vets/show-vets.component';
 import { UserAccountComponent } from './user-profile/component/user-account/user-account.component';
 import { VeterinaryDetailsComponent } from './vets-center/components/veterinary-details/veterinary-details.component';
+import { UserProfileComponent } from './porto_veterinary/components/user-profile/user-profile.component';
 import { authGuard } from './auth.guard';
 import { SuppliesComponent } from './supplies/components/supplies/supplies.component';
 import { AboutComponent } from './about/components/about/about.component';
+import { SearchComponent } from './pets/components/search/search/search.component';
 import { MyPetsComponent } from './user-profile/component/my-pets/my-pets.component';
+import { RegisterbothComponent } from './auth/components/registerboth/registerboth.component';
+import { MyvetsComponent } from './porto_veterinary/components/myvets/myvets.component';
+import { PetDetailsComponent } from './pets/components/pet-details/pet-details.component';
 
+import { CatsComponent } from './pets/components/cats/cats.component';
+import { DogsComponent } from './pets/components/dogs/dogs.component';
+import { BirdsComponent } from './pets/components/birds/birds.component';
+import { AnimaForBreadingComponent } from './pets/components/anima-for-breading/anima-for-breading.component';
+import { SuccesspaymentComponent } from './cart/components/successpayment/successpayment.component';
 const routes: Routes = [
   {
     path: '',
     component: ContainerComponent
     // canActivate :[authGuard]
   },
-
   {
     path: 'products',
     component: ProductListComponent
     // canActivate:[authGuard]
 
   },
+  { path: 'product/:id', component: PetDetailsComponent },
+
+  {
+    path: 'search',
+    component: SearchComponent
+    // canActivate:[authGuard]
+
+  },
+  
   {
     path: 'cart',
     component: CartComponent,
@@ -75,15 +92,16 @@ const routes: Routes = [
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
-    // canActivate :[authGuard]
+    canActivate :[authGuard]
 
   },
   {
     path: 'user-account',
     component: UserAccountComponent,
-     canActivate :[authGuard]
+   canActivate :[authGuard]
   },
-    {path: 'show_Vet_details',
+  {
+    path: 'show_Vet_details/:id',
     component: VeterinaryDetailsComponent,
   },
   {path: 'supplies',
@@ -95,7 +113,54 @@ const routes: Routes = [
 },
 {path: 'myPets',
   component: MyPetsComponent,
+    canActivate :[authGuard]
 },
+  {
+    path: 'user-vet',
+    component: UserProfileComponent,
+      canActivate :[authGuard]
+  },
+  {
+    path: 'user-account',
+    component: UserAccountComponent,
+    canActivate :[authGuard]
+  },
+  {
+    path: 'show_Vet_details',
+    component: VeterinaryDetailsComponent,
+  },
+  {
+    path: 'mycenters',
+    component: MyvetsComponent,
+      canActivate :[authGuard]
+  },
+  {
+    path: 'registerone',
+    component: RegisterbothComponent,
+  },
+  {
+    path: 'cats',
+    component: CatsComponent,
+  },
+  {
+    path: 'dogs',
+    component: DogsComponent,
+  },
+  {
+    path: 'birds',
+    component: BirdsComponent,
+  },
+  {
+    path: 'animalforbreading',
+    component: AnimaForBreadingComponent,
+  },
+
+  {
+    path: 'success_payment',
+    component: SuccesspaymentComponent,
+  },
+
+  
 ];
 
 

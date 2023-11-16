@@ -20,11 +20,12 @@ import { CartModule } from '../cart/cart.module';
     ReactiveFormsModule,
    FormsModule,
     HttpClientModule,
-   
+
   ],
   exports:[
     NavbarComponent,
     FooterComponent,
+    
   ]
 })
 export class SharedModule { }

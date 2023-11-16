@@ -14,10 +14,15 @@ import { ActivatedRoute } from '@angular/router';
 export class VeterinaryCardComponent {
   @Input() pet !: Ivetcenter;
   vet : any;
+  vets : any;
   logopath: any = 'http://127.0.0.1:8000/';
   constructor(private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute){}
-    deleteProduct(id: number) {
 
+    showdetails(id : number){
+      this.router.navigate(['show_Vet_details' ,id])
+    }
+
+    deleteProduct(id: number) {
     const pet_id_str = id.toString();
     this.apiService.deleteProduct(id).subscribe(
       (response) => {
@@ -41,5 +46,4 @@ export class VeterinaryCardComponent {
   //     }
   //   );
   // }
-  
 }

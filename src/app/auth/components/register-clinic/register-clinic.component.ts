@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
- import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-  
+
 import {
   FormBuilder,
   FormControl,
@@ -21,13 +21,13 @@ import {
 export class RegisterClinicComponent {
   registerclinc!:FormGroup;
   error: string = '';
-  
+
   constructor(private fb: FormBuilder , private router: Router,
     private AuthService:AuthService) {
-    
-    
-    
-  
+
+
+
+
   }
   ngOnInit(){ this.registerclinc= this.fb.group({
   name: [
@@ -35,7 +35,8 @@ export class RegisterClinicComponent {
     [
       Validators.required,
       Validators.minLength(2),
-      Validators.pattern(/^\S+$/),
+     
+      
     ],
   ],
   email: [
@@ -44,25 +45,25 @@ export class RegisterClinicComponent {
       Validators.required,
       // Validators.email,
 
-      Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
+      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
     ],
   ],
 
   // username: [
-  //   '', 
-  //   [Validators.required, 
+  //   '',
+  //   [Validators.required,
   //   Validators.pattern(/^\S*$/)
   // ],
   // ],
   password: [
-    '', 
+    '',
     [
     Validators.required,
     Validators.minLength(8),
   ],
 ],
 phone: [
-  '', 
+  '',
   [
     Validators.required,
     Validators.minLength(11),
@@ -91,9 +92,9 @@ submitForm() {
   }
 }
 
-  
+
 }
-    
+
 
 
 

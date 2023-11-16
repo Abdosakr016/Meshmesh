@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { UserServiceService } from '../../service/user-service.service';
 import { Ipet } from 'src/app/pets/interface/Ipet';
+import { AuthService } from 'src/app/auth/components/auth.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -15,12 +16,13 @@ export class CardComponent {
   @Input() pet !: Ipet;
   imageFile: any
   base64: any
-
+  userData: any;
   // @ViewChild('editPetModal')editPetModal!: ElementRef;
   count ! : number ;
   constructor(private router : Router,
     private formBuilder: FormBuilder,
     private apiService: UserServiceService ,
+    private userService:AuthService
     ){}
 
  
@@ -28,7 +30,7 @@ export class CardComponent {
     ngOnInit() {
 
     this.validationFun();
-  
+    this.getAuthUser()
   }
   validationFun(){
     this.editPetForm = this.formBuilder.group({
@@ -80,10 +82,12 @@ export class CardComponent {
   // }
   onUpdate() {
     if (this.editPetForm.valid) {
+     
+
       const petData = this.editPetForm.value;
       const formData = new FormData();
-  
-      formData.append('user_id', '1'); // Assuming user_id is a field in your form
+      console.log(this.userData.id);
+      formData.append('user_id', this.userData.id); // Assuming user_id is a field in your form
       formData.append('age', petData.age);
       formData.append('type', petData.type);
       formData.append('category', petData.category);
@@ -128,4 +132,17 @@ export class CardComponent {
   submitForm() {
     console.log(this.editPetForm);
   }
+
+  getAuthUser(){
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.userData = data;
+        
+        console.log(this.userData );
+
+      },
+      (error) => {
+        console.error(error);
+      }
+    );}
 }

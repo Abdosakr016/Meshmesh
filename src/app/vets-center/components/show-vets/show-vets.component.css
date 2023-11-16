@@ -13,7 +13,7 @@ body {
 
 .background {
   background-image: url(/assets/bg.jpeg);
-  background-repeat: repeat-y;
+
 }
 
 .background-texture {
@@ -75,4 +75,56 @@ button {
   font-size: 1rem;
   color: var(--white);
   cursor: pointer;
+}
+
+
+.hero {
+
+  /* background-image: url(/assets/bg.jpeg); */
+  background-image: url(/assets/vet_hero.jpg);
+  background-repeat: no-reapeat;
+  background-size: cover;
+  background-position: center;
+  text-align: left;
+  padding: 100px;
+  height: 100vh;
+  width: 100%;
+  background-repeat: repeat-y;
+}
+
+.hero-content {
+  padding: 100px;
+  margin-inline: auto;
+}
+
+.hero-title {
+  font-size: 60px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-transform: upperCase;
+  color: #c25452;
+  padding-bottom: 20px;
+}
+
+.hero-description {
+  font-size: 30px;
+  margin-bottom: 60px;
+}
+
+.hero-button {
+  background-color: #ff6600;
+  padding: 20px;
+  margin-top: 30px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  transition: background-color 2s ease;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: orange;
 }

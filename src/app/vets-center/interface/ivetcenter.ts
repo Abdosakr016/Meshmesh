@@ -10,4 +10,6 @@ export interface Ivetcenter {
   close_at: number;
   tax_record:string;
   commercial_record: string
+  arrDoctors: string[];
+
 }

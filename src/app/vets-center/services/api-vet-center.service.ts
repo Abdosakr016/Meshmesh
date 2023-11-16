@@ -1,21 +1,70 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from  '@angular/common/http';
 import { Ivetcenter } from  '../interface/ivetcenter'
-import { Observable } from 'rxjs';
+import { Iappoint } from '../interface/iappoint';
+import { Observable,forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiVetCenterService {
   url : string = 'http://127.0.0.1:8000/api/VeterinaryCenters/';
+  urlmycenter : string = 'http://127.0.0.1:8000/api/mycenter/';
+  urlAppoint : string = 'http://127.0.0.1:8000/api/appointment/';
+  urlAccept : string = 'http://127.0.0.1:8000/api/accept/';
+  urlReject : string = 'http://127.0.0.1:8000/api/reject/';
+  urlupdateAccept : string = 'http://127.0.0.1:8000/api/updateaccept/';
+  urlupdatereject : string = 'http://127.0.0.1:8000/api/updatereject/';
+
+  AccessToken:any = localStorage.getItem('access_token');
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+  httpHeadersupdate = new HttpHeaders().set('Accept', 'application/json');
+
+  httpHeadersToken = new HttpHeaders().set('Authorization', `Bearer ${this.AccessToken}`);
+
+  header = new HttpHeaders().set("Authorization", `Bearer ${this.AccessToken}`);
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductList() {
+  // acceptmail(id : number){
+  //   const updateAcceptRequest = this.httpClient.get(`${this.urlupdateAccept}${id}`);
+  //   const acceptRequest = this.httpClient.get(`${this.urlAccept}${id}`, { headers: this.header });
 
+  //   // Use forkJoin to combine multiple observables
+  //   return forkJoin([updateAcceptRequest, acceptRequest]);
+  // }
+
+
+  acceptmail(id : number){
+    const updateAcceptRequest = this.httpClient.get(`${this.urlupdateAccept}${id}`);
+    const acceptRequest = this.httpClient.get(`${this.urlAccept}${id}`, { headers: this.header });
+
+    // Use forkJoin to combine multiple observables
+    return forkJoin([updateAcceptRequest, acceptRequest]);
+  }
+
+
+  rejectmail(id: number){
+    const updateAcceptRequest = this.httpClient.get(`${this.urlupdatereject}${id}`);
+    const rejectRequest = this.httpClient.get(`${this.urlReject}${id}`, { headers: this.header });
+
+    // Use forkJoin to combine multiple observables
+    return forkJoin([updateAcceptRequest, rejectRequest]);
+
+  }
+
+  getmyvet() {
+    return  this.httpClient.get(`${this.urlmycenter}`, {headers: this.header});
+  }
+
+  getProductList() {
     return  this.httpClient.get(`${this.url}`);
   }
+
+  getAppointList() {
+    return  this.httpClient.get(`${this.urlAppoint}`, {headers: this.header});
+  }
+
   getProductDetails(id : Number) {
     return this.httpClient.get(`${this.url}/${id}`);
   }
@@ -23,7 +72,11 @@ export class ApiVetCenterService {
     return   this.httpClient.post(`${this.url}`,petData);
   }
   updateProduct(id: any, newData: Ivetcenter) {
-    return this.httpClient.put(`${this.url}/${id}`, newData);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.put(`${this.url}/${id}`, newData,{ headers });
   }
 
   deleteProduct(id: number) {
@@ -34,9 +87,34 @@ export class ApiVetCenterService {
     return this.httpClient.get(`${this.url}${id}`, { headers: this.httpHeaders });
   }
   addNewVet(vetData: FormData) {
-    return this.httpClient.post<Ivetcenter>(`${this.url}`,vetData);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.post<Ivetcenter>(`${this.url}`,vetData, { headers });
   }
-  updateVet(id: any, newData: FormData): Observable<any> {
-    return this.httpClient.put(`${this.url}${id}`, newData);
+
+  updateVet(id: any, vetData: FormData){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.post(`${this.url}${id}`, vetData , { headers });
+  }
+
+  addAppointment( AppData:Iappoint){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return this.httpClient.post(`${this.urlAppoint}`,AppData, { headers });
+  }
+
+  deleteAppointList(id : number) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.AccessToken}`,
+      'Accept': 'application/json'
+    });
+    return  this.httpClient.delete(`${this.urlAppoint}${id}`, { headers });
   }
 }

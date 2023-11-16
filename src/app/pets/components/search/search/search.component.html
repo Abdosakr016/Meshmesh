@@ -7,7 +7,8 @@
     </div>
 
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let pet of searchResults">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let pet of searchResults 
+            | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
                 <!-- pet-card.component.html -->
                 <div class="card mb-5 pt-3 pb-3" style="width: 100%; max-width: 350px;">
                     <img [src]="generateImageUrl(pet.image)" style="width: 100%; height: 200px; object-fit: contain;">
@@ -36,6 +37,9 @@ Add to cart <i class="fa fa-cart-plus"></i>
                     </div>
                 </div>
             </div>
+            <div class="text-center" *ngIf="searchResults .length">    
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
         </div>
     </div>
 </div>

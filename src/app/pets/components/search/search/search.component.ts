@@ -8,6 +8,9 @@ import { CartService } from 'src/app/cart/service/cart/cart.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  p:number=1;
+  itemsPerPage:number=4;  
+
   searchResults: any[] = [];
   arryCart:any[]=[];
 productInCart=false;

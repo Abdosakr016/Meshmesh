@@ -28,7 +28,7 @@
               <span style="color: darkcyan; font-size: larger;">Pet Type : </span>{{ pet.type }}
             <br>
           
-              <span style="color: darkcyan; font-size: larger;">age : {{ pet.age }}</span> <br />
+              <span style="color: darkcyan; font-size: larger;">age : {{ pet.age }} Monthes</span> <br />
          
           </div>
           </div>
@@ -118,7 +118,7 @@
               <!--_________________ age___________________-->
 
               <div class="formbold-mb-3">
-                <label for="PetAge" class="formbold-form-label">Pet Age </label>
+                <label for="PetAge" class="formbold-form-label">Pet Age (in monthes)</label>
                 <input type="number" name="age" id="PetAge" placeholder="ex:18"
                   class="formbold-form-input form-control" formControlName="age" />
                 <div *ngIf="

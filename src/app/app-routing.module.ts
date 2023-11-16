@@ -27,6 +27,7 @@ import { DogsComponent } from './pets/components/dogs/dogs.component';
 import { BirdsComponent } from './pets/components/birds/birds.component';
 import { AnimaForBreadingComponent } from './pets/components/anima-for-breading/anima-for-breading.component';
 import { SuccesspaymentComponent } from './cart/components/successpayment/successpayment.component';
+import { OwnerGuard } from './owner.guard';
 const routes: Routes = [
   {
     path: '',
@@ -118,7 +119,7 @@ const routes: Routes = [
   {
     path: 'user-vet',
     component: UserProfileComponent,
-      canActivate :[authGuard]
+      canActivate :[OwnerGuard]
   },
   {
     path: 'user-account',
@@ -132,7 +133,9 @@ const routes: Routes = [
   {
     path: 'mycenters',
     component: MyvetsComponent,
-      canActivate :[authGuard]
+
+      canActivate :[OwnerGuard]
+
   },
   {
     path: 'registerone',
@@ -158,6 +161,7 @@ const routes: Routes = [
   {
     path: 'success_payment',
     component: SuccesspaymentComponent,
+    canActivate :[authGuard]
   },
 
   

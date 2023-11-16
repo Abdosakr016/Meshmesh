@@ -13,9 +13,13 @@
   
           <th scope="col"class="bg-danger">Delete</th>
         </tr>
+        <div class="form-group has-search">
+          <span class="fa fa-search form-control-feedback"></span>
+          <input type="text"[(ngModel)]="searchText" class="form-control" placeholder="Search">
+        </div>
       </thead>
       <tbody>
-        <tr  *ngFor="let order of orders| paginate: { itemsPerPage: itemsPerPage, currentPage: p}">
+        <tr  *ngFor="let order of orders| paginate: { itemsPerPage: itemsPerPage, currentPage: p}|search:searchText">
           <th scope="row">{{order.id}}</th>
         
           <td>{{order.total_price}}</td>

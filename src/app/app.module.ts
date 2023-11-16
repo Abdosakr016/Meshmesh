@@ -23,10 +23,11 @@ import { TpetsComponent } from './admin/tpets/tpets.component';
 import { TusersComponent } from './admin/tusers/tusers.component';
 import { TordersComponent } from './admin/torders/torders.component';
 import { TsupplyComponent } from './admin/tsupply/tsupply.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TvetcentersComponent } from './admin/tvetcenters/tvetcenters.component';
 import { TappointmentComponent } from './admin/tappointment/tappointment.component';
 import { SharedModule } from './shared/shared.module';
+import { SearchPipe } from './admin/search.pipe';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SharedModule } from './shared/shared.module';
        TsupplyComponent,
        TordersComponent,
        TvetcentersComponent,
-       TappointmentComponent
+       TappointmentComponent,
+       SearchPipe
       ],
   imports: [
     BrowserModule,
@@ -59,8 +61,8 @@ import { SharedModule } from './shared/shared.module';
     UserProfileModule,
     AdminRoutingModule,
     NgxPaginationModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

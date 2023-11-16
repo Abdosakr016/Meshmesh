@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 
 export class TsupplyComponent  implements OnInit {
 
-  
+  searchText=''
     p:number=1;
     itemsPerPage:number=3;  
   

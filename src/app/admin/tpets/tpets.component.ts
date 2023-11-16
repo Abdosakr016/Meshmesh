@@ -14,6 +14,8 @@ export class TpetsComponent {
 
   pets: any;
   pet_id: any;
+
+  searchText=''
   constructor(
   
     private apiService: ApiServiceService ,

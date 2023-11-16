@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/auth/components/auth.service';
   styleUrls: ['./tusers.component.css']
 })
 export class TusersComponent {
-
+  searchText=''
   p:number=1;
   itemsPerPage:number=6;
 

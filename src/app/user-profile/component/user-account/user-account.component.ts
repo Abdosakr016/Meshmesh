@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { forkJoin } from 'rxjs';
 import { OrderService } from 'src/app/cart/service/order/order.service';
+import { Order } from 'src/app/cart/interfaces/order/order';
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
@@ -17,10 +18,11 @@ export class UserAccountComponent {
   userData: any;
   imageFile:any
   userPets: [] = [];
+ 
   userUpdateForm!: FormGroup;
 
-  userOrders: any
-
+  orders: any
+  userOrders: [] = [];
 
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private formBuilder:FormBuilder,
@@ -33,23 +35,34 @@ export class UserAccountComponent {
     }
     ngOnInit() {
       const userDataObservable = this.userService.getUserData();
-      const petsObservable = this.petuserService.getProductList();
-          this.getAuthUser();
-      forkJoin([userDataObservable, petsObservable]).subscribe(
-        ([userData, pets]) => {
-          console.log(pets)
-          this.userData = userData;
-          this.pets = pets;
-          this.validation(); // Move the form initialization here
-          this.filterPetsByUserId();
-          this.userUpdateValidation() 
-        },
-        (error) => console.log(error)
-      );
+    const petsObservable= this.petuserService.getProductList();
+    const ordersObservable= this.orderService.getOrders();
+
+    forkJoin([userDataObservable, petsObservable, ordersObservable]).subscribe(
+      ([userData, pets, orders]) => {
+        console.log('User Data:', userData);
+        console.log('Pets:', pets);
+        console.log('Orders:', orders);
+
+        // Process your data here...
+
+        this.userData = userData;
+        this.pets = pets;
+        this.orders = orders;
+
+        this.validation();
+        this.filterPetsByUserId();
+        this.userUpdateValidation();
+
+        this.get_userOrders();
+      },
+      (error) => console.log(error)
+    );
       this.userUpdateValidation() 
       this.getAuthUser();
       // debugger     
-      this.getUserOrder()
+      // this.getAllOrders()
+      this.get_userOrders()
       this.validation(); 
     }
     
@@ -135,18 +148,8 @@ export class UserAccountComponent {
             console.error(error);
           }
         );}
-        
-        filterPetsByUserId() {
-          // console.log("found.");
 
-         this.userPets = this.pets.filter((pet: any) => pet.user.id === this.userData.id);
-
-          if (this.userPets.length > 0) {
-            console.log("userpets", this.userPets);
-          } else {
-            console.log("No user pets found.");
-          }
-        }
+    
         onUpdateUser() {
           if (this.userUpdateForm.valid) {
             const updateData = this.userUpdateForm.value;
@@ -164,17 +167,43 @@ export class UserAccountComponent {
           }
         }
      
-    getUserOrder(){
+    // getAllOrders(){
      
-      this.orderService.getOrders().subscribe(
-        (data) => {
-       this.userOrders =data
-          console.log("orders:",data );
+    //   this.orderService.getOrders().subscribe(
+    //     (data) => {
+    //    this.AllOrders =data
+    //       console.log("orders:",data );
 
-        },
-        (error) => {
-          console.error(error);
-        }
-      )
+    //     },
+    //     (error) => {
+    //       console.error(error);
+    //     }
+    //   )
+    // }
+
+
+    get_userOrders() {
+      // console.log("found.");
+// debugger
+     this.userOrders = this.orders.filter((order: any) => order.user.id === this.userData.id);
+      
+      if (this.userOrders.length > 0) {
+        // debugger
+        console.log("userOrders", this.userOrders);
+      } else {
+        console.log("No user pets found.");
+      }
     }
-}
+
+    filterPetsByUserId() {
+      // console.log("found.");
+
+     this.userPets = this.pets.filter((pet: any) => pet.user.id === this.userData.id);
+
+      if (this.userPets.length > 0) {
+        console.log("userpets", this.userPets);
+      } else {
+        console.log("No user pets found.");
+      }
+    }
+  }

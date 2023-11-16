@@ -24,6 +24,7 @@ export class TvetcentersComponent {
   taxBase64: any;
   imageFileCommrec: any;
   commercialBasde64: any;
+  searchText=''
   vet: any;
   deleteId: any;
   veterenaryid: any;

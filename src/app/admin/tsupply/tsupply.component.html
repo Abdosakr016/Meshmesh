@@ -13,6 +13,10 @@
 <!-- //////////////////table//////////////////////// -->
 <table class="table table-dark table-hover" style="margin: 15px;">
     <caption>List of supplies</caption>
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text"[(ngModel)]="searchText" class="form-control" placeholder="Search">
+    </div>
     <thead>
       <tr>
         <th scope="col">name</th>
@@ -29,7 +33,7 @@
     </thead>
   
     <tbody>
-      <tr *ngFor="let supply of allSupplies | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+      <tr *ngFor="let supply of allSupplies | paginate: { itemsPerPage: itemsPerPage, currentPage: p } |search:searchText">
         <th scope="row">{{ supply.name }}</th>
         <td>{{ supply.description }}</td>
         <td>{{ supply.price }}</td>

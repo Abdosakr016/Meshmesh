@@ -11,7 +11,7 @@ export class TordersComponent {
 
   p:number=1;
   itemsPerPage:number=6;
-
+  searchText=''
   orders: any;
   order_id: any;
   constructor(

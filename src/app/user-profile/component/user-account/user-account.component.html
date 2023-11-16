@@ -148,7 +148,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let order of userOrders">
+                      <tr *ngFor="let order of orders">
                           <td style="background-color: #ffebcc9c;">{{order.id}}</td>
                           <td style="background-color: #ffebcc9c;">{{order.created_at| date:'yyyy-MM-dd HH:mm:ss'}}</td>
                           <td style="background-color: #ffebcc9c;">${{order.total_price}}</td>

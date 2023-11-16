@@ -11,7 +11,7 @@ export class TappointmentComponent {
   itemsPerPage:number=6;
   apps: any;
   deleteappId: any;
-
+  searchText=''
 constructor(private apiService:ApiVetCenterService){}
 ngOnInit(){
   this.getAppoints();

@@ -13,13 +13,16 @@
         <th scope="col">Status</th>
         <th scope="col" class="bg-danger">Delete</th>
       </tr>
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text"[(ngModel)]="searchText" class="form-control" placeholder="Search">
+      </div>
     </thead>
     <tbody>
       <tr
         *ngFor="
           let app of apps
-            | paginate : { itemsPerPage: itemsPerPage, currentPage: p }
-        "
+            | paginate : { itemsPerPage: itemsPerPage, currentPage: p }|search:searchText "
       >
         <td>{{ app.id }}</td>
         <td>{{ app.created_at | date : "yyyy-MM-dd HH:mm:ss" }}</td>

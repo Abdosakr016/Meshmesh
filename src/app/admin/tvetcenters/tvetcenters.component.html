@@ -14,13 +14,16 @@
         <th scope="col">Close</th>
         <th scope="col" class="bg-danger">Delete</th>
       </tr>
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text"[(ngModel)]="searchText" class="form-control" placeholder="Search">
+      </div>
     </thead>
     <tbody>
       <tr
         *ngFor="
           let vet of vets
-            | paginate : { itemsPerPage: itemsPerPage, currentPage: p }
-        "
+            | paginate : { itemsPerPage: itemsPerPage, currentPage: p } |search:searchText"
       >
         <th scope="row">{{ vet.id }}</th>
         <td>

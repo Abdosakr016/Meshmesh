@@ -33,7 +33,6 @@ export class VeterinaryCardComponent {
       }
     );
   }
-
   // getVetDetails(id: number) {
   //   this.apiService.getVetDetails(id).subscribe(
   //     (response) => {
@@ -47,5 +46,4 @@ export class VeterinaryCardComponent {
   //     }
   //   );
   // }
-
 }

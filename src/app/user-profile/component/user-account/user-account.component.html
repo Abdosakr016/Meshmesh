@@ -195,7 +195,6 @@
         <div class="modal-body">
           <div class="formbold-main-wrapper pt-0">
             <div class="formbold-form-wrapper pt-0">
-              <img src="assets/pet_welcome.png" style="width: 90%" />
               <form [formGroup]="addPetForm" (ngSubmit)="submitForm()"enctype="multipart/form-data">
                 <!-- <div class="formbold-input-wrapp formbold-mb-3">
                   <label for="owner" class="formbold-form-label">
@@ -221,7 +220,7 @@
                 <!--_________________ age___________________-->
   
                 <div class="formbold-mb-3">
-                  <label for="PetAge" class="formbold-form-label">Pet Age </label>
+                  <label for="PetAge" class="formbold-form-label">Pet Age (in monthes) </label>
                   <input type="number" name="age" id="PetAge" placeholder="ex:18"
                     class="formbold-form-input form-control" formControlName="age" />
                   <div *ngIf="

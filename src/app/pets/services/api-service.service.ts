@@ -53,5 +53,5 @@ private access_token=localStorage.getItem('access_token')
     });
     return this.http.delete(`${this.url}/${id}`, {headers});
   }
-
+  
 }

@@ -66,22 +66,24 @@ export class CreatListDoctorsComponent implements OnInit {
       console.log(doctorData);
 
 
-      // const formData = new FormnameData();
-      // formData.append('_method', 'PUT');
+      const formData = new FormData();
+      
+      
+        formData.append('image', this.imageDoctor);
+        formData.append('name', doctorData.name);
 
-      // if (this.imageDoctor) {
-      //   formData.append('image', this.imageDoctor);
-
-      // }
+        formData.append('experience', doctorData.experience);
+        formData.append('_method','PUT');
 
       // Update the data using the API service
-      this.VetService.updatDoctor(this.updateId,doctorData).subscribe(
+      this.VetService.updatDoctor(this.updateId,formData).subscribe(
         (response) => {
 
           console.log('Data updated successfully:', response);
+          this.getDoctors();
         },
         (error: any) => {
-          console.error('Error updating data:', error);
+          console.error('Error updating data vvvvvvvvvv:', error);
         }
       );
 

@@ -135,8 +135,8 @@ export class SuppliesComponent implements OnInit {
       
       const formData = new FormData();
       console.log(supplyData);
-
-formData.append('user_id','2');
+      supplyData.user_id = this.userData.id;
+// formData.append('user_id','2');
 formData.append(' name',supplyData.name);
 formData.append('description',supplyData.description);
 formData.append(' price',supplyData. price);

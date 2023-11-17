@@ -43,12 +43,14 @@ export class MyvetsComponent {
   updateId: any;
   base64: any;
   imageDoctor: any;
+  vetData: any;
 
   constructor(private userService:AuthService,private formBuilder: FormBuilder, private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute,private VetService:VeterinaryService){
     this.updateDoctorForm = this.formBuilder.group({
       name: ['', Validators.required],
       image: ['', Validators.required],
       experience: ['', Validators.required],
+     
     });
   }
   ngOnInit() {
@@ -153,7 +155,7 @@ export class MyvetsComponent {
   onAddVet() {
     if (this.vetCenterFormstore.valid) {
       const vetData = this.vetCenterFormstore.value;
-      vetData.user_id = "1";
+      vetData.user_id = this.userData.id;
 
       // Create a FormData object
       const formData = new FormData();
@@ -309,6 +311,11 @@ export class MyvetsComponent {
     );
   }
 
+  // //get vet_id
+  // getAuthVet(){
+  //   this.VetService.
+  // }
+
   initializeDoctorForm() {
     this.doctorForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -370,8 +377,8 @@ export class MyvetsComponent {
 
     if (this.updateDoctorForm.valid) {
       const doctorData = this.updateDoctorForm.value;
-      // doctorData.user_id = this.userData.id; // Assuming user_id needs to be sent with the request
-
+     //  doctorData.user_id = this.userData.id; // Assuming user_id needs to be sent with the request
+      doctorData.veterinary_center_id = this.updateid ;
       const formData = new FormData();
       formData.append('name', doctorData.name);
       formData.append('image', this.imageDoctor);
@@ -380,7 +387,7 @@ export class MyvetsComponent {
       console.log(doctorData);
 
       // Update the data using the API service
-      this.VetService.updatDoctor(this.updateId,doctorData).subscribe(
+      this.VetService.updatDoctor(this.updateId,formData).subscribe(
         (response) => {
 
           console.log('Data updated successfully:', response);

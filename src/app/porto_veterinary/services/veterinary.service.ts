@@ -70,12 +70,17 @@ unapprovevet(id : number){
       catchError(this.handleError))
   }
 
-  updatDoctor(id : any , data : FormData){
+  updatDoctor(id:any, data:FormData){
+
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.AccessToken}`,
+      'Authorization': `Bearer ${this. AccessToken}`,
       'Accept': 'application/json'
     });
-    return this.httpClient.post(`${this.REST_API}/${id}`,data,{headers});
+   
+    
+    const url=`${this.REST_API}/${id}`;
+   
+    return this.httpClient.post(url,data,{headers});
    }
 
    deleteDoctor(id:any,doctorId:any){

@@ -56,8 +56,8 @@ export class MyvetsComponent {
     this.validatVetCenterFormupdate();
     this.getAuthUser();
     this.getOwner();
-    this.getDoctors()
-   
+    this.getDoctors();
+
     this.initializeDoctorForm();
     console.log(this.vetCenterFormstore);
 
@@ -270,11 +270,7 @@ export class MyvetsComponent {
 
     });
   }
-  // getDoctors(): void {
-  //   this.VetService.get_my_doctors().subscribe((data) => {
-  //     this.veterenary = data;
-  //   });
-  // }
+
   deleteDoctor(vid: number, did:number) {
     this.deleteId = did;
     this.veterenaryid = vid;

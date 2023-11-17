@@ -11,10 +11,14 @@ export class ApiVetCenterService {
   url : string = 'http://127.0.0.1:8000/api/VeterinaryCenters/';
   urlmycenter : string = 'http://127.0.0.1:8000/api/mycenter/';
   urlAppoint : string = 'http://127.0.0.1:8000/api/appointment/';
+  urlallAppoint : string = 'http://127.0.0.1:8000/api/allappointments/';
   urlAccept : string = 'http://127.0.0.1:8000/api/accept/';
   urlReject : string = 'http://127.0.0.1:8000/api/reject/';
   urlupdateAccept : string = 'http://127.0.0.1:8000/api/updateaccept/';
   urlupdatereject : string = 'http://127.0.0.1:8000/api/updatereject/';
+  urlupdateApprove : string = 'http://127.0.0.1:8000/api/updateacceptvet/';
+  urlupdateUnapprove : string = 'http://127.0.0.1:8000/api/updaterejectvet/';
+
 
   AccessToken:any = localStorage.getItem('access_token');
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
@@ -53,6 +57,16 @@ export class ApiVetCenterService {
 
   }
 
+  approvevet(id : number){
+    const updateAcceptRequest = this.httpClient.get(`${this.urlupdateApprove}${id}`);
+    return updateAcceptRequest;
+  }
+
+  unapprovevet(id : number){
+    const updateAcceptRequest = this.httpClient.get(`${this.urlupdateUnapprove}${id}`);
+    return updateAcceptRequest;
+  }
+
   getmyvet() {
     return  this.httpClient.get(`${this.urlmycenter}`, {headers: this.header});
   }
@@ -63,6 +77,10 @@ export class ApiVetCenterService {
 
   getAppointList() {
     return  this.httpClient.get(`${this.urlAppoint}`, {headers: this.header});
+  }
+
+  getallAppointList() {
+    return  this.httpClient.get(`${this.urlallAppoint}`, {headers: this.header});
   }
 
   getProductDetails(id : Number) {

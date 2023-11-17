@@ -2,7 +2,7 @@
   <h1>All vets Created</h1>
   <table class="table table-bordered table-hover">
     <thead class="thead-dark">
-      <tr>
+      <tr class="text-center">
         <th scope="col">Id</th>
         <th scope="col">logo</th>
         <th scope="col">Created at</th>
@@ -12,6 +12,7 @@
         <th scope="col">street_address</th>
         <th scope="col">Open</th>
         <th scope="col">Close</th>
+        <th scope="col" class="bg-primary">Show</th>
         <th scope="col" class="bg-danger">Delete</th>
       </tr>
     </thead>
@@ -39,7 +40,11 @@
         <td>{{ vet.street_address }}</td>
         <td>{{ vet.open_at }}</td>
         <td>{{ vet.close_at }}</td>
-
+        <td>
+          <button class="btn btn-primary mx-2" (click)="showdetails(vet.id)">
+            Show
+          </button>
+        </td>
         <td class="text-danger p-1">
           <button
             class="btn btn-danger mx-2"
@@ -88,182 +93,6 @@
           </div>
         </td>
       </tr>
-      <!-- <tr>
-        <td colspan="10">
-          <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#validate-flush-collapseOne"
-                  aria-expanded="false"
-                  aria-controls="flush-collapseOne"
-                >
-                  Data Wait Validation
-                </button>
-              </h2>
-              <div
-                id="validate-flush-collapseOne"
-                class="accordion-collapse collapse"
-                data-bs-parent="#accordionFlushExample"
-              >
-                <div class="accordion-body">
-                  <table>
-                    <tr>
-                      <th
-                        scope="col"
-                        colspan="2"
-                        style="padding-left: 120px; padding-right: 120px"
-                      >
-                        license
-                      </th>
-                      <th
-                        scope="col"
-                        colspan="2"
-                        style="padding-left: 120px; padding-right: 120px"
-                      >
-                        Tax Record
-                      </th>
-                      <th
-                        scope="col"
-                        colspan="2"
-                        style="padding-left: 120px; padding-right: 120px"
-                      >
-                        Commercial Record
-                      </th>
-                      <th>Action</th>
-                    </tr>
-                    <tr *ngFor="let vet of vets">
-                      <td scope="col" colspan="2">
-                        <img
-                          src="{{ logopath }}{{ vet.license }}"
-                          style="padding-left: 80px; padding-right: 80px"
-                          width="200px"
-                          alt=""
-                          class="avatar-lg rounded"
-                        />
-                      </td>
-                      <td scope="col" colspan="2">
-                        <img
-                          src="{{ logopath }}{{ vet.tax_record }}"
-                          style="padding-left: 80px; padding-right: 80px"
-                          width="200px"
-                          alt=""
-                          class="avatar-lg rounded"
-                        />
-                      </td>
-                      <td scope="col" colspan="2">
-                        <img
-                          src="{{ logopath }}{{ vet.commercial_record }}"
-                          style="padding-left: 80px; padding-right: 80px"
-                          width="200px"
-                          alt=""
-                          class="avatar-lg rounded"
-                        />
-                      </td>
-                      <td rejectModalToggle>
-                        <button
-                          class="btn btn-danger"
-                          [attr.data-bs-target]="'#rejectModalToggle' + vet.id"
-                          data-bs-toggle="modal"
-                          *ngIf="vet.status == 'pending'"
-                        >
-                          Reject
-                        </button>
-                        <div
-                          class="modal fade"
-                          id="rejectModalToggle{{ vet.id }}"
-                          aria-hidden="true"
-                          aria-labelledby="exampleModalToggleLabel"
-                          tabindex="-1"
-                        >
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1
-                                  class="modal-title fs-5"
-                                  id="exampleModalToggleLabel"
-                                >
-                                  Unapproved Data
-                                </h1>
-                                <button
-                                  type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                                ></button>
-                              </div>
-                              <div class="modal-body">
-                                We will send Data as unapproved for the user.
-                              </div>
-                              <div class="modal-footer">
-                                <button
-                                  class="btn btn-success"
-                                  data-bs-target="#rejectModalToggle2"
-                                  data-bs-toggle="modal"
-                                  (click)="unapprovevetdata(vet.id)"
-                                >
-                                  Done
-                                </button>
-                                <button
-                                  class="btn btn-danger"
-                                  data-bs-dismiss="modal"
-                                  data-bs-dismiss="modal"
-                                >
-                                  Cancel
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          class="modal fade"
-                          id="rejectModalToggle2"
-                          aria-hidden="true"
-                          aria-labelledby="exampleModalToggleLabel2"
-                          tabindex="-1"
-                        >
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1
-                                  class="modal-title fs-5"
-                                  id="exampleModalToggleLabel2"
-                                >
-                                  Done
-                                </h1>
-                                <button
-                                  type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                                ></button>
-                              </div>
-                              <div class="modal-body">
-                                Data Send Successfuly
-                              </div>
-                              <div class="modal-footer">
-                                <button
-                                  class="btn btn-primary"
-                                  data-bs-dismiss="modal"
-                                >
-                                  close
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr> -->
       <tr>
         <td colspan="10">
           <div class="accordion accordion-flush" id="accordionFlushExample">

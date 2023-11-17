@@ -44,12 +44,6 @@ export class VeterinaryDetailsComponent {
   this.getvets()
   }
 
-  // getDoctors() {
-  //   this.VetService.get_anydoctors(this.vetid).subscribe(res => {
-  //     console.log(Object.values(res)[0]);
-  //     this.arrDoctors = Object.values(res)[0];
-  //   });
-  // }
   getvets(){
     this.VetService.get_anydoctors(this.vetid).subscribe(((data: any) => (this.vetsa = data['data'])),
     (error) => console.log(error),

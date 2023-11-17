@@ -18,7 +18,7 @@ ngOnInit(){
 }
 
   getAppoints(){
-    this.apiService.getAppointList().subscribe(
+    this.apiService.getallAppointList().subscribe(
       (data) => {
         this.apps = data
         console.log("done:",data );

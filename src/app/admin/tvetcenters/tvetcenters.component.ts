@@ -3,6 +3,8 @@ import { VeterinaryService } from 'src/app/porto_veterinary/services/veterinary.
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { ApiServiceService } from 'src/app/pets/services/api-service.service';
 import { ApiVetCenterService } from 'src/app/vets-center/services/api-vet-center.service';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tvetcenters',
@@ -24,17 +26,22 @@ export class TvetcentersComponent {
   taxBase64: any;
   imageFileCommrec: any;
   commercialBasde64: any;
-  vet: any;
   deleteId: any;
   veterenaryid: any;
   VetService: any;
+  getid: any;
 
-  constructor(private userService:AuthService, private apiService:VeterinaryService, private apiServices:ApiServiceService, private apiServicese: ApiVetCenterService){}
+  constructor(private userService:AuthService, private apiService:VeterinaryService, private apiServices:ApiServiceService, private apiServicese: ApiVetCenterService, private route: ActivatedRoute, private router : Router){}
 
   ngOnInit(){
     this.getvets();
     this.getAuthUser();
     this.getDoctors();
+  }
+
+  showdetails(id : number){
+    this.getid = id;
+    window.location.href='/admin/adminshow-vet/'+this.getid;
   }
 
   getvets(){
@@ -60,20 +67,6 @@ export class TvetcentersComponent {
     )
     console.log("message Done");
   }
-
-  // getvets(){
-  //   this.apiService.get_allvetanddoctor().subscribe(
-  //     ( data) => {
-  //     this.vets = data
-  //       console.log("done:",data );
-
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   )
-  // }
-
 
   getAuthUser(){
     this.userService.getUserData().subscribe(

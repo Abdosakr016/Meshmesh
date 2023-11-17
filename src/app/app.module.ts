@@ -27,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TvetcentersComponent } from './admin/tvetcenters/tvetcenters.component';
 import { TappointmentComponent } from './admin/tappointment/tappointment.component';
 import { SharedModule } from './shared/shared.module';
+import { AdminShowVetComponent } from './admin/admin-show-vet/admin-show-vet.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SharedModule } from './shared/shared.module';
        TsupplyComponent,
        TordersComponent,
        TvetcentersComponent,
-       TappointmentComponent
+       TappointmentComponent,
+       AdminShowVetComponent
       ],
   imports: [
     BrowserModule,

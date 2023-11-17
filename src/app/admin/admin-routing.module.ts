@@ -11,42 +11,46 @@ import { TappointmentComponent } from './tappointment/tappointment.component';
 
 import { TsupplyComponent } from './tsupply/tsupply.component';
 import { AdminGuard } from '../admin.guard';
+import { AdminShowVetComponent } from './admin-show-vet/admin-show-vet.component';
 const routes: Routes = [
 
-  {
+{
     path: 'admin',
     component: AdminComponent,
     canActivate :[AdminGuard],
     children:[
-      {
-       path: 'tpets',
-       component:TpetsComponent ,
-     },
-     {
-      path: 'tusers',
-     component:TusersComponent ,
-    },
-    {
-      path: 'torders',
-     component:TordersComponent ,
-    }
-    ,
-    {
-      path: 'tsupply',
-     component:TsupplyComponent ,
-    },
-  
-  {path: 'tusers',
-      component:TusersComponent ,
-    },
-    {
-     path: 'tvetcenters',
-     component:TvetcentersComponent ,
-    },
-    {
-     path: 'tappointment',
-     component:TappointmentComponent ,
-    }
+  {
+    path: 'tpets',
+    component:TpetsComponent ,
+  },
+  {
+    path: 'tusers',
+    component:TusersComponent ,
+  },
+  {
+    path: 'torders',
+    component:TordersComponent ,
+  },
+  {
+    path: 'tsupply',
+    component:TsupplyComponent ,
+  },
+  {
+    path: 'tusers',
+    component:TusersComponent ,
+  },
+  {
+    path: 'tvetcenters',
+    component:TvetcentersComponent ,
+  },
+  {
+    path: 'tappointment',
+    component:TappointmentComponent ,
+  },
+  {
+    path: 'adminshow-vet/:id',
+    component:AdminShowVetComponent ,
+  }
 ]},
 ];
 

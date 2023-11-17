@@ -244,39 +244,69 @@
                 </div>
               </div>
               <hr />
-              <div class="row" *ngIf="vet.status == 'approved'">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">license</h6>
+              <div id="license">
+                <div class="row" *ngIf="vet.status == 'approved'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">license</h6>
+                  </div>
+                  <div class="col-sm-9 text-success">Approved</div>
                 </div>
-                <div class="col-sm-9 text-success">Approved</div>
-              </div>
-              <div class="row" *ngIf="vet.status == 'unapproved'">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">license</h6>
+                <div class="row" *ngIf="vet.status == 'unapproved'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">license</h6>
+                  </div>
+                  <div class="col-sm-9 text-danger">Unapproved</div>
                 </div>
-                <div class="col-sm-9 text-success">Unapproved</div>
-              </div>
-              <div class="row" *ngIf="vet.status == 'pending'">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">license</h6>
+                <div class="row" *ngIf="vet.status == 'pending'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">license</h6>
+                  </div>
+                  <div class="col-sm-9 text-warning fw-bold">Pending...</div>
                 </div>
-                <div class="col-sm-9 text-warning fw-bold">Pending...</div>
+                <hr />
               </div>
-              <hr />
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">tax record</h6>
+              <div id="tax_record">
+                <div class="row" *ngIf="vet.status == 'approved'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Tax record</h6>
+                  </div>
+                  <div class="col-sm-9 text-success">Approved</div>
                 </div>
-                <div class="col-sm-9 text-success">Approved</div>
-              </div>
-              <hr />
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">commercial record</h6>
+                <div class="row" *ngIf="vet.status == 'unapproved'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Tax record</h6>
+                  </div>
+                  <div class="col-sm-9 text-danger">Unapproved</div>
                 </div>
-                <div class="col-sm-9 text-danger">Unapproved</div>
+                <div class="row" *ngIf="vet.status == 'pending'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Tax record</h6>
+                  </div>
+                  <div class="col-sm-9 text-warning fw-bold">Pending...</div>
+                </div>
+                <hr />
               </div>
-              <hr />
+              <div id="commercial_record">
+                <div class="row" *ngIf="vet.status == 'approved'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Commercial record</h6>
+                  </div>
+                  <div class="col-sm-9 text-success">Approved</div>
+                </div>
+                <div class="row" *ngIf="vet.status == 'unapproved'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Commercial record</h6>
+                  </div>
+                  <div class="col-sm-9 text-danger">Unapproved</div>
+                </div>
+                <div class="row" *ngIf="vet.status == 'pending'">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Commercial record</h6>
+                  </div>
+                  <div class="col-sm-9 text-warning fw-bold">Pending...</div>
+                </div>
+                <hr />
+              </div>
               <div class="row">
                 <div class="col-sm-12">
                   <!-- Start Modal Update Vet -->

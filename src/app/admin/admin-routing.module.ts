@@ -11,6 +11,8 @@ import { TappointmentComponent } from './tappointment/tappointment.component';
 
 import { TsupplyComponent } from './tsupply/tsupply.component';
 import { AdminGuard } from '../admin.guard';
+import { AdminShowVetComponent } from './admin-show-vet/admin-show-vet.component';
+import { TfeedbacksComponent } from './tfeedbacks/tfeedbacks.component';
 const routes: Routes = [
 
   {
@@ -46,7 +48,15 @@ const routes: Routes = [
     {
      path: 'tappointment',
      component:TappointmentComponent ,
-    }
+    },
+    {
+      path: 'adminshow-vet/:id',
+      component:AdminShowVetComponent,
+     },
+     {
+      path: 'tfeedbacks',
+      component:TfeedbacksComponent,
+     }
 ]},
 ];
 

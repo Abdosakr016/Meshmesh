@@ -16,6 +16,12 @@ export class ApiVetCenterService {
   urlupdateAccept : string = 'http://127.0.0.1:8000/api/updateaccept/';
   urlupdatereject : string = 'http://127.0.0.1:8000/api/updatereject/';
 
+  urlupdateApprove : string = 'http://127.0.0.1:8000/api/updateacceptvet/';
+  urlupdateUnapprove : string = 'http://127.0.0.1:8000/api/updaterejectvet/';
+  urlallAppoint : string = 'http://127.0.0.1:8000/api/allappointments/';
+
+
+  
   AccessToken:any = localStorage.getItem('access_token');
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
   httpHeadersupdate = new HttpHeaders().set('Accept', 'application/json');
@@ -102,6 +108,8 @@ export class ApiVetCenterService {
     return this.httpClient.post(`${this.url}${id}`, vetData , { headers });
   }
 
+
+  //*appointments
   addAppointment( AppData:Iappoint){
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.AccessToken}`,
@@ -117,4 +125,20 @@ export class ApiVetCenterService {
     });
     return  this.httpClient.delete(`${this.urlAppoint}${id}`, { headers });
   }
+
+
+  getallAppointList() {
+    return  this.httpClient.get(`${this.urlallAppoint}`, {headers: this.header});
+  }
+
+  approvevet(id : number){
+    const updateAcceptRequest = this.httpClient.get(`${this.urlupdateApprove}${id}`);
+    return updateAcceptRequest;
+  }
+
+  unapprovevet(id : number){
+    const updateAcceptRequest = this.httpClient.get(`${this.urlupdateUnapprove}${id}`);
+    return updateAcceptRequest;
+  }
+  
 }

@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HomeService {
+  private access_token=localStorage.getItem('access_token')
+
   private url = 'http://localhost:8000/api/feedbacks';
 
   // Define HttpHeaders as a constant
@@ -27,7 +29,20 @@ export class HomeService {
     }
     
     deleteFeedback(id: string) {
-      return this.http.delete(`${this.url}/${id}`, { headers: this.httpHeaders });
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${this.access_token}`,
+        'Accept': 'application/json'
+      });
+      return this.http.delete(`${this.url}/${id}`, {headers });
+    }
+
+    changeFeedbackStatus(id: number){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${this.access_token}`,
+        'Accept': 'application/json'
+      });
+      return this.http.put(`${this.url}/${id}`, { headers });
+
     }
   
 }

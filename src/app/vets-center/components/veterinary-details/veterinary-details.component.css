@@ -443,11 +443,11 @@
    background: linear-gradient(#92bCa6, #A2CCB6);
  }
 
-
+/* 
  .card:hover .additional {
    width: 100%;
    border-radius: 0 5px 5px 0;
- }
+ } */
 
  .card .additional .user-card {
    width: 150px;

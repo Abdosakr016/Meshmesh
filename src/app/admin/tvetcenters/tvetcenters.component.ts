@@ -3,7 +3,8 @@ import { VeterinaryService } from 'src/app/porto_veterinary/services/veterinary.
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { ApiServiceService } from 'src/app/pets/services/api-service.service';
 import { ApiVetCenterService } from 'src/app/vets-center/services/api-vet-center.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tvetcenters',
   templateUrl: './tvetcenters.component.html',
@@ -26,11 +27,14 @@ export class TvetcentersComponent {
   commercialBasde64: any;
   searchText=''
   vet: any;
+  getid: any
   deleteId: any;
   veterenaryid: any;
   VetService: any;
 
-  constructor(private userService:AuthService, private apiService:VeterinaryService, private apiServices:ApiServiceService, private apiServicese: ApiVetCenterService){}
+  constructor(private userService:AuthService,
+     private route: ActivatedRoute, private router : Router,
+    private apiService:VeterinaryService, private apiServices:ApiServiceService, private apiServicese: ApiVetCenterService){}
 
   ngOnInit(){
     this.getvets();
@@ -92,7 +96,10 @@ export class TvetcentersComponent {
   deleteVet(id: number) {
     this.deletevetId = id;
   }
-
+  showdetails(id : number){
+    this.getid = id;
+    window.location.href='/admin/adminshow-vet/'+this.getid;
+  }
   modeldeleteVet() {
     this.apiServicese.deleteProduct(this.deletevetId).subscribe(
       (response) => {

@@ -103,133 +103,6 @@
                 </div>
               </div>
             </div>
-            <div class="card m-0" style="width: 270px">
-              <ul class="list-group list-group-flush">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-                >
-                  <h6 class="mb-0">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-globe mr-2 icon-inline"
-                    >
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <path
-                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                      ></path>
-                    </svg>
-                    Website
-                  </h6>
-                  <span
-                    style="font-size: 10px; color: #c2694e !important"
-                    class="text-secondary"
-                    >https://{{ vets.name }}.com</span
-                  >
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-                >
-                  <h6 class="mb-0">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-twitter mr-2 icon-inline text-info"
-                    >
-                      <path
-                        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
-                      ></path>
-                    </svg>
-                    Twitter
-                  </h6>
-                  <span
-                    class="text-secondary fs-6"
-                    style="color: #c2694e !important"
-                    >@{{ vets.name }}</span
-                  >
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-                >
-                  <h6 class="mb-0">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-instagram mr-2 icon-inline text-danger"
-                    >
-                      <rect
-                        x="2"
-                        y="2"
-                        width="20"
-                        height="20"
-                        rx="5"
-                        ry="5"
-                      ></rect>
-                      <path
-                        d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                      ></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                    Instagram
-                  </h6>
-                  <span
-                    class="text-secondary fs-6"
-                    style="color: #c2694e !important"
-                    >{{ vets.name }}</span
-                  >
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-                >
-                  <h6 class="mb-0">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-facebook mr-2 icon-inline text-primary"
-                    >
-                      <path
-                        d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                      ></path>
-                    </svg>
-                    Facebook
-                  </h6>
-                  <span
-                    class="text-secondary fs-6"
-                    style="color: #c2694e !important"
-                    >{{ vets.name }}</span
-                  >
-                </li>
-              </ul>
-            </div>
           </div>
 
           <!-- need some thing -->
@@ -252,36 +125,26 @@
                 </p>
               </div>
               <div class="bio-row">
-                <p class="fw-bold">
-                  <span>Open At:</span>{{ vets.open_at }} Am
-                </p>
+                <p class="fw-bold"><span>Open At:</span>{{ vets.open_at }}</p>
               </div>
               <div class="bio-row">
-                <p class="fw-bold">
-                  <span>Close At:</span>{{ vets.close_at }} Pm
-                </p>
+                <p class="fw-bold"><span>Close At:</span>{{ vets.close_at }}</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="m-0 d-flex ms-3" *ngFor="let vet of vetsa">
+        <div class="m-0 d-flex ms-3">
           <div class="row">
             <div
               class="col-sm-6 mb-3 mb-sm-0"
-              *ngFor="let doctor of vet.doctors; let odd = odd"
+              *ngFor="let doctor of vets.doctors; let odd = odd"
             >
               <div class="m-0">
                 <div class="card m-0 mt-4" [ngClass]="{ green: odd }">
                   <div class="additional">
                     <div class="user-card">
                       <div class="level center">{{ doctor.name }}</div>
-                      <div>
-                        <div class="points center">
-                          <div>{{ doctor.experience }} Years</div>
-
-                          <small class="points center mt-3">Experience</small>
-                        </div>
-                      </div>
+                      <div></div>
                       <div class="panel profile-nav">
                         <div
                           class="user-heading round mt-2"
@@ -296,57 +159,17 @@
                         </div>
                       </div>
                     </div>
-                    <div class="more-info text-white">
-                      <h3 class="text-center pt-3">{{ doctor.name }}</h3>
-                      <div class="coords">
-                        <span></span>
-                      </div>
-                      <div class="coords">
-                        <span class="fs-4 fw-400"
-                          >City: {{ vet.governorate }}</span
-                        >
-                      </div>
-                      <div class="coords">
-                        <span class="fs-5 fw-400"
-                          >address: {{ vet.street_address }}</span
-                        >
-                      </div>
-                      <div class="stats">
-                        <div>
-                          <div class="title">Awards</div>
-                          <i class="fa fa-trophy"></i>
-                          <div class="value">2</div>
-                        </div>
-                        <div>
-                          <div class="title">Matches</div>
-                          <i class="fa fa-gamepad"></i>
-                          <div class="value">27</div>
-                        </div>
-                        <div>
-                          <div class="title">Pals</div>
-                          <i class="fa fa-group"></i>
-                          <div class="value">123</div>
-                        </div>
-                        <div>
-                          <div class="title">Coffee</div>
-                          <i class="fa fa-coffee"></i>
-                          <div class="value infinity">∞</div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div class="general">
                     <h3
                       class="text-center align-center"
                       style="margin-top: 60px"
                     >
-                      {{ doctor.Seller }}
+                      About
                     </h3>
                     <p class="fs-5 fw-900">
-                      Our doctors represent our customers respect so we are
-                      happy to show you who we are
+                      {{ doctor.experience }}
                     </p>
-                    <span class="more">more info</span>
                   </div>
                 </div>
               </div>

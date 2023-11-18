@@ -83,7 +83,7 @@ export class CreatListDoctorsComponent implements OnInit {
           this.getDoctors();
         },
         (error: any) => {
-          console.error('Error updating data vvvvvvvvvv:', error);
+          console.error('Error updating data:', error);
         }
       );
 

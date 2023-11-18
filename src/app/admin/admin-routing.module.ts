@@ -8,7 +8,7 @@ import { authGuard } from '../auth.guard';
 import { TordersComponent } from './torders/torders.component';
 import { TvetcentersComponent } from './tvetcenters/tvetcenters.component';
 import { TappointmentComponent } from './tappointment/tappointment.component';
-
+import { TdoctorComponent } from './tdoctor/tdoctor.component';
 import { TsupplyComponent } from './tsupply/tsupply.component';
 import { AdminGuard } from '../admin.guard';
 const routes: Routes = [
@@ -47,6 +47,11 @@ const routes: Routes = [
      path: 'tappointment',
      component:TappointmentComponent ,
     }
+    ,
+    {
+      path: 'tdoctor',
+      component:TdoctorComponent ,
+     }
 ]},
 ];
 

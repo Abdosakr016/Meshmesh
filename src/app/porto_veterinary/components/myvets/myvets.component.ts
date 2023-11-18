@@ -311,10 +311,8 @@ export class MyvetsComponent {
     );
   }
 
-  // //get vet_id
-  // getAuthVet(){
-  //   this.VetService.
-  // }
+  
+  
 
   initializeDoctorForm() {
     this.doctorForm = this.formBuilder.group({

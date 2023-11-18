@@ -28,6 +28,7 @@ import { TvetcentersComponent } from './admin/tvetcenters/tvetcenters.component'
 import { TappointmentComponent } from './admin/tappointment/tappointment.component';
 import { SharedModule } from './shared/shared.module';
 import { SearchPipe } from './admin/search.pipe';
+import { TdoctorComponent } from './admin/tdoctor/tdoctor.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { SearchPipe } from './admin/search.pipe';
        TordersComponent,
        TvetcentersComponent,
        TappointmentComponent,
-       SearchPipe
+       SearchPipe,
+       TdoctorComponent
       ],
   imports: [
     BrowserModule,

@@ -62,8 +62,7 @@ export class TdoctorComponent {
       this.getDoctors()
      
       this.initializeDoctorForm();
-     
-  
+      
     }
    
    
@@ -104,7 +103,7 @@ export class TdoctorComponent {
     }
   
     modeldeleteDoctor() {
-      this.VetService.deleteDoctor(this.veterenaryid,this.deleteId).subscribe(
+      this.VetService.adminDeleteDoctor(this.deleteId).subscribe(
         (response) => {
           console.log('doctor deleted successfully:', response);
           this.getDoctors();

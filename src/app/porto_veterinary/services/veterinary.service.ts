@@ -18,7 +18,7 @@ export class VeterinaryService {
   REST_API_delmydoc:string='http://localhost:8000/api/veterinary-centers/';
   REST_API_acceptvet:string='http://localhost:8000/api/updateacceptvet/';
   REST_API_rejecttvet:string='http://localhost:8000/api/updaterejectvet/';
-
+url:string='http://localhost:8000/api/adminDeleteDoctor/';
 
 
 
@@ -97,6 +97,10 @@ unapprovevet(id : number){
       errorMessage=`Error Code:${error.status}\n Message:${error.message}`
     }
     return throwError(errorMessage);
+   }
+   adminDeleteDoctor(id:any){
+    let API_URL=`${this.url}${id}`;
+    return this.httpClient.delete(API_URL,{headers: this.header})
    }
 
 }

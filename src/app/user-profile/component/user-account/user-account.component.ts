@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth/components/auth.service';
 import { forkJoin } from 'rxjs';
 import { OrderService } from 'src/app/cart/service/order/order.service';
 import { Order } from 'src/app/cart/interfaces/order/order';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
@@ -117,17 +118,27 @@ export class UserAccountComponent {
         for (const key of Object.keys(petData)) {
           formData.append(key, petData[key]);
         }
-        console.log(formData);
+        // console.log(formData);
 
         // Update the data using the API service
         this.petuserService.addNewPet(formData).subscribe(
           (response) => {
-        console.log(formData);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'your pet added successfully',
+            });
 
             console.log('Data added successfully:', response);
           },
           (error: any) => {
-            console.error('Error added data:', error);
+            console.error('Error updating data:', error);
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'Failed to add data. Please try again.',
+            });
           }
         );
       }
@@ -157,11 +168,19 @@ export class UserAccountComponent {
             // Update the data using the API service
             this.userService.updateUserData(updateData).subscribe(
               (response) => {
-                console.log('User data updated successfully:', response);
-                // this.userData = response;
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Success!',
+                  text: 'your data updated successfully successfully',
+                });
               },
               (error: any) => {
                 console.error('Error updating user data:', error);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error!',
+                  text: 'Failed to update data. Please try again.',
+                });
               }
             );
           }

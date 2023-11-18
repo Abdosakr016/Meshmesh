@@ -5,6 +5,7 @@ import { ApiVetCenterService } from '../../../vets-center/services/api-vet-cente
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/components/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-myvets',
@@ -174,11 +175,22 @@ export class MyvetsComponent {
       // Update the data using the API service
       this.apiService.addNewVet(formData).subscribe(
         (response) => {
-          console.log('Data Added successfully:', response);
+          
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'your veterniry created successfully',
+          });
+console.log('Data Added successfully:', response);
           this.getOwner();
         },
         (error: any) => {
           console.error('Error Adding data:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to add data. Please try again.',
+          });
         }
       );
     }else{
@@ -230,12 +242,20 @@ export class MyvetsComponent {
       this.apiService.updateVet(this.updateid, formData).subscribe(
         (response) => {
           console.log('Data updated successfully:', response);
-          console.log(vetData);
-          console.log(this.userData.id);
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'your veterniry created successfully',
+          });
           this.getOwner();
         },
         (error: any) => {
           console.error('Error updating data:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to add data. Please try again.',
+          });
         }
       );
     } else {
@@ -354,10 +374,20 @@ export class MyvetsComponent {
         (response) => {
 
           console.log('Data updated successfully:', response);
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'your data updated successfully successfully',
+          });
           this.getDoctors();
         },
         (error: any) => {
           console.error('Error updating data:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to update data. Please try again.',
+          });
         }
       );
     }

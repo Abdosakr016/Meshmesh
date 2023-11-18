@@ -29,6 +29,7 @@ import { TappointmentComponent } from './admin/tappointment/tappointment.compone
 import { SharedModule } from './shared/shared.module';
 import { SearchPipe } from './admin/search.pipe';
 import { TfeedbacksComponent } from './admin/tfeedbacks/tfeedbacks.component';
+import { TdoctorComponent } from './admin/tdoctor/tdoctor.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { TfeedbacksComponent } from './admin/tfeedbacks/tfeedbacks.component';
        TvetcentersComponent,
        TappointmentComponent,
        SearchPipe,
-       TfeedbacksComponent
+       TfeedbacksComponent,
+       TdoctorComponent
       ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { TsupplyComponent } from './tsupply/tsupply.component';
 import { AdminGuard } from '../admin.guard';
 import { AdminShowVetComponent } from './admin-show-vet/admin-show-vet.component';
 import { TfeedbacksComponent } from './tfeedbacks/tfeedbacks.component';
+import { TdoctorComponent } from './tdoctor/tdoctor.component';
 const routes: Routes = [
 
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
      {
       path: 'tfeedbacks',
       component:TfeedbacksComponent,
+     },
+
+     {
+      path: 'tdoctor',
+      component:TdoctorComponent,
      }
 ]},
 ];

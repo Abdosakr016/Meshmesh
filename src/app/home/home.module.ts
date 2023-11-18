@@ -7,6 +7,7 @@ import { Section2Component } from './components/section2/section2.component';
 import { Section3Component } from './components/section3/section3.component';
 import { Section4Component } from './components/section4/section4.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports:[
 ContainerComponent,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 import {
@@ -72,16 +72,29 @@ error : any ;
     if (this.regiseruser.valid) {
       const clientData = this.regiseruser.value;
       clientData.role = "client";
-  
+
       this.AuthService.signUp(clientData).subscribe(
         (res) => {
           console.log(res);
           console.log(clientData);
-          this.router.navigate(['login']);
+          // Show SweetAlert success notification
+          Swal.fire({
+            title: 'Success!',
+            text: 'Registration successful. Redirecting to login page.',
+            icon: 'success',
+          }).then(() => {
+            this.router.navigate(['login']);
+          });
         },
         (error) => {
           this.error = error.error.message;
           console.log(error.error);
+          // Show SweetAlert error notification
+          Swal.fire({
+            title: 'Error!',
+            text: 'Registration failed. Please try again.',
+            icon: 'error',
+          });
         }
       );
     }
@@ -89,5 +102,5 @@ error : any ;
   
 
     
-  }
- 
+
+}

@@ -5,6 +5,8 @@ import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { UserServiceService } from '../../service/user-service.service';
 import { Ipet } from 'src/app/pets/interface/Ipet';
 import { AuthService } from 'src/app/auth/components/auth.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -102,13 +104,19 @@ export class CardComponent {
       this.apiService.updatePet(this.pet.id.toString(), formData).subscribe(
         (response) => {
           console.log('Data updated successfully:', response);
-          console.log(this.pet.id);
-          console.log(petData);
-  
-          // this.closeeditPetModal();
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'your pet data updated successfully',
+          });  
         },
         (error) => {
           console.error('Error updating data:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to update data. Please try again.',
+          });
         }
       );
     }}
@@ -119,12 +127,19 @@ export class CardComponent {
    
     this.apiService.deleteProduct(pet_id_str).subscribe(
       (response) => {
-        console.log('Product deleted successfully:', response);
-  
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'your pet deleted successfully',
+        });  
  
       },
       (error) => {
-        console.error('Error deleting product:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Failed to delete data. Please try again.',
+        });
       }
     );
   }

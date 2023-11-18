@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { forkJoin } from 'rxjs';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -259,11 +261,19 @@ export class UserProfileComponent {
       // Update the data using the API service
       this.apiService.addNewVet(formData).subscribe(
         (response) => {
-          console.log('Data Added successfully:', response);
-          this.getvets();
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'your data added successfully successfully',
+          });          this.getvets();
         },
         (error: any) => {
           console.error('Error Adding data:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to add data. Please try again.',
+          });
         }
       );
     }else{
@@ -310,11 +320,21 @@ export class UserProfileComponent {
       this.apiService.updateVet(this.updateid, vetData).subscribe(
         (response) => {
           console.log('Data updated successfully:', response);
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'your veternary updated successfully',
+          });
           this.getvets();
 
         },
         (error: any) => {
           console.error('Error updating data:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to update data. Please try again.',
+          });
         }
       );
     } else {

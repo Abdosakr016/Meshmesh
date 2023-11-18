@@ -44,8 +44,8 @@ const routes: Routes = [
 
   {
     path: 'search',
-    component: SearchComponent
-    // canActivate:[authGuard]
+    component: SearchComponent,
+    canActivate:[authGuard]
 
   },
   
@@ -93,7 +93,7 @@ const routes: Routes = [
   {
     path: 'show_Vets',
     component: ShowVetsComponent,
-    canActivate :[authGuard]
+    // canActivate :[authGuard]
 
   },
   {

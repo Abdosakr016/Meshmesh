@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import Swal from 'sweetalert2';
 
 import {
   FormBuilder,
@@ -73,25 +74,33 @@ phone: [
 });}
 submitForm() {
   if (this.registerclinc.valid) {
-    // console.log(this.registerclinc);
+    const ownerData = this.registerclinc.value;
+    ownerData.role = "owner";
 
-    const owerData = this.registerclinc.value;
-    owerData.role = "owner";
-
-    this.AuthService.signUp(owerData).subscribe(
+    this.AuthService.signUp(ownerData).subscribe(
       (res) => {
-        // console.log(res);
-        // debugger
-        this.router.navigate(['create_veterinary']);
+        // Show SweetAlert success notification
+        Swal.fire({
+          title: 'Success!',
+          text: 'Registration successful. Redirecting to create veterinary page.',
+          icon: 'success',
+        }).then(() => {
+          this.router.navigate(['create_veterinary']);
+        });
       },
       (error) => {
         this.error = error.error.message;
         console.log(error.error);
+        // Show SweetAlert error notification
+        Swal.fire({
+          title: 'Error!',
+          text: 'Registration failed. Please try again.',
+          icon: 'error',
+        });
       }
     );
   }
 }
-
 
 }
 

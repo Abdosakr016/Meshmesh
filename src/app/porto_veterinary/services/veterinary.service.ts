@@ -94,4 +94,11 @@ unapprovevet(id : number){
     return throwError(errorMessage);
    }
 
+
+   url:string='http://localhost:8000/api/adminDeleteDoctor/';
+   adminDeleteDoctor(id:any){
+    let API_URL=`${this.url}${id}`;
+    return this.httpClient.delete(API_URL,{headers: this.header})
+   }
+
 }

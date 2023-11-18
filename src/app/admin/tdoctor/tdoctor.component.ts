@@ -25,17 +25,12 @@ export class TdoctorComponent {
     doctorBase64:any;
     logoBase64: any;
     taxBase64:any;
-    licenseBase64:any;
-    commercialBasde64:any;
-    imageFileLogo: any
-    imageFilelicense: any
-    imageFileTax: any
-    imageFileCommrec: any
+   
     doctors: any;
     deletevetId: any;
     updateid:any;
     deleteId: any;
-    imageFile: any;
+
     userData: any;
     logopath: any = 'http://127.0.0.1:8000/';
     veterenaryid: any;
@@ -47,57 +42,29 @@ export class TdoctorComponent {
     imageDoctor: any;
     vetData: any;
   
-    constructor(private userService:AuthService,private formBuilder: FormBuilder, private apiService:ApiVetCenterService, private router : Router,private route: ActivatedRoute,private VetService:VeterinaryService){
-      this.updateDoctorForm = this.formBuilder.group({
-        name: ['', Validators.required],
-        image: ['', Validators.required],
-        experience: ['', Validators.required],
-       
-      });
+    constructor( private VetService:VeterinaryService){
+  
     }
     ngOnInit() {
-     
-      this.getAuthUser();
-      this.getOwner();
-      this.getDoctors()
-     
-      this.initializeDoctorForm();
-      
-    }
-   
-   
-    getOwner(){
-      this.apiService.getmyvet().subscribe(((data: any) =>  (this.vets = data['data'])),
-      (error) => console.log(error),
-      () => console.log("COMPLETE" , this.vets))
-    }
-  
 
+      this.getDoctors()
+    }
+   
     generateImageUrl(image: string) {
       return `http://localhost:8000/storage/${image}`;
       
     } 
-  
-  
-  
-   
-  
     getDoctors() {
       this.VetService. get_doctors().subscribe(res => {
-        // console.log(Object.values(res)[0]);
         this.doctors = res;
         console.log(this.doctors);
       
       });
     }
-    // getDoctors(): void {
-    //   this.VetService.get_my_doctors().subscribe((data) => {
-    //     this.veterenary = data;
-    //   });
-    // }
+
     deleteDoctor( did:number) {
       this.deleteId = did;
-      // this.veterenaryid = vid;
+
       console.log(this.deleteId);
       // console.log(this.veterenaryid);
     }
@@ -115,57 +82,5 @@ export class TdoctorComponent {
         }
       );
     }
-  
-    getAuthUser(){
-      this.userService.getUserData().subscribe(
-        (data) => {
-          this.userData = data;
-          console.log(this.userData );
-  
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    }
-  
-    // //get vet_id
-    // getAuthVet(){
-    //   this.VetService.
-    // }
-  
-    initializeDoctorForm() {
-      this.doctorForm = this.formBuilder.group({
-        name: ['', Validators.required],
-        image: ['', Validators.required],
-        experience: ['', Validators.required],
-      });
-    }
-  
-    get_doctorImagepath(event: any) {
-      const file = event.target.files[0];
-      this.imageFile = event.target.files[0];
-      const reader = new FileReader();
-      // reader.readAsDataURL(file);
-      reader.onload = () => {
-        const base64Image = reader.result as string;
-        this.doctorBase64 = base64Image;
-      };
-      reader.readAsDataURL(file);
-    }
-  
-
-    
-  
-  
-    get_imagepath(event: any) {
-      const file = event.target.files[0];
-      this.imageDoctor = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.base64 = reader.result;
-      };
-    }
-  
+ 
   }

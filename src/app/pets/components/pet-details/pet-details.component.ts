@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 
@@ -18,7 +18,7 @@ export class PetDetailsComponent {
   arryCart:any[]=[];
 productInCart=false;
 alertMessage=''
-  constructor(
+  constructor(private router : Router,
     private route: ActivatedRoute,
     private CartService : CartService,   
      private ApiService:ApiServiceService
@@ -54,6 +54,6 @@ alertMessage=''
     this.alertMessage=this.CartService.alertMessage
     
     this.CartService.addCartArray_service(product);
-    
+    this.router.navigate(['cart']);
       }
 }

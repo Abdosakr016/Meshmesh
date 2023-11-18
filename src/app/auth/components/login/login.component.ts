@@ -49,10 +49,6 @@ export class LoginComponent implements OnInit{
 
   submitForm() {
 
-   
-    
-    
-
     this.AuthService.login(this.loginform.value).subscribe(res => {
       if(res.access_token){
         localStorage.setItem('access_token' ,res.access_token )

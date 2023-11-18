@@ -13,7 +13,7 @@ import { Isupply } from '../../isupply';
 })
 export class SuppliesComponent implements OnInit {
   p:number=1;
-  itemsPerPage:number=1;  
+  itemsPerPage:number=4;  
 
 
  
@@ -135,8 +135,8 @@ export class SuppliesComponent implements OnInit {
       
       const formData = new FormData();
       console.log(supplyData);
-
-formData.append('user_id','2');
+      supplyData.user_id = this.userData.id;
+// formData.append('user_id','2');
 formData.append(' name',supplyData.name);
 formData.append('description',supplyData.description);
 formData.append(' price',supplyData. price);
@@ -258,7 +258,7 @@ formData.append('_method','PUT');
     this.alertMessage=this.CartService.alertMessage
     
     this.CartService.addCartArray_service(product);
-    
+    this.router.navigate(['cart']);
       }
       closeAlert() {
         this.productInCart = false;

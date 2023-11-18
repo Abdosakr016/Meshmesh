@@ -57,7 +57,7 @@ alertMessage=''
     this.alertMessage=this.CartService.alertMessage
     
     this.CartService.addCartArray_service(product);
-    
+    this.router.navigate(['cart']);
       }
   getAuthUser(){
     this.userService.getUserData().subscribe(

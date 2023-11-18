@@ -12,6 +12,7 @@ import { Isupply } from '../../isupply';
   styleUrls: ['./supplies.component.css']
 })
 export class SuppliesComponent implements OnInit {
+  searchTerm: any 
   p:number=1;
   itemsPerPage:number=1;  
 

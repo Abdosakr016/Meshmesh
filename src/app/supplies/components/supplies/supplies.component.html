@@ -21,6 +21,17 @@
 <main>
 <div class="background">
 <div class="px-4 py-4 my-5 text-center">
+  <div class="main pt-5">
+    <!-- Another variation with a button -->
+    <div class="input-group">
+      <input [(ngModel)]="searchTerm" type="text" class="form-control" style="width: 600px;" >
+      <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+          <i class="fa fa-search"></i>
+          </button>
+      </div>
+    </div>
+</div>
 <!-- <img class="d-block mx-auto mb-4" src="/assets/logomeshmesh.png" alt="" width="200" height="100"> -->
 <h1 class="display-5 fw-bold p-4 ">Give<span style="color: #FF9831;"> Meshmesh</span> the care<br> it deserves</h1>
 <div class="col-lg-6 mx-auto">

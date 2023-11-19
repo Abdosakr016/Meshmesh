@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { Router } from '@angular/router';
 
+
+
 import { Isupply } from '../../isupply';
 @Component({
   selector: 'app-supplies',
@@ -16,12 +18,12 @@ export class SuppliesComponent implements OnInit {
   itemsPerPage:number=4;  
 
 
- 
+  searchText=''
 
   arryCart:any[]=[];
   productInCart=false;
   alertMessage=''
-
+  
 
 
    allSupplies: any;

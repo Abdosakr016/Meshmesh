@@ -19,9 +19,7 @@ export class UserAccountComponent {
   userData: any;
   imageFile:any
   userPets: [] = [];
- 
   userUpdateForm!: FormGroup;
-
   orders: any
   userOrders: [] = [];
 

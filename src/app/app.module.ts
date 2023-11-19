@@ -27,9 +27,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TvetcentersComponent } from './admin/tvetcenters/tvetcenters.component';
 import { TappointmentComponent } from './admin/tappointment/tappointment.component';
 import { SharedModule } from './shared/shared.module';
-import { SearchPipe } from './admin/search.pipe';
 import { TfeedbacksComponent } from './admin/tfeedbacks/tfeedbacks.component';
 import { TdoctorComponent } from './admin/tdoctor/tdoctor.component';
+import { AdminShowVetComponent } from './admin/admin-show-vet/admin-show-vet.component';
 
 
 @NgModule({
@@ -42,9 +42,10 @@ import { TdoctorComponent } from './admin/tdoctor/tdoctor.component';
        TordersComponent,
        TvetcentersComponent,
        TappointmentComponent,
-       SearchPipe,
+       AdminShowVetComponent,
        TfeedbacksComponent,
-       TdoctorComponent
+       TdoctorComponent,
+       
       ],
   imports: [
     BrowserModule,
@@ -66,7 +67,9 @@ import { TdoctorComponent } from './admin/tdoctor/tdoctor.component';
     AdminRoutingModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    // SearchPipe
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

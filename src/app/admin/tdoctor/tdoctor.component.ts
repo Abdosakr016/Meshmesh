@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { VeterinaryService } from 'src/app/porto_veterinary/services/veterinary.service';
-import { ApiVetCenterService } from 'src/app/vets-center/services/api-vet-center.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/auth/components/auth.service';
-import { Idoctor } from 'src/app/porto_veterinary/services/doctorclass';
+
 @Component({
   selector: 'app-tdoctor',
   templateUrl: './tdoctor.component.html',

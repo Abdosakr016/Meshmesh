@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth/components/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -157,10 +158,20 @@ export class TsupplyComponent  implements OnInit {
           (response) => {
   
             console.log('Data updated successfully:', response);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'supply  updated successfully',
+            });  
             this.getAllSuppliesData();
           },
           (error: any) => {
             console.error('Error updating data:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'Failed to update data. Please try again.',
+            });
           }
         );
   
@@ -185,10 +196,20 @@ export class TsupplyComponent  implements OnInit {
           (response) => {
   
             console.log('Data added successfully:', response);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'supply  created successfully',
+            });  
             this.getAllSuppliesData();
           },
           (error: any) => {
             console.error('Error added data:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'Failed to update data. Please try again.',
+            });
           }
         );
   

@@ -9,9 +9,11 @@ import { ElementRef} from '@angular/core';
 })
 export class ShowVetsComponent {
   vets :any;
+  searchText=''
     constructor(private apiService:ApiVetCenterService,private el: ElementRef){}
       ngOnInit(){
-        this.apiService.getProductList().subscribe(((data: any) => (this.vets = data['data'])),
+        this.apiService.getProductList().subscribe(
+          (data: any) => (this.vets = data['data']),
         (error) => console.log(error),
         () => console.log("COMPLETE"))
       }

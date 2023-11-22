@@ -176,21 +176,21 @@ export class MyvetsComponent {
       this.apiService.addNewVet(formData).subscribe(
         (response) => {
           
-          Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: 'your veterniry created successfully',
-          });
+          // Swal.fire({
+          //   icon: 'success',
+          //   title: 'Success!',
+          //   text: 'your veterniry created successfully',
+          // });
 console.log('Data Added successfully:', response);
           this.getOwner();
         },
         (error: any) => {
           console.error('Error Adding data:', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: 'Failed to add data. Please try again.',
-          });
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Error!',
+          //   text: 'Failed to add data. Please try again.',
+          // });
         }
       );
     }else{

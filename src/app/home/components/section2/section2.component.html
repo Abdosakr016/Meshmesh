@@ -208,11 +208,11 @@ h2::after {
 		
 				<h2>Customer <b> Feedbacks</b></h2>
 	<ol class="carousel-indicators">
-	  <li data-target="#carouselExampleCaptions"  *ngFor="let feedback of Allfeedbacks;let index = index" [attr.data-slide-to]="index"></li>
+	  <li data-target="#carouselExampleCaptions"  *ngFor="let feedback of confirmedFeedbacks;let index = index" [attr.data-slide-to]="index"></li>
 	</ol>
 	<div class="carousel-inner">
 	  <div class="carousel-item" *ngFor="let feedback of Allfeedbacks;let index = index;let isFirst = first" [ngClass]="{active:isFirst}">
-		<div class="row justify-content-center " *ngIf="feedback.status == 'confirmed'" >
+		<div class="row justify-content-center " >
 			<div class="col-sm-6 p-5 border border-dark rounded" style="background-color:#c3a68967 ;"  >
 				<div class="testimonial ">
 					<p [textContent]="feedback.feedback"></p>

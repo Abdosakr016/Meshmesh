@@ -440,6 +440,7 @@ body{margin-top:20px;
         background-position: center;
         justify-content: center;
         align-items: center;
+        min-height: 700px;
         margin: 0;
         padding: 0;
         background-repeat: repeat-y;

@@ -25,8 +25,8 @@
             | paginate : { itemsPerPage: itemsPerPage, currentPage: p }|search:searchText "
       >
         <td>{{ app.id }}</td>
-        <td>{{ app.created_at | date : "yyyy-MM-dd HH:mm:ss" }}</td>
-        <td>{{ app.updated_at | date : "yyyy-MM-dd HH:mm:ss" }}</td>
+        <td>{{ app.created_at | date : "yyyy-MM-dd " }}</td>
+        <td>{{ app.updated_at | date : "yyyy-MM-dd " }}</td>
         <td>{{ app.user.name }}</td>
         <td>{{ app.pet_type }}</td>
         <td>{{ app.date }}</td>

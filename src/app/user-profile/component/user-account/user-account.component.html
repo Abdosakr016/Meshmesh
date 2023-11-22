@@ -68,17 +68,17 @@
               <div class="card " style="background-color: #ffebcc9c;">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXdCFjPx2aDjr7oyFIMKmVKwEIkATVQxxPj1F8ITu1Lg&s" alt="Admin" class="rounded-circle" width="150">
                  
                   </div>
                 </div>
               </div>
               <div class="card mt-3 " >
                 <ul class="list-group list-group-flush" >
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color: #ffebcc9c;">
+                  <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color: #ffebcc9c;">
                     <a href="#" class="btn btn-primary">view</a>
                     <span class="text-secondary">View Appointments</span>
-                  </li>
+                  </li> -->
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color: #ffebcc9c;">
                     <button
                     type="button"
@@ -158,9 +158,9 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let order of orders">
+                      <tr *ngFor="let order of userOrders">
                           <td style="background-color: #ffebcc9c;">{{order.id}}</td>
-                          <td style="background-color: #ffebcc9c;">{{order.created_at| date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                          <td style="background-color: #ffebcc9c;">{{order.created_at| date:'yyyy-MM-dd '}}</td>
                           <td style="background-color: #ffebcc9c;">${{order.total_price}}</td>
                       </tr>
                       <!-- Add more order history rows here -->
@@ -367,7 +367,7 @@
                 <div class="formbold-checkbox-wrapper mt-2">
                   <label for="supportCheckbox" class="formbold-checkbox-label">
                     <div class="formbold-relative">
-                      <input type="checkbox" id="supportCheckbox" class="formbold-input-checkbox" />
+                      <!-- <input type="checkbox" id="supportCheckbox" class="formbold-input-checkbox" /> -->
                       <div class="formbold-checkbox-inner">
                         <span class="formbold-opacity-0">
                           <svg width="11" height="8" viewBox="0 0 11 8" class="formbold-stroke-current" fill="none"
@@ -379,8 +379,8 @@
                         </span>
                       </div>
                     </div>
-                    I agree to the defined
-                    <a href="#"> terms, conditions, and policies</a>
+                    <!-- I agree to the defined -->
+                    <!-- <a href="#"> terms, conditions, and policies</a> -->
                   </label>
                 </div>
               </form>

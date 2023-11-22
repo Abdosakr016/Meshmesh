@@ -63,7 +63,7 @@ export class TsupplyComponent  implements OnInit {
   
   
   
-      this.handelGrid()
+     
    
       this.getAllSuppliesData();
      this. initializesupplyForm();
@@ -141,7 +141,7 @@ export class TsupplyComponent  implements OnInit {
         const formData = new FormData();
         console.log(supplyData);
   
-  formData.append('user_id','2');
+  // formData.append('user_id','2');
   formData.append(' name',supplyData.name);
   formData.append('description',supplyData.description);
   formData.append(' price',supplyData. price);
@@ -158,20 +158,10 @@ export class TsupplyComponent  implements OnInit {
           (response) => {
   
             console.log('Data updated successfully:', response);
-            Swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: 'supply  updated successfully',
-            });  
             this.getAllSuppliesData();
           },
           (error: any) => {
             console.error('Error updating data:', error);
-            Swal.fire({
-              icon: 'error',
-              title: 'Error!',
-              text: 'Failed to update data. Please try again.',
-            });
           }
         );
   
@@ -196,20 +186,10 @@ export class TsupplyComponent  implements OnInit {
           (response) => {
   
             console.log('Data added successfully:', response);
-            Swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: 'supply  created successfully',
-            });  
             this.getAllSuppliesData();
           },
           (error: any) => {
             console.error('Error added data:', error);
-            Swal.fire({
-              icon: 'error',
-              title: 'Error!',
-              text: 'Failed to update data. Please try again.',
-            });
           }
         );
   
@@ -255,38 +235,5 @@ export class TsupplyComponent  implements OnInit {
     }
   
   
-    handelGrid(){
-      const listButton = this.el.nativeElement.querySelector('#list');
-      const gridButton = this.el.nativeElement.querySelector('#grid');
-      const productItems = this.el.nativeElement.querySelectorAll('#products .item');
   
-      if (listButton && gridButton) {
-        listButton.addEventListener('click', (event: Event) => { // Specify Event type
-          event.preventDefault();
-          productItems.forEach((item: HTMLElement) => { // Specify HTMLElement type
-            this.renderer.addClass(item, 'list-group-item');
-            this.renderer.removeClass(item, 'grid-group-item');
-          });
-        });
-  
-        gridButton.addEventListener('click', (event: Event) => { // Specify Event type
-          event.preventDefault();
-          productItems.forEach((item: HTMLElement) => { // Specify HTMLElement type
-            this.renderer.removeClass(item, 'list-group-item');
-            this.renderer.addClass(item, 'grid-group-item');
-          });
-        });
-      }
-    }
-    addToCart(product: any) {
-      this.productInCart=this.CartService.productInCart
-      this.alertMessage=this.CartService.alertMessage
-      
-      this.CartService.addCartArray_service(product);
-      
-        }
-        closeAlert() {
-          this.productInCart = false;
-        }
   }
-  

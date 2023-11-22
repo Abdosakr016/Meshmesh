@@ -5,7 +5,7 @@ import { ApiServiceService } from '../../services/api-service.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Ipet } from '../../interface/Ipet';
  import { AuthService } from 'src/app/auth/components/auth.service';
-import { SharedService } from '../../services/shared.service';
+import { SearchService } from '../../services/searchpets/search.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -44,7 +44,7 @@ alertMessage=''
     private CartService : CartService,
    
     private userService:AuthService,
-    private SharedService:SharedService,
+    private SearchService:SearchService,
     ){}
 
  
@@ -87,12 +87,6 @@ alertMessage=''
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   } 
-
- 
-  
-  // closeeditPetModal(){
-  //   this.editPetModal.nativeElement.style.display = 'none';
-  // }
   
 
   addToCart(product: any) {
@@ -142,16 +136,7 @@ alertMessage=''
         console.log(`no ${categoryType} found`);
       }
     }
-    
-  //  category(Acategory:  Ipet[],categoryType:string,operation: string) {
-  //     Acategory = this.pets.filter((pet: any) => pet.category === `${categoryType}`&&pet.operation==`${operation}`);
-  //     if (Acategory.length > 0) {
-  //       console.log( Acategory);
-  //     } else {
-  //       console.log(`no ${categoryType} found` );
-  //     }
-  //   }
-   
+
 
 
 categoryAnimal_breeding() {
@@ -200,7 +185,7 @@ search() {
 
   // Log the search results
   console.log(searchResults);
-  this.SharedService.updateSearchResults(searchResults);
+  this.SearchService.updateSearchResults(searchResults);
   this.router.navigate(['/search']);
   this.searchmood="all";
 }

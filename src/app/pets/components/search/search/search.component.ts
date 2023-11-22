@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedService } from 'src/app/pets/services/shared.service';
+import { SearchService } from 'src/app/pets/services/searchpets/search.service';
 import { CartService } from 'src/app/cart/service/cart/cart.service';
 import { Router } from '@angular/router';
 
@@ -17,14 +17,14 @@ export class SearchComponent {
 productInCart=false;
 alertMessage=''
   constructor(
-    private sharedService: SharedService,
+    private SearchService: SearchService,
     private CartService : CartService,
      private router: Router
     ) {}
 
   ngOnInit() {
   
-    this.sharedService.currentSearchResults.subscribe(
+    this.SearchService.currentSearchResults.subscribe(
       (results) => (this.searchResults = results)
       
     );

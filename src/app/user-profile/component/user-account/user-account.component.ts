@@ -21,7 +21,7 @@ export class UserAccountComponent {
   userPets: [] = [];
   userUpdateForm!: FormGroup;
   orders: any
-  userOrders: [] = [];
+  userOrders: any[]= [];
 
   @ViewChild('addPetModal')addPetModal!: ElementRef;
     constructor(private formBuilder:FormBuilder,
@@ -51,6 +51,8 @@ export class UserAccountComponent {
 
         this.validation();
         this.filterPetsByUserId();
+      this.get_userOrders()
+
         this.userUpdateValidation();
 
         this.get_userOrders();
@@ -61,7 +63,6 @@ export class UserAccountComponent {
       this.getAuthUser();
       // debugger     
       // this.getAllOrders()
-      this.get_userOrders()
       this.validation(); 
     }
     
@@ -208,7 +209,7 @@ export class UserAccountComponent {
         // debugger
         console.log("userOrders", this.userOrders);
       } else {
-        console.log("No user pets found.");
+        console.log("No user orders found.");
       }
     }
 

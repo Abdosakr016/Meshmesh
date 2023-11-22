@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { FilterSearchPipe } from './pipes/filter-search.pipe';
 import { SearchComponent } from './components/search/search/search.component';
 import { PetDetailsComponent } from './components/pet-details/pet-details.component';
 import { RouterModule } from '@angular/router';
@@ -22,7 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [  
     CardComponent,
   ProductListComponent,
-  FilterSearchPipe,
+
   SearchComponent,
   PetDetailsComponent,
   CatsComponent,

@@ -67,7 +67,7 @@ export class CartComponent {
    getTotalPrice(): number {
 
     return this.cart_products.reduce((total, product) => {
-      return total + product.price * product.quantity;
+      return total + product.price * product.quantity +10;
     
     }, 0);
   

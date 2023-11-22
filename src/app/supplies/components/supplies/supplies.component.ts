@@ -15,7 +15,7 @@ import { Isupply } from '../../isupply';
 })
 export class SuppliesComponent implements OnInit {
   p:number=1;
-  itemsPerPage:number=4;  
+  itemsPerPage:number=6;  
 
 
   searchText=''

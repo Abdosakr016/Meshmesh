@@ -8,6 +8,7 @@ import { HomeService } from '../../services/home.service';
 })
 export class Section2Component {
   Allfeedbacks: any
+  confirmedFeedbacks:any[]=[]
   constructor(
     private feedbackService:HomeService,
     ) { } 
@@ -20,11 +21,15 @@ export class Section2Component {
     this.feedbackService.getAllFeedbacks().subscribe(
       (data) => {
         this.Allfeedbacks = data;
-        console.log(data); // You can replace this with how you want to use the data.
+        this.confirmedFeedbacks=this.Allfeedbacks.filter((feedback:any)=>feedback.status=="confirmed")
+        console.log(this.confirmedFeedbacks)
       },
       (error) => {
         console.error('An error occurred while fetching feedbacks:', error);
       }
     );
   }
+
+
+
 }

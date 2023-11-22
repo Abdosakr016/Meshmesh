@@ -62,21 +62,57 @@
 <div class="container-fluid d-flex p-3">
 
  
+
+
+  <div class="col-md-9">
+    <div class="row product-list pt-5" style="display: flex; flex-wrap: wrap;">
+      <div class="col-md-3 mb-3" *ngFor="let supply of allSupplies | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+        <section class="card" style="flex: 1; display: flex; flex-direction: column; height: 100%;">
+          <div class="pro-img-box" style="flex: 1;">
+            <img [src]="generateImageUrl(supply.image)" style="height: 100%; width: 100%; object-fit: cover;" alt="" class="avatar-lg rounded" />
+          
+          
+            
+          </div>
+  
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="#" class="pro-title"><h4>{{ supply.name }}</h4></a>
+            </h3>
+            <h6 class="card-text"> {{ supply.price }}</h6>
+            <p class="card-text"> {{ supply.description }}</p>
+            <p class="card-text">{{ supply.category }}</p>
+          </div>
+          <div class="buy_bt" style="margin-left: 40px;">
+            <button class="btn btn-outline-success" (click)="addToCart(supply)">
+                       Add to cart <i class="fa fa-cart-plus"></i>
+            </button>
+        </div>
+        </section>
+      </div>
+      <div class="text-center" *ngIf="allSupplies.length">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  
+  
+
    <!-- pet-list.component.html -->
-<div class="container-fluid1">
+<!-- <div class="container-fluid1">
   <div class="container mt-4 ">
      
 
       <div class="row">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let supply of allSupplies
           | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
-              <!-- pet-card.component.html -->
+             
+          
               <div class="card mb-5 pt-3 pb-3" style="width: 100%; max-width: 350px;">
                   <img [src]="generateImageUrl(supply.image)" style="width: 100%; height: 200px; object-fit: contain;">
                   <hr>
                   <div class="card-body">
                       <h3 class="card-title"><span style="color: #FF9831; font-weight: bold;"></span>{{supply.name}}</h3>
-                      <!-- <p class="card-text"><span style="color: green;">Price: </span>{{ pet?.price }}</p> -->
 
                      <div class="card-text d-flex"> <p>{{ supply.description }} </p>
                       <div class="rounded-circle" >
@@ -93,7 +129,6 @@
                           </div>
 
                       </div>
-                      <!-- Add more content based on your data structure -->
                   </div>
               </div>
           </div>
@@ -102,7 +137,7 @@
         </div>
       </div>
   </div>
-</div>
+</div> -->
 
 
 

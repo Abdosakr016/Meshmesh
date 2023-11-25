@@ -18,7 +18,7 @@ export class DogsComponent {
   pets: any;
 
   p:number=1;
-  itemsPerPage:number=3;
+  itemsPerPage:number=4;
  
 dogs: Ipet[] = [];
 arryCart:any[]=[];

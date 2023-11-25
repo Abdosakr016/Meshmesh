@@ -5,6 +5,8 @@ import { VeterinaryService } from '../../../porto_veterinary/services/veterinary
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/components/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-veterinary-details',
   templateUrl: './veterinary-details.component.html',
@@ -77,9 +79,19 @@ export class VeterinaryDetailsComponent {
       this.apiService.addAppointment(appointData).subscribe(
         (response) => {
           console.log('Appointment Added successfully:', response);
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'your appointment booked successfully',
+          });
         },
         (error: any) => {
           console.error('Error Adding data:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to book appointment. Please try again.',
+          });
         }
       );
     }else{

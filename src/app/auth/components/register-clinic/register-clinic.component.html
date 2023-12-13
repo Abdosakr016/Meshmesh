@@ -106,7 +106,7 @@
                     <small *ngIf="registerclinc.controls['password'].errors?.['required']">
                       this field is required
                     </small>
-                    <small *ngIf="registerclinc.controls['password'].errors?.['password']">
+                    <small *ngIf="registerclinc.controls['password'].errors?.['minLength']">
                       password must be more than 8 character
 
                     </small>

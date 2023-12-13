@@ -107,7 +107,7 @@
                     <small *ngIf="regiseruser.controls['password'].errors?.['required']">
                       this field is required
                     </small>
-                    <small *ngIf="regiseruser.controls['password'].errors?.['password']">
+                    <small *ngIf="regiseruser.controls['password'].errors?.['minLength']">
                       password must be more than 8 character
 
       </small>

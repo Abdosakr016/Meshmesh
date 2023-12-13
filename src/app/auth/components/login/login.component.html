@@ -69,9 +69,12 @@
                           </small>
                           
                         </div>
-  
+                        <div *ngIf="error" style="color: black;">
+                          <p class="text-danger form-text" style="display: inline;">Invalid email or password. Please try again.</p>
+                          
+                          
+                        </div>
                     </div>
-                    <div *ngIf="invalidLogin" class="text-danger">Invalid email or password. Please try again.</div>
                     
                     
                     <div class="form-outline mb-4">

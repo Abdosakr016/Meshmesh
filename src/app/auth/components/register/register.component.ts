@@ -31,7 +31,7 @@ error : any ;
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.pattern(/^\S+$/),
+          // Validators.pattern(/^\S+$/),
         ],
       ],
       email: [
